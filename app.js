@@ -11,9 +11,7 @@ var sassMiddleware = require('node-sass-middleware');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var methodOverride = require('method-override');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var mysql = require('mysql');
 
 var app = express();
 
@@ -31,10 +29,23 @@ app.use(
 );
 
 // Passport Config
-require("./config/passport")(passport);
+// require("./config/passport")(passport);
 
-// TODO: DB Config & conncection point
+// DB Config & conncection point
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'local',
+  password : 'secret',
+  database : 'my_db'
+});
+connection.connect(function(err) {
+  if (err) {
+    console.error('error connecting: ' + err.stack);
+    return;
+  }
 
+  console.log('connected as id ' + connection.threadId);
+});
 
 
 // EJS
@@ -72,15 +83,15 @@ app.set('view engine', 'jade');
 // Routes
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var associationsRouter = require("./routes/associations");
-var managersRouter = require("./routes/managers");
-var apiRouter = require("./routes/api");
+//var associationsRouter = require("./routes/associations");
+//var managersRouter = require("./routes/managers");
+//var apiRouter = require("./routes/api");
 // Pair Routes with subdirectories
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/associations", associationsRouter);
-app.use("/managers", managersRouter);
-app.use("/api", apiRouter);
+//app.use("/associations", associationsRouter);
+//app.use("/managers", managersRouter);
+//app.use("/api", apiRouter);
 
 // Define server port
 const PORT = process.env.PORT;
