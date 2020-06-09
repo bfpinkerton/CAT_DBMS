@@ -1,0 +1,30 @@
+<div class="ui fixed borderless menu" style="height: 7.8vh;">
+    <div class="ui grid container">
+        <div class="item four wide column">
+            <h1 class="ui header">
+                <i class="large icons">
+                    <i class="heartbeat blue icon"></i>
+                    <i class="inverted corner yellow wheelchair icon"></i>
+                </i>
+                CareAssist
+            </h1>
+        </div>
+        <div class="item eight wide column">
+            <div class="ui large left right icon input search">
+                <input class="prompt" type="text" placeholder="Search patients" id="searchInput">
+                <i class="search link icon"></i>
+            </div>
+        </div>
+        <div class="item two wide column">
+            <i class="user icon"></i>
+            <div class="middle aligned content">
+                <%=user.first_name %> <%=user.last_name %>
+            </div>
+        </div>
+        <div class="item two wide column">
+            <a href="/users/logout">
+                <div class="ui red button">Sign out</div>
+            </a>
+        </div>
+    </div>
+</div>
