@@ -1,71 +1,52 @@
-<!-- Taken from: https://github.com/bradtraversy/node_passport_login/blob/master/views/register.ejs -->
-<div class="row mt-5">
-    <div class="col-md-6 m-auto">
-      <div class="card card-body">
-        <h1 class="text-center mb-3">
-          <i class="fas fa-user-plus"></i> Register
-        </h1>
-        <form action="/users/register" method="POST">
-          <div class="form-group"> 
-            <label for="name">First Name</label>
-            <input
-              type="first_name"
-              id="first_name"
-              name="first_name"
-              class="form-control"
-              placeholder="Enter First Name"
-              value="<%= typeof name != 'undefined' ? name : '' %>"
-            />
-          </div>
-          <div class="form-group"> 
-            <label for="name">Last Name</label>
-            <input
-              type="first_name"
-              id="last_name"
-              name="last_name"
-              class="form-control"
-              placeholder="Enter Last Name"
-              value="<%= typeof name != 'undefined' ? name : '' %>"
-            />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-control"
-              placeholder="Enter Email"
-              value="<%= typeof email != 'undefined' ? email : '' %>"
-            />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              class="form-control"
-              placeholder="Create Password"
-              value="<%= typeof password != 'undefined' ? password : '' %>"
-            />
-          </div>
-          <div class="form-group">
-            <label for="password2">Confirm Password</label>
-            <input
-              type="password"
-              id="password2"
-              name="password2"
-              class="form-control"
-              placeholder="Confirm Password"
-              value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-            />
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">
-            Register
-          </button>
-        </form>
-        <p class="lead mt-4">Already have account? <a href="/user/login">Login</a></p>
-      </div>
+<div class="center-content bg-img"></div>
+    <h1 class="ui">DBMS Register</h1>
+    <div class="ui text container ">
+        <div class="ui grid" id="login-grid">
+            <div class="row">
+                <div class=" twelve wide centered column" id="login-right">
+                    <h1 class="ui inverted header" style="margin-top:0px">
+                        Welcome
+                    </h1>
+                    <form class="ui large inverted form" id="registerForm" action="/users/register" method="POST" >
+                      <div class="two fields">
+                        <div class="five wide field">
+                            <label>First Name</label>
+                            <input type="text" name="first_name" placeholder="First Name">
+                        </div>
+                        <div class="five wide field">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="four wide field">
+                            <label>Email Address</label>
+                            <input type="email" name="email" placeholder="Email">
+                        </div>
+                        <div class="four wide field">
+                            <label>Confirm Email Address</label>
+                            <input type="email" name="confirm_email_address" placeholder="Confirm Email">
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="four wide field">
+                            <label>New Password</label>
+                            <input type="password" name="password" placeholder="New Password"
+                                id="new_password">
+                        </div>
+                        <div class="four wide field">
+                            <label>Confirm New Password</label>
+                            <input type="password" name="password2" placeholder="Confirm Password">
+                        </div>
+                    </div>
+                    <button class="ui green button" type="submit">Save Changes</button>
+                    <button class="ui red deny centered icon button" type="reset"> Reset Fields </button>
+                    </form> 
+                </div>
+                </div>
+               
+        
+        </div>
     </div>
-  </div>
+</div>
+</div>

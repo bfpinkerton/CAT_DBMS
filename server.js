@@ -11,8 +11,6 @@ const sassMiddleware = require('node-sass-middleware');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
-var mysql = require('mysql');
-const Sequelize = require('sequelize');
 const cors = require("cors");
 
 const app = express();
@@ -45,39 +43,10 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-// DB Config & conncection point
-// var connection = mysql.createConnection({
-//   host     : 'localhost',
-//   user     : 'root',
-//   password : 'admin123',
-//   database : 'my_db'
-// });
-// connection.connect(function(err) {
-//   if (err) {
-//     console.error('error connecting: ' + err.stack);
-//     return;
-//   }
-//   console.log('connected as id ' + connection.threadId);
-// });
-
-// // Option 1: Passing parameters separately
-// const sequelize = new Sequelize('my_db', 'root', 'admin123', {
-//   host: 'localhost',
-//   dialect: 'mssql',
-//   port: 3000
-// });
-// sequelize
-//   .authenticate()
-//   .then(() => {
-//     console.log('Connection has been established successfully.');
-//   })
-//   .catch(err => {
-//     console.error('Unable to connect to the database:', err);
-//   });
 
 const db = require("./models");
-db.sequelize.sync();
-
+// RUN BELOW CODE TO UPDATE TABLES
+//db.sequelize.sync({ force: true });
 
 // EJS
 app.set("view engine", "ejs");
@@ -107,14 +76,13 @@ app.use(passport.session());
 
 // Routes
 var indexRouter = require("./routes/index");
-//var usersRouter = require("./routes/users");
+var usersRouter = require("./routes/users");
 //var associationsRouter = require("./routes/associations");
 //var managersRouter = require("./routes/managers");
 //var apiRouter = require("./routes/api");
 // Pair Routes with subdirectories
 app.use("/", indexRouter);
-
-//app.use("/users", usersRouter);
+app.use("/users", usersRouter);
 //app.use("/associations", associationsRouter);
 //app.use("/managers", managersRouter);
 //app.use("/api", apiRouter);

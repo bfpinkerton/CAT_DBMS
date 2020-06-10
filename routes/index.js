@@ -18,6 +18,7 @@ router.get('/login', function (req, res, next) {
   });
 });
 
+
 /* GET loader page */
 router.get('/:state/loader', function (req, res, next) {
   var state = '';
@@ -26,7 +27,6 @@ router.get('/:state/loader', function (req, res, next) {
   } else if (req.params.state == 'logout') {
     state = "Logging you out!"
   }
-
   res.render('pages/landing/loader', {
     state: state
   });
