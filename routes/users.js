@@ -33,12 +33,16 @@ router.post('/register', (req, res) => {
     } = req.body;
 
     if (password != password2) {
-        req.flash('error', "Passwords don't match");
-        res.redirect('/users/register');
+        res.render('pages/users/register', {
+            message: req.flash('error', "Passwords don't match")
+        });
+        return;
     }
     if (confirm_email_address != email) {
-        req.flash('error', "Emails don't match");
-        res.redirect('/users/register');
+        res.render('pages/users/register', {
+            message: req.flash('error', "Email's don't match")
+        });
+        return;
     }
         
     // Create user object
@@ -59,7 +63,6 @@ router.post('/register', (req, res) => {
             // Insert user into DB
             User.create(newUser)
                 .then(data => {
-                    res.send(data);
                     req.flash('success','New user successfully added.');
                     res.redirect('/login');
                 })
