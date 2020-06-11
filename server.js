@@ -34,7 +34,7 @@ app.use(
 );
 
 // Passport Config
-// require("./config/passport")(passport);
+require("./config/passport")(passport);
 
 
 // Define server port

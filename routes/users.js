@@ -12,12 +12,20 @@ const db = require("../models");
 // User model
 const User = db.users;
 
-// const {
-//     ensureAuthenticated
-// } = require('../config/auth');
+// Ensure authenticated user is logged in
+const {
+    ensureAuthenticated
+} = require('../config/auth');
 
 router.get('/register', function (req, res, next) {
     res.render('pages/users/register');
+});
+
+// GET home page
+router.get('/home', ensureAuthenticated, function (req, res, next) {
+    req.app.locals.user = req.user;
+    var date = moment().format('MMMM Do YYYY');
+    res.render('pages/users/home');
 });
 
 // Register Handle
@@ -73,21 +81,21 @@ router.post('/register', (req, res) => {
 
 
 // Login Handle
-// router.post('/login', (req, res, next) => {
-//     passport.authenticate('local', {
-//         // Redirects on both success and fail
-//         successRedirect: '/login/loader',
-//         failureRedirect: '/login',
-//         failureFlash: true
-//     })(req, res, next);
-// });
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', {
+        // Redirects on both success and fail
+        successRedirect: '../users/home',
+        failureRedirect: '/login',
+        failureFlash: true
+    })(req, res, next);
+});
 
 
 // Logout Handle
-// router.get('/logout', (req, res) => {
-//     req.logout();
-//     res.redirect('/logout/loader');
-// });
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/login');
+});
 
 
 // Update Password Handle
@@ -316,25 +324,6 @@ router.post('/register', (req, res) => {
 
 /**  Require authentication for all the routes below */
 // router.all('*',ensureAuthenticated);
-
-
-// GET home page
-// router.get('/home', async function (req, res, next) {
-//     req.app.locals.user = req.user;
-//     var date = moment().format('MMMM Do YYYY');
-//     var numInFence;
-
-//     Patient.find({isWithinFence:true},function(err,inFence){
-//         Patient.find({isWithinFence:false},function(err,outFence){
-//             res.render('pages/users/home', {
-//                 date: date,
-//                 inFence: inFence.length,
-//                 outFence: outFence.length
-//             });
-//         });
-//     });
-   
-// });
 
 
 /* 
