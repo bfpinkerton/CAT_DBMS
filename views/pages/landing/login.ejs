@@ -1,12 +1,17 @@
-<div class="center-content bg-img"></div>
-    <h1 class="ui">DBMS Login</h1>
+<head >
+    <%- include ("../../partials/head") %>
+    
+</head>
+<body style="background: #202021">
+
+    <h1 class="ui"></h1>
     <div class="ui text container ">
         <div class="ui grid" id="login-grid">
             <div class="row">
                 <div class=" twelve wide centered column" id="login-right">
 
                     <h1 class="ui inverted header" style="margin-top:0px">
-                        Welcome
+                        Please enter your credentials to login.
                     </h1>
                     <% if(success.length != 0){ %>
                         <div class="ui tiny success message ">
@@ -54,3 +59,9 @@
     </div>
 </div>
 </div>
+
+<footer>
+    <%- include ("../../partials/footer") -%>
+</footer>
+
+</body>

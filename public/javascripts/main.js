@@ -7,13 +7,9 @@ $(document).ready(function () {
     // Function Calls
     showTime();
     changeSelectedItem(url);
-    selectGender();
-    selectBloodType();
-    newPatientForm();
     loader();
-    makeInteractive();
-    searchPatient();
-    loginForm()
+    makeInteractive(); // TODO: Modify below
+    loginForm();
 });
 
 function loginForm() {
@@ -37,18 +33,6 @@ function loginForm() {
     });
 }
 
-function searchPatient() {
-
-    $('.ui.search')
-        .search({
-            // change search endpoint to a custom endpoint by manipulating apiSettings
-            apiSettings: {
-                url: '/api/patients/search/?q={query}',
-            },
-        });
-
-}
-
 function makeInteractive() {
     $('.menu .item').tab();
     $('.ui.accordion').accordion();
@@ -66,6 +50,7 @@ function makeInteractive() {
 
 /**
  * Function to change active item in sidebar menu
+ * TODO: Modify for Sidebar DB Table Access
  */
 function changeSelectedItem(url) {
     if (url.includes('/patients/new')) {
@@ -123,17 +108,8 @@ function edit() {
     }).modal('show');
 }
 
-function selectGender() {
-    var dropdownGender = $('#dropdown-gender');
-    var gender = dropdownGender.data('gender');
-    dropdownGender.dropdown('set selected', gender);
-}
 
-function selectBloodType() {
-    var dropdownBloodType = $('#dropdown-bloodType');
-    var bloodType = dropdownBloodType.data('blood');
-    dropdownBloodType.dropdown('set selected', bloodType);
-}
+
 
 function loader() {
     /**
@@ -153,105 +129,4 @@ function loader() {
         setTimeout(redirect_to_landing, 1500);
     }
 
-}
-
-function newPatientForm() {
-
-    if (url.includes('/patients/new')) {
-        $('.emergency').hide();
-        $('.health').hide();
-        $('.review').hide();
-        $('#personalBack').hide();
-        $('#emergencyBack').hide();
-        $('#healthtNext').hide();
-        $('#reviewNext').hide();
-        $('#submitButton').hide();
-
-    }
-
-    /**
-     * For NEXT Buttons in New Patient Form
-     */
-
-    $('#emergencytNext').click(function () {
-        $(this).hide();
-        $('.personal').hide();
-        $('.step.one').removeClass('active').addClass('completed');
-        $('.step.two').addClass('active');
-        $('.emergency').show();
-        $('#personalBack').show();
-        $('#healthtNext').show();
-
-    });
-
-    $('#healthtNext').click(function () {
-        $(this).hide();
-        $('.emergency').hide();
-        $('#personalBack').hide();
-        $('.step.two').removeClass('active').addClass('completed');
-        $('.step.three').addClass('active');
-        $('.health').show();
-        $('#reviewNext').show();
-        $('#emergencyBack').show();
-
-    });
-
-    $('#reviewNext').click(function () {
-        $(this).hide();
-        $('.step.three').removeClass('active').addClass('completed');
-        $('.personal').show();
-        $('.emergency').show();
-        $('.review').show();
-        $('#submitButton').show();
-        $('#emergencyBack').hide();
-    });
-
-    /**
-     * For NEXT Buttons in New Patient Form
-     */
-    $('#personalBack').click(function () {
-        $('.step.one').addClass('active').removeClass('completed');
-        $('.step.two').removeClass('active');
-        $(this).hide();
-        $('#healthtNext').hide();
-        $('.emergency').hide();
-        $('.personal').show();
-        $('#emergencytNext').show();
-    });
-
-    $('#emergencyBack').click(function () {
-        $('.step.two').addClass('active').removeClass('completed');
-        $('.step.three').removeClass('active');
-        $(this).hide();
-        $('#reviewNext').hide();
-        $('.health').hide();
-
-        $('.emergency').show();
-        $('#healthtNext').show();
-        $('#personalBack').show();
-    });
-
-
-    /** 
-     * Patient Form Validation 
-     * */
-
-    $('#newPatientForm').form({
-        fields: {
-            first_name: {
-                identifier: 'first_name',
-                rules: [{
-                    type: 'empty',
-                    prompt: 'First Name field cannot be left empty.'
-                }]
-            },
-            last_name: {
-                identifier: 'last_name',
-                rules: [{
-                    type: 'empty',
-                    prompt: 'Last Name field cannot be left empty.'
-                }]
-            }
-        }
-    });
 }

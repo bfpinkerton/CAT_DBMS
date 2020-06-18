@@ -6,7 +6,7 @@
   background: #47a186 !important; }
 
 .bg-bleu-de-france {
-  background: #3197e0 !important; }
+  background: #134524 !important; }
 
 .bg-liberty {
   background: #52489c !important; }
@@ -18,7 +18,7 @@
   background: #f2f5fa !important; }
 
 .bg-blue {
-  background: #0E6EB8 !important; }
+  background: #134524 !important; }
 
 /*  ************* Font Colors ************/
 .ft-ruber {
@@ -28,7 +28,7 @@
   color: #47a186 !important; }
 
 .ft-bleu-de-france {
-  color: #3197e0 !important; }
+  color: #134524 !important; }
 
 .ft-liberty {
   color: #52489c !important; }
@@ -72,10 +72,10 @@
   background: #2d3d4f !important; }
 
 #previousPatient:hover {
-  background: #3197e0 !important; }
+  background:#134524 !important; }
 
 #nextPatient:hover {
-  background: #3197e0 !important; }
+  background: #134524 !important; }
 
 #header-title {
   font-size: 40px; }

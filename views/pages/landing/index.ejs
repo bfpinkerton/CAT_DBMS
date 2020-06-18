@@ -1,10 +1,50 @@
+<%- include ("../../partials/head") %>
 
-<div class="ui container"></div>
-        <h1 class="ui yellow header" style="font-size: 5em;">C&M Database Management System</h1>
-        <p></p>
-        <a href="/login">
-            <div class='ui big blue button'>
-                Login To Your Account
+<body style="background-color:#1C1D1E;">
+    <div class="ui inverted vertical masthead center aligned segment">
+
+        <!-- Top Bar -->
+        <div class="ui inverted container" >
+            <div class="ui large secondary inverted pointing menu">
+                <a style="margin-left: -20px;" class="active item">Home</a>
+                <a class="item">Login</a>
+                <a class="item">DB's</a>
+                <div style="margin-right: -50px;" class="right inverted item">
+                    <a href="http://www.clayton-mcculloh.com/" class="ui button">Meant to visit Clayton & McCulloh's Homesite? Click Here!</a>
+                </div>
             </div>
-        </a>
+        </div>
+    
+        <div class="ui segment" style="background-color:lightslategray;">
+            <img src="http://www.clayton-mcculloh.com/newsite/sites/default/files/CM-Logo.svg" style="margin-top:60px;width:400;height:400px;">
+            <div class="ui inverted divider" style="margin-top: -50px"> </div>
+            <!-- Additional Text -->
+            <div class="ui text container">   
+                <h2 style="color: black" >Database Management System</h2>
+                <a href="/login">
+                    <style>
+                        .ui.color1.button:not(:hover) {
+                            background-color: #134524;
+                            color: #fff;
+                        }
+                        .ui.color1.button:hover {
+                            background-color: darkgray;
+                            color: #fff;
+                        }
+                    </style>
+                    <div class="ui huge primary color1 button">Log in to Proceed <i class="right arrow icon"></i></div>
+                </a>
+            </div>
+            <div class="ui inverted divider"></div>
+        </div>
+    
+        <!-- Bottom Bar -->
+        <div class="ui container" >
+            <div class="ui large secondary  pointing menu">
+            </div>
+        </div>
+        
     </div>
+</body>
+
+<%- include ("../../partials/footer") -%>
