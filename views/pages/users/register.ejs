@@ -1,52 +1,76 @@
-<div class="center-content bg-img"></div>
-    <h1 class="ui">DBMS Register</h1>
-    <div class="ui text container ">
-        <div class="ui grid" id="login-grid">
-            <div class="row">
-                <div class=" twelve wide centered column" id="login-right">
-                    <h1 class="ui inverted header" style="margin-top:0px">
-                        Welcome
-                    </h1>
-                    <form class="ui large inverted form" id="registerForm" action="/users/register" method="POST" >
-                      <div class="two fields">
-                        <div class="five wide field">
-                            <label>First Name</label>
-                            <input type="text" name="first_name" placeholder="First Name">
-                        </div>
-                        <div class="five wide field">
-                            <label>Last Name</label>
-                            <input type="text" name="last_name" placeholder="Last Name">
-                        </div>
-                    </div>
-                    <div class="two fields">
-                        <div class="four wide field">
-                            <label>Email Address</label>
-                            <input type="email" name="email" placeholder="Email">
-                        </div>
-                        <div class="four wide field">
-                            <label>Confirm Email Address</label>
-                            <input type="email" name="confirm_email_address" placeholder="Confirm Email">
-                        </div>
-                    </div>
-                    <div class="two fields">
-                        <div class="four wide field">
-                            <label>Password</label>
-                            <input type="password" name="password" placeholder="New Password"
-                                id="new_password">
-                        </div>
-                        <div class="four wide field">
-                            <label>Confirm Password</label>
-                            <input type="password" name="password2" placeholder="Confirm Password">
-                        </div>
-                    </div>
-                    <button class="ui green button" type="submit">Save Changes</button>
-                    <button class="ui red deny centered icon button" type="reset"> Reset Fields </button>
-                    </form> 
-                </div>
-                </div>
-               
-        
+<%- include ("../../partials/head") %>
+
+<body style="background-color:#1C1D1E;">
+    <div class="ui inverted vertical masthead center aligned segment">
+        <!-- Top Bar -->
+    <div class="ui inverted container" >
+        <div class="ui large secondary inverted pointing menu">
+            <a href="/" class="item" style="margin-left: -20px;">Home</a>
+            <a href="/login" class="item">Login</a>
+            <a href="/users/home" class="item">Dashboard</a>
+            <a href="/users/register" class="active item">Register</a>
+            <div style="margin-right: -50px;" class="right inverted item">
+                <a href="http://www.clayton-mcculloh.com/" class="ui button">Meant to visit Clayton & McCulloh's Homesite? Click Here!</a>
+            </div>
         </div>
     </div>
-</div>
-</div>
+
+    
+    <div class="ui segment" style="background-color:lightslategray;">
+        <h1 class="ui"></h1>
+
+        <div class="ui text container" style="background-color:lightslategray;">
+            <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 0px"></div>
+                <h1 class="ui inverted header" style="color: black">
+                    Register new user below:
+                </h1>
+                <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 0px"></div>
+            <div class="ui grid" id="login-grid">
+                <div class="row" style="width: 300px;">
+                    <div class=" twelve wide centered column" id="login-right">
+                        <form class="ui large inverted form" id="registerForm" action="/users/register" method="POST" >
+                          <div class="two fields">
+                            <div class="five wide field">
+                                <label>First Name</label>
+                                <input type="text" name="first_name" placeholder="First Name">
+                            </div>
+                            <div class="five wide field">
+                                <label>Last Name</label>
+                                <input type="text" name="last_name" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="four wide field">
+                                <label>Email Address</label>
+                                <input type="email" name="email" placeholder="Email">
+                            </div>
+                            <div class="four wide field">
+                                <label>Confirm Email Address</label>
+                                <input type="email" name="confirm_email_address" placeholder="Confirm Email">
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="four wide field">
+                                <label>Password</label>
+                                <input type="password" name="password" placeholder="New Password"
+                                    id="new_password">
+                            </div>
+                            <div class="four wide field">
+                                <label>Confirm Password</label>
+                                <input type="password" name="password2" placeholder="Confirm Password">
+                            </div>
+                        </div>
+                        <button class="ui green button" type="submit">Save Changes</button>
+                        <button class="ui red deny centered icon button" type="reset"> Reset Fields </button>
+                        </form> 
+                    </div>
+                    </div>
+                   
+            
+            </div>
+        </div>
+
+    
+    </div>
+</body>
+

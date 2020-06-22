@@ -17,12 +17,19 @@ const {
     ensureAuthenticated
 } = require('../config/auth');
 
-router.get('/register', function (req, res, next) {
+// Ensure user has admin permissions
+// const {
+//     ensureAdmin
+// } = require('../config/admin');
+
+
+
+router.get('/register', /* ensureAdmin , */ function (req, res, next) {
     res.render('pages/users/register');
 });
 
 // GET home page
-router.get('/home', ensureAuthenticated, function (req, res, next) {
+router.get('/home', ensureAuthenticated, async function (req, res, next) {
     req.app.locals.user = req.user;
     var date = moment().format('MMMM Do YYYY');
     res.render('pages/users/home');
@@ -30,7 +37,7 @@ router.get('/home', ensureAuthenticated, function (req, res, next) {
 
 // Register Handle
 // TODO: Check for existing account with same email
-router.post('/register', (req, res) => {
+router.post('/register', /* ensureAdmin , */ (req, res) => {
     const {
         first_name,
         last_name,

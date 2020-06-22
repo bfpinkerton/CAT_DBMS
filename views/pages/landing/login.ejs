@@ -1,67 +1,103 @@
-<head >
-    <%- include ("../../partials/head") %>
+<%- include ("../../partials/head") %>
+
+<body style="background-color:#1C1D1E;">
+    <div class="ui inverted vertical masthead center aligned segment">
+
+        <!-- Top Bar -->
+        <div class="ui inverted container" >
+            <div class="ui large secondary inverted pointing menu">
+                <a href="/" class="item" style="margin-left: -20px;">Home</a>
+                <a href="/login" class="active item">Login</a>
+                <a href="/users/home" class="item">DB's</a>
+                <div style="margin-right: -50px;" class="right inverted item">
+                    <a href="http://www.clayton-mcculloh.com/" class="ui button">Meant to visit Clayton & McCulloh's Homesite? Click Here!</a>
+                </div>
+            </div>
+        </div>
     
-</head>
-<body style="background: #202021">
+        <div class="ui segment" style="background-color:lightslategray;">
+            
+            <h1 class="ui"></h1>
+                <div class="ui text container ">
+                    <div class="ui grid" id="login-grid">
+                        <div class="row">
+                            <div class=" twelve wide centered column" id="login-right">
+                                <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 0px"></div>
+                                <h1 class="ui inverted header" style="color: black">
+                                    Please enter your credentials to login.
+                                </h1>
+                                <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 0px"></div>
+                                <% if(success.length != 0){ %>
+                                    <div class="ui tiny success message ">
+                                        <i class="close icon"></i>
+                                        <div class="header">
+                                            <%=success[0]%>
+                                        </div>
+                                    </div>
+                                <% } %>
+                                <% if(error.length !=0){ %>
+                                    <div class="ui tiny error message">
+                                        <i class="close icon"></i>
+                                        <ul class="list">
+                                            <li>Make sure you enter the correct email address</li>
+                                            <li>All passwords are at least six character long.</li>
+                                        </ul>
+                                    </div>
+                                <% } %>
+                                <% if(failure.length != 0){ %>
+                                    <div class="ui tiny error message ">
+                                        <i class="close icon"></i>
+                                        <div class="header">
+                                            <%=failure[0]%>
+                                        </div>
+                                    </div>
+                                <% } %>
+                                <form class="ui large inverted  form" id="loginForm" action="/users/login" method="POST" style="margin-top: 0px;margin-bottom: 0px">
+                                    <div class="field">
+                                        <label style="color: black">Email Address</label>
+                                        <input type="email" name="email" placeholder="Enter Your Email">
+                                    </div>
+                                    <div class="field">
+                                        <label style="color: black">Password</label>
+                                        <input type="password" name="password" placeholder="Enter Your Password">
+                                    </div>
 
-    <h1 class="ui"></h1>
-    <div class="ui text container ">
-        <div class="ui grid" id="login-grid">
-            <div class="row">
-                <div class=" twelve wide centered column" id="login-right">
 
-                    <h1 class="ui inverted header" style="margin-top:0px">
-                        Please enter your credentials to login.
-                    </h1>
-                    <% if(success.length != 0){ %>
-                        <div class="ui tiny success message ">
-                            <i class="close icon"></i>
-                            <div class="header">
-                                <%=success[0]%>
+                                    <style>
+                                        .ui.color1.button:not(:hover) {
+                                            background-color: #134524;
+                                            color: #fff;
+                                        }
+                                        .ui.color1.button:hover {
+                                            background-color: darkgray;
+                                            color: #fff;
+                                        }
+                                    </style>
+
+
+                                    <button style="margin: 0;" class="ui fluid color1 button" type="submit">Submit</button>
+
+                                    <div class="ui inverted divider" style="margin-top: 10px;margin-bottom: 10px"></div>
+
+                                    <div class="ui tiny error message"></div>
+                                </form> 
+                                <div class="ui segment" >Forgot Password? <a href="/users/reset-request">Click here.</a></div>
+                                <div class="ui inverted divider"style="margin-bottom:20px" ></div>
                             </div>
                         </div>
-                        <% } %>
-                    <% if(error.length !=0){ %>
-                        <div class="ui tiny error message">
-                            <i class="close icon"></i>
-                            <ul class="list">
-                              <li>Make sure you enter the correct email address</li>
-                              <li>All passwords are at least six character long.</li>
-                            </ul>
-                          </div>
-                    <% } %>
-                    <% if(failure.length != 0){ %>
-                        <div class="ui tiny error message ">
-                            <i class="close icon"></i>
-                            <div class="header">
-                                <%=failure[0]%>
-                            </div>
-                        </div>
-                        <% } %>
-                    <form class="ui large inverted  form" id="loginForm" action="/users/login" method="POST" >
-                        <div class="field">
-                            <label>Email Address</label>
-                            <input type="email" name="email" placeholder="Enter Your Email">
-                        </div>
-                        <div class="field">
-                            <label>Password</label>
-                            <input type="password" name="password" placeholder="Enter Your Password">
-                        </div>
-                        <button style="margin: 0;" class="ui fluid blue button" type="submit">Submit</button>
-                        <div class="ui tiny error message"></div>
-                    </form> 
-                    <div class="ui segment">Forgot Password? <a href="/users/reset-request">Click here.</a></div>
+                    </div>
                 </div>
-                </div>
-               
-        
+            </div>
         </div>
     </div>
-</div>
-</div>
-
-<footer>
-    <%- include ("../../partials/footer") -%>
-</footer>
-
+    
+        <!-- Bottom Bar -->
+        <div class="ui container" >
+            <div class="ui large secondary  pointing menu">
+            </div>
+        </div>
+        
+    </div>
 </body>
+
+<%- include ("../../partials/footer") -%>

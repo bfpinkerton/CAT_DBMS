@@ -1,30 +1,86 @@
-<div class="ui fixed borderless menu" style="height: 7.8vh;">
-    <div class="ui grid container">
-        <div class="item four wide column">
-            <h1 class="ui header">
-                <i class="large icons">
-                    <i class="heartbeat blue icon"></i>
-                    <i class="inverted corner yellow wheelchair icon"></i>
-                </i>
-                CareAssist
-            </h1>
-        </div>
-        <div class="item eight wide column">
-            <div class="ui large left right icon input search">
-                <input class="prompt" type="text" placeholder="Search patients" id="searchInput">
-                <i class="search link icon"></i>
+<div class="ui container" >
+    <div class="ui inverted labeled icon menu" style="margin-top: -15px;margin-bottom: -7px">
+        <div class="ui vertical divider" style="margin-left: -380px"></div>
+        <a class="item" style="margin-top: 3px;margin-bottom: -5px;margin-left: 87px">
+            <i class="plus square outline icon"></i>
+            New Entry
+        </a>
+        <a class="item" style="min-width: 200px;margin-top: 5px">
+            <select class="ui large fluid dropdown" multiple="">
+                <option value="">Category:</option>
+                    <option value="AS">Association</option>
+                    <option value="MN">Manager</option>
+                    <option value="CT">County</option>
+            </select>
+        </a>
+        <a class="item" style="min-width: 200px;margin-top: 0px;margin-bottom: 0px;">
+            <div class="ui icon input">
+                <input type="text" placeholder="Search ...">
+                <i class="search icon"></i>
             </div>
-        </div>
-        <div class="item two wide column">
-            <i class="user icon"></i>
-            <div class="middle aligned content">
-                <%=user.first_name %> <%=user.last_name %>
-            </div>
-        </div>
-        <div class="item two wide column">
-            <a href="/users/logout">
-                <div class="ui red button">Sign out</div>
-            </a>
-        </div>
+        </a>
+        <a class="item">Submit</a>
     </div>
 </div>
+
+
+
+
+<!-- <div class="ui container">
+    <a href="#" class="header item">
+      <img class="logo" src="assets/images/logo.png">
+      Project Name
+    </a>
+    <a href="#" class="item">Home</a>
+    <div class="ui simple dropdown item">
+      Dropdown <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item" href="#">Link Item</a>
+        <a class="item" href="#">Link Item</a>
+        <div class="divider"></div>
+        <div class="header">Header Item</div>
+        <div class="item">
+          <i class="dropdown icon"></i>
+          Sub Menu
+          <div class="menu">
+            <a class="item" href="#">Link Item</a>
+            <a class="item" href="#">Link Item</a>
+          </div>
+        </div>
+        <a class="item" href="#">Link Item</a>
+      </div>
+    </div>
+  </div> -->
+
+
+
+
+
+
+
+<!-- <div class="ui inverted vertical masthead center aligned segment">
+    <div class="fixed ui inverted container" >
+        <div class="ui inverted labeled icon menu" style="margin-top: -15px;margin-bottom: -7px">
+            <div class="ui vertical divider" style="margin-left: -380px"></div>
+            <a class="item" style="margin-top: 3px;margin-bottom: -5px;margin-left: 87px">
+                <i class="plus square outline icon"></i>
+                New Entry
+            </a>
+            <a class="item" style="min-width: 200px;margin-top: 5px">
+                <select class="ui large fluid dropdown" multiple="">
+                    <option value="">Category:</option>
+                        <option value="AS">Association</option>
+                        <option value="MN">Manager</option>
+                        <option value="CT">County</option>
+                </select>
+            </a>
+            <a class="item" style="min-width: 200px;margin-top: 0px;margin-bottom: 0px;">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search ...">
+                    <i class="search icon"></i>
+                    </div>
+            </a>
+            <a class="item">Submit</a>
+        </div>
+    </div>
+</div> -->
