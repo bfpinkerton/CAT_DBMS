@@ -22,13 +22,7 @@ const {
     ensureAdmin
 } = require('../config/admin');
 
-
-
-router.get('/register', ensureAdmin, function (req, res, next) {
-    req.flash('success', 'Admin successfully authenticated');
-    res.locals.message = req.flash();
-    res.render('pages/users/register');
-});
+// ------------------------------------------------------------------
 
 // GET home page
 router.get('/home', ensureAuthenticated, async function (req, res, next) {
@@ -38,6 +32,13 @@ router.get('/home', ensureAuthenticated, async function (req, res, next) {
     res.locals.failure_messages = req.flash('failure_messages');
     // var date = moment().format('MMMM Do YYYY');
     res.render('pages/users/home', );
+});
+
+// GET register user page
+router.get('/register', ensureAdmin, function (req, res, next) {
+    req.flash('success', 'Admin successfully authenticated');
+    res.locals.message = req.flash();
+    res.render('pages/users/register');
 });
 
 // Register Handle
@@ -90,6 +91,28 @@ router.post('/register', ensureAdmin, (req, res) => {
         });
     })
 });
+
+// GET delete user page
+router.get('/delete', ensureAdmin, function (req, res, next) {
+    req.flash('success', 'Admin successfully authenticated');
+    res.locals.message = req.flash();
+    res.render('pages/users/delete');
+});
+
+
+/* 
+    Delete specified user
+*/
+// router.delete('/delete/:id', (req, res) => {
+//     User.findByIdAndRemove(req.params.id, (error, data) => {
+//         if (error) {
+//             console.log(error);
+//         } else {
+//             req.flash('success', 'User has been deleted.')
+//             res.redirect('/users/settings')
+//         }
+//     });
+// });
 
 
 // Login Handle
@@ -339,18 +362,6 @@ router.get('/logout', (req, res) => {
 // router.all('*',ensureAuthenticated);
 
 
-/* 
-    Delete specified user
-*/
-// router.delete('/delete/:id', (req, res) => {
-//     User.findByIdAndRemove(req.params.id, (error, data) => {
-//         if (error) {
-//             console.log(error);
-//         } else {
-//             req.flash('success', 'User has been deleted.')
-//             res.redirect('/users/settings')
-//         }
-//     });
-// });
+
 
 module.exports = router;
