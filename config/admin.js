@@ -2,18 +2,17 @@
     Middleware file to authenticate if a user is logged WITH admin credentials
     Using Passport's "isAuthenticated" to verify current user logged in
 */
-module.exports = function (filePath) {
-    return function(req, res, next) {
+module.exports = {
+     ensureAdmin: function(req, res, next) {
         if(req.isAuthenticated()) {
-            if(req.user.admin == true) {
-                console.log("Is admin");
+            if(req.user.admin) {
                 return next();
             }
-            console.log("Not admin");
-            return res.redirect(filePath);
+            req.flash('failure','Please contact an administrator to register a new account.');
+            return res.redirect('/users/home');
 
         }
-        console.log("Not logged in");
+        req.flash('failure','You need to log in first.');
         res.redirect('/login');
     }
 }

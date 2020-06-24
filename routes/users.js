@@ -18,26 +18,31 @@ const {
 } = require('../config/auth');
 
 // Ensure user has admin permissions
-// const {
-//     ensureAdmin
-// } = require('../config/admin');
+const {
+    ensureAdmin
+} = require('../config/admin');
 
 
 
-router.get('/register', /* ensureAdmin , */ function (req, res, next) {
+router.get('/register', ensureAdmin, function (req, res, next) {
+    req.flash('success', 'Admin successfully authenticated');
+    res.locals.message = req.flash();
     res.render('pages/users/register');
 });
 
 // GET home page
 router.get('/home', ensureAuthenticated, async function (req, res, next) {
     req.app.locals.user = req.user;
-    var date = moment().format('MMMM Do YYYY');
-    res.render('pages/users/home');
+    res.locals.success_messages = req.flash('success_messages');
+    res.locals.error_messages = req.flash('error_messages');
+    res.locals.failure_messages = req.flash('failure_messages');
+    // var date = moment().format('MMMM Do YYYY');
+    res.render('pages/users/home', );
 });
 
 // Register Handle
 // TODO: Check for existing account with same email
-router.post('/register', /* ensureAdmin , */ (req, res) => {
+router.post('/register', ensureAdmin, (req, res) => {
     const {
         first_name,
         last_name,
@@ -101,6 +106,7 @@ router.post('/login', (req, res, next) => {
 // Logout Handle
 router.get('/logout', (req, res) => {
     req.logout();
+    req.flash('success','You have been logged out.');
     res.redirect('/login');
 });
 

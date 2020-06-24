@@ -23,6 +23,11 @@
             Generate
             <br> Report
           </a>
+          <a href="/users/register" class="item">
+            <i class="user circle icon"></i>
+            <b>—RNU—</b>
+            Register New User
+          </a>
     </div>
 
     <!-- Top Fixed Menu -->
@@ -69,8 +74,24 @@
 
     <div class="pusher">
         <!-- Page Content Here-->
-        <div class="ui basic segment">
-            <h3 class="ui header">Hello there</h3>  
+        <h1 style="margin-left: 200px; margin-top: 100px;">Hello There</h1>
+        <% if(success_messages.length != 0){ %>
+            <div class="ui tiny success message ">
+                <i class="close icon"></i>
+                <div class="header">
+                    <%=success[0]%>
+                </div>
+            </div>
+        <% } %>
+        <% if(failure_messages.length != 0){ %>
+            <div class="ui tiny failure message ">
+                <i class="close icon"></i>
+                <div class="header">
+                    <%=failure[0]%>
+                </div>
+            </div>
+        <% } %>
+        <div class="ui basic segment">  
         </div>
     </div>
 </body>

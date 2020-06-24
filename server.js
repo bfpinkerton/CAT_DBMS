@@ -54,11 +54,13 @@ const db = require("./models");
 app.set("view engine", "ejs");
 
 // Express Session
+// Time for session to expire
 app.use(
   session({
     secret: "secret",
     resave: true,
     saveUninitialized: true,
+    cookie: {maxAge: 60000}
   })
 );
 
@@ -115,6 +117,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+// app.use(function(req, res, next){
+//   res.locals.success_messages = req.flash('success_messages');
+//   res.locals.error_messages = req.flash('error_messages');
+//   res.locals.failure_messages = req.flash('failure_messages');
+//   next();
+// });
+
 
 // error handler
 app.use(function(err, req, res, next) {

@@ -17,60 +17,156 @@
 
     
     <div class="ui segment" style="background-color:lightslategray;">
-        <h1 class="ui"></h1>
-
+        <h1></h1>
         <div class="ui text container" style="background-color:lightslategray;">
-            <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 0px"></div>
-                <h1 class="ui inverted header" style="color: black">
-                    Register new user below:
-                </h1>
-                <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 0px"></div>
             <div class="ui grid" id="login-grid">
-                <div class="row" style="width: 300px;">
+                <div class="row">
                     <div class=" twelve wide centered column" id="login-right">
-                        <form class="ui large inverted form" id="registerForm" action="/users/register" method="POST" >
-                          <div class="two fields">
-                            <div class="five wide field">
-                                <label>First Name</label>
-                                <input type="text" name="first_name" placeholder="First Name">
+                        <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: -10px"></div>
+                        <h1 class="ui inverted header" style="color: black">
+                            Register a new user below:
+                        </h1>
+                        <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 0px"></div>
+
+
+                        <% if(locals.message){ %>
+                            <div class="ui tiny success message ">
+                                <i class="close icon"></i>
+                                <div class="header">
+                                    <%=message.success%>
+                                </div>
                             </div>
-                            <div class="five wide field">
-                                <label>Last Name</label>
-                                <input type="text" name="last_name" placeholder="Last Name">
+                        <% } %>
+
+                        
+
+                        <form class="ui large inverted form" id="registerForm" action="/users/register" method="POST">
+
+                            <div class="ui center aligned two column grid">
+                                <div class="row">
+                                    <div class="column">
+                                        <div class="field">
+                                            <label>First Name</label>
+                                            <input type="text" name="first_name" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="field">
+                                            <label>Last Name</label>
+                                            <input type="text" name="last_name" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                  </div>
                             </div>
-                        </div>
-                        <div class="two fields">
-                            <div class="four wide field">
-                                <label>Email Address</label>
-                                <input type="email" name="email" placeholder="Email">
+
+                            <div class="ui center aligned two column grid">
+                                <div class="row">
+                                    <div class="column">
+                                        <div class="field">
+                                            <label>Email Address</label>
+                                            <input type="email" name="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="field">
+                                            <label>Confirm Email Address</label>
+                                            <input type="email" name="confirm_email_address" placeholder="Confirm Email">
+                                        </div>
+                                    </div>
+                                  </div>
                             </div>
-                            <div class="four wide field">
-                                <label>Confirm Email Address</label>
-                                <input type="email" name="confirm_email_address" placeholder="Confirm Email">
+
+                            <div class="ui center aligned two column grid">
+                                <div class="row">
+                                    <div class="column">
+                                        <div class="field">
+                                            <label>Password</label>
+                                            <input type="password" name="password" placeholder="New Password" id="new_password">
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="field">
+                                            <label>Confirm Password</label>
+                                            <input type="password" name="password2" placeholder="Confirm Password">
+                                        </div>
+                                    </div>
+                                  </div>
                             </div>
-                        </div>
-                        <div class="two fields">
-                            <div class="four wide field">
-                                <label>Password</label>
-                                <input type="password" name="password" placeholder="New Password"
-                                    id="new_password">
-                            </div>
-                            <div class="four wide field">
-                                <label>Confirm Password</label>
-                                <input type="password" name="password2" placeholder="Confirm Password">
-                            </div>
-                        </div>
-                        <button class="ui green button" type="submit">Save Changes</button>
-                        <button class="ui red deny centered icon button" type="reset"> Reset Fields </button>
+
+
+                            <!-- <div class="two fields" style="width: 800px;">
+                                <div class="five wide field">
+                                    <label>First Name</label>
+                                    <input type="text" name="first_name" placeholder="First Name">
+                                </div>
+                                <div class="five wide field">
+                                    <label>Last Name</label>
+                                    <input type="text" name="last_name" placeholder="Last Name">
+                                </div>
+                            </div> -->
+                            <!-- <div class="two fields" style="width: 800px;">
+                                <div class="five wide field">
+                                    <label>Email Address</label>
+                                    <input type="email" name="email" placeholder="Email">
+                                </div>
+                                <div class="five wide field">
+                                    <label>Confirm Email Address</label>
+                                    <input type="email" name="confirm_email_address" placeholder="Confirm Email">
+                                </div>
+                            </div> -->
+                            <!-- <div class="two fields" style="width: 1000px;">
+                                <div class="four wide field">
+                                    <label>Password</label>
+                                    <input type="password" name="password" placeholder="New Password" id="new_password">
+                                </div>
+                                <div class="four wide field">
+                                    <label>Confirm Password</label>
+                                    <input type="password" name="password2" placeholder="Confirm Password">
+                                </div>
+                            </div> -->
+                            <div class="ui inverted divider" style="margin-top: 20px;margin-bottom: 10px"></div>
+
+                            <div class="ui center aligned two column grid">
+                                <style>
+                                    .ui.color1.button:not(:hover) {
+                                        background-color: #134524;
+                                        color: #fff;
+                                    }
+                                    .ui.color1.button:hover {
+                                        background-color: darkgray;
+                                        color: #fff;
+                                    }
+                                </style>
+                                <style>
+                                    .ui.color2.button:not(:hover) {
+                                        background-color: darkred;
+                                        color: #fff;
+                                    }
+                                    .ui.color2.button:hover {
+                                        background-color: darkgray;
+                                        color: #fff;
+                                    }
+                                </style>
+                                <div class="row">
+                                  <div class="column">
+                                    <button class="ui centered color1 button" type="submit">
+                                        Save Changes
+                                    </button>
+                                  </div>
+                                  <div class="column">
+                                    <button class="ui centered color2 deny centered icon button" type="reset"> 
+                                        Reset Fields 
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                            <div class="ui inverted divider" style="margin-top: 10px;margin-bottom: 0px"></div>
                         </form> 
                     </div>
-                    </div>
-                   
-            
+                </div>
             </div>
         </div>
-
-    
     </div>
 </body>
-
