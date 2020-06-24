@@ -85,7 +85,7 @@ router.post('/register', ensureAdmin, (req, res) => {
             User.create(newUser)
                 .then(data => {
                     req.flash('success','New user successfully added.');
-                    res.redirect('/login');
+                    res.redirect('/home');
                 })
                 .catch(err => console.log(err));
         });
@@ -93,10 +93,20 @@ router.post('/register', ensureAdmin, (req, res) => {
 });
 
 // GET delete user page
-router.get('/delete', ensureAdmin, function (req, res, next) {
-    req.flash('success', 'Admin successfully authenticated');
-    res.locals.message = req.flash();
-    res.render('pages/users/delete');
+router.get('/delete', ensureAdmin, async function (req, res, next) {
+    try {
+        const users = await db.sequelize.query("select * from users where admin = '0'", { type: db.sequelize.QueryTypes.SELECT});
+        req.flash('success', 'Admin successfully authenticated');
+        res.locals.message = req.flash();
+        req.app.locals.users = users;
+        res.render('pages/users/delete');
+    }
+    catch (err) {
+        console.log(err);
+        req.flash('failure', 'Error db lookup failed, no non-admin users found');
+        res.locals.message = req.flash();
+        res.redirect('/home');
+    }
 });
 
 
