@@ -96,9 +96,12 @@ router.post('/register', ensureAdmin, (req, res) => {
 router.get('/delete', ensureAdmin, async function (req, res, next) {
     try {
         const users = await db.sequelize.query("select * from users where admin = '0'", { type: db.sequelize.QueryTypes.SELECT});
+        req.app.locals.users = users;
+        if (users.length == 0) {
+            req.flash('failure', 'No existing non-admin users');
+        }
         req.flash('success', 'Admin successfully authenticated');
         res.locals.message = req.flash();
-        req.app.locals.users = users;
         res.render('pages/users/delete');
     }
     catch (err) {
@@ -113,16 +116,17 @@ router.get('/delete', ensureAdmin, async function (req, res, next) {
 /* 
     Delete specified user
 */
-// router.delete('/delete/:id', (req, res) => {
-//     User.findByIdAndRemove(req.params.id, (error, data) => {
-//         if (error) {
-//             console.log(error);
-//         } else {
-//             req.flash('success', 'User has been deleted.')
-//             res.redirect('/users/settings')
-//         }
-//     });
-// });
+router.delete('/delete/:id', ensureAdmin, (req, res) => {
+    db.sequelize.query("DELETE FROM users WHERE id = '"+req.params.id+"'", { type: db.sequelize.QueryTypes.DELETE})
+        .catch(err => {
+            req.flash('failure', err);
+            res.locals.message = req.flash();
+            req.redirect('/delete');
+        })
+    req.flash('success', 'User has been deleted.')
+    res.locals.message = req.flash();
+    res.redirect('/users/home');
+});
 
 
 // Login Handle

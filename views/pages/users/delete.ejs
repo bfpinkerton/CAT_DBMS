@@ -21,27 +21,59 @@
         <h1></h1>
         <div class="ui text container" style="background-color:lightslategray;">
             <div class="ui grid" id="login-grid">
-                <div class="ui relaxed items">
-                    <% users.forEach(function(user){ %>
-                        <div class="item">
-                            <div class="middle aligned content">
-                                <div class="header">
-                                    <%=user.first_name %>  <%=user.last_name %> 
+                <div class="row">
+                    <div class=" twelve wide centered column" id="login-right">
+                        <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: -10px"></div>
+                        <h1 class="ui inverted header" style="color: black">
+                            Delete users below:
+                        </h1>
+                        <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 0px"></div>
+
+
+                        <% if(locals.message){ %>
+                            <% locals.message.success.forEach(function(msg){ %>
+                                <div class="ui tiny success message ">
+                                    <i class="close icon"></i>
+                                    <div class="header">
+                                        <%=msg%>
+                                    </div>
                                 </div>
-                                <div class="description">
-                                    <%=user.email %> 
+                            <% }) %>
+                            <% locals.message.failure.forEach(function(msg){ %>
+                                <div class="ui tiny error message ">
+                                    <i class="close icon"></i>
+                                    <div class="header">
+                                        <%=msg%>
+                                    </div>
                                 </div>
-                                <div class="extra">
-                                    <form action="/users/delete/<%=user._id%>?_method=DELETE" name="_name" method="POST">
-                                        <button class="ui right floated red small button">
-                                            Delete User
-                                        </button>
-                                  </form>
-                              </div>
-                            </div>
-                          </div>
-                    <% }) %>
-                  </div>
+                            <% }) %>
+                        <% } %>
+
+                        <div class="ui relaxed items">
+                            <% users.forEach(function(user){ %>
+                                <div class="item">
+                                    <div class="middle aligned content">
+                                        <div class="header">
+                                            <%=user.fName %>  <%=user.lName %> 
+                                        </div>
+                                        <div class="description">
+                                            <%=user.email %> 
+                                        </div>
+                                        <div class="extra">
+                                            
+                                            <form action="/users/delete/<%=user.id%>?_method=DELETE" name="_name" method="POST">
+                                                <button class="ui right floated red small button">
+                                                    Delete User
+                                                </button>
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
