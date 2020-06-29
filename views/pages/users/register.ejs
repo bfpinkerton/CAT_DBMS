@@ -29,17 +29,7 @@
                         </h1>
                         <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 0px"></div>
 
-
-                        <% if(locals.message){ %>
-                            <div class="ui tiny success message ">
-                                <i class="close icon"></i>
-                                <div class="header">
-                                    <%=message.success%>
-                                </div>
-                            </div>
-                        <% } %>
-
-                        
+                        <%- include ("../../partials/flash") %>
 
                         <form class="ui large inverted form" id="registerForm" action="/users/register" method="POST">
 
@@ -94,37 +84,6 @@
                                   </div>
                             </div>
 
-
-                            <!-- <div class="two fields" style="width: 800px;">
-                                <div class="five wide field">
-                                    <label>First Name</label>
-                                    <input type="text" name="first_name" placeholder="First Name">
-                                </div>
-                                <div class="five wide field">
-                                    <label>Last Name</label>
-                                    <input type="text" name="last_name" placeholder="Last Name">
-                                </div>
-                            </div> -->
-                            <!-- <div class="two fields" style="width: 800px;">
-                                <div class="five wide field">
-                                    <label>Email Address</label>
-                                    <input type="email" name="email" placeholder="Email">
-                                </div>
-                                <div class="five wide field">
-                                    <label>Confirm Email Address</label>
-                                    <input type="email" name="confirm_email_address" placeholder="Confirm Email">
-                                </div>
-                            </div> -->
-                            <!-- <div class="two fields" style="width: 1000px;">
-                                <div class="four wide field">
-                                    <label>Password</label>
-                                    <input type="password" name="password" placeholder="New Password" id="new_password">
-                                </div>
-                                <div class="four wide field">
-                                    <label>Confirm Password</label>
-                                    <input type="password" name="password2" placeholder="Confirm Password">
-                                </div>
-                            </div> -->
                             <div class="ui inverted divider" style="margin-top: 20px;margin-bottom: 10px"></div>
 
                             <div class="ui center aligned two column grid">

@@ -1,5 +1,34 @@
 <%- include ("../../partials/head") %>
 
+<head>
+    <script>
+        function deleteUser(id, fN, lN) {
+            const form = document.querySelector("#confirmDeleteForm");
+            form.action = `/users/delete/${id}?_method=DELETE`;
+            const button = document.querySelector("#confirmDeleteForm button");
+            button.innerHTML = "Confirm Delete User: " + fN + " " + lN;
+            form.classList.add("visible");
+        }
+
+        function hideDeleteConfirmationForm(event) {
+            document.querySelector("#confirmDeleteForm").classList.remove("visible");
+        }
+    </script>
+
+    <style>
+        #confirmDeleteForm {
+            display: none;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        #confirmDeleteForm.visible {
+            display: block;
+        }
+    </style>
+
+</head>
+
 <body style="background-color:#1C1D1E;">
     <div class="ui inverted vertical masthead center aligned segment">
         <!-- Top Bar -->
@@ -15,66 +44,69 @@
             </div>
         </div>
     </div>
-
-    
-    <div class="ui segment" style="background-color:lightslategray;">
-        <h1></h1>
-        <div class="ui text container" style="background-color:lightslategray;">
-            <div class="ui grid" id="login-grid">
-                <div class="row">
-                    <div class=" twelve wide centered column" id="login-right">
-                        <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: -10px"></div>
-                        <h1 class="ui inverted header" style="color: black">
-                            Delete users below:
-                        </h1>
-                        <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 0px"></div>
-
-
-                        <% if(locals.message){ %>
-                            <% locals.message.success.forEach(function(msg){ %>
-                                <div class="ui tiny success message ">
-                                    <i class="close icon"></i>
+        
+    <div class="ui segment" style=" background-color:lightslategray;">
+        <div class="ui 2 centered column doubling stackable grid scrolling content container" style="background-color:lightslategray; margin-top: -10px;">
+            <h1></h1>
+            <div class="row">
+                <div class="six wide column "  style= "overflow: auto; max-height: 40em">
+                    <style>
+                        .border-1 {
+                            border: 2px solid black;
+                            padding-left: 5px;
+                        }
+                    </style>
+                    <div class="border-1 ui relaxed items">
+                        <% users.forEach(function(user){ %>
+                            <div class="item">
+                                <div class="middle aligned content">
                                     <div class="header">
-                                        <%=msg%>
+                                        <%=user.fName %>  <%=user.lName %> 
                                     </div>
+                                    <div class="description">
+                                        <%=user.email %> 
+                                    </div>
+                                    <div class="extra">
+                                        <% // THIS LINE WORKS %>
+                                        <button style="margin-right: 5px" onclick= "deleteUser(<%= user.id %>, '<%= user.fName %>', '<%= user.lName %>')" class="ui right floated red small button">
+                                            Delete User
+                                        </button>
+                                    </div>
+                                    <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: -0px"></div>
                                 </div>
-                            <% }) %>
-                            <% locals.message.failure.forEach(function(msg){ %>
-                                <div class="ui tiny error message ">
-                                    <i class="close icon"></i>
-                                    <div class="header">
-                                        <%=msg%>
-                                    </div>
-                                </div>
-                            <% }) %>
-                        <% } %>
-
-                        <div class="ui relaxed items">
-                            <% users.forEach(function(user){ %>
-                                <div class="item">
-                                    <div class="middle aligned content">
-                                        <div class="header">
-                                            <%=user.fName %>  <%=user.lName %> 
-                                        </div>
-                                        <div class="description">
-                                            <%=user.email %> 
-                                        </div>
-                                        <div class="extra">
-                                            
-                                            <form action="/users/delete/<%=user.id%>?_method=DELETE" name="_name" method="POST">
-                                                <button class="ui right floated red small button">
-                                                    Delete User
-                                                </button>
-                                        </form>
-                                    </div>
-                                    </div>
-                                </div>
-                            <% }) %>
-                        </div>
-
+                            </div>
+                        <% }) %>
                     </div>
+                </div>
+                <div class="six wide column" style="margin-left: 150px;">
+                    <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: -0px"></div>
+                    <h1 class="ui inverted header" style="color: black">
+                        Delete users from the column on the left:
+                    </h1>
+                    <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: -0px"></div>
+                    <%- include ("../../partials/flash") %>
+                    <ul>
+                        <li>
+                            <h3 class="ui inverted header" id="rightBar" style="color: black">
+                                Action is non-reversible
+                            </h3>
+                        </li>
+                        <li>
+                            <h3 class="ui inverted header" id="rightBar" style="color: black">
+                                Only non-admin users shown
+                            </h3>
+                        </li>
+                    </ul>
+                    <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: -0px"></div>
+                    <form id="confirmDeleteForm" action="" name="_name" method="POST">
+                        <button class="fluid ui red button" type="submit" onClick="hideDeleteConfirmationForm(event)">
+                            Confirm Deletion of:
+                        </button>
+                    </form>  
+                    
                 </div>
             </div>
         </div>
     </div>
+    
 </body>

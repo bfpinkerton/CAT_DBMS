@@ -36,7 +36,6 @@ router.get('/home', ensureAuthenticated, async function (req, res, next) {
 
 // GET register user page
 router.get('/register', ensureAdmin, function (req, res, next) {
-    req.flash('success', 'Admin successfully authenticated');
     res.locals.message = req.flash();
     res.render('pages/users/register');
 });
@@ -53,18 +52,21 @@ router.post('/register', ensureAdmin, (req, res) => {
         password2
     } = req.body;
 
-    if (password != password2) {
-        res.render('pages/users/register', {
-            message: req.flash('error', "Passwords don't match")
-        });
+    if (password != password2 || confirm_email_address != email) {
+        if (password != password2) {
+            req.flash('failure', "Passwords don't match");
+        }
+        if (confirm_email_address != email) {
+            req.flash('failure', "Email's don't match");
+        }
+        res.locals.message = req.flash();
+        res.render('pages/users/register');
         return;
     }
-    if (confirm_email_address != email) {
-        res.render('pages/users/register', {
-            message: req.flash('error', "Email's don't match")
-        });
-        return;
-    }
+
+    
+    
+    
         
     // Create user object
     const newUser = {
@@ -85,7 +87,8 @@ router.post('/register', ensureAdmin, (req, res) => {
             User.create(newUser)
                 .then(data => {
                     req.flash('success','New user successfully added.');
-                    res.redirect('/home');
+                    res.locals.message = req.flash();
+                    res.render('pages/users/register');
                 })
                 .catch(err => console.log(err));
         });
@@ -99,14 +102,15 @@ router.get('/delete', ensureAdmin, async function (req, res, next) {
         req.app.locals.users = users;
         if (users.length == 0) {
             req.flash('failure', 'No existing non-admin users');
+            res.locals.message = req.flash();
+            res.redirect('/home');
         }
-        req.flash('success', 'Admin successfully authenticated');
         res.locals.message = req.flash();
         res.render('pages/users/delete');
     }
     catch (err) {
         console.log(err);
-        req.flash('failure', 'Error db lookup failed, no non-admin users found');
+        req.flash('failure', 'Error db lookup failed');
         res.locals.message = req.flash();
         res.redirect('/home');
     }
@@ -124,8 +128,8 @@ router.delete('/delete/:id', ensureAdmin, (req, res) => {
             req.redirect('/delete');
         })
     req.flash('success', 'User has been deleted.')
-    res.locals.message = req.flash();
-    res.redirect('/users/home');
+    res.locals.message += req.flash();
+    res.redirect('../delete');
 });
 
 
