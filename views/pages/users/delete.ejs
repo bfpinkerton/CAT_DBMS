@@ -5,25 +5,18 @@
         function deleteUser(id, fN, lN) {
             const form = document.querySelector("#confirmDeleteForm");
             form.action = `/users/delete/${id}?_method=DELETE`;
-            const button = document.querySelector("#confirmDeleteForm button");
-            button.innerHTML = "Confirm Delete User: " + fN + " " + lN;
-            form.classList.add("visible");
+            var button = document.querySelector("#confirmButton");
+            button.innerHTML = "Confirm Deletion of: " + fN + " " + lN;
+            button.classList.toggle("disabled");
+            //button.classList.toggle("active");
         }
 
-        function hideDeleteConfirmationForm(event) {
-            document.querySelector("#confirmDeleteForm").classList.remove("visible");
-        }
     </script>
 
     <style>
         #confirmDeleteForm {
-            display: none;
             margin-top: 20px;
             justify-content: center;
-        }
-
-        #confirmDeleteForm.visible {
-            display: block;
         }
     </style>
 
@@ -46,7 +39,7 @@
     </div>
         
     <div class="ui segment" style=" background-color:lightslategray;">
-        <div class="ui 2 centered column doubling stackable grid scrolling content container" style="background-color:lightslategray; margin-top: -10px;">
+        <div class="ui 2 centered column doubling stackable grid scrolling content container" style="background-color:lightslategray; margin-top: -15px;">
             <h1></h1>
             <div class="row">
                 <div class="six wide column "  style= "overflow: auto; max-height: 40em">
@@ -68,7 +61,7 @@
                                     </div>
                                     <div class="extra">
                                         <% // THIS LINE WORKS %>
-                                        <button style="margin-right: 5px" onclick= "deleteUser(<%= user.id %>, '<%= user.fName %>', '<%= user.lName %>')" class="ui right floated red small button">
+                                        <button id="delbut" style="margin-right: 5px" onclick= "deleteUser(<%= user.id %>, '<%= user.fName %>', '<%= user.lName %>')" class="ui right floated red small button">
                                             Delete User
                                         </button>
                                     </div>
@@ -79,11 +72,11 @@
                     </div>
                 </div>
                 <div class="six wide column" style="margin-left: 150px;">
-                    <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: -0px"></div>
+                    <div class="ui inverted divider" style="margin-top: 15px;margin-bottom: -20px"></div>
                     <h1 class="ui inverted header" style="color: black">
                         Delete users from the column on the left:
                     </h1>
-                    <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: -0px"></div>
+                    <div class="ui inverted divider" style="margin-top: -10px;margin-bottom: -0px"></div>
                     <%- include ("../../partials/flash") %>
                     <ul>
                         <li>
@@ -99,10 +92,10 @@
                     </ul>
                     <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: -0px"></div>
                     <form id="confirmDeleteForm" action="" name="_name" method="POST">
-                        <button class="fluid ui red button" type="submit" onClick="hideDeleteConfirmationForm(event)">
+                        <button id="confirmButton" class="fluid ui toggle red button disabled" type="submit">
                             Confirm Deletion of:
                         </button>
-                    </form>  
+                    </form> 
                     
                 </div>
             </div>
@@ -110,3 +103,5 @@
     </div>
     
 </body>
+
+
