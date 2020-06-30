@@ -81,12 +81,17 @@ app.use(passport.session());
 // Routes
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var malRouter = require("./routes/mal");
+var mmlRouter = require("./routes/mml");
 //var associationsRouter = require("./routes/associations");
 //var managersRouter = require("./routes/managers");
 //var apiRouter = require("./routes/api");
 // Pair Routes with subdirectories
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/mal", malRouter);
+app.use("/mml", mmlRouter);
+
 //app.use("/associations", associationsRouter);
 //app.use("/managers", managersRouter);
 //app.use("/api", apiRouter);

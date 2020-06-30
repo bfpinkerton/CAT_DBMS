@@ -1,18 +1,50 @@
-<div class="ui left visible vertical inverted sidebar labeled icon menu" style="background-color: lightgray;">
-  <!-- <a href="/users/home" class="item"> <img src="/images/CM-DBMS.png" style="margin-top:-5px;margin-bottom:-20px;margin-left: 0px;margin-right:0px;width:150px;height:70px;"> </a>  -->
-  <a href="/users/home" class="item" >
-    <i class="address book outline icon"></i>
-    MAL
-    <br> Master Association List
-  </a>
-  <a href="/users/home" class="item">
-    <i class="address card outline icon"></i>
-    MML 
-    <br> Master Manager List
-  </a>
-  <a href="/users/home" class="item">
-    <i class="share square icon"></i>
-    Generate
-    <br> Report
-  </a>
+<!-- Sidebar -->
+<style>
+  .menuDivider {
+    color: white;
+    font-size: x-large;
+    margin: 15px;
+    padding: 0px;
+    text-decoration: underline overline;
+    font-weight: bold;
+  }
+</style>
+
+<div class="ui thin left vertical inverted sidebar menu">
+    <div class="menuDivider" style="padding: 5px;"> Tables: </div>
+    <div class="ui divider" style="margin-bottom: -0px;"></div>
+    <a href="/mal/dashboard" class="item">
+        <i class="address book outline icon"></i>
+        <b>—MAL—</b>
+        <br> Master Association List
+    </a>
+    <a href="/mml/dashboard" class="item">
+        <i class="address card outline icon"></i>
+        <b>—MML—</b> 
+        <br> Master Manager List
+    </a>
+
+    <div class="menuDivider"> Actions: </div>
+    <div class="ui divider" style="margin-bottom: -0px;"></div>
+    <a href="/report/dashboard" class="item">
+        <i class="share square icon"></i>
+        <b>—GR—</b>
+        Generate
+        <br> Report
+    </a>
+
+    <%if (user.admin == 1) { %>
+        <div class="menuDivider"> Manage: </div>
+    <div class="ui divider" style="margin-bottom: -0px;"></div>
+    <a href="/users/register" class="item">
+        <i class="user circle icon"></i>
+        <b>—Register—</b>
+        Register New User
+    </a>
+    <a href="/users/delete" class="item">
+        <i class="minus circle icon"></i>
+        <b>—Delete—</b>
+        Delete Existing User
+    </a>
+    <% } %>        
 </div>

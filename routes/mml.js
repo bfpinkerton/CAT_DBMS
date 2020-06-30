@@ -1,5 +1,5 @@
 /*
-    ROUTING MODEL for MAL
+    ROUTING MODEL for MML
 */
 
 const express = require('express');
@@ -29,7 +29,7 @@ router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
     res.locals.message = req.flash();
     req.app.locals.user = req.user;
     // var date = moment().format('MMMM Do YYYY');
-    res.render('pages/mal/dashboard', );
+    res.render('pages/mml/dashboard', );
 });
 
 module.exports = router;
