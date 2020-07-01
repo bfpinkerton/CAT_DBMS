@@ -26,7 +26,7 @@ const {
 
 // GET home page
 router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
-    //req.flash('success', "Please choose a utility from the sidebar");
+    req.flash('success', "Please choose a utility from the sidebar");
     res.locals.message = req.flash();
     req.app.locals.user = req.user;
     // var date = moment().format('MMMM Do YYYY');

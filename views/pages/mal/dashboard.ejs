@@ -1,123 +1,66 @@
 <%- include ("../../partials/head") %>
 
+<body>
+    <!-- Sidebar -->
+    <%- include ("../../partials/sidebar") %>
+      
 
-<head>
-    <style>
-        .menuDivider {
-          color: white;
-          font-size: x-large;
-          margin: 15px;
-          padding: 0px;
-          text-decoration: underline overline;
-          font-weight: bold;
-        }
-        </style>
-</head>
+    <!-- All additional page content -->
+    <div class="pusher" style="background-color:lightslategray">
+        <!-- Top Fixed Menu  -->
+        <div class="row">
+            
 
-<body style="background-color: lightslategray;">
-    <!-- Left Sidebar -->
-    <div class="ui thin visible inverted left vertical sidebar menu">
-        <div class="menuDivider" style="padding: 5px;"> Tables: </div>
-        <div class="ui divider" style="margin-bottom: -0px;"></div>
-        <a href="/users/home" class="item">
-            <i class="address book outline icon"></i>
-            <b>—MAL—</b>
-            <br> Master Association List
-        </a>
-        <a href="/users/home" class="item">
-            <i class="address card outline icon"></i>
-            <b>—MML—</b> 
-            <br> Master Manager List
-        </a>
-
-        <div class="menuDivider"> Actions: </div>
-        <div class="ui divider" style="margin-bottom: -0px;"></div>
-        <a href="/users/home" class="item">
-            <i class="share square icon"></i>
-            <b>—GR—</b>
-            Generate
-            <br> Report
-        </a>
-
-        <%if (user.admin == 1) { %>
-            <div class="menuDivider"> Manage: </div>
-        <div class="ui divider" style="margin-bottom: -0px;"></div>
-        <a href="/users/register" class="item">
-            <i class="user circle icon"></i>
-            <b>—Register—</b>
-            Register New User
-        </a>
-        <a href="/users/delete" class="item">
-            <i class="minus circle icon"></i>
-            <b>—Delete—</b>
-            Delete Existing User
-        </a>
-        <% } %>
-
-        
-    </div>
-
-    
-
-    <div class="pusher">
-        <!-- Site content !-->
-
-        <!-- Top Fixed Menu -->
-        <div class="top fixed ui inverted menu" style="background: #134524; float: left;margin-top: 10px;">
-            <a class="item">
-                <button class="ui blue labeled icon button" style="background-color: darkgreen;">
-                    <i class="plus square outline large icon"></i>
-                    &nbsp; New<br> &nbsp;Entry
-                </button>
-            </a>
-            <a class="item">
-                <div class="ui category fluid search">
-                    <div class="ui icon input" style="width: 550px; min-width: 300px">
-                    <input class="prompt" type="text" placeholder="Search entries...">
-                    <i class="search icon"></i>
-                    </div>
-                    <div class="results"></div>
+            <div class="top fixed ui inverted menu" style="background: #134524; float: left;margin-top: 0px;">
+                <a class="item" id="left-sidebar-toggle">
+                    <i class="sidebar large icon"></i>
+                </a>
+                <div class="right menu">
+                    <a class="item" href="/mal/create">
+                        <button class="ui blue labeled icon button" style="background-color: darkgreen;">
+                            <i class="plus square outline large icon"></i>
+                            New Entry
+                        </button>
+                    </a>
+                    <a class="item">
+                        <div class="ui category fluid search">
+                            <div class="ui icon input" style="width: 550px; min-width: 300px">
+                            <input class="prompt" type="text" placeholder="Search entries...">
+                            <i class="search icon"></i>
+                            </div>
+                            <div class="results"></div>
+                        </div>
+                    </a>
+                    <%- include ("../../partials/topmenuExtra") %>
                 </div>
-            </a>
+            </div>
 
-            <div class="item two wide column" style="margin-left: 0px;">
-                <i class="clock outline icon"></i> &nbsp; 
-                    <div class="content">
-                        <div id="MyClockDisplay" class="" onload="showTime()"></div>
-                    </div>
+
+        </div>
+        <!-- Remaining page elements -->
+        <div class="ui one column grid container" style="margin-top: 25px;"></div>
+            <h1></h1>
+            <div class="16 wide column" style="padding: 10px;"> 
+                <div class="ui segment">
+                    <h1>Welcome!</h1>
+                    <ul>
+                        <li>
+                            <h3 class="ui inverted header" id="rightBar" style="color: black">
+                                Note: Legacy entries not currently hosted on this application
+                            </h3>
+                        </li>
+                    </ul>
+                    <%- include ("../../partials/flash") %>
+                </div>
             </div>
             
-            <div class="item two wide column">
-                <i class="user icon"></i>
-                <div class="middle aligned content">
-                    <%=user.fName %> <br> <%=user.lName %>
-                </div>
-            </div>
-            <a href="/users/logout" class="item">
-                <button  class="ui blue labeled icon button" style="background-color: darkgreen;">
-                    <i class="sign-out large icon"></i>
-                    &nbsp; Sign <br> Out
-                </button>
-            </a>
-            <div class="item">
-                <img src="/images/CM-DBMS.png" style="width: 6em; ">
-            </div>
         </div>
+    </div>
 
-        <div class="ui one column grid container" style="background-color:lightslategray;">
-            <h1></h1>
-            <div class="row">
-                <div class="column">
-                    <div class="field">
-                        <label style="color: black">Email Address</label>
-                        <input type="string" name="name" placeholder="Enter Association Name">
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-    
+    <!-- Sidebar toggle script -->
+    <script>
+        $('.ui.left.sidebar')
+            .sidebar('attach events', '#left-sidebar-toggle')
+        ;
+    </script>
 </body>
-
-
-<%- include ("../../partials/footer") -%>

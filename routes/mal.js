@@ -25,11 +25,19 @@ const {
 
 // GET home page
 router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
-    req.flash('success', "Please choose a utility from the sidebar");
+    req.flash('success', "Please choose an action from the top menu");
     res.locals.message = req.flash();
     req.app.locals.user = req.user;
-    // var date = moment().format('MMMM Do YYYY');
     res.render('pages/mal/dashboard', );
 });
+
+// GET home page
+router.get('/create', ensureAuthenticated, async function (req, res, next) {
+    req.app.locals.user = req.user;
+    req.app.locals.date = moment().format('MMMM Do YYYY');
+    res.render('pages/mal/create', );
+});
+
+
 
 module.exports = router;
