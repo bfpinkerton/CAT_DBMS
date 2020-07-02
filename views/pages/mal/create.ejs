@@ -42,7 +42,7 @@
         <div class="ui one column grid container" style="margin-top: 25px;"></div>
             <h1></h1>
             <div class="16 wide column" style="padding: 10px;"> 
-                <div class="ui segment" style="max-height: 80vh;padding: 5px;overflow: hidden;">
+                <div class="ui segment" style="max-height: 95vh;padding: 5px;overflow: auto;">
                     <h1 class="ui block header"><b>Create New Entry:</b></h1>
                     <!-- Flash Messages -->
                     <%- include ("../../partials/flash") %>
@@ -53,18 +53,30 @@
                             .ui.form .field.disabled :disabled {
                                 opacity: .999999;
                             }
+
+                            .ui.input.field {
+                                flex-flow: column;
+                            }
+
+                            .ui.input.field > input {
+                                width: 100% !important;
+                                border: 1px solid black !important;
+                            }
+
                             .ui.dropdown {
                                 /* min-height: auto !important;
                                 height: 50px !important; */
                                 border: 1px solid black !important;
                             }
-                            .ui.input.field input {
-                                display: block;
-                            }
                         </style>
+                        <script>
+                            $('#example2').calendar({
+                                type: 'date'
+                            });
+                        </script>
                         <div class="ui 2 column grid">
                             <!-- Information -->
-                            <div class="eleven wide column">
+                            <div class="twelve wide column">
                                 <!-- Metadata and edit information -->
                                 <div class="row">
                                     <h2>
@@ -89,7 +101,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="ui inverted divider" style="margin-top: -5px;margin-bottom: 0px"></div>
+                                
+                                <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 5px"></div>
                                 <!-- Primary Association Information (1) -->
                                 <div class="row">
                                     <h2>
@@ -116,7 +129,7 @@
                                 </div>
                             </div>
                             <!-- Entryway Photo/Landmark Photo -->
-                            <div class="five wide column">
+                            <div class="four wide column">
                                 <style>
                                     .border-1 {
                                         border: 2px solid black;
@@ -145,8 +158,8 @@
                             </div>
                         </div>
                         <!-- Primary Association Information (2) -->
-                        <div class="ui 1 column grid">
-                            <div class="sixteen wide column">
+                        <div class="ui 1 column grid" style="margin-top: -3vh;">
+                            <div class="column">
                                 <div class="row">
                                     <div class="three fields">
                                         <div class="field">
@@ -219,7 +232,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="field">
+                                        <div class="ui input field">
                                             <label>Domicile Zip Code:</label>
                                             <input type="string" placeholder="Enter Zip Code">
                                         </div>
@@ -228,22 +241,54 @@
                             </div>
                         </div>
 
-                        <div class="ui inverted divider" style="margin-top: 10px;margin-bottom: 10px"></div>
+                        <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 0px"></div>
                         <!-- General Board Member Related Information -->
-                        <h2 style="margin-bottom: 10px;">
-                            General Board Member Related Information
-                        </h2>
-                        
-                        <div class="ui 2 column grid">
-                            <div class="eight wide column">
+                        <div class="ui one column grid">
+                            <div class="column">
+                                <div class="row" style="margin-bottom: 2vh;">
+                                    <h2>
+                                        General Board Member Related Information
+                                    </h2>
+                                </div>
                                 <div class="row">
-                                    <label>Corporate Status:</label>
-                                    <div class="ui selection dropdown">
-                                        <input type="hidden" name="gender">
-                                        <i class="dropdown icon"></i>
-                                        <div class="default text">Choose from below:</div>
-                                        <div class="menu">
-                                            <div class="item" data-value="1">Option 1</div>
+                                    <div class="four fields">
+                                        <div class="field">
+                                            <label>Corporate Status:</label>
+                                            <div class="ui selection dropdown">
+                                                <input type="hidden" name="gender">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">Choose from below:</div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="1">Option 1</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label>Annual Meeting Month:</label>
+                                            <div class="ui selection dropdown">
+                                                <input type="hidden" name="gender">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">Choose from below:</div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="1">Option 1</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            
+                                        </div>
+                                        
+                                        <div class="field">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label>Date:</label>
+                                    <div class="ui calendar" id="example2">
+                                        <div class="ui input left icon">
+                                            <i class="calendar icon"></i>
+                                            <input type="text" placeholder="Date">
                                         </div>
                                     </div>
                                 </div>
