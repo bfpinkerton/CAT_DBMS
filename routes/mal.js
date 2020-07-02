@@ -32,9 +32,9 @@ router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
 });
 
 // GET home page
-router.get('/create', ensureAuthenticated, async function (req, res, next) {
-    req.app.locals.user = req.user;
-    req.app.locals.date = moment().format('MMMM Do YYYY');
+router.get('/create', /* ensureAuthenticated, */ async function (req, res, next) {
+    //req.app.locals.user = req.user;
+    //req.app.locals.date = moment().format('MMMM Do YYYY');
     res.render('pages/mal/create', );
 });
 
