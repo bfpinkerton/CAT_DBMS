@@ -1,4 +1,75 @@
 <%- include ("../../partials/head") %>
+<head>
+    <style>
+        .ui.color1.button:not(:hover) {
+            background-color: #134524;
+            color: #fff;
+        }
+        .ui.color1.button:hover {
+            background-color: darkgray;
+            color: #fff;
+        }
+    </style>
+    <style>
+        .ui.color2.button:not(:hover) {
+            background-color: darkred;
+            color: #fff;
+        }
+        .ui.color2.button:hover {
+            background-color: darkgray;
+            color: #fff;
+        }
+    </style>
+    <style>
+        .ui.form .field.disabled :disabled {
+            opacity: .999999;
+            background: blue !important;
+        }
+
+        .ui.input input[disabled] {
+            opacity: 1;
+            border: 1px solid darkgray !important;
+            background: blue !important;
+        }
+
+        .ui.input.field {
+            flex-flow: column;
+        }
+
+        .ui.input.field > input {
+            width: 100% !important;
+            border: 1px solid black !important;
+        }
+
+        .ui.dropdown {
+            /* min-height: auto !important;
+            height: 50px !important; */
+            border: 1px solid black !important;
+        }
+    </style>
+    <style>
+        .border-1 {
+            border: 2px solid black;
+            padding-left: 5px;
+        }
+        .inputfile {
+            width: 80px;
+            height: 80px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+    </style>
+    <style>
+        .hidden{
+            display:none;
+        }
+        .wrap-checkbox{
+            justify-content: space-between;
+        }
+    </style>
+</head>
 
 <body>
     <!-- Sidebar -->
@@ -51,33 +122,7 @@
                     <!-- New Entry Form -->
                     <form class="ui small form" id="createFormMAL" action="/mal/create" method="POST" style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px ;padding: 0px;">
                         <!-- Primary Association Info -->
-                        <style>
-                            .ui.form .field.disabled :disabled {
-                                opacity: .999999;
-                                background: blue !important;
-                            }
-
-                            .ui.input input[disabled] {
-                                opacity: 1;
-                                border: 1px solid darkgray !important;
-                                background: blue !important;
-                            }
-
-                            .ui.input.field {
-                                flex-flow: column;
-                            }
-
-                            .ui.input.field > input {
-                                width: 100% !important;
-                                border: 1px solid black !important;
-                            }
-
-                            .ui.dropdown {
-                                /* min-height: auto !important;
-                                height: 50px !important; */
-                                border: 1px solid black !important;
-                            }
-                        </style>
+                        
 
 
 
@@ -138,20 +183,7 @@
                                 </div>
                                 <!-- Entryway Photo/Landmark Photo -->
                                 <div class="four wide column">
-                                    <style>
-                                        .border-1 {
-                                            border: 2px solid black;
-                                            padding-left: 5px;
-                                        }
-                                        .inputfile {
-                                            width: 80px;
-                                            height: 80px;
-                                            opacity: 0;
-                                            overflow: hidden;
-                                            position: absolute;
-                                            z-index: -1;
-                                        }
-                                    </style>
+                                    
                                     <div class="border-1" style="margin-top: 15px;height:20vh;padding: 10px; text-align: center;overflow: auto;">
                                         <h3>
                                             Photo of Association Entryway or other notable landmark
@@ -463,32 +495,16 @@
                                     </div>
                                     <div class="row">
                                         <div class="three fields">
-                                            <style>
-                                                .hidden{
-                                                    display:none;
-                                                }
-                                                .wrap-checkbox{
-                                                    justify-content: space-between;
-                                                }
-                                            </style>
-                                            <script>
-                                               const checkbox = document.querySelector(".wrap-checkbox field");
-                                                const dates = document.querySelectorAll(".wrap-date");
-
-                                                checkbox.addEventListener("click", e => {
-                                                    for(let i = 0; i < dates.length; i++){
-                                                        dates[i].classList.toggle('hidden');
-                                                    }
-                                                });
-                                            </script>
-                                            <div class="wrap-checkbox field" style="width: 15vh;">
+                                            
+                                            
+                                            <div class="wrap-checkbox field" id="check1" style="width: 15vh;">
                                                 <label>AACONA?</label>
                                                 <div class="ui toggle checkbox">
                                                     <input type="checkbox">
                                                     <label></label>      
                                                 </div>
                                             </div>
-                                            <div class="hidden" id="hiddenFields">
+                                            <div class="wrap-date hidden" id="hiddenFields">
                                                 <div class="ui input field">
                                                     <label>Date Requested:</label>
                                                     <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
@@ -510,26 +526,6 @@
 
                         <!-- Bottom Buttons -->
                         <div class="ui column grid" style="padding: 15px;margin-bottom: -25px;">
-                            <style>
-                                .ui.color1.button:not(:hover) {
-                                    background-color: #134524;
-                                    color: #fff;
-                                }
-                                .ui.color1.button:hover {
-                                    background-color: darkgray;
-                                    color: #fff;
-                                }
-                            </style>
-                            <style>
-                                .ui.color2.button:not(:hover) {
-                                    background-color: darkred;
-                                    color: #fff;
-                                }
-                                .ui.color2.button:hover {
-                                    background-color: darkgray;
-                                    color: #fff;
-                                }
-                            </style>
                             <div class="row">
                                 <button class="ui red deny icon button" type="reset"> 
                                     Reset ALL Fields 
@@ -546,10 +542,20 @@
         </div>
     </div>
 
-    <!-- Sidebar toggle script -->
+    <!-- Sidebar toggle -->
     <script>
         $('.ui.left.sidebar')
             .sidebar('attach events', '#left-sidebar-toggle')
         ;
+    </script>
+    <script>
+        const checkbox = document.querySelector(".wrap-checkbox input");
+        const dates = document.querySelectorAll(".wrap-date");
+
+            checkbox.addEventListener("click", e => {
+            for(let i = 0; i < dates.length; i++){
+                dates[i].classList.toggle('hidden');
+            }
+        })
     </script>
 </body>
