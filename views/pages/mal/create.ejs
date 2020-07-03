@@ -63,21 +63,33 @@
     </style>
     <style>
         .hidden{
-            display:none;
+            visibility: hidden;
         }
-        .wrap-checkbox{
-            justify-content: space-between;
+        .hidden2{
+            visibility: hidden;
+        }
+        .hidden3{
+            visibility: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.min.css" />
+    <style>
+        /* .calendar{
+            border: 1px solid black !important;
+        } */
+        .ui.input.left.icon{
+            border: 1px solid black !important;
         }
     </style>
 </head>
 
 <body>
     <!-- Sidebar -->
-   <!-- INCLUDE SIDEBAR -->
+    <%- include ("../../partials/sidebar") %>
       
 
     <!-- All additional page content -->
-    <div class="pusher" style="background-color:lightslategray">
+    <div class="pusher" style="background-color:white">
         <!-- Top Fixed Menu  -->
         <div class="row">
             <div class="top fixed ui inverted menu" style="background: #134524; float: left;margin-top: 0px;">
@@ -101,7 +113,7 @@
                         </div>
                     </a>
 
-                    <!-- INCLUDE TOPMENUEXTRA -->
+                    <%- include ("../../partials/topmenuExtra") %>
 
                 </div>
             </div>
@@ -112,20 +124,14 @@
         <!-- ------------------------------------------------------------------------------------------ -->
         <!-- Remaining page elements -->
         <!-- ------------------------------------------------------------------------------------------ -->
-        <div class="ui one column grid container" style="margin-top: 25px;"></div>
+        <div class="ui one column grid container" style="margin-top: 25px; "></div>
             <h1></h1>
-            <div class="16 wide column" style="padding: 10px;"> 
-                <div class="ui segment" style="max-height: 85vh;padding: 5px;overflow: auto;">
+            <div class="column" style="padding: 15px;background-color: lightslategray;" > 
                     <h1 class="ui block header"><b>Create New Entry:</b></h1>
                     <!-- Flash Messages -->
                     <%- include ("../../partials/flash") %>
                     <!-- New Entry Form -->
-                    <form class="ui small form" id="createFormMAL" action="/mal/create" method="POST" style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px ;padding: 0px;">
-                        <!-- Primary Association Info -->
-                        
-
-
-
+                    <form class="ui form" id="createFormMAL" action="/mal/create" method="POST" style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px ;padding: 0px;">
                         <div class="ui segment">
                             <div class="ui 2 column grid">
                                 <!-- Information -->
@@ -138,11 +144,11 @@
                                         <div class="four fields">
                                             <div class="ui input field">
                                                 <label>Origination Date:</label>
-                                                <input disabled type="string" >
+                                                <input disabled type="string" placeholder="<%=date%>" >
                                             </div>
                                             <div class="ui input field">
                                                 <label>Originator:</label>
-                                                <input disabled type="string">
+                                                <input disabled type="string" placeholder="<%=user.fName %> <%=user.lName %>">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Date Updated:</label>
@@ -216,7 +222,7 @@
                                             <div class="field">
                                                 <label>Special Classification:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="gender">
+                                                    <input type="hidden" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -227,7 +233,7 @@
                                             <div class="field">
                                                 <label>Association Type:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="gender">
+                                                    <input type="hidden" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -242,7 +248,7 @@
                                             <div class="field" style="width: 37vw">
                                                 <label>Secondary MHP Association Type:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="gender">
+                                                    <input type="hidden" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -253,7 +259,7 @@
                                             <div class="field">
                                                 <label>Domicile County:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="gender">
+                                                    <input type="hidden" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -264,7 +270,7 @@
                                             <div class="field">
                                                 <label>Domicile City:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="gender">
+                                                    <input type="hidden" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -297,7 +303,7 @@
                                         <div class="field">
                                             <label>Corporate Status:</label>
                                             <div class="ui selection dropdown">
-                                                <input type="hidden" name="gender">
+                                                <input type="hidden" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -308,7 +314,7 @@
                                         <div class="field">
                                             <label>Annual Meeting Month:</label>
                                             <div class="ui selection dropdown">
-                                                <input type="hidden" name="gender">
+                                                <input type="hidden" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -316,10 +322,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="ui input field" style="width: 20vw;">
+                                        <div class="field">
                                             <label>Last Corporate Report Filed:</label>
                                             <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
-                                            <input type="string" placeholder="Enter date" pattern="^(?:(?:(?:0?[13578]|1[02])(\/|-|\.)31)\1|(?:(?:0?[1,3-9]|1[0-2])(\/|-|\.)(?:29|30)\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:0?2(\/|-|\.)29\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:(?:0?[1-9])|(?:1[0-2]))(\/|-|\.)(?:0?[1-9]|1\d|2[0-8])\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$">
+                                            <!-- <input type="string" placeholder="Enter date" pattern="^(?:(?:(?:0?[13578]|1[02])(\/|-|\.)31)\1|(?:(?:0?[1,3-9]|1[0-2])(\/|-|\.)(?:29|30)\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:0?2(\/|-|\.)29\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:(?:0?[1-9])|(?:1[0-2]))(\/|-|\.)(?:0?[1-9]|1\d|2[0-8])\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"> -->
+                                            <div class="ui calendar" id="example2">
+                                                <div class="ui input left icon">
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" placeholder="Date" class="calendar_input">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="ui input field" style="width: 20vw;">
                                             <label>Current Board Term Expiration:</label>
@@ -334,7 +346,7 @@
                                         <div class="field">
                                             <label>Association Seminar Admittance Status:</label>
                                             <div class="ui selection dropdown">
-                                                <input type="hidden" name="gender">
+                                                <input type="hidden" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -345,7 +357,7 @@
                                         <div class="field">
                                             <label>Association Seminar Name Tag Color:</label>
                                             <div class="ui selection dropdown">
-                                                <input type="hidden" name="gender">
+                                                <input type="hidden" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -366,7 +378,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="row" style="margin-top: 3vh;margin-bottom: 2vh;">
+                                    <div class="row">
                                         <h3>
                                             <u>Individual Board/Committee Members & Seminar Information</u>
                                         </h3>
@@ -402,7 +414,7 @@
                                             <div class="field">
                                                 <label>CM Services Request:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="gender">
+                                                    <input type="hidden" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -413,7 +425,7 @@
                                             <div class="field">
                                                 <label>Origination Source:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="gender">
+                                                    <input type="hidden" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -424,19 +436,18 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <!-- TODO: Checkbox that causes this to appear when checked. -->
-                                        <div class="three fields">
-                                            <div class="field">
-                                                <label for="terms">CM Seminar Sponsored Origination?</label>
+                                        <div class="two fields">
+                                            <div class="wrap-checkbox3 field">
+                                                <label>Not CM Seminar Sponsored Origination?</label>
                                                 <div class="ui toggle checkbox">
                                                     <input type="checkbox">
                                                     <label></label>      
                                                 </div>
                                             </div>
-                                            <div class="field">
+                                            <div class="wrap-date3 hidden3 field">
                                                 <label>Source:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="gender">
+                                                    <input type="hidden">
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -444,7 +455,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="ui input field">
+                                            <div class="wrap-date3 hidden3 ui input field">
                                                 <label>Date Requested:</label>
                                                 <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
                                                 <input type="string" placeholder="Enter date" pattern="^(?:(?:(?:0?[13578]|1[02])(\/|-|\.)31)\1|(?:(?:0?[1,3-9]|1[0-2])(\/|-|\.)(?:29|30)\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:0?2(\/|-|\.)29\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:(?:0?[1-9])|(?:1[0-2]))(\/|-|\.)(?:0?[1-9]|1\d|2[0-8])\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$">
@@ -462,18 +473,19 @@
                                         </h2>
                                     </div>
                                     <div class="row">
+                                        <!-- This should be 4 but I have no idea why -->
                                         <div class="three fields">
-                                            <div class="field">
-                                                <label >ACA?</label>
+                                            <div class="wrap-checkbox2 field">
+                                                <label>ACA?</label>
                                                 <div class="ui toggle checkbox">
                                                     <input type="checkbox">
                                                     <label></label>      
                                                 </div>
                                             </div>
-                                            <div class="field">
+                                            <div class="wrap-date2 hidden2 field">
                                                 <label>Chapter:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="gender">
+                                                    <input type="hidden">
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -481,12 +493,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="ui input field">
+                                            <div class="wrap-date2 hidden2 ui input field">
                                                 <label>Date Requested:</label>
                                                 <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
                                                 <input type="string" placeholder="Enter date" pattern="^(?:(?:(?:0?[13578]|1[02])(\/|-|\.)31)\1|(?:(?:0?[1,3-9]|1[0-2])(\/|-|\.)(?:29|30)\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:0?2(\/|-|\.)29\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:(?:0?[1-9])|(?:1[0-2]))(\/|-|\.)(?:0?[1-9]|1\d|2[0-8])\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$">
                                             </div>
-                                            <div class="ui input field">
+                                            <div class="wrap-date2 hidden2 ui input field">
                                                 <label>Followup Date:</label>
                                                 <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
                                                 <input type="string" placeholder="Enter date" pattern="^(?:(?:(?:0?[13578]|1[02])(\/|-|\.)31)\1|(?:(?:0?[1,3-9]|1[0-2])(\/|-|\.)(?:29|30)\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:0?2(\/|-|\.)29\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:(?:0?[1-9])|(?:1[0-2]))(\/|-|\.)(?:0?[1-9]|1\d|2[0-8])\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$">
@@ -495,16 +507,14 @@
                                     </div>
                                     <div class="row">
                                         <div class="three fields">
-                                            
-                                            
-                                            <div class="wrap-checkbox field" id="check1" style="width: 15vh;">
+                                            <div class="wrap-checkbox field">
                                                 <label>AACONA?</label>
                                                 <div class="ui toggle checkbox">
                                                     <input type="checkbox">
                                                     <label></label>      
                                                 </div>
                                             </div>
-                                            <div class="wrap-date hidden" id="hiddenFields">
+                                            <div class="wrap-date hidden">
                                                 <div class="ui input field">
                                                     <label>Date Requested:</label>
                                                     <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
@@ -519,10 +529,44 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
+
+
+
+                        <!-- Merchandise Purchases -->
+                        <div class="ui one column grid segment">
+                            <div class="column">
+                                <div class="row" style="margin-bottom: 2vh;">
+                                    <h2>
+                                        <u>Merchandise Purchases:</u>
+                                    </h2>
+                                </div>
+                                <div class="row">
+                                    <div class="four fields">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="four fields">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+
+
+
+
+
+
+
+
+
+
 
                         <!-- Bottom Buttons -->
                         <div class="ui column grid" style="padding: 15px;margin-bottom: -25px;">
@@ -558,4 +602,41 @@
             }
         })
     </script>
+    <script>
+        const checkbox2 = document.querySelector(".wrap-checkbox2 input");
+        const dates2 = document.querySelectorAll(".wrap-date2");
+
+            checkbox2.addEventListener("click", e => {
+            for(let i = 0; i < dates2.length; i++){
+                dates2[i].classList.toggle('hidden2');
+            }
+        })
+    </script>
+    <script>
+        const checkbox3 = document.querySelector(".wrap-checkbox3 input");
+        const dates3 = document.querySelectorAll(".wrap-date3");
+
+            checkbox3.addEventListener("click", e => {
+            for(let i = 0; i < dates3.length; i++){
+                dates3[i].classList.toggle('hidden3');
+            }
+        })
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.js"></script>
+    <script>
+        $('#example2').calendar({
+            type: 'date'
+        });
+        // const $$ = q => document.querySelectorAll(q);
+        // $$('.calendar').forEach(e => console.log(e));
+        
+    </script>
 </body>
+
+
+
+<script>
+    $('div.ui.calendar').calendar({type: 'date'});
+    
+</script>
+
