@@ -61,17 +61,6 @@
             z-index: -1;
         }
     </style>
-    <style>
-        .hidden{
-            visibility: hidden;
-        }
-        .hidden2{
-            visibility: hidden;
-        }
-        .hidden3{
-            visibility: hidden;
-        }
-    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.min.css" />
     <style>
         /* .calendar{
@@ -135,6 +124,11 @@
                     <%- include ("../../partials/flash") %>
                     <!-- New Entry Form -->
                     <form class="ui form" id="createFormMAL" action="/mal/create" method="POST" style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px ;padding: 0px;">
+                        
+                        
+
+
+                        <!-- Metadata and edit information/Primary Association Information/Association Photo-->
                         <div class="ui segment">
                             <div class="ui 2 column grid">
                                 <!-- Information -->
@@ -214,7 +208,7 @@
                                             <div class="field">
                                                 <label>Status w/in Firm:</label>
                                                 <div class="ui selection dropdown dropdownBorder">
-                                                    <input type="hidden">
+                                                    <input type="disabled">
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -225,7 +219,7 @@
                                             <div class="field">
                                                 <label>Special Classification:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" >
+                                                    <input type="disabled" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -236,7 +230,7 @@
                                             <div class="field">
                                                 <label>Association Type:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" >
+                                                    <input type="disabled" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -251,7 +245,7 @@
                                             <div class="field" style="width: 37vw">
                                                 <label>Secondary MHP Association Type:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" >
+                                                    <input type="disabled" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -262,7 +256,7 @@
                                             <div class="field">
                                                 <label>Domicile County:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" >
+                                                    <input type="disabled" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -273,7 +267,7 @@
                                             <div class="field">
                                                 <label>Domicile City:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" >
+                                                    <input type="disabled" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -293,6 +287,8 @@
 
 
 
+
+
                         <!-- General Board Member Related Information -->
                         <div class="ui one column grid segment">
                             <div class="column">
@@ -306,7 +302,7 @@
                                         <div class="field">
                                             <label>Corporate Status:</label>
                                             <div class="ui selection dropdown">
-                                                <input type="hidden" >
+                                                <input type="disabled" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -317,7 +313,7 @@
                                         <div class="field">
                                             <label>Annual Meeting Month:</label>
                                             <div class="ui selection dropdown">
-                                                <input type="hidden" >
+                                                <input type="disabled" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -354,7 +350,7 @@
                                         <div class="field">
                                             <label>Association Seminar Admittance Status:</label>
                                             <div class="ui selection dropdown">
-                                                <input type="hidden" >
+                                                <input type="disabled" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -365,7 +361,7 @@
                                         <div class="field">
                                             <label>Association Seminar Name Tag Color:</label>
                                             <div class="ui selection dropdown">
-                                                <input type="hidden" >
+                                                <input type="disabled" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -414,6 +410,9 @@
 
 
 
+
+
+                        <!-- Representation Inquiries & Organization Information: -->
                         <div class="ui segment">
                             <div class="ui two column divided grid">
                                 <div class="eight wide column">
@@ -427,7 +426,7 @@
                                             <div class="field">
                                                 <label>CM Services Request:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" >
+                                                    <input type="disabled" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -438,7 +437,7 @@
                                             <div class="field">
                                                 <label>Origination Source:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" >
+                                                    <input type="disabled" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -457,10 +456,10 @@
                                                     <label></label>      
                                                 </div>
                                             </div>
-                                            <div class="wrap-date3 hidden3 field">
+                                            <div class="wrap-date3 disabled field">
                                                 <label>Source:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden">
+                                                    <input type="disabled">
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -468,7 +467,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="wrap-date3 hidden3 ui input field">
+                                            <div class="wrap-date3 disabled ui input field">
                                                 <label>Date Requested:</label>
                                                 <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
                                                 <div class="ui calendar" style="border-color: black;">
@@ -500,10 +499,10 @@
                                                     <label></label>      
                                                 </div>
                                             </div>
-                                            <div class="wrap-date2 hidden2 field">
+                                            <div class="wrap-date2 disabled field">
                                                 <label>Chapter:</label>
                                                 <div class="ui selection dropdown" style="width: 5vw;">
-                                                    <input type="hidden">
+                                                    <input type="disabled">
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -511,7 +510,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="wrap-date2 hidden2 ui input field">
+                                            <div class="wrap-date2 disabled ui input field">
                                                 <label>Date Requested:</label>
                                                 <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
                                                 <div class="ui calendar" style="border-color: black;">
@@ -521,7 +520,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="wrap-date2 hidden2 ui input field">
+                                            <div class="wrap-date2 disabled ui input field">
                                                 <label>Followup Date:</label>
                                                 <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
                                                 <div class="ui calendar" style="border-color: black;">
@@ -542,7 +541,7 @@
                                                     <label></label>      
                                                 </div>
                                             </div>
-                                            <div class="wrap-date hidden ui input field">
+                                            <div class="wrap-date disabled ui input field">
                                                 <label>Date Requested:</label>
                                                 <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
                                                 <div class="ui calendar" style="border-color: black;">
@@ -552,7 +551,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="wrap-date hidden ui input field">
+                                            <div class="wrap-date disabled ui input field">
                                                 <label>Followup Date:</label>
                                                 <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
                                                 <div class="ui calendar" style="border-color: black;">
@@ -570,93 +569,6 @@
 
 
 
-                        <!-- Merchandise Purchases -->
-                        <!-- <div class="ui one column grid segment">
-                            <div class="column">
-                                <div class="row" style="margin-bottom: 2vh;">
-                                    <h2>
-                                        <u>Merchandise Purchases:</u>
-                                    </h2>
-                                </div>
-                                <div class="row">
-                                    <div class="four fields">
-                                        <div class="ui field" >
-                                            <label>Mug Purchase Status:</label>
-                                            <div class="inline fields">
-                                                <div class="field">
-                                                  <div class="ui radio checkbox">
-                                                    <input type="radio" name="frequency" checked="checked">
-                                                    <label>Yes</label>
-                                                  </div>
-                                                </div>
-                                                <div class="field">
-                                                  <div class="ui radio checkbox">
-                                                    <input type="radio" name="frequency">
-                                                    <label>No</label>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="field">
-                                            <label>Origination Sale Source:</label>
-                                            <div class="ui selection dropdown">
-                                                <input type="hidden">
-                                                <i class="dropdown icon"></i>
-                                                <div class="default text">Choose from below:</div>
-                                                <div class="menu">
-                                                    <div class="item" data-value="1">Option 1</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="input field">
-                                            <label>Date Purchased:</label>
-                                            <div class="ui calendar" style="border-color: black;">
-                                                <div class="ui input left icon" >
-                                                    <i class="calendar icon"></i>
-                                                    <input type="text" placeholder="Date" class="calendar_input">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ui input field">
-                                            <label>Quantity:</label>
-                                            <input type="string" pattern="\d{0,5}" placeholder="Quantity">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="three fields">
-                                        <div class="field">
-                                            <label>Delivery Method:</label>
-                                            <div class="ui selection dropdown">
-                                                <input type="hidden">
-                                                <i class="dropdown icon"></i>
-                                                <div class="default text">Choose from below:</div>
-                                                <div class="menu">
-                                                    <div class="item" data-value="1">Option 1</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="field">
-                                            <label>Payment Method:</label>
-                                            <div class="ui selection dropdown">
-                                                <input type="hidden">
-                                                <i class="dropdown icon"></i>
-                                                <div class="default text">Choose from below:</div>
-                                                <div class="menu">
-                                                    <div class="item" data-value="1">Option 1</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ui input field">
-                                            <label>Check #:</label>
-                                            <input type="string" pattern="\d{3,4}" placeholder="Check #">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-
                     
                     
                         <!-- Merchandise Purchases -->
@@ -664,7 +576,7 @@
                             <div class="column">
                                 <div class="row" style="margin-bottom: 2vh;">
                                     <h2>
-                                        <u>Social Media, Birthdays, & Contests:</u>
+                                        <u>Merchandise Purchases:</u>
                                     </h2>
                                 </div>
                                 <div class="ui two column divided grid">
@@ -680,14 +592,14 @@
                                                     <label>Mug Purchase Status:</label>
                                                     <div class="inline fields">
                                                         <div class="field">
-                                                          <div class="ui radio checkbox">
-                                                            <input type="radio" name="frequency" checked="checked">
+                                                          <div class="wrap-check1 ui radio checkbox">
+                                                            <input type="radio" name="frequency1">
                                                             <label>Yes</label>
                                                           </div>
                                                         </div>
                                                         <div class="field">
-                                                          <div class="ui radio checkbox">
-                                                            <input type="radio" name="frequency">
+                                                          <div class="wrap-check2 ui radio checkbox">
+                                                            <input type="radio" name="frequency1" checked="checked">
                                                             <label>No</label>
                                                           </div>
                                                         </div>
@@ -697,10 +609,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="two fields">
-                                                <div class="field">
+                                                <div class="wrap-context1 disabled field">
                                                     <label>Origination Sale Source:</label>
                                                     <div class="ui selection dropdown">
-                                                        <input type="hidden">
+                                                        <input type="disabled">
                                                         <i class="dropdown icon"></i>
                                                         <div class="default text">Choose from below:</div>
                                                         <div class="menu">
@@ -708,7 +620,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="input field">
+                                                <div class="wrap-context1 disabled input field">
                                                     <label>Date Purchased:</label>
                                                     <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
                                                     <div class="ui calendar" style="border-color: black;">
@@ -722,14 +634,14 @@
                                         </div>
                                         <div class="row">
                                             <div class="two fields">
-                                                <div class="ui input field">
+                                                <div class="wrap-context1 disabled ui input field">
                                                     <label>Quantity:</label>
                                                     <input type="string" pattern="\d{0,5}" placeholder="Quantity">
                                                 </div>
-                                                <div class="field">
+                                                <div class="wrap-context1 disabled field">
                                                     <label>Delivery Method:</label>
                                                     <div class="ui selection dropdown">
-                                                        <input type="hidden">
+                                                        <input type="disabled">
                                                         <i class="dropdown icon"></i>
                                                         <div class="default text">Choose from below:</div>
                                                         <div class="menu">
@@ -741,10 +653,122 @@
                                         </div>
                                         <div class="row">
                                             <div class="two fields">
+                                                <div class="wrap-context1 disabled field">
+                                                    <label>Payment Method:</label>
+                                                    <div class="ui selection dropdown">
+                                                        <input type="disabled">
+                                                        <i class="dropdown icon"></i>
+                                                        <div class="default text">Choose from below:</div>
+                                                        <div class="menu">
+                                                            <div class="item" data-value="1">Option 1</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="wrap-context1 disabled ui input field">
+                                                    <label>Check #:</label>
+                                                    <input type="string" pattern="\d{3,4}" placeholder="Check #">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="ten wide column">
+                                        <div class="row" style="margin-bottom: 2vh;">
+                                            <div class="two fields">
+                                                <div class="field">
+                                                    <h3>
+                                                        <u>Florida Statue Service:</u>
+                                                    </h3>
+                                                </div>
+                                                <div class="ui field" >
+                                                    <label>Statue Service Purchase Status:</label>
+                                                    <div class="inline fields">
+                                                        <div class="field">
+                                                          <div class="wrap-check3 ui radio checkbox">
+                                                            <input type="radio" name="frequency3">
+                                                            <label>Yes</label>
+                                                          </div>
+                                                        </div>
+                                                        <div class="field">
+                                                          <div class="wrap-check4 ui radio checkbox">
+                                                            <input type="radio" name="frequency3" checked="true">
+                                                            <label>No</label>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="wrap-context2 disabled three fields">
+                                                <div class="input field">
+                                                    <label>Date Requested:</label>
+                                                    <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                                    <div class="ui calendar" style="border-color: black;">
+                                                        <div class="ui input left icon" >
+                                                            <i class="calendar icon"></i>
+                                                            <input type="text" placeholder="Date" class="calendar_input">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="ui input field">
+                                                    <label>Quantity:</label>
+                                                    <input type="string" pattern="\d{0,5}" placeholder="Quantity">
+                                                </div>
+                                                <div class="field">
+                                                    <label>Which Book:</label>
+                                                    <div class="ui selection dropdown">
+                                                        <input type="disabled">
+                                                        <i class="dropdown icon"></i>
+                                                        <div class="default text">Choose from below:</div>
+                                                        <div class="menu">
+                                                            <div class="item" data-value="1">Option 1</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="wrap-context2 disabled three fields">
+                                                <div class="field">
+                                                    <label>Source of Referral:</label>
+                                                    <div class="ui selection dropdown">
+                                                        <input type="disabled">
+                                                        <i class="dropdown icon"></i>
+                                                        <div class="default text">Choose from below:</div>
+                                                        <div class="menu">
+                                                            <div class="item" data-value="1">Option 1</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="ui input field">
+                                                    <label>Source of Referral — Other :</label>
+                                                    <input type="string" placeholder="Enter Legal Assc Name">
+                                                </div>
+                                                <div class="ui input field">
+                                                    <label>Sold By:</label>
+                                                    <input type="string" placeholder="Enter Legal Assc Name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="wrap-context2 disabled three fields">
+                                                <div class="field">
+                                                    <label>Delivery Method:</label>
+                                                    <div class="ui selection dropdown">
+                                                        <input type="disabled">
+                                                        <i class="dropdown icon"></i>
+                                                        <div class="default text">Choose from below:</div>
+                                                        <div class="menu">
+                                                            <div class="item" data-value="1">Option 1</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="field">
                                                     <label>Payment Method:</label>
                                                     <div class="ui selection dropdown">
-                                                        <input type="hidden">
+                                                        <input type="disabled">
                                                         <i class="dropdown icon"></i>
                                                         <div class="default text">Choose from below:</div>
                                                         <div class="menu">
@@ -759,34 +783,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ten wide column">
-                                        <div class="row" style="margin-bottom: 2vh;">
-                                            <div class="two fields">
-                                                <div class="field">
-                                                    <h3>
-                                                        <u>Florida Statue Service:</u>
-                                                    </h3>
-                                                </div>
-                                                <div class="ui field" >
-                                                    <label>Statue Service Purchase Status:</label>
-                                                    <div class="inline fields">
-                                                        <div class="field">
-                                                          <div class="ui radio checkbox">
-                                                            <input type="radio" name="frequency" checked="checked">
-                                                            <label>Yes</label>
-                                                          </div>
-                                                        </div>
-                                                        <div class="field">
-                                                          <div class="ui radio checkbox">
-                                                            <input type="radio" name="frequency">
-                                                            <label>No</label>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -795,6 +791,120 @@
 
 
 
+                        <!-- Social Media, Birthdays, & Contests -->
+                        <div class="ui one column grid segment">
+                            <div class="column">
+                                <div class="row" style="margin-bottom: 2vh;">
+                                    <h2>
+                                        <u>Social Media, Birthdays, & Contests</u>
+                                    </h2>
+                                </div>
+                                <div class="row" style="margin-bottom: 2vh;">
+                                    <h3>
+                                        <u>Birthday</u>
+                                    </h3>
+                                </div>
+                                <div class="row">
+                                    <div class="three fields">
+                                        <div class="wrap-context3 input field">
+                                            <label>Birthdate:</label>
+                                            <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                            <div class="ui calendar" style="border-color: black;">
+                                                <div class="ui input left icon" >
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" placeholder="Date" class="calendar_input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wrap-context3 field">
+                                            <label>Authorized for:</label>
+                                            <div class="ui selection dropdown">
+                                                <input type="disabled">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">Choose from below:</div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="1">Option 1</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ui field" >
+                                            <div class="grouped fields">
+                                                <label>Decline All:</label>
+                                                <div class="inline fields">
+                                                    <div class="field">
+                                                        <div class="wrap-check5 ui radio checkbox">
+                                                            <input type="radio" name="frequency">
+                                                            <label>Yes</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="field">
+                                                        <div class="wrap-check6 ui radio checkbox">
+                                                            <input type="radio" name="frequency" checked="checked">
+                                                            <label>No</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three fields">
+                                        <div class="wrap-context3 input field">
+                                            <label>Date Approved:</label>
+                                            <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                            <div class="ui calendar" style="border-color: black;">
+                                                <div class="ui input left icon" >
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" placeholder="Date" class="calendar_input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wrap-context3 input field">
+                                            <label>Follow-Up Date:</label>
+                                            <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                            <div class="ui calendar" style="border-color: black;">
+                                                <div class="ui input left icon" >
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" placeholder="Date" class="calendar_input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wrap-context3 disabled input field">
+                                            <label>Decline Date:</label>
+                                            <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                            <div class="ui calendar" style="border-color: black;">
+                                                <div class="ui input left icon" >
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" placeholder="Date" class="calendar_input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 5px"></div>
+                                <div class="row" style="margin-bottom: 2vh;">
+                                    <h3>
+                                        <u>Social Media Participation</u>
+                                    </h3>
+                                </div>
+                                <div class="row">
+
+                                </div>
+
+                                <div class="ui inverted divider" style="margin-top: 0px;margin-bottom: 5px"></div>
+                                <div class="row" style="margin-bottom: 2vh;">
+                                    <h3>
+                                        <u>Contests</u>
+                                    </h3>
+                                </div>
+                                <div class="row">
+
+                                </div>
+                                
+                            </div>
+                        </div>
 
 
 
@@ -812,6 +922,8 @@
                                 </button>
                             </div>
                           </div>
+
+                    <!-- End form -->
                     </form>
                 </div>
             </div>
@@ -831,7 +943,7 @@
 
             checkbox.addEventListener("click", e => {
             for(let i = 0; i < dates.length; i++){
-                dates[i].classList.toggle('hidden');
+                dates[i].classList.toggle('disabled');
             }
         })
     </script>
@@ -841,7 +953,7 @@
 
             checkbox2.addEventListener("click", e => {
             for(let i = 0; i < dates2.length; i++){
-                dates2[i].classList.toggle('hidden2');
+                dates2[i].classList.toggle('disabled');
             }
         })
     </script>
@@ -849,27 +961,88 @@
         const checkbox3 = document.querySelector(".wrap-checkbox3 input");
         const dates3 = document.querySelectorAll(".wrap-date3");
 
-            checkbox3.addEventListener("click", e => {
+        checkbox3.addEventListener("click", e => {
             for(let i = 0; i < dates3.length; i++){
-                dates3[i].classList.toggle('hidden3');
+                dates3[i].classList.toggle('disabled');
             }
         })
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.js"></script>
     <script>
-        $('#example2').calendar({
-            type: 'date'
+        $('div.ui.calendar').calendar({type: 'date'});
+    </script>
+
+    <script>
+        const check1 = document.querySelector(".wrap-check1 input");
+        const check2 = document.querySelector(".wrap-check2 input");
+        const context1 = document.querySelectorAll(".wrap-context1");
+
+        check1.addEventListener("click", e => {
+            for(let i = 0; i < context1.length; i++){
+                if ( $(context1[i]).hasClass( "disabled" ) ) { 
+                    context1[i].classList.toggle('disabled');
+                }
+            }
         });
-        // const $$ = q => document.querySelectorAll(q);
-        // $$('.calendar').forEach(e => console.log(e));
-        
+        check2.addEventListener("click", e => {
+            for(let i = 0; i < context1.length; i++){
+                if ( $(context1[i]).hasClass( "disabled" ) ) {}
+                else {
+                    context1[i].classList.toggle('disabled');
+                }
+            }
+        });
+    </script>
+
+    <script>
+        const check3 = document.querySelector(".wrap-check3 input");
+        const check4 = document.querySelector(".wrap-check4 input");
+        const context2 = document.querySelectorAll(".wrap-context2");
+
+        check3.addEventListener("click", e => {
+            for(let i = 0; i < context2.length; i++){
+                if ( $(context2[i]).hasClass( "disabled" ) ) { 
+                    context2[i].classList.toggle('disabled');
+                }
+            }
+        });
+        check4.addEventListener("click", e => {
+            for(let i = 0; i < context2.length; i++){
+                if ( $(context2[i]).hasClass( "disabled" ) ) {}
+                else {
+                    context2[i].classList.toggle('disabled');
+                }
+            }
+        });
+    </script>
+
+    <script>
+        const check5 = document.querySelector(".wrap-check5 input");
+        const check6 = document.querySelector(".wrap-check6 input");
+        const context3 = document.querySelectorAll(".wrap-context3");
+        var checkYes = false;
+        var checkNo = true;
+
+        // Yes Box
+        check5.addEventListener("click", e => {
+            if (checkYes == false) {
+                for(let i = 0; i < context3.length; i++){
+                    context3[i].classList.toggle('disabled');
+                }
+                checkYes = true;
+            }
+            checkNo = false;
+        });
+
+        // No Box
+        check6.addEventListener("click", e => {
+            if (checkNo == false) {
+                for(let i = 0; i < context3.length; i++){
+                    context3[i].classList.toggle('disabled');
+                }
+                checkNo = true;
+            }
+            checkYes = false;
+        });
     </script>
 </body>
-
-
-
-<script>
-    $('div.ui.calendar').calendar({type: 'date'});
-    
-</script>
-
