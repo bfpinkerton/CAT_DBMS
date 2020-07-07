@@ -1072,13 +1072,13 @@
                                                 <label>Most Awesome Information Request?</label>
                                                 <div class="inline fields">
                                                     <div class="field">
-                                                        <div class="wrap-check5 ui radio checkbox">
+                                                        <div class="cont-Yes ui radio checkbox">
                                                             <input type="radio" name="frequency8">
                                                             <label>Yes</label>
                                                         </div>
                                                     </div>
                                                     <div class="field">
-                                                        <div class="wrap-check6 ui radio checkbox">
+                                                        <div class="cont-No ui radio checkbox">
                                                             <input type="radio" name="frequency8" checked="checked">
                                                             <label>No</label>
                                                         </div>
@@ -1086,7 +1086,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="input field">
+                                        <div class="cont-Field disabled input field">
                                             <label>Date Requested:</label>
                                             <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
                                             <div class="ui calendar" style="border-color: black;">
@@ -1096,7 +1096,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="input field">
+                                        <div class="cont-Field disabled input field">
                                             <label>Followup Date:</label>
                                             <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
                                             <div class="ui calendar" style="border-color: black;">
@@ -1110,6 +1110,520 @@
                                 </div>
                             </div>
                         </div>
+
+
+
+                        <!-- Gifts -->
+                        <div class="ui one column grid segment">
+                            <div class="column">
+                                <div class="row" style="margin-bottom: 2vh;">
+                                    <h2>
+                                        <u>Gifts</u>
+                                    </h2>
+                                </div>
+                                <div class="row">
+                                    <div class="three fields">
+                                        <div class="ui input field">
+                                            <label>Occasion:</label>
+                                            <input type="string" placeholder="Enter Occasion">
+                                        </div>
+                                        <div class="field">
+                                            <label>Gift Provided:</label>
+                                            <div class="ui selection dropdown dropdownBorder">
+                                                <input type="disabled">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">Choose from below:</div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="1">Option 1</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ui input field">
+                                            <label>Gift Provided — Other:</label>
+                                            <input type="string" placeholder="Enter Unlisted Option">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="two fields">
+                                        <div class="input field">
+                                            <label>Date:</label>
+                                            <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                            <div class="ui calendar" style="border-color: black;">
+                                                <div class="ui input left icon" >
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" placeholder="Date" class="calendar_input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label>Code:</label>
+                                            <div class="ui selection dropdown dropdownBorder">
+                                                <input type="disabled">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">Choose from below:</div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="1">Option 1</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- TODO: Pull Following 2 fields from MAL Table -->
+                        <!-- Supplemental Association Information -->
+                        <div class="ui one column grid segment">
+                            <div class="column">
+                                <div class="row" style="margin-bottom: 2vh;">
+                                    <h2>
+                                        <u>Supplemental Association Information</u>
+                                    </h2>
+                                </div>
+                                <div class="row">
+                                    <div class="three fields">
+                                        <div class="ui input field">
+                                            <label>Designated On-Site Association Address::</label>
+                                            <input type="string" placeholder="Enter Address">
+                                        </div>
+                                        <div class="field">
+                                            <label>City:</label>
+                                            <div class="ui selection dropdown">
+                                                <input type="disabled" >
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">Choose from below:</div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="1">Option 1</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ui input field">
+                                            <label>Zip Code:</label>
+                                            <input type="string" pattern="\d{5}" placeholder="Enter Zip Code">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three fields">
+                                        <div class="ui input field">
+                                            <label>Phone Number:</label>
+                                            <input type="string" pattern="\d{10,15}" placeholder="Enter Phone Number">
+                                        </div>
+                                        <div class="ui input field">
+                                            <label>Association Website:</label>
+                                            <input type="string" pattern="\d{10,15}" placeholder="Enter Website">
+                                        </div>
+                                        <div class="ui input field">
+                                            <label>Association E-Mail Address:</label>
+                                            <input type="string" pattern="\d{10,15}" placeholder="Enter E-Mail Address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three fields">
+                                        <div class="ui input field">
+                                            <label># of Units/Lots when Fully Developed:</label>
+                                            <input type="string" pattern="\d{1,100}" placeholder="Enter # Units/Lots">
+                                        </div>
+                                        <div class="field">
+                                            <div class="ui two column divided grid">
+                                                <div class="center aligned column">
+                                                    <div class="row">
+                                                        <div class="ui centered field">
+                                                            <div class="grouped fields">
+                                                                <label>55+ Community?</label>
+                                                                <div class="inline fields">
+                                                                    <div class="field">
+                                                                        <div class="ui radio checkbox">
+                                                                            <input type="radio" name="frequency9">
+                                                                            <label>Yes</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="field">
+                                                                        <div class="ui radio checkbox">
+                                                                            <input type="radio" name="frequency9" checked="checked">
+                                                                            <label>No</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="center aligned column">
+                                                    <div class="row">
+                                                        <div class="center aligned ui field">
+                                                            <div class="grouped fields">
+                                                                <label>Association Controlled By:</label>
+                                                                <div class="inline fields">
+                                                                    <div class="field">
+                                                                        <div class="resident ui radio checkbox">
+                                                                            <input type="radio" name="frequency11"  checked="checked">
+                                                                            <label>Residents</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="field">
+                                                                        <div class="developer ui radio checkbox">
+                                                                            <input type="radio" name="frequency11">
+                                                                            <label>Developer</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="res-Dev-Toggle disabled input field">
+                                            <label>Approx Turnover Date: (If Developer Controlled)</label>
+                                            <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                            <div class="ui calendar" style="border-color: black;">
+                                                <div class="ui input left icon" >
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" placeholder="Date" class="calendar_input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui inverted divider"></div>
+                                <div class="row">
+                                    <div class="ui two column divided grid">
+                                        <div class="six wide column">
+                                            <div class="row">
+                                                <div class="ui field">
+                                                    <div class="grouped fields">
+                                                        <label>Is Association a Master or Sub-Association?</label>
+                                                        <div class="inline fields">
+                                                            <div class="field">
+                                                                <div class="master ui radio checkbox">
+                                                                    <input type="radio" name="frequency10" checked="checked">
+                                                                    <label>Master</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <div class="sub ui radio checkbox">
+                                                                    <input type="radio" name="frequency10">
+                                                                    <label>Sub-Association</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="mas-Sub-Toggle field">
+                                                    <label>Master — What Associations are Subs:</label>
+                                                    <div class="ui selection dropdown dropdownBorder">
+                                                        <input type="disabled">
+                                                        <i class="dropdown icon"></i>
+                                                        <div class="default text">Choose from below:</div>
+                                                        <div class="menu">
+                                                            <div class="item" data-value="1">Option 1</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="mas-Sub-Toggle disabled field">
+                                                    <label>Sub — What Association is Master:</label>
+                                                    <div class="ui selection dropdown dropdownBorder">
+                                                        <input type="disabled">
+                                                        <i class="dropdown icon"></i>
+                                                        <div class="default text">Choose from below:</div>
+                                                        <div class="menu">
+                                                            <div class="item" data-value="1">Option 1</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ten wide column">
+                                            <div class="row">
+                                                <div class="three fields">
+                                                    <div class="field">
+                                                        <label>Registered Agent:</label>
+                                                        <div class="ui selection dropdown dropdownBorder">
+                                                            <input type="disabled">
+                                                            <i class="dropdown icon"></i>
+                                                            <div class="default text">Choose from below:</div>
+                                                            <div class="menu">
+                                                                <div class="item" data-value="1">Option 1</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input field">
+                                                        <label>RA Date:</label>
+                                                        <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                                        <div class="ui calendar" style="border-color: black;">
+                                                            <div class="ui input left icon" >
+                                                                <i class="calendar icon"></i>
+                                                                <input type="text" placeholder="Date" class="calendar_input">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ui field">
+                                                        <div class="grouped fields">
+                                                            <label>Clubhouse?</label>
+                                                            <div class="inline fields">
+                                                                <div class="field">
+                                                                    <div class="ui radio checkbox">
+                                                                        <input type="radio" name="frequency12"  checked="checked">
+                                                                        <label>Yes</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="field">
+                                                                    <div class="ui radio checkbox">
+                                                                        <input type="radio" name="frequency12">
+                                                                        <label>No</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="three fields">
+                                                    <div class="ui input field">
+                                                        <label>Assesments:</label>
+                                                        <input type="string" placeholder="Enter Assesments">
+                                                    </div>
+                                                    <div class="field">
+                                                        <label>What Intervals:</label>
+                                                        <div class="ui selection dropdown dropdownBorder">
+                                                            <input type="disabled">
+                                                            <i class="dropdown icon"></i>
+                                                            <div class="default text">Choose from below:</div>
+                                                            <div class="menu">
+                                                                <div class="item" data-value="1">Monthly</div>
+                                                                <div class="item" data-value="2">Bi-Monthly</div>
+                                                                <div class="item" data-value="3">Annual</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ui field">
+                                                        <div class="grouped fields">
+                                                            <label>Available to Rent?</label>
+                                                            <div class="inline fields">
+                                                                <div class="field">
+                                                                    <div class="ui radio checkbox">
+                                                                        <input type="radio" name="frequency13"  checked="checked">
+                                                                        <label>Yes</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="field">
+                                                                    <div class="ui radio checkbox">
+                                                                        <input type="radio" name="frequency13">
+                                                                        <label>No</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="four fields">
+                                                    <div class="ui input field">
+                                                        <label>Price:</label>
+                                                        <input type="string" pattern="\d{1,100}" placeholder="Enter Price">
+                                                    </div>
+                                                    <div class="ui input field">
+                                                        <label>Theater Style Seating #:</label>
+                                                        <input type="string" pattern="\d{1,100}" placeholder="Enter Style Seating">
+                                                    </div>
+                                                    <div class="ui input field">
+                                                        <label>Tables/Chairs Seating #:</label>
+                                                        <input type="string" pattern="\d{1,100}" placeholder="Enter Tables/Chairs Seating">
+                                                    </div>
+                                                    <div class="field">
+                                                        <label>Type of Tables:</label>
+                                                        <div class="ui selection dropdown dropdownBorder">
+                                                            <input type="disabled">
+                                                            <i class="dropdown icon"></i>
+                                                            <div class="default text">Choose from below:</div>
+                                                            <div class="menu">
+                                                                <div class="item" data-value="1">Option 1</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui inverted divider"></div>
+                                <div class="row">
+                                    <div class="ui fluid input field">
+                                        <label>Additional Notes:</label>
+                                        <textarea rows="2" style="border: 1px solid black !important;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <!-- Management Information -->
+                        <div class="ui one column grid segment">
+                            <div class="column">
+                                <div class="row" style="margin-bottom: 2vh;">
+                                    <h2>
+                                        <u>Management Information</u>
+                                    </h2>
+                                </div>
+                                <div class="row">
+                                    <div class="four fields">
+                                        <div class="ui input field">
+                                            <label>General Management Information:</label>
+                                            <input disabled type="string" placeholder="Input Management Info on Next Page">
+                                        </div>
+                                        <div class="ui input field">
+                                            <label>Admin Information:</label>
+                                            <input disabled type="string" placeholder="Input Admin Info on Next Page">
+                                        </div>
+                                        <div class="ui input field">
+                                            <label>Collections Manager:</label>
+                                            <input disabled type="string" placeholder="Input Collections Manager Info on Next Page">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <!-- Hiring & Termination Information: -->
+                        <div class="ui segment">
+                            <div class="ui two column divided grid">
+                                <div class="ten wide column">
+                                    <div class="row" style="margin-bottom: 2vh;">
+                                        <h2>
+                                            <u>Hiring Information:</u>
+                                        </h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="four fields">
+                                            <div class="input field">
+                                                <label>Date Hired:</label>
+                                                <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                                <div class="ui calendar" style="border-color: black;">
+                                                    <div class="ui input left icon" >
+                                                        <i class="calendar icon"></i>
+                                                        <input type="text" placeholder="Date" class="calendar_input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ui input field">
+                                                <label>Reason(s) Hired:</label>
+                                                <input type="string" placeholder="Enter Hiring Reasons">
+                                            </div>
+                                            <div class="ui input field">
+                                                <label>Hiring Comments:</label>
+                                                <input type="string" placeholder="Enter Hiring Comments">
+                                            </div>
+                                            <div class="field">
+                                                <label>Type of Representation:</label>
+                                                <div class="ui selection dropdown dropdownBorder">
+                                                    <input type="disabled">
+                                                    <i class="dropdown icon"></i>
+                                                    <div class="default text">Choose from below:</div>
+                                                    <div class="menu">
+                                                        <div class="item" data-value="1">Exclusive</div>
+                                                        <div class="item" data-value="2">On-Going</div>
+                                                        <div class="item" data-value="3">Secondary Counsel</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="four fields">
+                                            <div class="input field">
+                                                <label>Date:</label>
+                                                <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                                <div class="ui calendar" style="border-color: black;">
+                                                    <div class="ui input left icon" >
+                                                        <i class="calendar icon"></i>
+                                                        <input type="text" placeholder="Date" class="calendar_input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ui input field">
+                                                <label>Source of Referral Name:</label>
+                                                <input type="string" placeholder="Enter Referral Source Name">
+                                            </div>
+                                            <div class="ui input field">
+                                                <label>Position:</label>
+                                                <input type="string" placeholder="Enter Position of Referral">
+                                            </div>
+                                            <div class="ui input field">
+                                                <label>Company/Association:</label>
+                                                <input type="string" placeholder="Enter Company/Association">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="four fields">
+
+                                        </div>
+                                    </div>
+                                    <div class="ui inverted divider"></div>
+                                    <div class="row">
+                                        <div class="three fields">
+                                            <div class="ui input field">
+                                                <label>Hiring Additional Records:</label>
+                                                <input disabled type="string" placeholder="Additional Hiring Records on Next Page">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <!--  Organization Information -->
+                                <div class="six wide column">
+                                    <div class="row" style="margin-bottom: 2vh;">
+                                        <h2>
+                                            <u>Termination Information:</u>
+                                        </h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="four fields">
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="four fields">
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="four fields">
+
+                                        </div>
+                                    </div>
+                                    <div class="ui inverted divider"></div>
+                                    <div class="row">
+                                        <div class="fluid ui input field">
+                                            <label>Termination Additional Records:</label>
+                                            <input disabled type="string" placeholder="Additional Termination Records on Next Page">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
 
 
@@ -1264,7 +1778,7 @@
 
 
     <!-- Social Media Participation Toggles -->
-    <!-- Overall toggle supersedes indiv toggles (on no)-->
+    <!-- Overall toggle supersedes indiv toggles-->
     <script> 
         // Indiv Toggle's — This is so ugly. I wish I could paramaterize this
         
@@ -1469,6 +1983,92 @@
             }
         });
 
+    </script>
+
+
+    <!-- Display Toggle for Contests -->
+    <script>
+        const contYes = document.querySelector(".cont-Yes input");
+        const contNo = document.querySelector(".cont-No input");
+        const contField = document.querySelectorAll(".cont-Field");
+        var checkContYes = false;
+
+        // Yes Box
+        contYes.addEventListener("click", e => {
+            if (checkContYes == false) {
+                for(let i = 0; i < contField.length; i++){
+                    contField[i].classList.toggle('disabled');
+                }
+                checkContYes = true;
+            }
+        });
+        // No Box
+        contNo.addEventListener("click", e => {
+            if (checkContYes == true) {
+                for(let i = 0; i < contField.length; i++){
+                    contField[i].classList.toggle('disabled');
+                }
+                checkContYes = false;
+            }
+        });
+    </script>
+
+
+
+    <!-- Display Toggle for Master/Sub -->
+    <script>
+        const master = document.querySelector(".master input");
+        const sub = document.querySelector(".sub input");
+        const masSubToggle = document.querySelectorAll(".mas-Sub-Toggle");
+        var masSubBool = true;
+
+        // Yes Box
+        master.addEventListener("click", e => {
+            if (masSubBool == false) {
+                for(let i = 0; i < masSubToggle.length; i++){
+                    masSubToggle[i].classList.toggle('disabled');
+                }
+                masSubBool = true;
+            }
+        });
+        // No Box
+        sub.addEventListener("click", e => {
+            if (masSubBool == true) {
+                for(let i = 0; i < masSubToggle.length; i++){
+                    masSubToggle[i].classList.toggle('disabled');
+                }
+                masSubBool = false;
+            }
+        });
+    </script>
+
+
+
+    <!-- Association Control -->
+    <script>
+        const resident = document.querySelector(".resident input");
+        const developer = document.querySelector(".developer input");
+        const resDevToggle = document.querySelectorAll(".res-Dev-Toggle");
+        var resDevBool = true;
+
+        // Yes Box
+        resident.addEventListener("click", e => {
+            if (resDevBool == false) {
+                for(let i = 0; i < resDevToggle.length; i++){
+                    resDevToggle[i].classList.toggle('disabled');
+                }
+                resDevBool = true;
+            }
+        });
+        // No Box
+        developer.addEventListener("click", e => {
+            if (resDevBool == true) {
+                for(let i = 0; i < resDevToggle.length; i++){
+                    resDevToggle[i].classList.toggle('disabled');
+                }
+                resDevBool = false;
+            }
+        });
     </script>
     
 
