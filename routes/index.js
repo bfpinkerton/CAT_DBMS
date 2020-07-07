@@ -4,7 +4,7 @@ var url = require('url');
 
 /* GET landing page. */
 router.get('/', function (req, res, next) {
-  res.render('pages/landing/index');
+  res.render('pages/mal/create');
 });
 
 /* GET login page */
