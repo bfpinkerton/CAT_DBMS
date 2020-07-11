@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "db:makemigrations": "./node_modules/sequelize-auto-migrations/bin/makemigration.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -30,6 +31,7 @@
     "pug": "^3.0.0",
     "semantic-ui-calendar": "0.0.8",
     "sequelize": "^5.21.12",
+    "sequelize-auto-migrations": "github:scimonster/sequelize-auto-migrations#a063aa6535a3f580623581bf866cef2d609531ba",
     "tedious": "^8.3.0",
     "url": "^0.11.0"
   },

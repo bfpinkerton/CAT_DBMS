@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         // What MAL entry is this relating to
         MALrelatedID: {
-            
+
         },
         // Which table does this entry relate to?
         relatedTable: {
@@ -25,9 +25,9 @@ module.exports = (sequelize, Sequelize) => {
             type: "TIMESTAMP",
             allowNull: false
         },
-        // Json object of multiple triplets
+        // Json object of multiple quadruplets
         // Track all fields that change between updates — Updated field, before, after
-        // EX: "Name: Brandon --> Brian", tracking "Name" "Old" "New"
+        // EX: "Field, Sections: Brandon --> Brian", tracking "Name" "Old" "New"
         // TODO
         updateTracking: {
             type: Sequelize.JSON,
