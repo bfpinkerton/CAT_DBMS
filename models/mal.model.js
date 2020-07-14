@@ -1,4 +1,8 @@
 // TODO: Ask Arlene about which fields are required
+/* 
+    - This model contains basic information about a MAL entry with additional foreign key links to 
+*/
+
 module.exports = (sequelize, Sequelize) => {
     const MAL = sequelize.define("MAL", {
         // --Metadata--
@@ -16,124 +20,272 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
-        // How should we express an arbitrary amount of possible updates
-        // Additional Updates Table
-        updateEntry: {
 
+
+
+        // --Additional Updates Table--
+        /*
+            - Table: "updates.model.js"
+            - One to Many Association — Not able to associate both ways; ID not logged below
+        */
+
+
+
+        // --Association Photo--
+        // Save file name of photo and search file directory
+        associationPhoto: {
+            type: Sequelize.STRING,
         },
 
-        // TODO
-        // --Association Photo--
-        // (1) Save file name of photo and search file directory
-        // OR (2) Separate table for photos
-        // Still figuring out best way to story photo
+
 
         // --Primary Association Information--
         legalName: {
             type: Sequelize.STRING,
-            allowNull: false
         },
         aka: {
             type: Sequelize.STRING,
         },
         clientAcctNum: {
             type: Sequelize.STRING,
-            allowNull: false
         },
         fileName: {
             type: Sequelize.STRING,
         },
         statusInFirm: {
             type: Sequelize.STRING,
-            allowNull: false
         },
         specialClassification: {
             type: Sequelize.STRING,
         },
         asscType: {
             type: Sequelize.STRING,
-            allowNull: false
         },
         scndMHPAssc: {
             type: Sequelize.STRING,
         },
         domicileCounty: {
             type: Sequelize.STRING,
-            allowNull: false
         },
         domicileCity: {
             type: Sequelize.STRING,
-            allowNull: false
         },
         domicileZip: {
             type: Sequelize.INTEGER,
-            allowNull: false
-        },
-        // --General Board Member Related Information--
-        // TODO
-
-        // --Individual Board Member Related Information--
-        // How should we express an arbitrary amount of Board Members
-        // Board Members Table
-        // TODO
-        boardMembers: {
-
         },
 
-        // TODO
-        // -- Representation Inquiries--
-        // Multiple Tables ------
-        repInquiries: {
 
-        },
-
-        // --Organization Information--
-        // TODO
-
-        // --Merchandise Purchases--
-        // TODO
-
-        // --Birthdays, & Contests--
-        // TODO: Birthday needs to become individual for each board member/manager
-        // Social media needs a separate table
-        // Possible alternative: table that just records SM platform and account associated with it that relates back to entry
-        // TODO: Most Awesome Information request needs to become individual for each board member/manager
-        // TODO
-
-        // --Gifts--
-        // TODO: Look into if gifts needs to be "personalized"
-        // TODO: Each gift refers to a board member
-        // TODO
 
         // --Supplemental Association Information--
-        // TODO
-
         /*
-            The below "sections" should all require additional tables
+            - Table: "mal_SupplementalAssociationInfo.model.js"
+            - One to One Association — Able to associate both ways; ID logged below
+            - ID logged following creation of MAL record 
+        */
+        supplementalAssociationInfoID: {
+            type: Sequelize.INTEGER,
+        },
+
+
+        
+        // --General Board Member Related Information--
+        /*
+            - Table: "mal_GeneralBoardInfo.model.js"
+            - One to One Association — Able to associate both ways; ID logged below
+            - ID logged following creation of MAL record 
+        */
+        generalBoardTableID: {
+            type: Sequelize.INTEGER,
+        },
+
+
+
+        // --Individual Board Member Related Information--
+        // TODO: Populate Table Columns
+        /*
+            - Table: "mal_BoardMembers.model.js"
+            - One to Many Association — Not able to associate both ways; ID not logged below
+        */
+            // --Board Member Seminar Information--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_MemberSeminar.model.js"
+                - One to Many Association — Not able to associate both ways; ID not logged below
+                - Table relates to BoardMembers Table
+            */
+            // --Board Member Gifts--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_Gifts.model.js"
+                    - Same table used by Managers Table
+                - One to Many Association — Not able to associate both ways; ID not logged below
+                - Table relates to BoardMembers Table
+            */
+            // --Board Member Birthdays--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_Birthdays.model.js"
+                    - Same table used by Managers Table
+                - One to One Association — Able to associate both ways; ID not logged below
+                    - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
+                - Table relates to BoardMembers Table
+            */
+           // --Board Member Contests--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_Contests.model.js"
+                    - Same table used by Managers Table
+                - One to One Association — Able to associate both ways; ID not logged below
+                    - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
+                - Table relates to BoardMembers Table
+            */
+
+
+
+        // -- Representation Inquiries--
+        /*
+            - Table: "mal_RepresentationInquiries.model.js"
+            - One to Many Association — Not able to associate both ways; ID not logged below
         */
 
+
+
+        // --Organization Information--
+        /*
+            - Table: "mal_OrganizationInformation.model.js"
+            - One to One Association — Able to associate both ways; ID logged below
+            - ID logged following creation of MAL record 
+        */
+        organizationInformationID: {
+            type: Sequelize.INTEGER,
+        },
+
+
+
+
+        // --Merchandise Purchases--
+        // TODO: Determine One to One or One to Many
+            // --Mug Purchases--
+            /*
+                - Table: "mal_MerchandiseMug.model.js"
+                - One to ? Association — Able to associate both ways; ID logged below
+                - // ID logged following creation of MAL record //
+            */
+            // --Mug Purchases--
+            /*
+                - Table: "mal_MerchandiseFloridaStatue.model.js"
+                - One to ? Association — Able to associate both ways; ID logged below
+                - // ID logged following creation of MAL record //
+            */
+
+
+
+        // --Social Media--
+        /*
+            - Table: "mal_SocialMedia.model.js"
+            - One to One Association — Able to associate both ways; ID logged below
+            - ID logged following creation of MAL record 
+        */
+        socialMediaID: {
+            type: Sequelize.INTEGER,
+        },
+
+
+
+        // --Birthdays, Contests--
+        /*
+            - Respective Tables referenced in Board Members & Managers Listings
+            - See above and below for listing
+        */
+
+
+
+        // --Gifts--
+        /*
+            - Respective Tables referenced in Board Members & Managers Listings
+            - See above and below for listing
+        */
+
+
+
         // --Management Information--
-        // TODO
+        // TODO — Pulls from MML; Create Table
+        /*
+            - Table: "xxx.model.js"
+            - Not sure yet
+        */
+            // --Manager Gifts--
+            // TODO - Populate Table Columns
+            /*
+                - Table: "mal_Gifts.model.js"
+                    - Same table used by Board Members Table
+                - One to Many Association — Not able to associate both ways; ID not logged below
+                - Table relates to Managers Table
+            */
+            // --Manager Birthdays--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_Birthdays.model.js"
+                    - Same table used by Managers Table
+                - One to One Association — Able to associate both ways; ID not logged below
+                    - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
+                - Table relates to Managers Table
+            */
+            // --Manager Contests--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_Contests.model.js"
+                    - Same table used by Managers Table
+                - One to One Association — Able to associate both ways; ID not logged below
+                    - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
+                - Table relates to Managers Table
+            */
+
+
 
         // --Hiring Information--
-        // Need separate table
-        // TODO
+        /*
+            - Table: "mal_HiringRecord.model.js"
+            - One to Many Association — Not able to associate both ways; ID not logged below
+        */
+
+
 
         // --Termination Information--
-        // Need separate table
-        // TODO
+        /*
+            - Table: "mal_TerminationRecord.model.js"
+            - One to Many Association — Not able to associate both ways; ID not logged below
+        */
+
+
 
         // --Referrals--
-        // Need separate table
-        // TODO
+            // --Source of Referral to C&M--
+            /*
+                - Table: "mal_ReferralSource.model.js"
+                - One to Many Association — Not able to associate both ways; ID not logged below
+            */
+            // --Referrals from C&M for Mgmt. Co./Vendors--
+            /*
+                - Table: "mal_ReferralMgmtCoVendor.model.js"
+                - One to Many Association — Not able to associate both ways; ID not logged below
+            */
+
+            
 
         // --Presentation Information--
-        // Need separate table
-        // TODO
+        /*
+            - Table: "mal_Presentations.model.js"
+            - One to Many Association — Not able to associate both ways; ID not logged below
+        */
+
+
 
         // --Potential Client Status Report--
-        // Multiple status reports
-        // TODO
+        /*
+            - Table: "mal_PotentialClientReports.model.js"
+            - One to Many Association — Not able to associate both ways; ID not logged below
+        */
 
     });
   

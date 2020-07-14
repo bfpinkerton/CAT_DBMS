@@ -1,4 +1,9 @@
+// Overall database and user model
+const db = require("../models");
+const MAL = db.mal;
 
+// Table columns defined below
+// Each column *should* match associated fields within application view
 module.exports = (sequelize, Sequelize) => {
     const BoardMembers = sequelize.define("BoardMembers", {
         id: {

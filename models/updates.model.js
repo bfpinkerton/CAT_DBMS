@@ -48,7 +48,6 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false
         },
         // Textbox for author to leave remarks on what has been changed
-        // TODO: Should this be Text/Medium Text/Long Text
         updateNote: {
             type: Sequelize.TEXT,
             allowNull: false

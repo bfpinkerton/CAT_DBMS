@@ -1,9 +1,9 @@
 // Overall database and user model
-const db = require("../models");
+const db = require(".");
 const MAL = db.mal;
 
 module.exports = (sequelize, Sequelize) => {
-    const HiringRecordMAL = sequelize.define("HiringRecordMAL", {
+    const TerminationRecord = sequelize.define("TerminationRecord", {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -20,17 +20,31 @@ module.exports = (sequelize, Sequelize) => {
                 key: 'id'
             }
         },
-        // What MAL entry is this relating to
-        // MMLrelatedID: {
-
-        // },
-        // Which table does this entry relate to?
-        relatedTable: {
-            type: Sequelize.STRING,
-            allowNull: false
+        //
+        dateTerminated: {
+            type: "TIMESTAMP",
         },
-        
+        //
+        reasonTerminated: {
+            type: Sequelize.STRING,
+        },
+        //
+        revenueGenerated: {
+            type: Sequelize.DECIMAL,
+        },
+        //
+        terminatingNotes: {
+            type: Sequelize.STRING,
+        },
+        //
+        terminationOrigin: {
+            type: Sequelize.STRING,
+        },
+        //
+        realReasonTerminated: {
+            type: Sequelize.STRING,
+        }
     });
   
-    return HiringRecordMAL;
+    return TerminationRecord;
   };
