@@ -36,24 +36,55 @@ router.get('/create', ensureAuthenticated, async function (req, res, next) {
 
 // Create handle
 router.post('/create', ensureAuthenticated, function (req, res, next) {
-    // Structure all element values
+    // Retrieve all element values from page & structure them
     const {
-        //Element names
-        first_name,
-        last_name,
-        email,
-        confirm_email_address,
-        password,
-        password2
+        // --Metadata--
+        Originator,
+        FinalEntryNotes, //Updates Table
+        EntryUpdatedBy, //Updates Table
+        Aka,
+        ClientAcctNum,
+        FileName,
+        StatusInFirm,
+        SpecialClassification,
+        AsscType,
+        ScndMHPAssc,
+        DomicileCounty,
+        DomicileCity,
+
+
+        // --Primary Association Information--
+        LegalName,
+
+
+        // --Association Photo--
+        AssociationPhoto,
+
+        
     } = req.body;
 
     // Create MAL object
     const newEntry = {
-        fName: first_name,
-        lName: last_name,
-        email: email,
-        password: password,
-        creation: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
+        // --Metadata--
+        creation: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
+        originator: Originator,
+
+        // --Primary Association Information--
+        legalName: LegalName,
+        aka: Aka,
+        clientAcctNum: ClientAcctNum,
+        fileName: FileName,
+        statusInFirm: StatusInFirm,
+        specialClassification: SpecialClassification,
+        asscType: AsscType,
+        scndMHPAssc: ScndMHPAssc,
+        domicileCounty: DomicileCounty,
+        domicileCity: DomicileCity,
+        domicileZip: DomicileZip,
+
+        // --Association Photo--
+        associationPhoto: AssociationPhoto,
+
     };
 
     // Create MAL entry with object data

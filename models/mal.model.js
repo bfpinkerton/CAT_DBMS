@@ -31,14 +31,6 @@ module.exports = (sequelize, Sequelize) => {
 
 
 
-        // --Association Photo--
-        // Save file name of photo and search file directory
-        associationPhoto: {
-            type: Sequelize.STRING,
-        },
-
-
-
         // --Primary Association Information--
         legalName: {
             type: Sequelize.STRING,
@@ -72,6 +64,14 @@ module.exports = (sequelize, Sequelize) => {
         },
         domicileZip: {
             type: Sequelize.INTEGER,
+        },
+
+
+
+        // --Association Photo--
+        // Save file name of photo and search file directory
+        associationPhoto: {
+            type: Sequelize.STRING,
         },
 
 
@@ -271,7 +271,7 @@ module.exports = (sequelize, Sequelize) => {
                 - One to Many Association — Not able to associate both ways; ID not logged below
             */
 
-            
+
 
         // --Presentation Information--
         /*
