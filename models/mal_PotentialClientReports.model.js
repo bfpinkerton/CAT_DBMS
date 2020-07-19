@@ -1,7 +1,3 @@
-// Overall database and user model
-const db = require(".");
-const MAL = db.mal;
-
 // Table columns defined below
 // Each column *should* match associated fields within application view
 
@@ -13,23 +9,23 @@ module.exports = (sequelize, Sequelize) => {
             // defaultValue: '0',
             primaryKey: true
         },
-        // FOREIGN KEY: What MAL entry (association) is this relating to
+        // What MAL entry is this relating to
         MALrelatedID: {
             type: Sequelize.INTEGER,
             references: {
                 // This is a reference to another model
-                model: MAL,
+                model: 'MALs',
                 // This is the column name of the referenced model
                 key: 'id'
             }
         },
         //
         originationDatePC: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         staffInitialsPC: {
-            type: "CHAR(3)",
+            type: Sequelize.STRING(3),
         },
         //
         staffAssignedPC: {
@@ -37,11 +33,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         newestEventDate: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         staffInitialsEvent: {
-            type: "CHAR(3)",
+            type: Sequelize.STRING(3),
         },
         //
         followUpType: {
@@ -49,11 +45,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         nextFollowUpDate: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         staffInitialsFollowUp: {
-            type: "CHAR(3)",
+            type: Sequelize.STRING,
         },
         //
         fileType: {
@@ -61,7 +57,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         fileDate: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         contactName: {
@@ -130,6 +126,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         packageTypeRequested: {
+            type: Sequelize.STRING,
         },
         //
         copyToName: {
@@ -145,15 +142,15 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         copyDate: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         eventsChain: {
-            type: "VARCHAR",
+            type: Sequelize.STRING,
         },
         //
         chainDate: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         chainOriginator: {
@@ -161,11 +158,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         chainInitials: {
-            type: "CHAR(3)",
+            type: Sequelize.STRING(3),
         },
         //
         chainInputDate: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         entryTotalTime: {
@@ -181,7 +178,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         fileClosingDate: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         fileRemoveAfter: {
@@ -193,15 +190,15 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         startingRoundDate: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         endingDate: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         closingDate: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         spentTotalTime: {

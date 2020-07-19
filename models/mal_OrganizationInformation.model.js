@@ -1,7 +1,3 @@
-// Overall database and user model
-const db = require("../models");
-const MAL = db.mal;
-
 // Table columns defined below
 // Each column *should* match associated fields within application view
 module.exports = (sequelize, Sequelize) => {
@@ -17,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             references: {
                 // This is a reference to another model
-                model: MAL,
+                model: 'MALs',
                 // This is the column name of the referenced model
                 key: 'id'
             }
@@ -31,10 +27,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
         },
         dateRequestedACA: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         followupDateACA: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         AACONA: {
@@ -42,11 +38,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         dateRequestedAACONA: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         followupDateAACONA: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
 
     });

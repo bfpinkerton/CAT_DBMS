@@ -1,13 +1,11 @@
-// Overall database and user model
-const db = require("../models");
-const MAL = db.mal;
-
+/* 
+    - This model contains information regarding entry changes specifying when/who/what 
+*/
 module.exports = (sequelize, Sequelize) => {
-    const Updates = sequelize.define("Updates", {
+    const Update = sequelize.define("Update", {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
-            // defaultValue: '0',
             primaryKey: true
         },
         // What MAL entry is this relating to
@@ -15,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             references: {
                 // This is a reference to another model
-                model: MAL,
+                model: 'MALs',
                 // This is the column name of the referenced model
                 key: 'id'
             }
@@ -37,7 +35,7 @@ module.exports = (sequelize, Sequelize) => {
         // Pull from current date when modified
         updateDate: {
             type: "TIMESTAMP",
-            allowNull: false
+            defaultValue: Sequelize.NOW
         },
         // Json object of multiple quadruplets
         // Track all fields that change between updates — Updated field, before, after
@@ -50,9 +48,9 @@ module.exports = (sequelize, Sequelize) => {
         // Textbox for author to leave remarks on what has been changed
         updateNote: {
             type: Sequelize.TEXT,
-            allowNull: false
+            // allowNull: false
         }
     });
   
-    return Updates;
+    return Update;
   };

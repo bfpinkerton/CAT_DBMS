@@ -1,7 +1,3 @@
-// Overall database and user model
-const db = require("../models");
-const MAL = db.mal;
-
 // Table columns defined below
 // Each column *should* match associated fields within application view
 module.exports = (sequelize, Sequelize) => {
@@ -12,9 +8,15 @@ module.exports = (sequelize, Sequelize) => {
             // defaultValue: '0',
             primaryKey: true
         },
-        // What entry is this relating to
-        relatedID: {
-            
+        // What MAL entry is this relating to
+        MALrelatedID: {
+            type: Sequelize.INTEGER,
+            references: {
+                // This is a reference to another model
+                model: 'MALs',
+                // This is the column name of the referenced model
+                key: 'id'
+            }
         },
         // --Additional fields as related to Create form --
 

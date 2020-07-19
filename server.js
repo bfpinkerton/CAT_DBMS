@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 // Support parsing of application/x-www-form-urlencoded post data
 app.use(
   bodyParser.urlencoded({
-    extended: true,
+    extended: false,
   })
 );
 
@@ -47,8 +47,9 @@ app.listen(PORT, () => {
 
 
 const db = require("./models");
-// RUN BELOW CODE TO UPDATE TABLES
-//db.sequelize.sync({ force: true });
+// RUN BELOW CODE TO UPDATE TABLES, Alter allows table column modifications directly from models
+// db.sequelize.sync({ alter: true });
+// db.sequelize.sync({ force: true });
 
 // EJS
 app.set("view engine", "ejs");

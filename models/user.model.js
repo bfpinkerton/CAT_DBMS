@@ -10,6 +10,9 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false
       },
+      mInitial: {
+        type: Sequelize.STRING,
+      },
       lName: {
         type: Sequelize.STRING,
         allowNull: false

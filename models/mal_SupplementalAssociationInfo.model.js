@@ -1,7 +1,3 @@
-// Overall database and user model
-const db = require("../models");
-const MAL = db.mal;
-
 // Table columns defined below
 // Each column *should* match associated fields within application view
 module.exports = (sequelize, Sequelize) => {
@@ -17,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             references: {
                 // This is a reference to another model
-                model: MAL,
+                model: 'MALs',
                 // This is the column name of the referenced model
                 key: 'id'
             }
@@ -32,11 +28,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         zipCode: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
         },
         //
         phoneNumber: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
         },
         //
         associationWebsite: {
@@ -48,24 +44,24 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         numberUnitsLotsDeveloped: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
         },
         //
         // TODO: Might be different datatype
         community55Plus: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         associationControlledBy: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         approxTurnoverDate: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         masterOrSub: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         subAssociations: {
@@ -81,11 +77,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         dateRA: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
         },
         //
         clubhouse: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         assessments: {
@@ -97,19 +93,19 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         availableToRent: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         price: {
-            type: Sequelize.DECIMAL,
+            type: Sequelize.STRING,
         },
         //
         theaterSeatingAmount: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
         },
         //
         tableChairsAmount: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
         },
         //
         typeOfTables: {

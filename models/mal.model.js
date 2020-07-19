@@ -1,4 +1,3 @@
-// TODO: Ask Arlene about which fields are required
 /* 
     - This model contains basic information about a MAL entry with additional foreign key links to 
 */
@@ -14,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         creation: {
             type: "TIMESTAMP",
-            allowNull: false
+            defaultValue: Sequelize.NOW
         },
         originator: {
             type: Sequelize.STRING,
@@ -63,7 +62,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
         },
         domicileZip: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
         },
 
 
@@ -113,6 +112,12 @@ module.exports = (sequelize, Sequelize) => {
                 - One to Many Association — Not able to associate both ways; ID not logged below
                 - Table relates to BoardMembers Table
             */
+            // --Board Member Organization Information--
+            // TODO: Add Board Member Name & info to table
+            /*
+                - Table: "mal_OrganizationInformation.model.js"
+                - One to Many Association — Not able to associate both ways; ID logged below
+            */
             // --Board Member Gifts--
             // TODO: Populate Table Columns
             /*
@@ -150,32 +155,16 @@ module.exports = (sequelize, Sequelize) => {
 
 
 
-        // --Organization Information--
-        /*
-            - Table: "mal_OrganizationInformation.model.js"
-            - One to One Association — Able to associate both ways; ID logged below
-            - ID logged following creation of MAL record 
-        */
-        organizationInformationID: {
-            type: Sequelize.INTEGER,
-        },
-
-
-
-
         // --Merchandise Purchases--
-        // TODO: Determine One to One or One to Many
             // --Mug Purchases--
             /*
                 - Table: "mal_MerchandiseMug.model.js"
-                - One to ? Association — Able to associate both ways; ID logged below
-                - // ID logged following creation of MAL record //
+                - One to Many Association — Not able to associate both ways; ID not logged below
             */
             // --Mug Purchases--
             /*
                 - Table: "mal_MerchandiseFloridaStatue.model.js"
-                - One to ? Association — Able to associate both ways; ID logged below
-                - // ID logged following creation of MAL record //
+                - One to Many Association — Not able to associate both ways; ID not logged below
             */
 
 
