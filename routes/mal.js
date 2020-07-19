@@ -695,6 +695,7 @@ router.post('/create', ensureAuthenticated, function (req, res, next) {
                         PotentialFileDate,
                         PotentialContactName,
                         PotentialPosition,
+                        PotentialPhoneNumber,
                         PotentialExtension,
                         PotentialInfoNote,
                         PotentialCurrentLegalCouncil,

@@ -1533,17 +1533,17 @@
                                                     <div class="ui calendar" style="border-color: black;">
                                                         <div class="ui input left icon" >
                                                             <i class="calendar icon"></i>
-                                                            <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                            <input type="text" name="SourceDate"  placeholder="Date" class="calendar_input">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="ui input field">
                                                     <label>Referred By:</label>
-                                                    <input type="string" name=""  placeholder="Enter Referral">
+                                                    <input type="string" name="SourceReferredBy"  placeholder="Enter Referral">
                                                 </div>
                                                 <div class="ui input field">
                                                     <label>Position:</label>
-                                                    <input type="string" name=""  placeholder="Enter Position">
+                                                    <input type="string" name="SourcePosition"  placeholder="Enter Position">
                                                 </div>
                                             </div>
                                         </div>
@@ -1551,11 +1551,11 @@
                                             <div class="two fields">
                                                 <div class="ui input field">
                                                     <label>Company:</label>
-                                                    <input type="string" name=""  placeholder="Enter Company">
+                                                    <input type="string" name="SourceCompany"  placeholder="Enter Company">
                                                 </div>
                                                 <div class="ui input field">
                                                     <label>If Organization, at What Meeting:</label>
-                                                    <input type="string" name=""  placeholder="Enter Meeting">
+                                                    <input type="string" name="SourceIfOrganizationMeeting"  placeholder="Enter Meeting">
                                                 </div>
                                             </div>
                                         </div>
@@ -1576,13 +1576,13 @@
                                                     <div class="ui calendar" style="border-color: black;">
                                                         <div class="ui input left icon" >
                                                             <i class="calendar icon"></i>
-                                                            <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                            <input type="text" name="MgmtRequestDate"  placeholder="Date" class="calendar_input">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="ui input field">
                                                     <label>Referral Requested By:</label>
-                                                    <input type="string" name=""  placeholder="Enter Requestor">
+                                                    <input type="string" name="MgmtRequestedBy"  placeholder="Enter Requestor">
                                                 </div>
                                             </div>
                                         </div>
@@ -1590,11 +1590,11 @@
                                             <div class="two fields">
                                                 <div class="ui input field">
                                                     <label>Title:</label>
-                                                    <input type="string" name=""  placeholder="Enter Title">
+                                                    <input type="string" name="MgmtTitle"  placeholder="Enter Title">
                                                 </div>
                                                 <div class="ui input field">
                                                     <label>For what Business:</label>
-                                                    <input type="string" name=""  placeholder="Enter Business">
+                                                    <input type="string" name="MgmtForWhatBusiness"  placeholder="Enter Business">
                                                 </div>
                                             </div>
                                         </div>
@@ -1636,22 +1636,22 @@
                                             <div class="ui calendar" style="border-color: black;">
                                                 <div class="ui input left icon" >
                                                     <i class="calendar icon"></i>
-                                                    <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                    <input type="text" name="PresentationDate"  placeholder="Date" class="calendar_input">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="ui input field">
                                             <label>Requested By:</label>
-                                            <input type="string" name=""  placeholder="Enter Requestor">
+                                            <input type="string" name="PresentationRequestedBy"  placeholder="Enter Requestor">
                                         </div>
                                         <div class="ui input field">
                                             <label>Position:</label>
-                                            <input type="string" name=""  placeholder="Enter Position">
+                                            <input type="string" name="PresentationPosition"  placeholder="Enter Position">
                                         </div>
                                         <div class="field">
                                             <label>Primary Attorney:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PresentationPrimaryAttorney" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1666,7 +1666,7 @@
                                         <div class="field">
                                             <label>Staff Member Attending:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PresentationStaffMemberAttending" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1677,7 +1677,7 @@
                                         <div class="field">
                                             <label>Location:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PresentationLocation" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1689,7 +1689,7 @@
                                         <div class="field">
                                             <label>Mgmt. Co. and Office:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PresentationMgmtCoAndOffice" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1700,7 +1700,7 @@
                                         <div class="field">
                                             <label>Method:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PresentationMethod" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1715,7 +1715,7 @@
                                         <div class="field">
                                             <label>Who from Association Attended:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PresentationWhoAttendedFromAssociation" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1725,16 +1725,16 @@
                                         </div>
                                         <div class="ui input field">
                                             <label>Issues Discussed:</label>
-                                            <input type="string" name=""  placeholder="Enter Issues">
+                                            <input type="string" name="PresentationIssuesDiscussed"  placeholder="Enter Issues">
                                         </div>
                                         <div class="ui input field">
                                             <label>Total Presentation Time:</label>
-                                            <input type="string" name=""  placeholder="Enter Elapsed Time">
+                                            <input type="string" name="PresentationTotalPresentationTime"  placeholder="Enter Elapsed Time">
                                         </div>
                                         <div class="field">
                                             <label>Outcome:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PresentationOutcome" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1749,7 +1749,7 @@
                                         <div class="field">
                                             <label>Hired:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PresentationHired" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1760,7 +1760,7 @@
                                         <div class="field">
                                             <label>Reasons Selected Firm:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PresentationReasonsFirmSelected" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1807,19 +1807,19 @@
                                             <div class="ui calendar" style="border-color: black;">
                                                 <div class="ui input left icon" >
                                                     <i class="calendar icon"></i>
-                                                    <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                    <input type="text" name="PotentialOriginationDatePC"  placeholder="Date" class="calendar_input">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="ui input field">
                                             <label>Staff Initials:</label>
-                                            <input disabled type="string" placeholder="AUTOGENERATED">
+                                            <input type="string" name="PotentialStaffInitialsPC" placeholder="Enter Initials">
                                         </div>
                                         <!-- TODO: This dropdown pulls informatio from an additional place -->
                                         <div class="field">
                                             <label>Staff Assigned:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PotentialStaffAssignedPC" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1835,19 +1835,19 @@
                                             <div class="ui calendar" style="border-color: black;">
                                                 <div class="ui input left icon" >
                                                     <i class="calendar icon"></i>
-                                                    <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                    <input type="text" name="PotentialNewestEventDate"  placeholder="Date" class="calendar_input">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="ui input field">
                                             <label>Staff Initials:</label>
-                                            <input disabled type="string" placeholder="AUTOGENERATED">
+                                            <input type="string" name="PotentialStaffInitialsEvent" placeholder="Enter Initials">
                                         </div>
                                         <!-- TODO: This dropdown pulls informatio from an additional place -->
                                         <div class="field">
                                             <label>Type of Follow-Up:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PotentialFollowUpType" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1863,18 +1863,18 @@
                                             <div class="ui calendar" style="border-color: black;">
                                                 <div class="ui input left icon" >
                                                     <i class="calendar icon"></i>
-                                                    <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                    <input type="text" name="PotentialNextFollowUpDate"  placeholder="Date" class="calendar_input">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="ui input field">
                                             <label>Staff Initials:</label>
-                                            <input disabled type="string" placeholder="AUTOGENERATED">
+                                            <input type="string" name="PotentialStaffInitialsFollowUp" placeholder="Enter Initials">
                                         </div>
                                         <div class="field">
                                             <label>Type of File:</label>
                                             <div class="ui selection dropdown dropdownBorder">
-                                                <input type="hidden" name="" >
+                                                <input type="hidden" name="PotentialFileType" >
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -1892,31 +1892,31 @@
                                             <div class="ui calendar" style="border-color: black;">
                                                 <div class="ui input left icon" >
                                                     <i class="calendar icon"></i>
-                                                    <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                    <input type="text" name="PotentialFileDate"  placeholder="Date" class="calendar_input">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="ui input field">
                                             <label>Contact Name:</label>
-                                            <input type="string" name=""  placeholder="Enter Contact Name">
+                                            <input type="string" name="PotentialContactName"  placeholder="Enter Contact Name">
                                         </div>
                                         <div class="ui input field">
                                             <label>Position:</label>
-                                            <input type="string" name=""  placeholder="Enter Contact's Position">
+                                            <input type="string" name="PotentialPosition"  placeholder="Enter Contact's Position">
                                         </div>
                                         <div class="ui input field">
                                             <label>Phone Number:</label>
-                                            <input type="string" name=""  pattern="\d{10,15}" placeholder="Enter Phone Number">
+                                            <input type="string" name="PotentialPhoneNumber"  pattern="\d{10,15}" placeholder="Enter Phone Number">
                                         </div>
                                         <div class="ui input field">
                                             <label>Extension:</label>
-                                            <input type="string" name=""  pattern="\d{0,10}" placeholder="Enter Number's Extension">
+                                            <input type="string" name="PotentialExtension"  pattern="\d{0,10}" placeholder="Enter Number's Extension">
                                         </div>
                                     </div>
                                     <div class="row" style="margin-bottom: 2vh;">
                                         <div class="ui fluid input field" data-tooltip="Please enter any additional notes" data-inverted="">
                                             <label>Notes:</label>
-                                            <textarea rows="2" style="border: 1px solid black !important;"></textarea>
+                                            <textarea rows="2" name="PotentialInfoNote" style="border: 1px solid black !important;"></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1925,7 +1925,7 @@
                                             <div class="field">
                                                 <label>Current Legal Council:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name=""  >
+                                                    <input type="hidden" name="PotentialCurrentLegalCouncil"  >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -1935,31 +1935,31 @@
                                             </div>
                                             <div class="ui input field">
                                                 <label>Other Firms Being Considered:</label>
-                                                <input type="string" name=""  placeholder="Enter Additional Firms">
+                                                <input type="string" name="PotentialOtherFirmsConsidered"  placeholder="Enter Additional Firms">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Reason for Leaving Current Council:</label>
-                                                <input type="string" name=""  placeholder="Enter Reason">
+                                                <input type="string" name="PotentialReasonForLeavingCurrent"  placeholder="Enter Reason">
                                             </div>
                                             <div class="ui input field" data-tooltip="(What they like best about the current firm)" data-inverted="">
                                                 <label>Best Aspect of Current Firm:</label>
-                                                <input type="string" name=""  placeholder="Enter Aspect">
+                                                <input type="string" name="PotentialBestAspectCurrent"  placeholder="Enter Aspect">
                                             </div>
                                         </div>
                                         <div class="four fields">
                                             <!-- TODO: Should this be a date? -->
                                             <div class="ui input field">
                                                 <label>When is Decision Expected?</label>
-                                                <input type="string" name=""  placeholder="Enter Decision Timeframe">
+                                                <input type="string" name="PotentialDecisionExpected"  placeholder="Enter Decision Timeframe">
                                             </div>
                                             <div class="ui input field">
                                                 <label>What is Decision Based on?</label>
-                                                <input type="string" name=""  placeholder="Enter Decision Reasoning">
+                                                <input type="string" name="PotentialDecisionBasis"  placeholder="Enter Decision Reasoning">
                                             </div>
                                             <div class="field">
                                                 <label>Sincere Request or 3rd Bid?</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name=""  >
+                                                    <input type="hidden" name="PotentialSincereRequest3rdParty"  >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -1970,7 +1970,7 @@
                                             <div class="field" data-tooltip="Will C&M be notified on final decision?" data-inverted="">
                                                 <label>C&M Notified on Decision?</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name=""  >
+                                                    <input type="hidden" name="PotentialCMNotifiedOnDecision"  >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -1982,7 +1982,7 @@
                                         <div class="four fields">
                                             <div class="ui input field">
                                                 <label>How did Association Select Current Firm?</label>
-                                                <input type="string" name=""  placeholder="Enter Reasoning">
+                                                <input type="string" name="PotentialCurrentFirmSelection"  placeholder="Enter Reasoning">
                                             </div>
 
                                             <div class="ui centered field">
@@ -1991,13 +1991,13 @@
                                                     <div class="inline fields">
                                                         <div class="field">
                                                             <div class="speak-Yes ui radio checkbox">
-                                                                <input type="radio" name="frequency14" value="Yes">
+                                                                <input type="radio" name="PotentialAssociationHeardCM" value="Yes">
                                                                 <label>Yes</label>
                                                             </div>
                                                         </div>
                                                         <div class="field">
                                                             <div class="speak-No ui radio checkbox">
-                                                                <input type="radio" name="frequency14" value="No" checked="checked">
+                                                                <input type="radio" name="PotentialAssociationHeardCM" value="No" checked="checked">
                                                                 <label>No</label>
                                                             </div>
                                                         </div>
@@ -2007,13 +2007,13 @@
 
                                             <div class="speak-Field disabled ui input field">
                                                 <label>What Event?</label>
-                                                <input type="string" name=""  placeholder="Enter Event">
+                                                <input type="string" name="PotentialWhatEvent"  placeholder="Enter Event">
                                             </div>
 
                                             <div class="field">
                                                 <label>Package Type Requested:</label>
                                                 <div class="ui selection dropdown dropdownBorder">
-                                                    <input type="hidden" name="" >
+                                                    <input type="hidden" name="PotentialPackageTypeRequested" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -2028,15 +2028,15 @@
                                         <div class="four fields">
                                             <div class="ui input field">
                                                 <label>Copy to Name: </label>
-                                                <input type="string" name=""  placeholder="Enter Copy (***Not sure if this needs its own field***)">
+                                                <input type="string" name="PotentialCopyToName"  placeholder="Enter Copy (***Not sure if this needs its own field***)">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Title: </label>
-                                                <input type="string" name=""  placeholder="Enter Title">
+                                                <input type="string" name="PotentialTitle"  placeholder="Enter Title">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Mgmt. Co., if Any: </label>
-                                                <input type="string" name=""  placeholder="Enter Title">
+                                                <input type="string" name="PotentialMgmtCo"  placeholder="Enter Title">
                                             </div>
                                             <div class="input field">
                                                 <label>Date:</label>
@@ -2044,7 +2044,7 @@
                                                 <div class="ui calendar" style="border-color: black;">
                                                     <div class="ui input left icon" >
                                                         <i class="calendar icon"></i>
-                                                        <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                        <input type="text" name="PotentialCopyDate"  placeholder="Date" class="calendar_input">
                                                     </div>
                                                 </div>
                                             </div>
@@ -2052,7 +2052,7 @@
                                         <div class="six fields">
                                             <div class="ui input field">
                                                 <label>Chain of Events: </label>
-                                                <input type="string" name=""  placeholder="Enter Copy (***Not sure if this needs its own field***)">
+                                                <input type="string" name="PotentialEventsChain"  placeholder="Enter Copy (***Not sure if this needs its own field***)">
                                             </div>
                                             <div class="input field">
                                                 <label>Date:</label>
@@ -2060,39 +2060,39 @@
                                                 <div class="ui calendar" style="border-color: black;">
                                                     <div class="ui input left icon" >
                                                         <i class="calendar icon"></i>
-                                                        <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                        <input type="text" name="PotentialChainDate"  placeholder="Date" class="calendar_input">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="ui input field">
                                                 <label>Work Originator: </label>
-                                                <input type="string" name=""  placeholder="Enter Originator">
+                                                <input type="string" name="PotentialChainOriginator"  placeholder="Enter Originator">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Inputter's Initials:</label>
-                                                <input type="string" name=""  placeholder="Enter Initials">
+                                                <input type="string" name="PotentialChainInitials"  placeholder="Enter Initials">
                                             </div>
                                             <!-- TODO: Can this be AUTOGENERATED -->
                                             <div class="ui input field">
                                                 <label>Input Date:</label>
-                                                <input type="string" name=""  placeholder="Enter Date">
+                                                <input type="string" name="PotentialChainInputDate"  placeholder="Enter Date">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Total Time for this Entry:</label>
-                                                <input type="string" name=""  placeholder="Enter Time">
+                                                <input type="string" name="PotentialEntryTotalTime"  placeholder="Enter Time">
                                             </div>
                                         </div>
                                         <div class="row" style="margin-bottom: 2vh;">
                                             <div class="ui fluid input field" data-tooltip="Please enter any additional notes" data-inverted="">
                                                 <label>Notes:</label>
-                                                <textarea rows="4" style="border: 1px solid black !important;"></textarea>
+                                                <textarea rows="4" name="PotentialEntryNotes" style="border: 1px solid black !important;"></textarea>
                                             </div>
                                         </div>
                                         <div class="three fields">
                                             <div class="field">
                                                 <label>File Closing Status:</label>
                                                 <div class="ui selection dropdown dropdownBorder">
-                                                    <input type="hidden" name="" >
+                                                    <input type="hidden" name="PotentialFileClosingStatus" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -2106,14 +2106,14 @@
                                                 <div class="ui calendar" style="border-color: black;">
                                                     <div class="ui input left icon" >
                                                         <i class="calendar icon"></i>
-                                                        <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                        <input type="text" name="PotentialFileClosingDate"  placeholder="Date" class="calendar_input">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <label>Remove After:</label>
                                                 <div class="ui selection dropdown dropdownBorder">
-                                                    <input type="hidden" name="" >
+                                                    <input type="hidden" name="PotentialFileRemoveAfter" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -2126,7 +2126,7 @@
                                             <div class="field">
                                                 <label>Closed File Status:</label>
                                                 <div class="ui selection dropdown dropdownBorder">
-                                                    <input type="hidden" name="" >
+                                                    <input type="hidden" name="PotentialClosedFileStatus" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -2140,7 +2140,7 @@
                                                 <div class="ui calendar" style="border-color: black;">
                                                     <div class="ui input left icon" >
                                                         <i class="calendar icon"></i>
-                                                        <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                        <input type="text" name="PotentialStartingRoundDate"  placeholder="Date" class="calendar_input">
                                                     </div>
                                                 </div>
                                             </div>
@@ -2150,7 +2150,7 @@
                                                 <div class="ui calendar" style="border-color: black;">
                                                     <div class="ui input left icon" >
                                                         <i class="calendar icon"></i>
-                                                        <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                        <input type="text" name="PotentialEndingDate"  placeholder="Date" class="calendar_input">
                                                     </div>
                                                 </div>
                                             </div>
@@ -2162,18 +2162,18 @@
                                                 <div class="ui calendar" style="border-color: black;">
                                                     <div class="ui input left icon" >
                                                         <i class="calendar icon"></i>
-                                                        <input type="text" name=""  placeholder="Date" class="calendar_input">
+                                                        <input type="text" name="PotentialClosingDate"  placeholder="Date" class="calendar_input">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="ui input field">
                                                 <label>Total Time Spent:</label>
-                                                <input type="string" name=""  placeholder="Enter Time">
+                                                <input type="string" name="PotentialSpentTotalTime"  placeholder="Enter Time">
                                             </div>
                                             <div class="field">
                                                 <label>Firm Selected:</label>
                                                 <div class="ui selection dropdown dropdownBorder">
-                                                    <input type="hidden" name="" >
+                                                    <input type="hidden" name="PotentialFirmSelected" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -2185,16 +2185,16 @@
                                         <div class="three fields">
                                             <div class="ui input field">
                                                 <label>Why Other Firm Selected:</label>
-                                                <input type="string" name=""  placeholder="Enter Reason">
+                                                <input type="string" name="PotentialFirmSelectedOtherWhy"  placeholder="Enter Reason">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Additional Reasons:</label>
-                                                <input type="string" name=""  placeholder="Enter Additional Reasons">
+                                                <input type="string" name="PotentialOtherFirmAdditionalReasons"  placeholder="Enter Additional Reasons">
                                             </div>
                                             <div class="field">
                                                 <label>Closing Letter:</label>
                                                 <div class="ui selection dropdown dropdownBorder">
-                                                    <input type="hidden" name="" >
+                                                    <input type="hidden" name="PotentialClosingLetter" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -2206,7 +2206,7 @@
                                         <div class="row" style="margin-bottom: 2vh;">
                                             <div class="ui fluid input field" data-tooltip="Please enter any additional notes" data-inverted="">
                                                 <label>C&M Staff Final Thoughts:</label>
-                                                <textarea rows="4" style="border: 1px solid black !important;"></textarea>
+                                                <textarea rows="4" name="PotentialFinalStaffThoughts" style="border: 1px solid black !important;"></textarea>
                                             </div>
                                         </div>
                                     </div>
