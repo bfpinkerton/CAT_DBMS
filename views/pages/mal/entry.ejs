@@ -141,11 +141,13 @@
                                         <div class="four fields">
                                             <div class="ui input field">
                                                 <label>Origination Date:</label>
-                                                <input disabled type="string" placeholder="<%=date%>" >
+                                                <input disabled type="string" placeholder="<%=mal.creation%>">
+                                                <%= console.log("BELOW") %>
+                                                <%= console.log(mal.creation) %>
                                             </div>
                                             <div class="ui input field">
                                                 <label>Originator:</label>
-                                                <input disabled type="string" name="Originator" placeholder="<%=user.fName %> <%=user.lName %>">
+                                                <input disabled type="string" name="Originator" placeholder="<%=mal.originator%>">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Date Last Updated:</label>

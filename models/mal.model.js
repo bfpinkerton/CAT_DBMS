@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true
         },
         creation: {
-            type: "TIMESTAMP",
+            type: Sequelize.DATEONLY,
             defaultValue: Sequelize.NOW
         },
         originator: {
@@ -161,7 +161,7 @@ module.exports = (sequelize, Sequelize) => {
                 - Table: "mal_MerchandiseMug.model.js"
                 - One to Many Association — Not able to associate both ways; ID not logged below
             */
-            // --Mug Purchases--
+            // --Florida Statue--
             /*
                 - Table: "mal_MerchandiseFloridaStatue.model.js"
                 - One to Many Association — Not able to associate both ways; ID not logged below

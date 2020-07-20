@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const HiringRecordMAL = sequelize.define("HiringRecordMAL", {
+    const Presentations = sequelize.define("Presentations", {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -74,5 +74,5 @@ module.exports = (sequelize, Sequelize) => {
         }
     });
   
-    return HiringRecordMAL;
+    return Presentations;
   };

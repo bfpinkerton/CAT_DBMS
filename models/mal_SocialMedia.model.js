@@ -1,7 +1,7 @@
 // Table columns defined below
 // Each column *should* match associated fields within application view
 module.exports = (sequelize, Sequelize) => {
-    const MerchandiseFloridaStatue = sequelize.define("MerchandiseFloridaStatue", {
+    const SocialMedia = sequelize.define("SocialMedia", {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -72,5 +72,5 @@ module.exports = (sequelize, Sequelize) => {
         },
     });
   
-    return MerchandiseFloridaStatue;
+    return SocialMedia;
   };
