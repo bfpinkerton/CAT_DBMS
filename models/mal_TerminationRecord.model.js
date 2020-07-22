@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         dateTerminated: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         reasonTerminated: {

@@ -35,7 +35,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
         },
         dateRequested: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
 
     });

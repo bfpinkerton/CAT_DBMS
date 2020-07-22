@@ -28,7 +28,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         datePurchased: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         quantity: {

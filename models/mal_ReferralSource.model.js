@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         date: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         referredBy: {

@@ -57,7 +57,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         approxTurnoverDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         masterOrSub: {
@@ -77,7 +77,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         dateRA: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         clubhouse: {

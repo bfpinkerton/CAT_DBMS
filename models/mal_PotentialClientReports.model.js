@@ -21,7 +21,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         originationDatePC: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         staffInitialsPC: {
@@ -33,7 +33,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         newestEventDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         staffInitialsEvent: {
@@ -45,7 +45,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         nextFollowUpDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         staffInitialsFollowUp: {
@@ -57,7 +57,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         fileDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         contactName: {
@@ -142,7 +142,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         copyDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         eventsChain: {
@@ -150,7 +150,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         chainDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         chainOriginator: {
@@ -162,7 +162,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         chainInputDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         entryTotalTime: {
@@ -178,7 +178,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         fileClosingDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         fileRemoveAfter: {
@@ -190,15 +190,15 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         startingRoundDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         endingDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         closingDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         spentTotalTime: {

@@ -27,10 +27,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
         },
         dateRequestedACA: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         followupDateACA: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         AACONA: {
@@ -38,11 +38,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         dateRequestedAACONA: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         followupDateAACONA: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
 
     });

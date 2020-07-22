@@ -28,11 +28,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         lastCorporateReportDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         currentBoardExpirationDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         associationSeminarAdmittandance: {
@@ -48,7 +48,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         dateAssociationUpdatedWhole: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
 
     });

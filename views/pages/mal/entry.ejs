@@ -122,12 +122,12 @@
                     <h1 class="ui block header"><b>Create New Entry:</b></h1>
                     <!-- Flash Messages -->
                     <%- include ("../../partials/flash") %>
-                    <!-- New Entry Form -->
-                    <form class="ui form" id="createFormMAL" action="/mal/create" method="POST" style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px ;padding: 0px;">
-                        
-                        
+                    <!-- Entry Form -->
+                    <% var route = "/mal/entry/primary/" + mal.id %>
 
 
+
+                    <form class="ui form" id="primaryMAL" action="<%=route%>" method="POST">
                         <!-- Metadata and edit information/Primary Association Information/Association Photo-->
                         <div class="ui segment">
                             <div class="ui 2 column grid">
@@ -142,8 +142,6 @@
                                             <div class="ui input field">
                                                 <label>Origination Date:</label>
                                                 <input disabled type="string" placeholder="<%=mal.creation%>">
-                                                <%= console.log("BELOW") %>
-                                                <%= console.log(mal.creation) %>
                                             </div>
                                             <div class="ui input field">
                                                 <label>Originator:</label>
@@ -188,19 +186,19 @@
                                         <div class="four ui input fields">
                                             <div class="ui input field">
                                                 <label>Legal Association Name:</label>
-                                                <input type="string" name="LegalName" placeholder="Enter Legal Assc Name">
+                                                <input type="string" value="<%=mal.legalName%>" name="LegalName" placeholder="Enter Legal Assc Name">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Also Known As:</label>
-                                                <input type="string" name="Aka" placeholder="Enter Alt Name">
+                                                <input type="string" value="<%=mal.aka%>" name="Aka" placeholder="Enter Alt Name">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Client Account Number:</label>
-                                                <input type="string" name="ClientAcctNum" placeholder="Enter Client Acct #">
+                                                <input type="string" value="<%=mal.clientAcctNum%>" name="ClientAcctNum" placeholder="Enter Client Acct #">
                                             </div>
                                             <div class="ui input field">
                                                 <label>File Name:</label>
-                                                <input type="string" name="FileName" placeholder="Enter File Name">
+                                                <input type="string" value="<%=mal.fileName%>" name="FileName" placeholder="Enter File Name">
                                             </div>
                                         </div>
                                     </div>
@@ -218,7 +216,7 @@
                                             <i class="ui upload icon"></i> 
                                             Upload Entryway/Landmark Photo
                                         </label>
-                                    <input type="file" (change)="fileEvent($event)" class="inputfile" id="embedpollfileinput" />
+                                    <input type="file" (change)="fileEvent($event)" value="<%=mal.associationPhoto%>" class="inputfile" id="embedpollfileinput" />
                                 </div>
                             </div>
                             <!-- Primary Association Information (2) -->
@@ -229,7 +227,7 @@
                                             <div class="field">
                                                 <label>Status w/in Firm:</label>
                                                 <div class="ui selection dropdown dropdownBorder">
-                                                    <input type="hidden" name="StatusInFirm">
+                                                    <input type="hidden" value="<%=mal.statusInFirm%>" name="StatusInFirm">
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -240,7 +238,7 @@
                                             <div class="field">
                                                 <label>Special Classification:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="SpecialClassification" >
+                                                    <input type="hidden" value="<%=mal.specialClassification%>" name="SpecialClassification" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -251,7 +249,7 @@
                                             <div class="field">
                                                 <label>Association Type:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="AsscType" >
+                                                    <input type="hidden" value="<%=mal.asscType%>" name="AsscType" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -266,7 +264,7 @@
                                             <div class="field" style="width: 37vw">
                                                 <label>Secondary MHP Association Type:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="ScndMHPAssc" >
+                                                    <input type="hidden" value="<%=mal.scndMHPAssc%>" name="ScndMHPAssc" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -277,7 +275,7 @@
                                             <div class="field">
                                                 <label>Domicile County:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="DomicileCounty" >
+                                                    <input type="hidden" value="<%=mal.domicileCounty%>" name="DomicileCounty" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -288,7 +286,7 @@
                                             <div class="field">
                                                 <label>Domicile City:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="DomicileCity" >
+                                                    <input type="hidden" value="<%=mal.domicileCity%>" name="DomicileCity" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -298,18 +296,28 @@
                                             </div>
                                             <div class="ui input field">
                                                 <label>Domicile Zip Code:</label>
-                                                <input type="integer" name="DomicileZip" pattern="\d{5}" placeholder="Enter Zip Code">
+                                                <input type="integer" value="<%=mal.domicileZip%>" name="DomicileZip" pattern="\d{5}" placeholder="Enter Zip Code">
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="ui inverted divider"></div>
+                                    <div class="row">
+                                        <button class="ui red deny icon button" type="reset"> 
+                                            Reset ALL Fields 
+                                        </button>
+                                        <button class="ui green button" id="primarySubmit" type="submit">
+                                            Update Entry
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                    <!-- End form -->
+                    </form>
 
-
-
-
+                    <% var routeSupplemental = "/mal/entry/supplemental/" + mal.id %>
+                    <form id="secondaryMAL" action="<%=routeSupplemental%>" method="POST"></form>
                         <!-- TODO: Pull Following 2 fields from MAL Table -->
                         <!-- Supplemental Association Information -->
                         <div class="ui one column grid segment">
@@ -601,9 +609,19 @@
                                         <textarea rows="2" name="SupplementalAdditionalNotes" style="border: 1px solid black !important;"></textarea>
                                     </div>
                                 </div>
+                                <div class="ui inverted divider"></div>
+                                <div class="row">
+                                    <button class="ui red deny icon button" type="reset"> 
+                                        Reset ALL Fields 
+                                    </button>
+                                    <button class="ui green button" id="supplementalSubmit" type="submit">
+                                        Update Entry
+                                    </button>
+                                </div>
                             </div>
                         </div>
-
+                    <!-- End form -->
+                    </form>
 
 
 
@@ -2250,23 +2268,6 @@
                             </div>
                         </div>
 
-                        
-
-
-                        <!-- Bottom Buttons -->
-                        <div class="ui column grid" style="padding: 15px;margin-bottom: -25px;">
-                            <div class="row">
-                                <button class="ui red deny icon button" type="reset"> 
-                                    Reset ALL Fields 
-                                </button>
-                                <button class="ui green button" type="submit">
-                                    Create New Entry
-                                </button>
-                            </div>
-                          </div>
-
-                    <!-- End form -->
-                    </form>
                 </div>
             </div>
             
@@ -2721,6 +2722,20 @@
                 resDevBool = false;
             }
         });
+    </script>
+
+    <script>
+        // const form = document.querySelector('#primaryMAL');
+
+        // form.addEventListener("submit", event => {
+        //     event.preventDefault();
+        //     const fData = new FormData(form);
+        //     console.log(fData);
+        //     fetch('<%=route%>', {
+        //         method: 'POST',
+        //         body: JSON.stringify({"Data": fData}),
+        //     });
+        // });
     </script>
     
 

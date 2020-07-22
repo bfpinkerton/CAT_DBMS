@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         dateHired: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         reasonsHired: {
@@ -36,7 +36,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         date: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         sourceOfReferralName: {

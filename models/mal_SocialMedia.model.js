@@ -32,7 +32,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         facebookDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         hasLinkedin: {
@@ -44,7 +44,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         linkedinDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         hasTwitter: {
@@ -56,7 +56,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         twitterDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
         //
         hasInstagram: {
@@ -68,7 +68,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         instagramDate: {
-            type: Sequelize.DATEONLY,
+            type: Sequelize.STRING,
         },
     });
   
