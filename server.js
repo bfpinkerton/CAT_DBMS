@@ -17,6 +17,7 @@ const app = express();
 
 app.use(express.static('public'));
 
+
 var corsOptions = {
   origin: "http://localhost:8081"
 };
@@ -25,15 +26,26 @@ app.use(cors(corsOptions));
 // To allow put and delete methods
 app.use(methodOverride("_method"));
 
-// Support parsing of application/json type post data
-app.use(bodyParser.json());
-
 // Support parsing of application/x-www-form-urlencoded post data
 app.use(
   bodyParser.urlencoded({
-    extended: false,
+    extended: true,
   })
 );
+
+// Support parsing of application/json type post data
+app.use(bodyParser.json());
+
+// for parsing multipart/form-data
+// app.use(upload.array()); 
+// app.use(express.static('public'));
+
+// Cross browsers
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // Passport Config
 require("./config/passport")(passport);
@@ -91,6 +103,28 @@ app.use(function (req, res, next) {
 app.use(passport.initialize());
 app.use(passport.session());
 
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(logger("dev"));
+// app.use(express.json());
+// app.use(
+//   express.urlencoded({
+//     extended: true,
+//   })
+// );
+app.use(cookieParser());
+
+app.use(
+  sassMiddleware({
+    src: path.join(__dirname, "public"),
+    dest: path.join(__dirname, "public"),
+    indentedSyntax: true, // true = .sass and false = .scss
+    sourceMap: true,
+  })
+);
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Routes
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -104,38 +138,20 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/mal", malRouter);
 app.use("/mml", mmlRouter);
-
 //app.use("/associations", associationsRouter);
 //app.use("/managers", managersRouter);
 //app.use("/api", apiRouter);
-
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-app.use(logger("dev"));
-app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: false,
-  })
-);
-app.use(cookieParser());
-
-app.use(
-  sassMiddleware({
-    src: path.join(__dirname, "public"),
-    dest: path.join(__dirname, "public"),
-    indentedSyntax: true, // true = .sass and false = .scss
-    sourceMap: true,
-  })
-);
-app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
+// error handler middleware
+app.use((error, req, res, next) => {
+  console.error(error.stack);
+  next(createError(500));
+});
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -147,5 +163,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
+
 
 module.exports = app;

@@ -4,9 +4,18 @@
 
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
+// const passport = require('passport');
 const moment = require('moment');
 const db = require("../models");
+
+const multer = require('multer');
+const upload = multer();
+const open = require('open');
+
+
+
+
+
 
 // User model
 const User = db.users;
@@ -874,13 +883,11 @@ router.get('/entry/:id', ensureAuthenticated, async function (req, res, next) {
 */
 
 // Update MAL Entry's Primary Association Information
-router.post('/entry/primary/:id', ensureAuthenticated, async function (req, res, next) {
+router.post('/entry/primary/:id', upload.array(), ensureAuthenticated, async function (req, res, next) {
     // Retrieve associated element values from page & structure them
-    console.log("ROUTE INVOKED");
     const {
         Aka, ClientAcctNum, FileName, StatusInFirm, SpecialClassification, AsscType, ScndMHPAssc, DomicileCounty, DomicileCity, DomicileZip, LegalName, AssociationPhoto
     } = req.body;
-    // console.log(req.body);
     // Update MAL entry with object data
     await MAL.update(
             {legalName: LegalName,
@@ -904,7 +911,6 @@ router.post('/entry/primary/:id', ensureAuthenticated, async function (req, res,
             console.log(err);
             req.flash('failure','Failed to update MAL entry\'s mal.model.js');
         });
-        console.log("FINISHED UPDATE");
     
     res.redirect("../../entry/" + req.params.id);
 });
@@ -981,46 +987,13 @@ router.post('/entry/supplemental/:id', ensureAuthenticated, async function (req,
 
 // Function to convert dates retrieved from views to MySQL date datatype
 // This function is currently not in use
-function databaseDate(dateVal) {
-    if (dateVal == null) {
-      return null;
-    }
-    temp = new Date(dateVal);
-    // Return justy YYYY-MM-DD
-    return temp.toISOString().substring(0,10);
-} 
+// function databaseDate(dateVal) {
+//     if (dateVal == null) {
+//         return null;
+//     }
+//     temp = new Date(dateVal);
+//     // Return justy YYYY-MM-DD
+//     return temp.toISOString().substring(0,10);
+// } 
 
 module.exports = router;
-
-// console.log("INVOKING");
-    // await MAL.findOne(
-    //     {where: {id:req.params.id}},
-    // )
-    // .then(entry => {
-    //     console.log(entry.changed([legalName]));
-    // });
-//     // console.log("DONE");
-
-
-
-// // Update MAL Entry's Primary Association Information
-// router.post('/entry/primary/:id', ensureAuthenticated, async function (req, res, next) {
-//     // Retrieve associated element values from page & structure them
-//     const {
-//         LegalName
-//         // ...,
-//     } = req.body;
-//     // Update MAL entry with object data
-//     var entry = await MAL.update(
-//             {legalName: LegalName
-//                 // ... : ... ,
-//             },
-//             {where: {id:req.params.id}}
-//         )
-//         .catch(err => {
-//             console.log(err);
-//             req.flash('failure','Failed to update MAL entry\'s mal.model.js');
-//         });
-    
-//     res.redirect("../../entry/" + req.params.id);
-// });
