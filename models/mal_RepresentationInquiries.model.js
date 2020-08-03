@@ -28,7 +28,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         cmSponsored: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         source: {

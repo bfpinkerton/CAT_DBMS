@@ -123,7 +123,6 @@
                     <!-- Flash Messages -->
                     <%- include ("../../partials/flash") %>
                     
-                    
                     <!-- Entry Form -->
                     <% var route = "/mal/entry/primary/" + mal.id %>
                     <form class="ui form" id="primaryMAL" action="<%=route%>" method="POST">
@@ -758,8 +757,25 @@
 
 
 
-                    <% var route5 = "/mal/entry/representation/" + mal.id %>
-                    <form class="ui form" id="representationMAL" action="<%=route5%>" method="POST">
+
+
+
+
+
+
+
+
+
+
+                        <%= console.log() %> 
+                        <%= console.log() %> 
+                        <%= console.log() %>
+                        <%= console.log(RepresentationInquiries[2]) %> 
+                        <%= console.log() %> 
+                        <%= console.log() %> 
+                        <%= console.log() %> 
+
+                    
                         <!-- Representation Inquiries & Organization Information: -->
                         <div class="ui segment">
                             <div class="ui one column grid">
@@ -771,20 +787,153 @@
                                     </div>
                                     <!-- TABLE -->
                                     <div class="row">
-
+                                        <table id="RepresentationTable" class="ui selectable celled compact table" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="three wide">CM Services Request</th>
+                                                    <th class="three wide">Origination Source:</th>
+                                                    <th class="one wide">Not CM Seminar Sponsored?</th>
+                                                    <th class="three wide">Source:</th>
+                                                    <th class="three wide">Date Requested:</th>
+                                                    <th class="one wide">Edit/Delete Entry:</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% RepresentationInquiries.forEach(function(Representation){ %>
+                                                    <tr>
+                                                        <td><%=Representation.cmServicesRequest%></td>
+                                                        <td><%=Representation.originationSource%></td>
+                                                        <td class="center aligned">
+                                                            <% if (Representation.cmSponsored != null) {%>
+                                                                <i class="large green checkmark icon"></i>
+                                                            <% } else { %>
+                                                                <i class="large red close icon"></i>
+                                                            <% } %>
+                                                        </td>
+                                                        <td><%=Representation.source%></td>
+                                                        <td><%=Representation.dateRequested%></td>
+                                                        <td>
+                                                            <button id="RepButton" onclick= "" class="ui red small button">
+                                                                Edit/Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <% }) %>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    
+                                                </tr>
+                                            </tfoot>
+                                        </table>
                                     </div>
                                     <div class="ui inverted divider"></div>
                                     <!-- Button -->
                                     <div class="row">
-                                        <button class="ui green button" type="submit">
+                                        <button class="ui green button" id="NewRepButton">
                                             Add New Entry Representation Inquiry
                                         </button>
+
+
+
+                                        <!-- New Representation Inquiry Modal -->
+                                        <div class="ui modal" id="NewRep-Modal">
+                                            <i class="close icon"></i>
+                                            <div class="header">
+                                                Add New Entry Representation Inquiry
+                                            </div>
+                                            <!-- New Representation Inquiry Entry Form -->
+                                            <% var routeRepresentation = "/mal/create/representation/" + mal.id %>
+                                            <form class="ui form" id="boardIndivMAL" action="<%=routeRepresentation%>" method="POST">
+                                                <div class="ui segment">
+                                                    <div class="ui one column grid">
+                                                        <div class="column">
+                                                            <div class="row" style="margin-bottom: 2vh;">
+                                                                <h2>
+                                                                    <u>Representation Inquiries:</u>
+                                                                </h2>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="two fields">
+                                                                    <div class="field">
+                                                                        <label>CM Services Request:</label>
+                                                                        <div class="ui selection dropdown">
+                                                                            <input type="hidden" name="RepresentCmServicesRequest" >
+                                                                            <i class="dropdown icon"></i>
+                                                                            <div class="default text">Choose from below:</div>
+                                                                            <div class="menu">
+                                                                                <div class="item" data-value="1">Option 1</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="field">
+                                                                        <label>Origination Source:</label>
+                                                                        <div class="ui selection dropdown">
+                                                                            <input type="hidden" name="RepresentOriginationSource" >
+                                                                            <i class="dropdown icon"></i>
+                                                                            <div class="default text">Choose from below:</div>
+                                                                            <div class="menu">
+                                                                                <div class="item" data-value="1">Option 1</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="two fields">
+                                                                    <div class="wrap-checkbox3 field">
+                                                                        <label>Not CM Seminar Sponsored Origination?</label>
+                                                                        <div class="ui toggle checkbox">
+                                                                            <input type='checkbox' value='1' name='RepresentCmSponsored'>
+                                                                            <label></label>      
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="wrap-date3 disabled field">
+                                                                        <label>Source:</label>
+                                                                        <div class="ui selection dropdown">
+                                                                            <input type="hidden" name="RepresentSource" >
+                                                                            <i class="dropdown icon"></i>
+                                                                            <div class="default text">Choose from below:</div>
+                                                                            <div class="menu">
+                                                                                <div class="item" data-value="1">Option 1</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="wrap-date3 disabled ui input field">
+                                                                        <label>Date Requested:</label>
+                                                                        <div class="ui calendar" style="border-color: black;">
+                                                                            <div class="ui input left icon" >
+                                                                                <i class="calendar icon"></i>
+                                                                                <input type="text" name="RepresentDateRequested" placeholder="Date" class="calendar_input">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <button class="ui positive submit right labeled icon button">
+                                                                    Submit
+                                                                    <i class="plus icon"></i>
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                        <div class="actions">
+                                                            <div class="ui black deny button">
+                                                                Cancel
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
-
+                    </div>
 
                     
                     <% var route6 = "/mal/entry/mug/" + mal.id %>
@@ -844,7 +993,7 @@
                                                     <div class="ui calendar" style="border-color: black;">
                                                         <div class="ui input left icon" >
                                                             <i class="calendar icon"></i>
-                                                            <input type="text" name=MugDatePurchased"  placeholder="Date" class="calendar_input">
+                                                            <input type="text" name="MugDatePurchased"  placeholder="Date" class="calendar_input">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1019,7 +1168,6 @@
 
 
 
-
                         <!-- Social Media, Birthdays, & Contests -->
                         <div class="ui one column grid segment">
                             <div class="column">
@@ -1035,7 +1183,11 @@
                                         <div class="social-Toggle field" style="width: 15vw;">
                                             <label>No Social Media?</label>
                                             <div class="ui toggle checkbox" >
-                                                <input type="checkbox" name="SocialNoSocialMedia">
+                                                <input type="checkbox" 
+                                                    <% if (SocialMedia.noSocialMedia == "on"){ %>
+                                                        checked
+                                                    <% } %>
+                                                name="SocialNoSocialMedia">
                                                 <label></label>      
                                             </div>
                                         </div>
@@ -2696,6 +2848,193 @@
             });
         });
     </script>
-    
+
+    <script>
+        $('.ui.calendar')
+            .calendar({
+                popupOptions: {
+                    observeChanges: false
+                }
+            }
+        );
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#RepresentationTable').DataTable({
+                responsive: true
+            });
+        } );
+    </script> 
+
+    <!--  -->
+    <!-- MODAL DISPLAY SCRIPTS BELOW -->
+    <!--  -->
+
+    <!-- Individual Board/Committee Members -->
+    <script>
+        // --Individual Board Member Related Information--
+        // TODO: Populate Table Columns
+        /*
+            - Table: "mal_BoardMembers.model.js"
+            - One to Many Association — Not able to associate both ways; ID not logged below
+        */
+            // --Board Member Seminar Information--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_MemberSeminar.model.js"
+                - One to Many Association — Not able to associate both ways; ID not logged below
+                - Table relates to BoardMembers Table
+            */
+            // --Board Member Organization Information--
+            // TODO: Add Board Member Name & info to table
+            /*
+                - Table: "mal_OrganizationInformation.model.js"
+                - One to Many Association — Not able to associate both ways; ID logged below
+            */
+            // --Board Member Gifts--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_Gifts.model.js"
+                    - Same table used by Managers Table
+                - One to Many Association — Not able to associate both ways; ID not logged below
+                - Table relates to BoardMembers Table
+            */
+            // --Board Member Birthdays--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_Birthdays.model.js"
+                    - Same table used by Managers Table
+                - One to One Association — Able to associate both ways; ID not logged below
+                    - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
+                - Table relates to BoardMembers Table
+            */
+           // --Board Member Contests--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_Contests.model.js"
+                    - Same table used by Managers Table
+                - One to One Association — Able to associate both ways; ID not logged below
+                    - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
+                - Table relates to BoardMembers Table
+            */
+    </script>
+
+    <!-- New Representation Info MODAL -->
+    <script>
+        $(document).ready(function(){
+            $('#NewRepButton').click(function(){
+                $('#NewRep-Modal').modal('show');
+            });
+        });
+    </script>
+
+    <!-- New Mug Purchase MODAL -->
+    <script>
+        $(document).ready(function(){
+            $('#New_Button').click(function(){
+                $('#New_-Modal').modal('show');
+            });
+        });
+    </script>
+
+    <!-- New Florida Statue Service MODAL -->
+    <script>
+        $(document).ready(function(){
+            $('#New_Button').click(function(){
+                $('#New_-Modal').modal('show');
+            });
+        });
+    </script>
+
+    <!-- Management Information -->
+    <script>
+        // --Management Information--
+        // TODO — Pulls from MML; Create Table
+        /*
+            - Table: "xxx.model.js"
+            - Not sure yet
+        */
+            // --Manager Gifts--
+            // TODO - Populate Table Columns
+            /*
+                - Table: "mal_Gifts.model.js"
+                    - Same table used by Board Members Table
+                - One to Many Association — Not able to associate both ways; ID not logged below
+                - Table relates to Managers Table
+            */
+            // --Manager Birthdays--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_Birthdays.model.js"
+                    - Same table used by Managers Table
+                - One to One Association — Able to associate both ways; ID not logged below
+                    - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
+                - Table relates to Managers Table
+            */
+            // --Manager Contests--
+            // TODO: Populate Table Columns
+            /*
+                - Table: "mal_Contests.model.js"
+                    - Same table used by Managers Table
+                - One to One Association — Able to associate both ways; ID not logged below
+                    - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
+                - Table relates to Managers Table
+            */
+    </script>
+
+    <!-- New Hiring Information MODAL -->
+    <script>
+        $(document).ready(function(){
+            $('#New_Button').click(function(){
+                $('#New_-Modal').modal('show');
+            });
+        });
+    </script>
+
+    <!-- New Termination Information MODAL -->
+    <script>
+        $(document).ready(function(){
+            $('#New_Button').click(function(){
+                $('#New_-Modal').modal('show');
+            });
+        });
+    </script>
+
+    <!-- New Source of Referral to C&M MODAL -->
+    <script>
+        $(document).ready(function(){
+            $('#New_Button').click(function(){
+                $('#New_-Modal').modal('show');
+            });
+        });
+    </script>
+
+    <!-- New Referrals from C&M for Mgmt. Co./Vendors MODAL -->
+    <script>
+        $(document).ready(function(){
+            $('#New_Button').click(function(){
+                $('#New_-Modal').modal('show');
+            });
+        });
+    </script>
+
+    <!-- New Presentation Information MODAL -->
+    <script>
+        $(document).ready(function(){
+            $('#New_Button').click(function(){
+                $('#New_-Modal').modal('show');
+            });
+        });
+    </script>
+
+    <!-- New Potential Client Status Report MODAL -->
+    <script>
+        $(document).ready(function(){
+            $('#New_Button').click(function(){
+                $('#New_-Modal').modal('show');
+            });
+        });
+    </script>
 
 </body>

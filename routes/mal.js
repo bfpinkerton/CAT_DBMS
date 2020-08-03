@@ -13,10 +13,6 @@ const upload = multer();
 const open = require('open');
 
 
-
-
-
-
 // User model
 const User = db.users;
 const MAL = db.mal;
@@ -62,13 +58,13 @@ router.get('/create', ensureAuthenticated, async function (req, res, next) {
     - I know this code is a mess but I've tried my best to document it the best way possible and record which chunks post to which table
     - Please know this code is intentional and should flow logically based on how elements appear on the associated view
     - All create statements execute inside of the original mal.model.js create .then block
-    - To prevent HTML element naming collisions, element names will usually contain a 'header' such as general,supplemental, social, etc.
+    - To prevent HTML element naming collisions, element names will usually contain a 'header' such as general, supplemental, social, etc.
         - This is intentional, and while ugly, does the job
     - To prevent database datatype storage errors, ALL element values are parsed
         - If an element's value is '', it is replaced with null
-        - IMPORTANT: Dates are parsed based on if 'date' (case-insensitive) is in the name
-            - If substring 'date' is found within key, the value is either left as null OR converted to appropriate database DATEONLY value through 'databaseDate' function found at the bottom of this file
-            - This means only variables that store DATEONLY values should use 'date' in their respective names
+        - //// IMPORTANT: Dates are parsed based on if 'date' (case-insensitive) is in the name
+            - //// If substring 'date' is found within key, the value is either left as null OR converted to appropriate database DATEONLY value through 'databaseDate' function found at the bottom of this file
+            - //// This means only variables that store DATEONLY values should use 'date' in their respective names
     - Transactions: Either all records are successfully created or none of them are; Maybe a try block
 */
 // TODO: [Transactions] Force atomicity on this entire route.
@@ -296,7 +292,6 @@ router.post('/create', ensureAuthenticated, function (req, res, next) {
                         RepresentCmSponsored,
                         RepresentSource,
                         RepresentDateRequested,
-
                     } = req.body;
                     //
                     var entryRepresentationInq = {
@@ -875,13 +870,25 @@ router.get('/entry/:id', ensureAuthenticated, async function (req, res, next) {
     );
     res.render('pages/mal/entry', );
 });
-
+// ----------------------------------------------------------------------------------------
 
 /*
-    INDIVIDUAL TABLE POSTS (UPDATES)
-    - The below routes all pertain to updating a specified table's record
+    INDIVIDUAL TABLE POSTS (CREATES, UPDATES, & DELETE)
+    - The below routes all pertain to creating, updating, or deleting a specified table's record
 */
 
+// PARAMETERIZED DELETE
+router.delete('/delete/:table/:id', (req, res) => {
+    // TODO: DB Query
+
+    req.flash('success', 'Record has been deleted.')
+    res.locals.message = req.flash();
+    res.redirect('../delete');
+});
+
+
+
+// Primary Information Section ----------------------------------------------------------------------------------------------------
 // Update MAL Entry's Primary Association Information
 router.post('/entry/primary/:id', upload.array(), ensureAuthenticated, async function (req, res, next) {
     // Retrieve associated element values from page & structure them
@@ -916,6 +923,8 @@ router.post('/entry/primary/:id', upload.array(), ensureAuthenticated, async fun
 });
 
 
+
+// Supplemental Information Section ----------------------------------------------------------------------------------------------------
 // Update MAL Entry's mal_SupplementalAssociationInfo
 router.post('/entry/supplemental/:id', ensureAuthenticated, async function (req, res, next) {
     // Retrieve associated element values from page & structure them
@@ -984,7 +993,212 @@ router.post('/entry/supplemental/:id', ensureAuthenticated, async function (req,
 
 
 
+// General Board Member Information Section ----------------------------------------------------------------------------------------------------
+// Update MAL Entry's General Board Member Related Information
+router.post('/entry/general/:id', upload.array(), ensureAuthenticated, async function (req, res, next) {
+    // Retrieve associated element values from page & structure them
+    const {
+        GeneralCorporateStatus,GeneralAnnualMeetingMonth,GeneralLastCorporateReportDate,GeneralCurrentBoardExpirationDate,GeneralAssociationSeminarAdmittandance,GeneralAssociationSeminarTagColor,GeneralNumberDirectorsFullyStaffed,GeneralDateAssociationUpdatedWhole
+    } = req.body;
+    // Update MAL entry with object data
+    await GeneralBoardInfo.update(
+            {
+                corporateStatus: GeneralCorporateStatus,
+                annualMeetingMonth: GeneralAnnualMeetingMonth,
+                lastCorporateReportDate: GeneralLastCorporateReportDate,
+                currentBoardExpirationDate: GeneralCurrentBoardExpirationDate,
+                associationSeminarAdmittandance: GeneralAssociationSeminarAdmittandance,
+                associationSeminarTagColor: GeneralAssociationSeminarTagColor,
+                numberDirectorsFullyStaffed: GeneralNumberDirectorsFullyStaffed,
+                dateAssociationUpdatedWhole: GeneralDateAssociationUpdatedWhole,
+            },
+            {where: {id:req.params.id}}
+            
+        )
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Failed to update MAL entry\'s mal_GeneralBoardInfo.model.js');
+        });
+    
+    res.redirect("../../entry/" + req.params.id);
+});
 
+
+
+// Individual Board Members Section --------------------------------------
+// Create MAL Entry's Individual Board Member Information
+// TODO
+// Update MAL Entry's Individual Board Member Information
+// TODO
+
+// Create MAL Entry's Board Member Seminar Information
+// TODO
+// Update MAL MAL Entry's Board Member Seminar Information
+// TODO
+
+// Create MAL Entry's Board Member Organization Information
+// TODO
+// Update MAL MAL Entry's Board Member Organization Information
+// TODO
+
+// Create MAL Entry's Board Member Gifts
+// TODO
+// Update MAL MAL Entry's Board Member Gifts
+// TODO
+
+// Create MAL Entry's Board Member Birthdays
+// TODO
+// Update MAL MAL Entry's Board Member Birthdays
+// TODO
+
+// Create MAL Entry's Board Member Contests
+// TODO
+// Update MAL MAL Entry's Board Member Contests
+// TODO
+
+
+
+// Representation Inquiries Section --------------------------------------
+// Create MAL Entry's Representation Inquiry
+router.post('/create/representation/:MAL_id', ensureAuthenticated, function (req, res, next) {
+    // Replace empty string values with null
+    for (var key in req.body) {
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    const {
+        RepresentCmServicesRequest,RepresentOriginationSource,RepresentCmSponsored,RepresentSource,RepresentDateRequested,
+    } = req.body;
+    //
+    var entryRepresentationInq = {
+        MALrelatedID: req.params.MAL_id,
+        cmServicesRequest: RepresentCmServicesRequest,
+        originationSource: RepresentOriginationSource,
+        cmSponsored: RepresentCmSponsored,
+        source: RepresentSource,
+        dateRequested: RepresentDateRequested
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryRepresentationInq)){
+        if (entryRepresentationInq[key] == '') {
+            entryRepresentationInq[key] = null;
+        }
+    }
+    // Create new update record
+    RepresentationInquiries.create(entryRepresentationInq)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','MAL entry\'s *mal_RepresentationInquiries* record not added.');
+        });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
+// Update MAL MAL Entry's Representation Information
+router.post('/entry/representation/:MAL_id/:Rep_id', ensureAuthenticated, async function (req, res, next) {
+    const {
+        RepresentCmServicesRequest,RepresentOriginationSource,RepresentCmSponsored,RepresentSource,RepresentDateRequested,
+    } = req.body;
+    //
+    var entryRepresentationInq = {
+        
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryRepresentationInq)){
+        if (entryRepresentationInq[key] == '') {
+            entryRepresentationInq[key] = null;
+        }
+    }
+    // Update MAL entry with object data
+    await RepresentationInquiries.update(
+        {
+            MALrelatedID: req.params.MAL_id,
+            cmServicesRequest: RepresentCmServicesRequest,
+            originationSource: RepresentOriginationSource,
+            cmSponsored: RepresentCmSponsored,
+            source: RepresentSource,
+            dateRequested: RepresentDateRequested
+        },
+        {where: {id:req.params.Rep_id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MAL entry\'s mal_RepresentationInquiries.model.js');
+    });
+
+res.redirect("../../../entry/" + req.params.MAL_id);
+});
+
+
+
+// Merchandise Section --------------------------------------
+// Create MAL Entry's Mug Purchase
+// TODO
+// Update MAL Entry's Mug Purchase
+// TODO
+// Create MAL Entry's Florida Statue Service
+// TODO
+// Update MAL MAL Entry's Florida Statue Service
+// TODO
+
+
+
+// Social Media Section --------------------------------------
+// Update MAL Entry's Mug Purchase
+// TODO
+
+
+
+// Management Information Section --------------------------------------
+// TODO: Needs additional work
+// Create MAL Entry's General Management Information
+// TODO
+// Update MAL Entry's General Management Information
+// TODO
+
+
+
+// Hiring/Termination Section --------------------------------------
+// Create MAL Entry's Hiring Information
+// TODO
+// Update MAL Entry's Hiring Information
+// TODO
+// Create MAL Entry's Termination Information
+// TODO
+// Update MAL MAL Entry's Termination Information
+// TODO
+
+
+
+// Referrals Section --------------------------------------
+// Create MAL Entry's Source of Referral to C&M
+// TODO
+// Update MAL Entry's Source of Referral to C&M
+// TODO
+// Create MAL Entry's Referrals from C&M for Mgmt. Co./Vendors
+// TODO
+// Update MAL MAL Entry's Referrals from C&M for Mgmt. Co./Vendors
+// TODO
+
+
+
+// Presentation Information Section --------------------------------------
+// Create MAL Entry's Presentation Information
+// TODO
+// Update MAL Entry's Presentation Information
+// TODO
+
+
+
+// Potential Client Status Report --------------------------------------
+// Create MAL Entry's Potential Client Status Report
+// TODO
+// Update MAL Entry's Potential Client Status Report
+// TODO
+
+
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Function to convert dates retrieved from views to MySQL date datatype
 // This function is currently not in use
 // function databaseDate(dateVal) {

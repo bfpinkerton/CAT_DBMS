@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         noSocialMedia: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         hasFacebook: {
