@@ -73,18 +73,57 @@
             border-color: black;
         }
     </style>
+
+
+    <script type="module">
+        document.querySelectorAll('.rep-button').forEach(tag =>
+            tag.addEventListener('click', event =>{
+                const repJSON = event.target.dataset.json;
+                const repObj = JSON.parse(repJSON);
+                setRepEntry(repObj.MAL_ID, repObj.Rep_ID)
+            })
+        );
+        // Existing Representation Info MODAL
+        // Query table for entry & modify values & form path
+        function setRepEntry(MAL_id, Rep_id) {
+            // Set path of fetch & perform operation
+            const routeRepPartial = 'RepresentationInquiries'
+            const routeRep = '/mal/retrieve/' + routeRepPartial + '/' + Rep_id;
+            fetch(routeRep, {
+                method: 'GET'
+            })
+            // Use resulting object to populate associated modal
+            .then(data => {
+                // Set modal's action (path)
+                const editRepresentation = "../../mal/entry/representation/" + MAL_id + "/" + Rep_id;
+                document.querySelector('#editRep').action = editRepresentation;
+                // const modRepresentCmServicesRequest = document.getElementById('RepresentCmServicesRequest');
+                // modRepresentCmServicesRequest.selectedIndex = [...modRepresentCmServicesRequest.items].findIndex (option => option.text === data.cmServicesRequest);
+                // document.querySelector('#RepresentCmServicesRequest').setAttribute('value', data.cmServicesRequest);
+                // $('#RepresentCmServicesRequest').dropdown('refresh');
+                setTimeout (function(){ $('#RepresentCmServicesRequest').dropdown('set selected', data.cmServicesRequest); }, 500);
+                //$('#RepresentCmServicesRequest').dropdown({'set selected': data.cmServicesRequest});
+
+                document.querySelector('#RepresentOriginationSource').setAttribute('value', data.originationSource);
+                document.querySelector('#RepresentCmSponsored').value = data.cmSponsored;
+                document.querySelector('#RepresentSource').value = data.source;
+                document.querySelector('#RepresentDateRequested').value = data.dateRequested;
+                $('#ExistRep-Modal').modal('setting', 'closable', false)
+                $('#ExistRep-Modal').modal('show');
+            });
+        }
+    </script>
 </head>
 
 <body>
     <!-- Sidebar -->
     <%- include ("../../partials/sidebar") %>
-    
 
     <!-- All additional page content -->
-    <div class="pusher" style="background-color:white">
+    <div class="pusher" style="background-color: white;">
         <!-- Top Fixed Menu  -->
         <div class="row">
-            <div class="top fixed ui inverted menu" style="background: #134524; float: left;margin-top: 0px;">
+            <div class="top fixed ui inverted menu" style="background: #134524; float: left;">
                 <a class="item" id="left-sidebar-toggle">
                     <i class="sidebar large icon"></i>
                 </a>
@@ -97,7 +136,7 @@
                     </a>
                     <a class="item">
                         <div class="ui category fluid search">
-                            <div class="ui icon input" style="width: 550px; min-width: 300px">
+                            <div class="ui icon input" style="width: 550px; min-width: 300px;">
                             <input class="prompt" type="text" placeholder="Search entries...">
                             <i class="search icon"></i>
                             </div>
@@ -119,7 +158,7 @@
         <div class="ui one column grid container" style="margin-top: 25px; "></div>
             <h1></h1>
             <div class="column" style="padding: 15px;background-color: lightslategray;" > 
-                    <h1 class="ui block header"><b>Create New Entry:</b></h1>
+                    <h1 class="ui block header"><b>View/Update Entry:</b></h1>
                     <!-- Flash Messages -->
                     <%- include ("../../partials/flash") %>
                     
@@ -143,19 +182,19 @@
                                         <div class="four fields">
                                             <div class="ui input field">
                                                 <label>Origination Date:</label>
-                                                <input disabled type="string" placeholder="<%=date%>" >
+                                                <input disabled type="string" placeholder="TODO" >
                                             </div>
                                             <div class="ui input field">
                                                 <label>Originator:</label>
-                                                <input disabled type="string" name="Originator" placeholder="<%=user.fName %> <%=user.lName %>">
+                                                <input disabled type="string" name="Originator" placeholder="TODO">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Date Last Updated:</label>
-                                                <input disabled type="string" placeholder="AUTOGENERATED">
+                                                <input disabled type="string" placeholder="TODO">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Updated by:</label>
-                                                <input disabled type="string" name="EntryUpdatedBy" placeholder="AUTOGENERATED">
+                                                <input disabled type="string" name="EntryUpdatedBy" placeholder="TODO">
                                             </div>
                                         </div>
                                     </div>
@@ -727,7 +766,7 @@
                                         Update Entry Supplemtal Information
                                     </button>
                                 </div>
-                            </form> 
+                            </form>
 
                         <% var route4 = "/mal/entry/boardIndiv/" + mal.id %>
                         <form class="ui form" id="boardIndivMAL" action="<%=route4%>" method="POST">
@@ -758,184 +797,256 @@
 
 
 
-
-
-
-
-
-
-
-
-
-                        <%= console.log() %> 
-                        <%= console.log() %> 
-                        <%= console.log() %>
-                        <%= console.log(RepresentationInquiries[2]) %> 
-                        <%= console.log() %> 
-                        <%= console.log() %> 
-                        <%= console.log() %> 
-
-                    
-                        <!-- Representation Inquiries & Organization Information: -->
-                        <div class="ui segment">
-                            <div class="ui one column grid">
-                                <div class="column">
-                                    <div class="row" style="margin-bottom: 2vh;">
-                                        <h2>
-                                            <u>Representation Inquiries:</u>
-                                        </h2>
-                                    </div>
-                                    <!-- TABLE -->
-                                    <div class="row">
-                                        <table id="RepresentationTable" class="ui selectable celled compact table" style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <th class="three wide">CM Services Request</th>
-                                                    <th class="three wide">Origination Source:</th>
-                                                    <th class="one wide">Not CM Seminar Sponsored?</th>
-                                                    <th class="three wide">Source:</th>
-                                                    <th class="three wide">Date Requested:</th>
-                                                    <th class="one wide">Edit/Delete Entry:</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <% RepresentationInquiries.forEach(function(Representation){ %>
-                                                    <tr>
-                                                        <td><%=Representation.cmServicesRequest%></td>
-                                                        <td><%=Representation.originationSource%></td>
-                                                        <td class="center aligned">
-                                                            <% if (Representation.cmSponsored != null) {%>
-                                                                <i class="large green checkmark icon"></i>
-                                                            <% } else { %>
-                                                                <i class="large red close icon"></i>
-                                                            <% } %>
-                                                        </td>
-                                                        <td><%=Representation.source%></td>
-                                                        <td><%=Representation.dateRequested%></td>
-                                                        <td>
-                                                            <button id="RepButton" onclick= "" class="ui red small button">
-                                                                Edit/Delete
+                    <!-- Representation Inquiries & Organization Information: -->
+                    <div class="ui segment">
+                        <div class="ui one column grid segment">
+                            <div class="column">
+                                <div class="row" style="margin-bottom: 2vh;">
+                                    <h2>
+                                        <u>Representation Inquiries:</u>
+                                    </h2>
+                                </div>
+                                <div class="ui inverted divider"></div>
+                                <!-- New Entry Button -->
+                                <div class="row">
+                                    <button class="ui green button" id="NewRepButton">
+                                        Add New Entry Representation Inquiry
+                                    </button>
+                                    <!-- New Representation Inquiry Modal -->
+                                    <div class="ui modal" id="NewRep-Modal">
+                                        <i class="close icon"></i>
+                                        <div class="header">
+                                            Add New Representation Inquiry Entry
+                                        </div>
+                                        <!-- New Representation Inquiry Entry Form -->
+                                        <% var routeRepresentation = "/mal/create/representation/" + mal.id %>
+                                        <form class="ui form" id="representationMAL" action="<%=routeRepresentation%>" method="POST">
+                                            <div class="ui one column grid segment">
+                                                <div class="column">
+                                                    <div class="row" style="margin-bottom: 2vh;">
+                                                        <h2>
+                                                            <u>Representation Inquiries:</u>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="two fields">
+                                                            <div class="field">
+                                                                <label>CM Services Request:</label>
+                                                                <div class="ui selection dropdown">
+                                                                    <input type="hidden" name="RepresentCmServicesRequest" >
+                                                                    <i class="dropdown icon"></i>
+                                                                    <div class="default text">Choose from below:</div>
+                                                                    <div class="menu">
+                                                                        <div class="item" data-value="1">Option 1</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <label>Origination Source:</label>
+                                                                <div class="ui selection dropdown">
+                                                                    <input type="hidden" name="RepresentOriginationSource" >
+                                                                    <i class="dropdown icon"></i>
+                                                                    <div class="default text">Choose from below:</div>
+                                                                    <div class="menu">
+                                                                        <div class="item" data-value="1">Option 1</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="two fields">
+                                                            <div class="wrap-checkbox3 field">
+                                                                <label>Not CM Seminar Sponsored Origination?</label>
+                                                                <div class="ui toggle checkbox">
+                                                                    <input type='checkbox' value='1' name='RepresentCmSponsored'>
+                                                                    <label></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wrap-date3 disabled field">
+                                                                <label>Source:</label>
+                                                                <div class="ui selection dropdown">
+                                                                    <input type="hidden" name="RepresentSource" >
+                                                                    <i class="dropdown icon"></i>
+                                                                    <div class="default text">Choose from below:</div>
+                                                                    <div class="menu">
+                                                                        <div class="item" data-value="1">Option 1</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wrap-date3 disabled ui input field">
+                                                                <label>Date Requested:</label>
+                                                                <div class="ui calendar" style="border-color: black;">
+                                                                    <div class="ui input left icon" >
+                                                                        <i class="calendar icon"></i>
+                                                                        <input type="text" name="RepresentDateRequested" placeholder="Date" class="calendar_input">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="two fields">
+                                                            <button class="ui positive submit right labeled icon button field">
+                                                                Submit
+                                                                <i class="plus icon"></i>
                                                             </button>
-                                                        </td>
-                                                    </tr>
-                                                <% }) %>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                    <div class="ui inverted divider"></div>
-                                    <!-- Button -->
-                                    <div class="row">
-                                        <button class="ui green button" id="NewRepButton">
-                                            Add New Entry Representation Inquiry
-                                        </button>
-
-
-
-                                        <!-- New Representation Inquiry Modal -->
-                                        <div class="ui modal" id="NewRep-Modal">
-                                            <i class="close icon"></i>
-                                            <div class="header">
-                                                Add New Entry Representation Inquiry
-                                            </div>
-                                            <!-- New Representation Inquiry Entry Form -->
-                                            <% var routeRepresentation = "/mal/create/representation/" + mal.id %>
-                                            <form class="ui form" id="boardIndivMAL" action="<%=routeRepresentation%>" method="POST">
-                                                <div class="ui segment">
-                                                    <div class="ui one column grid">
-                                                        <div class="column">
-                                                            <div class="row" style="margin-bottom: 2vh;">
-                                                                <h2>
-                                                                    <u>Representation Inquiries:</u>
-                                                                </h2>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="two fields">
-                                                                    <div class="field">
-                                                                        <label>CM Services Request:</label>
-                                                                        <div class="ui selection dropdown">
-                                                                            <input type="hidden" name="RepresentCmServicesRequest" >
-                                                                            <i class="dropdown icon"></i>
-                                                                            <div class="default text">Choose from below:</div>
-                                                                            <div class="menu">
-                                                                                <div class="item" data-value="1">Option 1</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="field">
-                                                                        <label>Origination Source:</label>
-                                                                        <div class="ui selection dropdown">
-                                                                            <input type="hidden" name="RepresentOriginationSource" >
-                                                                            <i class="dropdown icon"></i>
-                                                                            <div class="default text">Choose from below:</div>
-                                                                            <div class="menu">
-                                                                                <div class="item" data-value="1">Option 1</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                            <div class="actions field">
+                                                                <div class="ui black deny button">
+                                                                    Cancel
                                                                 </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="two fields">
-                                                                    <div class="wrap-checkbox3 field">
-                                                                        <label>Not CM Seminar Sponsored Origination?</label>
-                                                                        <div class="ui toggle checkbox">
-                                                                            <input type='checkbox' value='1' name='RepresentCmSponsored'>
-                                                                            <label></label>      
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="wrap-date3 disabled field">
-                                                                        <label>Source:</label>
-                                                                        <div class="ui selection dropdown">
-                                                                            <input type="hidden" name="RepresentSource" >
-                                                                            <i class="dropdown icon"></i>
-                                                                            <div class="default text">Choose from below:</div>
-                                                                            <div class="menu">
-                                                                                <div class="item" data-value="1">Option 1</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="wrap-date3 disabled ui input field">
-                                                                        <label>Date Requested:</label>
-                                                                        <div class="ui calendar" style="border-color: black;">
-                                                                            <div class="ui input left icon" >
-                                                                                <i class="calendar icon"></i>
-                                                                                <input type="text" name="RepresentDateRequested" placeholder="Date" class="calendar_input">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <button class="ui positive submit right labeled icon button">
-                                                                    Submit
-                                                                    <i class="plus icon"></i>
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                                                        <div class="actions">
-                                                            <div class="ui black deny button">
-                                                                Cancel
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="ui inverted divider"></div>
+                                <!-- Existing Entries TABLE -->
+                                <div class="row">
+                                    <!-- Set this variable based on button press which indicates object index -->
+                                    <% var representationIndex = 0 %>
+                                    <table id="RepresentationTable" class="ui selectable celled table" style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="one wide">Entry ID</th>
+                                                <th class="three wide">CM Services Request</th>
+                                                <th class="three wide">Origination Source:</th>
+                                                <th class="one wide">Not CM Seminar Sponsored?</th>
+                                                <th class="three wide">Source:</th>
+                                                <th class="three wide">Date Requested:</th>
+                                                <th>Edit/Delete Entry:</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% RepresentationInquiries.forEach(function(Representation){ %>
+                                                <tr>
+                                                    <td><%=Representation.id%></td>
+                                                    <td><%=Representation.cmServicesRequest%></td>
+                                                    <td><%=Representation.originationSource%></td>
+                                                    <td class="center aligned">
+                                                        <% if (Representation.cmSponsored != null) {%>
+                                                            <i class="large green checkmark icon"></i>
+                                                        <% } else { %>
+                                                            <i class="large red close icon"></i>
+                                                        <% } %>
+                                                    </td>
+                                                    <td><%=Representation.source%></td>
+                                                    <td><%=Representation.dateRequested%></td>
+                                                    <td>
+                                                        <button id="RepButton" data-json='{"Rep_ID": "<%=Representation.id%>", "MAL_ID": "<%=Representation.MALrelatedID%>"}' class="ui rep-button red small button">
+                                                            Edit/Delete
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <% }) %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
+                                    <!-- Edit Existing Representation Inquiry Modal -->
+                                    <div class="ui modal" id="ExistRep-Modal">
+                                        <i class="close icon"></i>
+                                        <div class="header">
+                                            Edit Existing Representation Inquiry Entry
                                         </div>
-
-
-                                        
+                                        <!-- Edit Existing Representation Inquiry Entry Form -->
+                                        <!-- Action changed by script when button pressed -->
+                                        <form class="ui form" id="editRep" action="" method="POST">
+                                            <div class="ui one column grid segment">
+                                                <div class="column">
+                                                    <div class="row" style="margin-bottom: 2vh;">
+                                                        <h2>
+                                                            <u>Representation Inquiries:</u>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="two fields">
+                                                            <div class="field">
+                                                                <label>CM Services Request:</label>
+                                                                <div class="ui selection dropdown">
+                                                                    <input type="hidden" value = "" name="RepresentCmServicesRequest" id="RepresentCmServicesRequest">
+                                                                    <i class="dropdown icon"></i>
+                                                                    <div class="default text">Choose from below:</div>
+                                                                    <div class="menu">
+                                                                        <div class="item" data-value="Option 1">Option 1</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <label>Origination Source:</label>
+                                                                <div class="ui selection dropdown">
+                                                                    <input type="hidden" value = "" name="RepresentOriginationSource" id="RepresentOriginationSource">
+                                                                    <i class="dropdown icon"></i>
+                                                                    <div class="default text">Choose from below:</div>
+                                                                    <div class="menu">
+                                                                        <div class="item" data-value="1">Option 1</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="two fields">
+                                                            <div class="wrap-checkbox4 field">
+                                                                <label>Not CM Seminar Sponsored Origination?</label>
+                                                                <div class="ui toggle checkbox">
+                                                                    <input type='checkbox' value = "" name='RepresentCmSponsored' id='RepresentCmSponsored'>
+                                                                    <label></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wrap-date4 disabled field">
+                                                                <label>Source:</label>
+                                                                <div class="ui selection dropdown">
+                                                                    <input type="hidden" value = "" name="RepresentSource" id="RepresentSource">
+                                                                    <i class="dropdown icon"></i>
+                                                                    <div class="default text">Choose from below:</div>
+                                                                    <div class="menu">
+                                                                        <div class="item" data-value="1">Option 1</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wrap-date4 disabled ui input field">
+                                                                <label>Date Requested:</label>
+                                                                <div class="ui calendar" style="border-color: black;">
+                                                                    <div class="ui input left icon" >
+                                                                        <i class="calendar icon"></i>
+                                                                        <input type="text" value = "" name="RepresentDateRequested" id="RepresentDateRequested" placeholder="Date" class="calendar_input">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="two fields">
+                                                            <button class="ui positive submit right labeled icon button">
+                                                                Submit
+                                                                <i class="plus icon"></i>
+                                                            </button>
+                                                            <div class="actions">
+                                                                <div class="ui black deny button">
+                                                                    Cancel
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    
+
+
+
                     <% var route6 = "/mal/entry/mug/" + mal.id %>
                     <form class="ui form" id="mugMAL" action="<%=route6%>" method="POST">
                         <!-- Merchandise Purchases -->
@@ -959,16 +1070,16 @@
                                                     <label>Mug Purchase Status:</label>
                                                     <div class="inline fields">
                                                         <div class="field">
-                                                          <div class="wrap-check1 ui radio checkbox">
-                                                            <input type="radio" name="MugPurchaseStatus" value="Yes">
-                                                            <label>Yes</label>
-                                                          </div>
+                                                            <div class="wrap-check1 ui radio checkbox">
+                                                                <input type="radio" name="MugPurchaseStatus" value="Yes">
+                                                                <label>Yes</label>
+                                                            </div>
                                                         </div>
                                                         <div class="field">
-                                                          <div class="wrap-check2 ui radio checkbox">
-                                                            <input type="radio" name="MugPurchaseStatus" value="No" checked="checked">
-                                                            <label>No</label>
-                                                          </div>
+                                                            <div class="wrap-check2 ui radio checkbox">
+                                                                <input type="radio" name="MugPurchaseStatus" value="No" checked="checked">
+                                                                <label>No</label>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1183,12 +1294,12 @@
                                         <div class="social-Toggle field" style="width: 15vw;">
                                             <label>No Social Media?</label>
                                             <div class="ui toggle checkbox" >
-                                                <input type="checkbox" 
+                                                <input type="checkbox"
                                                     <% if (SocialMedia.noSocialMedia == "on"){ %>
                                                         checked
                                                     <% } %>
                                                 name="SocialNoSocialMedia">
-                                                <label></label>      
+                                                <label></label>
                                             </div>
                                         </div>
                                     </div>
@@ -2424,16 +2535,16 @@
         })
     </script>
 
-    <!-- <script>
-        const checkbox4 = document.querySelector(".wrap-checkbox4 input");
-        const dates4 = document.querySelectorAll(".wrap-date4");
+<script>
+    const checkbox4 = document.querySelector(".wrap-checkbox4 input");
+    const dates4 = document.querySelectorAll(".wrap-date4");
 
         checkbox4.addEventListener("click", e => {
-            for(let i = 0; i < dates4.length; i++){
-                dates4[i].classList.toggle('disabled');
-            }
-        })
-    </script> -->
+        for(let i = 0; i < dates4.length; i++){
+            dates4[i].classList.toggle('disabled');
+        }
+    })
+</script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.js"></script>
     <script>
@@ -2924,115 +3035,8 @@
     <script>
         $(document).ready(function(){
             $('#NewRepButton').click(function(){
+                $('#NewRep-Modal').modal('setting', 'closable', false)
                 $('#NewRep-Modal').modal('show');
-            });
-        });
-    </script>
-
-    <!-- New Mug Purchase MODAL -->
-    <script>
-        $(document).ready(function(){
-            $('#New_Button').click(function(){
-                $('#New_-Modal').modal('show');
-            });
-        });
-    </script>
-
-    <!-- New Florida Statue Service MODAL -->
-    <script>
-        $(document).ready(function(){
-            $('#New_Button').click(function(){
-                $('#New_-Modal').modal('show');
-            });
-        });
-    </script>
-
-    <!-- Management Information -->
-    <script>
-        // --Management Information--
-        // TODO — Pulls from MML; Create Table
-        /*
-            - Table: "xxx.model.js"
-            - Not sure yet
-        */
-            // --Manager Gifts--
-            // TODO - Populate Table Columns
-            /*
-                - Table: "mal_Gifts.model.js"
-                    - Same table used by Board Members Table
-                - One to Many Association — Not able to associate both ways; ID not logged below
-                - Table relates to Managers Table
-            */
-            // --Manager Birthdays--
-            // TODO: Populate Table Columns
-            /*
-                - Table: "mal_Birthdays.model.js"
-                    - Same table used by Managers Table
-                - One to One Association — Able to associate both ways; ID not logged below
-                    - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
-                - Table relates to Managers Table
-            */
-            // --Manager Contests--
-            // TODO: Populate Table Columns
-            /*
-                - Table: "mal_Contests.model.js"
-                    - Same table used by Managers Table
-                - One to One Association — Able to associate both ways; ID not logged below
-                    - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
-                - Table relates to Managers Table
-            */
-    </script>
-
-    <!-- New Hiring Information MODAL -->
-    <script>
-        $(document).ready(function(){
-            $('#New_Button').click(function(){
-                $('#New_-Modal').modal('show');
-            });
-        });
-    </script>
-
-    <!-- New Termination Information MODAL -->
-    <script>
-        $(document).ready(function(){
-            $('#New_Button').click(function(){
-                $('#New_-Modal').modal('show');
-            });
-        });
-    </script>
-
-    <!-- New Source of Referral to C&M MODAL -->
-    <script>
-        $(document).ready(function(){
-            $('#New_Button').click(function(){
-                $('#New_-Modal').modal('show');
-            });
-        });
-    </script>
-
-    <!-- New Referrals from C&M for Mgmt. Co./Vendors MODAL -->
-    <script>
-        $(document).ready(function(){
-            $('#New_Button').click(function(){
-                $('#New_-Modal').modal('show');
-            });
-        });
-    </script>
-
-    <!-- New Presentation Information MODAL -->
-    <script>
-        $(document).ready(function(){
-            $('#New_Button').click(function(){
-                $('#New_-Modal').modal('show');
-            });
-        });
-    </script>
-
-    <!-- New Potential Client Status Report MODAL -->
-    <script>
-        $(document).ready(function(){
-            $('#New_Button').click(function(){
-                $('#New_-Modal').modal('show');
             });
         });
     </script>

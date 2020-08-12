@@ -1,0 +1,107 @@
+<!-- New Mug Purchase MODAL -->
+<script>
+    // $(document).ready(function(){
+    //     $('#New_Button').click(function(){
+    //         $('#New_-Modal').modal('show');
+    //     });
+    // });
+</script>
+
+<!-- New Florida Statue Service MODAL -->
+<script>
+    // $(document).ready(function(){
+    //     $('#New_Button').click(function(){
+    //         $('#New_-Modal').modal('show');
+    //     });
+    // });
+</script>
+
+<!-- Management Information -->
+<script>
+    // --Management Information--
+    // TODO — Pulls from MML; Create Table
+    /*
+        - Table: "xxx.model.js"
+        - Not sure yet
+    */
+        // --Manager Gifts--
+        // TODO - Populate Table Columns
+        /*
+            - Table: "mal_Gifts.model.js"
+                - Same table used by Board Members Table
+            - One to Many Association — Not able to associate both ways; ID not logged below
+            - Table relates to Managers Table
+        */
+        // --Manager Birthdays--
+        // TODO: Populate Table Columns
+        /*
+            - Table: "mal_Birthdays.model.js"
+                - Same table used by Managers Table
+            - One to One Association — Able to associate both ways; ID not logged below
+                - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
+            - Table relates to Managers Table
+        */
+        // --Manager Contests--
+        // TODO: Populate Table Columns
+        /*
+            - Table: "mal_Contests.model.js"
+                - Same table used by Managers Table
+            - One to One Association — Able to associate both ways; ID not logged below
+                - Instead logged within individual Board Member record in "mal_BoardMembers.model.js"
+            - Table relates to Managers Table
+        */
+</script>
+
+<!-- New Hiring Information MODAL -->
+<script>
+    // $(document).ready(function(){
+    //     $('#New_Button').click(function(){
+    //         $('#New_-Modal').modal('show');
+    //     });
+    // });
+</script>
+
+<!-- New Termination Information MODAL -->
+<script>
+    // $(document).ready(function(){
+    //     $('#New_Button').click(function(){
+    //         $('#New_-Modal').modal('show');
+    //     });
+    // });
+</script>
+
+<!-- New Source of Referral to C&M MODAL -->
+<script>
+    // $(document).ready(function(){
+    //     $('#New_Button').click(function(){
+    //         $('#New_-Modal').modal('show');
+    //     });
+    // });
+</script>
+
+<!-- New Referrals from C&M for Mgmt. Co./Vendors MODAL -->
+<script>
+    // $(document).ready(function(){
+    //     $('#New_Button').click(function(){
+    //         $('#New_-Modal').modal('show');
+    //     });
+    // });
+</script>
+
+<!-- New Presentation Information MODAL -->
+<script>
+    // $(document).ready(function(){
+    //     $('#New_Button').click(function(){
+    //         $('#New_-Modal').modal('show');
+    //     });
+    // });
+</script>
+
+<!-- New Potential Client Status Report MODAL -->
+<script>
+    // $(document).ready(function(){
+    //     $('#New_Button').click(function(){
+    //         $('#New_-Modal').modal('show');
+    //     });
+    // });
+</script>

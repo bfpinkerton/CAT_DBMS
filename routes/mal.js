@@ -782,7 +782,90 @@ router.post('/create', ensureAuthenticated, function (req, res, next) {
 });
 
 
-// TODO: Add table calls for non-Create tables
+
+
+
+
+
+
+
+
+
+
+
+// Query specified table and return record
+router.get('/retrieve/:table/:id', ensureAuthenticated, async function (req, res) {
+    console.log();
+    console.log("ROUTE REACHED");
+    console.log();
+    let record;
+    switch (req.params.table) {
+        case "Update" :
+            record = await Update.findOne(
+                {where: {id:req.params.id}},
+                { plain: true }
+            );
+            break;
+        case "RepresentationInquiries" :
+            record = await RepresentationInquiries.findOne(
+                {where: {id:req.params.id}},
+                { plain: true }
+            );
+            break;
+        case "MerchandiseMug" :
+            record = await Update.findOne(
+                {where: {id:req.params.id}},
+                { plain: true }
+            );
+            break;
+        case "MerchandiseFloridaStatue" :
+            record = await Update.findOne(
+                {where: {id:req.params.id}},
+                { plain: true }
+            );
+            break;
+        case "HiringRecord" :
+            record = await Update.findOne(
+                {where: {id:req.params.id}},
+                { plain: true }
+            );
+            break;
+        case "TerminationRecord" :
+            record = await Update.findOne(
+                {where: {id:req.params.id}},
+                { plain: true }
+            );
+            break;
+        case "ReferralSource" :
+            record = await Update.findOne(
+                {where: {id:req.params.id}},
+                { plain: true }
+            );
+            break;
+        case "ReferralMgmtCoVendor" :
+                record = await Update.findOne(
+                    {where: {id:req.params.id}},
+                    { plain: true }
+                );
+                break;
+        case "Presentations" :
+                record = await Update.findOne(
+                    {where: {id:req.params.id}},
+                    { plain: true }
+                );
+                break;
+        case "PotentialClientReports" :
+            record = await Update.findOne(
+                {where: {id:req.params.id}},
+                { plain: true }
+            );
+            break;
+    }
+    res.json(record);
+});
+
+
+
 // GET entry page
 router.get('/entry/:id', ensureAuthenticated, async function (req, res, next) {
     req.app.locals.user = req.user;
@@ -795,77 +878,68 @@ router.get('/entry/:id', ensureAuthenticated, async function (req, res, next) {
     );
     req.app.locals.update = await Update.findOne(
         {where: {MALrelatedID:malID}},
-        {order: ['id','DESC']},
+        {order: ['id','ASC']},
         { plain: true }
     );
     req.app.locals.SupplementalAssociationInfo = await SupplementalAssociationInfo.findOne(
         {where: {MALrelatedID:malID}},
         { plain: true }
     );
-    req.app.locals.SupplementalAssociationInfo = await SupplementalAssociationInfo.findOne(
-        {where: {MALrelatedID:malID}},
-        { plain: true }
-    );
+    // TODO: Indiv Board Members
+    //
     req.app.locals.GeneralBoardInfo = await GeneralBoardInfo.findOne(
         {where: {MALrelatedID:malID}},
         { plain: true }
     );
     req.app.locals.RepresentationInquiries = await RepresentationInquiries.findAll(
         {where: {MALrelatedID:malID}},
-        { plain: true }
-    );
-    req.app.locals.RepresentationInquiries = await RepresentationInquiries.findAll(
-        {where: {MALrelatedID:malID}},
-        {order: ['id','DESC']},
+        {order: ['id','ASC']},
         { plain: true }
     );
     req.app.locals.MerchandiseMug = await MerchandiseMug.findAll(
         {where: {MALrelatedID:malID}},
-        {order: ['id','DESC']},
+        {order: ['id','ASC']},
         { plain: true }
     );
     req.app.locals.MerchandiseFloridaStatue = await MerchandiseFloridaStatue.findAll(
         {where: {MALrelatedID:malID}},
-        {order: ['id','DESC']},
+        {order: ['id','ASC']},
         { plain: true }
     );
     req.app.locals.SocialMedia = await SocialMedia.findOne(
         {where: {MALrelatedID:malID}},
         { plain: true }
     );
+    // TODO: Manager Information
+    //
     req.app.locals.HiringRecord = await HiringRecord.findAll(
         {where: {MALrelatedID:malID}},
-        {order: ['id','DESC']},
-        { plain: true }
-    );
-    req.app.locals.HiringRecord = await HiringRecord.findAll(
-        {where: {MALrelatedID:malID}},
-        {order: ['id','DESC']},
+        {order: ['id','ASC']},
         { plain: true }
     );
     req.app.locals.TerminationRecord = await TerminationRecord.findAll(
         {where: {MALrelatedID:malID}},
-        {order: ['id','DESC']},
+        {order: ['id','ASC']},
         { plain: true }
     );
     req.app.locals.ReferralSource = await ReferralSource.findAll(
         {where: {MALrelatedID:malID}},
-        {order: ['id','DESC']},
+        {order: ['id','ASC']},
         { plain: true }
     );
     req.app.locals.ReferralMgmtCoVendor = await ReferralMgmtCoVendor.findAll(
         {where: {MALrelatedID:malID}},
-        {order: ['id','DESC']},
+        {order: ['id','ASC']},
         { plain: true }
     );
     req.app.locals.Presentations = await Presentations.findAll(
         {where: {MALrelatedID:malID}},
-        {order: ['id','DESC']},
+        {order: ['id','ASC']},
         { plain: true }
     );
     req.app.locals.PotentialClientReports = await PotentialClientReports.findAll(
         {where: {MALrelatedID:malID}},
-        {order: ['id','DESC']},
+        {order: ['id','ASC']},
         { plain: true }
     );
     res.render('pages/mal/entry', );
@@ -1096,23 +1170,19 @@ router.post('/create/representation/:MAL_id', ensureAuthenticated, function (req
 });
 // Update MAL MAL Entry's Representation Information
 router.post('/entry/representation/:MAL_id/:Rep_id', ensureAuthenticated, async function (req, res, next) {
-    const {
+    let {
         RepresentCmServicesRequest,RepresentOriginationSource,RepresentCmSponsored,RepresentSource,RepresentDateRequested,
     } = req.body;
-    //
-    var entryRepresentationInq = {
-        
-    };
+
     // Replace all empty string values with NULL
-    for (let key of Object.keys(entryRepresentationInq)){
-        if (entryRepresentationInq[key] == '') {
-            entryRepresentationInq[key] = null;
+    for (let key of Object.keys(req.body)){
+        if (req.body[key] == '') {
+            req.body[key] = null;
         }
     }
     // Update MAL entry with object data
     await RepresentationInquiries.update(
         {
-            MALrelatedID: req.params.MAL_id,
             cmServicesRequest: RepresentCmServicesRequest,
             originationSource: RepresentOriginationSource,
             cmSponsored: RepresentCmSponsored,
@@ -1126,7 +1196,7 @@ router.post('/entry/representation/:MAL_id/:Rep_id', ensureAuthenticated, async 
         req.flash('failure','Failed to update MAL entry\'s mal_RepresentationInquiries.model.js');
     });
 
-res.redirect("../../../entry/" + req.params.MAL_id);
+    res.redirect("../../../entry/" + req.params.MAL_id);
 });
 
 
