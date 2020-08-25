@@ -1,10 +1,6 @@
 # CAT_DBMS
 Modern Recreation of Community Association Title's 25+-Year-Old Database Management System. 
-
-<img
-src=“https://imgur.com/a/7rqz8zq”
-raw=true
-/>
+![alt text](https://i.imgur.com/nbJ7C1U.png)
 
 This repo relates to their Master Association List, Master Manager List, etc.
 
