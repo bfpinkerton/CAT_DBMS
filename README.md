@@ -28,7 +28,7 @@ Example screenshot of the 25+-year-old legacy system:
 </ul>
 
 New System Functionality Gif:
-![alt-text](https://giant.gfycat.com/WaryAgreeableLemming.webm)
+![alt-text](https://s7.gifyu.com/images/Aug-22-2020-16-27-27.gif)
 
 <b>Development Progress: (A full trello board of completed tasks, backlogged items, and bugs can be found here: https://trello.com/b/tDJ2lLe4/backlog-bugs)</b>
 <ul>
@@ -41,4 +41,4 @@ New System Functionality Gif:
   <li>Additional Features may be added at a later date!</li>
 </ul>
 
-This application's sourcecode is made public at the request of me for education.
+This application's sourcecode is made public at my request for educational purposes.
