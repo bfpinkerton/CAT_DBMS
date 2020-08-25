@@ -6,7 +6,7 @@
   <li>Native software application that required user credentials to login and view records</li>
   <li>Several different interlinking "databases" with multiple child tables</li>
   <li>Once authenticated, any user was able to delete records</li>
-  <li>Unreliable overall system that periodically drops records</li>
+  <li>Unreliable overall system that periodically dropped records</li>
   <li>Database lacks ACID practices</li>
   <li>Database must be reset every few days to support new record additions</li>
   <li>Application is difficult to understand and navigate</li>
