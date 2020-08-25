@@ -13,7 +13,7 @@
   <li>Scrolling with a scrollwheel or trackpad results a new record being loaded and modifications to current record being abandoned</li>
 </ul>
 
-Example screenshot of the 25+-year-old legacy system:
+<b>Example screenshot of the 25+-year-old legacy system:</b>
 <img src="https://i.imgur.com/nbJ7C1U.png" alt="Legacy Example Pic" width="750" height="620">
 
 <b>Legacy Database Relations: (Unique IDs are rare and links between tables tend to involve multiple text fields)</b>
