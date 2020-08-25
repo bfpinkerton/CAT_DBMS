@@ -7,6 +7,7 @@
   <li>Several different interlinking "databases" with multiple child tables</li>
   <li>Once authenticated, any user was able to delete records</li>
   <li>Unreliable overall system that periodically drops records</li>
+  <li>Database lacks ACID practices</li>
   <li>Database must be reset every few days to support new record additions</li>
   <li>Application is difficult to understand and navigate</li>
   <li>Scrolling with a scrollwheel or trackpad results a new record being loaded and modifications to current record being abandoned</li>
@@ -21,10 +22,13 @@ Example screenshot of the 25+-year-old legacy system:
 <b>New System Solution:</b>
 <ul>
   <li>SaaS Web Application utilizing MySQL, Express, Semantic UI, and Node.js tech stack</li>
+  <li>MySQL ACID Relational Database Implementation</li>
+  <li>All database tables implement ID's with proper foreign key relations</li>
   <li>Authentication implemented with a traditional email/password hash combo utilizing bcrypt & Passport.js</li>
   <li>Tiered Access to prevend unwanted record addition/deletion: ReadOnlyUser --> CreateOnlyUser --> Admin</li>
-  <li>Intuitive UI whose colorscheme matches the company</li>
-  <li></li>
+  <li>User Management for the addition/removal/access-tier-level of users</li>
+  <li>Isolated Record Searching via topbar search</li>
+  <li>Intuitive UI with colorscheme matching company logo</li>
 </ul>
 
 New System Functionality Gif:
@@ -37,8 +41,9 @@ New System Functionality Gif:
   <li>Master Association List - [95% complete]</li>
   <li>Master Manager List - [Not started]</li>
   <li>Report Generator (Raw text to steralized SQL query) - [Not started]</li>
+  <li>Record Update Tracking (via table hooks) - [Not started]</li>
   <li>Migrating Legacy Data - [Not started]</li>
   <li>Additional Features may be added at a later date!</li>
 </ul>
 
-This application's sourcecode is made public at my request for educational purposes.
+<i>This application's sourcecode is made public at my request for educational purposes.</i>
