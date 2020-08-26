@@ -1,6 +1,22 @@
 # CAT_DBMS
 <b>This repository serves to house the modern recreation of Community Association Title's legacy database management system.</b>
 
+New System Functionality Gif:
+![alt-text](currentEx.gif)
+
+<b>New System Solution:</b>
+<ul>
+  <li>SaaS Web Application utilizing MySQL, Express, Semantic UI, and Node.js tech stack</li>
+  <li>MySQL ACID Relational Database Implementation</li>
+  <li>All database tables implement ID's with proper foreign key relations</li>
+  <li>Authentication implemented with a traditional email/password hash combo utilizing bcrypt & Passport.js</li>
+  <li>Tiered Access to prevend unwanted record addition/deletion: ReadOnlyUser --> CreateOnlyUser --> Admin</li>
+  <li>User Management for the addition/removal/access-tier-level of users</li>
+  <li>Isolated Record Searching via topbar search</li>
+  <li>Intuitive UI with colorscheme matching company logo</li>
+</ul>
+
+
 <b>Legacy System Overview & Problems:</b>
 <ul>
   <li>Native software application that required user credentials to login and view records</li>
@@ -19,20 +35,7 @@
 <b>Legacy Database Relations: (Unique IDs are rare and links between tables tend to involve multiple text fields)</b>
 <img src="https://i.imgur.com/65XUMAz.jpg" alt="Legacy Database Relations">
 
-<b>New System Solution:</b>
-<ul>
-  <li>SaaS Web Application utilizing MySQL, Express, Semantic UI, and Node.js tech stack</li>
-  <li>MySQL ACID Relational Database Implementation</li>
-  <li>All database tables implement ID's with proper foreign key relations</li>
-  <li>Authentication implemented with a traditional email/password hash combo utilizing bcrypt & Passport.js</li>
-  <li>Tiered Access to prevend unwanted record addition/deletion: ReadOnlyUser --> CreateOnlyUser --> Admin</li>
-  <li>User Management for the addition/removal/access-tier-level of users</li>
-  <li>Isolated Record Searching via topbar search</li>
-  <li>Intuitive UI with colorscheme matching company logo</li>
-</ul>
 
-New System Functionality Gif:
-![alt-text](currentEx.gif)
 
 <b>Development Progress: (A full trello board of completed tasks, backlogged items, and bugs can be found here: https://trello.com/b/tDJ2lLe4/backlog-bugs)</b>
 <ul>
@@ -45,5 +48,6 @@ New System Functionality Gif:
   <li>Migrating Legacy Data - [Not started]</li>
   <li>Additional Features may be added at a later date!</li>
 </ul>
+
 
 <i>This application's sourcecode is made public at my request for educational purposes.</i>
