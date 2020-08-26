@@ -7,12 +7,12 @@ New System Functionality Gif:
 <b>New System Solution:</b>
 <ul>
   <li>SaaS Web Application utilizing MySQL, Express, Semantic UI, and Node.js tech stack</li>
-  <li>MySQL ACID Relational Database Implementation</li>
+  <li>MySQL ACID relational database implementation</li>
   <li>All database tables implement ID's with proper foreign key relations (reducing complexity of table interactions)</li>
   <li>Authentication implemented with a traditional email/password hash combo utilizing bcrypt & Passport.js</li>
-  <li>Tiered Access to prevend unwanted record addition/deletion: ReadOnlyUser --> CreateOnlyUser --> Admin</li>
-  <li>User Management for the addition/removal/access-tier-level of users</li>
-  <li>Isolated Record Searching via topbar search</li>
+  <li>Tiered access to prevend unwanted record addition/deletion: ReadOnlyUser --> CreateOnlyUser --> Admin</li>
+  <li>User management for the addition/removal/access-tier-level of users</li>
+  <li>Isolated record searching via topbar search</li>
   <li>Intuitive UI with colorscheme matching company logo</li>
 </ul>
 
