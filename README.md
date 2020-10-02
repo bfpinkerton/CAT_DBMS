@@ -1,7 +1,7 @@
 # CAT_DBMS
 <b>This repository serves to house the modern recreation of Community Association Title's legacy database management system.</b>
 
-New System Functionality Gif:
+New System's Functionality Gif:
 ![alt-text](currentEx.gif)
 
 <b>New System Solution:</b>
