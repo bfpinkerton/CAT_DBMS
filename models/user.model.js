@@ -30,6 +30,11 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: false,
         allowNull: false
       },
+      readOnly: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      },
       creation: {
         type: "TIMESTAMP",
         allowNull: false
@@ -48,11 +53,6 @@ module.exports = (sequelize, Sequelize) => {
       },
       updateEmailExp: {
         type: Sequelize.DATE
-      },
-      readOnly: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-        allowNull: false
       }
     });
   

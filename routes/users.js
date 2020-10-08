@@ -49,7 +49,8 @@ router.post('/register', ensureAdmin, (req, res) => {
         confirm_email_address,
         password,
         password2,
-        readOnly
+        //admin,
+        //readOnly
     } = req.body;
 
     if (password != password2 || confirm_email_address != email) {
@@ -70,7 +71,9 @@ router.post('/register', ensureAdmin, (req, res) => {
         lName: last_name,
         email: email,
         password: password,
-        creation: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
+        creation: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
+        //admin: admin,
+        //readOnly: readOnly
     };
 
     // Hash user password
