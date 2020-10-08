@@ -48,7 +48,8 @@ router.post('/register', ensureAdmin, (req, res) => {
         email,
         confirm_email_address,
         password,
-        password2
+        password2,
+        readOnly
     } = req.body;
 
     if (password != password2 || confirm_email_address != email) {

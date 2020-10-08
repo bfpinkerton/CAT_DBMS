@@ -48,6 +48,11 @@ module.exports = (sequelize, Sequelize) => {
       },
       updateEmailExp: {
         type: Sequelize.DATE
+      },
+      readOnly: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
       }
     });
   
