@@ -3,10 +3,10 @@ module.exports = {
     // USER: "root",
     // PASSWORD: "admin123",
     // DB: "my_db",
-    HOST: "us-cdbr-east-02.cleardb.com",
-    USER: "b0cdd214e468f3",
-    PASSWORD: "480b3cb1",
-    DB: "heroku_0ccf4dabc653c14",
+    HOST: "f2fbe0zvg9j8p9ng.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    USER: "x2bwid4c29rcdo81",
+    PASSWORD: "yg4fanx67i947hjh",
+    DB: "tvhcex3q0q8xwg1r",
     dialect: "mysql",
     pool: {
       max: 80,
@@ -16,9 +16,12 @@ module.exports = {
     }
   };
 
-// mysql://b0cdd214e468f3:480b3cb1@us-cdbr-east-02.cleardb.com/heroku_0ccf4dabc653c14?reconnect=true
+// mysql://username:password@hostname:port/default_schema
+// mysql://x2bwid4c29rcdo81:yg4fanx67i947hjh@f2fbe0zvg9j8p9ng.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/tvhcex3q0q8xwg1r
 
-// HOST: "us-cdbr-east-02.cleardb.com",
-// USER: "b0cdd214e468f3",
-// PASSWORD: "480b3cb1",
-// DB: "heroku_0ccf4dabc653c14",
+// HOST: "f2fbe0zvg9j8p9ng.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+// USER: "x2bwid4c29rcdo81",
+// PASSWORD: "yg4fanx67i947hjh",
+// DB: "jawsdb-slippery-58312",
+
+// db: jawsdb-slippery-58312
