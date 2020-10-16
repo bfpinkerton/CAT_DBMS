@@ -59,6 +59,7 @@ app.listen(PORT, () => {
 
 
 const db = require("./models");
+db.sequelize.sync({force: true});
 // RUN BELOW CODE TO UPDATE TABLES, Alter allows table column modifications directly from models
 // db.sequelize.sync({ alter: true });
 // db.sequelize.sync({ force: true });
