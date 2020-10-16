@@ -5,7 +5,7 @@
 run 'npm test' in root directory
 
 ### Running Cucumber tests
-run 'npm install @cucumber/cucumber' in root directory
+run 'npm install @cucumber/cucumber' in root directory. 
 Then './node_modules/.bin/cucumber-js'
 
 New System's Functionality Gif:
