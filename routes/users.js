@@ -134,6 +134,7 @@ router.delete('/delete/:id', ensureAdmin, (req, res) => {
 
 // Login Handle
 router.post('/login', (req, res, next) => {
+    print("here");
     passport.authenticate('local', {
         // Redirects on both success and fail
         successRedirect: '../users/dashboard',

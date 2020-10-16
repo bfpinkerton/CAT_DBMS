@@ -15,6 +15,7 @@ const mysql = require("mysql");
 
 // Login middleware
 module.exports = function(passport) {
+    print(here2)
     passport.use(
         // Using email as "username"
         new localStrategy({ usernameField: 'email' }, (email, password, done) => {
