@@ -5,6 +5,7 @@
         - User Serialization: Establishing a session for authorized user to view privileged info
 */
 
+const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
