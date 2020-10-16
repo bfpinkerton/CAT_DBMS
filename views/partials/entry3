@@ -78,45 +78,54 @@
     <script type="module">
         document.querySelectorAll('.rep-button').forEach(tag =>
             tag.addEventListener('click', event =>{
-                const repJSON = event.target.dataset.json;
-                const repObj = JSON.parse(repJSON);
-                setRepEntry(repObj.MAL_ID, repObj.Rep_ID)
+                console.log("Button Pressed");
+                // console.log(event.attr("data-MALID"));
+                // console.log(event.attr("data-RepID"));
+                let x = event.target.dataset.MALID;
+                let y = event.target.dataset.RepID;
+                console.log(x + " " + y);
+                console.log("Logged");
+                setRepEntry(event.currentTarget.dataset.MALID, event.currentTarget.dataset.RepID);
             })
         );
         // Existing Representation Info MODAL
         // Query table for entry & modify values & form path
         function setRepEntry(MAL_id, Rep_id) {
-            // Set path of fetch & perform operation
+            console.log("Logging values below");
+            console.log(MAL_id);
+            console.log(Rep_id);
+            console.log("Above");
+            // Change form's path of modal
+            console.log(Rep_id);
+            const editRepresentation = "../../mal/entry/representation/" + MAL_id + "/" + Rep_id;
+            document.querySelector('#editRep').action = editRepresentation;
+            // console.log(document.querySelector('#editRep').action);
+            // console.log("ABOVE ROUTE SHOULD BE:");
+            // console.log(editRepresentation);
+            // console.log("^^^^^^");
+            // Set path of fetch
             const routeRepPartial = 'RepresentationInquiries'
             const routeRep = '/mal/retrieve/' + routeRepPartial + '/' + Rep_id;
             fetch(routeRep, {
                 method: 'GET'
             })
-            // Use resulting object to populate associated modal
+            .then(response => {
+                console.log(response.json());
+            })
             .then(data => {
-                // Set modal's action (path)
-                const editRepresentation = "../../mal/entry/representation/" + MAL_id + "/" + Rep_id;
-                document.querySelector('#editRep').action = editRepresentation;
-                // const modRepresentCmServicesRequest = document.getElementById('RepresentCmServicesRequest');
-                // modRepresentCmServicesRequest.selectedIndex = [...modRepresentCmServicesRequest.items].findIndex (option => option.text === data.cmServicesRequest);
-                // document.querySelector('#RepresentCmServicesRequest').setAttribute('value', data.cmServicesRequest);
-                // $('#RepresentCmServicesRequest').dropdown('refresh');
-                setTimeout (function(){ $('#RepresentCmServicesRequest').dropdown('set selected', data.cmServicesRequest); }, 500);
-                //$('#RepresentCmServicesRequest').dropdown({'set selected': data.cmServicesRequest});
-
-                document.querySelector('#RepresentOriginationSource').setAttribute('value', data.originationSource);
-                document.querySelector('#RepresentCmSponsored').value = data.cmSponsored;
-                document.querySelector('#RepresentSource').value = data.source;
-                document.querySelector('#RepresentDateRequested').value = data.dateRequested;
+                console.log();
+                console.log("THEN");
+                console.log(data);
+                console.log(data.cmServicesRequest);
+                document.querySelector('#RepresentCmServicesRequest').value = data.cmServicesRequest;
+                // document.querySelector('#RepresentOriginationSource').value = data.originationSource;
+                // document.querySelector('#RepresentCmSponsored').value = data.cmSponsored;
+                // document.querySelector('#RepresentSource').value = data.source;
+                // document.querySelector('#RepresentDateRequested').value = data.dateRequested;
                 $('#ExistRep-Modal').modal('setting', 'closable', false)
                 $('#ExistRep-Modal').modal('show');
             });
         }
-    </script>
-    <script type="module">
-        $(document).ready(function(){
-            $('.top.menu .item').tab({history:false});
-        });
     </script>
 </head>
 
@@ -166,39 +175,16 @@
                     <h1 class="ui block header"><b>View/Update Entry:</b></h1>
                     <!-- Flash Messages -->
                     <%- include ("../../partials/flash") %>
-
-
-
-                    <div class="ui segment">
-                        <div class="ui menu top">
-                          <a class="active item" data-tab="edit"><i class="icon edit sign"></i>Edit</a>
-                          <a class="item" data-tab="summary">Summary</a>
-                        </div>
-                        
-                        
-                        <div class="ui tab" data-tab="summary">
-                          Other content
-                        </div>
                     
-                      </div>
-
-
-
-
-
-
-
-                    
-                    
+                    <!-- Entry Form -->
+                    <% var route = "/mal/entry/primary/" + mal.id %>
+                    <form class="ui form" id="primaryMAL" action="<%=route%>" method="POST">
                         
                         
 
 
                         <!-- Metadata and edit information/Primary Association Information/Association Photo-->
-                        <div class="ui active tab segment" data-tab="edit">
-                            <!-- Entry Form -->
-                            <% var route = "/mal/entry/primary/" + mal.id %>
-                            <form class="ui form" id="primaryMAL" action="<%=route%>" method="POST">
+                        <div class="ui segment">
                             <div class="ui 2 column grid">
                                 <!-- Information -->
                                 <div class="twelve wide column">
@@ -378,9 +364,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
                         </div>
-                    
+                    </form>
 
 
                     <% var route2 = "/mal/entry/supplemental/" + mal.id %>
@@ -965,7 +950,7 @@
                                                     <td><%=Representation.source%></td>
                                                     <td><%=Representation.dateRequested%></td>
                                                     <td>
-                                                        <button id="RepButton" data-json='{"Rep_ID": "<%=Representation.id%>", "MAL_ID": "<%=Representation.MALrelatedID%>"}' class="ui rep-button red small button">
+                                                        <button id="RepButton" data-MALID="<%=mal.id%>" data-RepID="<%=Representation.id%>" class="ui rep-button red small button">
                                                             Edit/Delete
                                                         </button>
                                                     </td>
@@ -1003,7 +988,7 @@
                                                                     <i class="dropdown icon"></i>
                                                                     <div class="default text">Choose from below:</div>
                                                                     <div class="menu">
-                                                                        <div class="item" data-value="Option 1">Option 1</div>
+                                                                        <div class="item" data-value="1">Option 1</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -2499,6 +2484,21 @@
                                         <textarea name="UpdateNote" rows="3" style="border: 1px solid black !important;"></textarea>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        
+
+
+                        <!-- Bottom Buttons -->
+                        <div class="ui column grid" style="padding: 15px;margin-bottom: -25px;">
+                            <div class="row">
+                                <button class="ui red deny icon button" type="reset"> 
+                                    Reset ALL Fields 
+                                </button>
+                                <button class="ui green button" type="submit">
+                                    Create New Entry
+                                </button>
                             </div>
                         </div>
 
