@@ -36,14 +36,14 @@ router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
 });
 
 // GET register user page
-router.get('/register', /*ensureAdmin,*/ function (req, res, next) {
+router.get('/register', ensureAdmin, function (req, res, next) {
     res.locals.message = req.flash();
     res.render('pages/users/register');
 });
 
 // Register Handle
 // TODO: Check for existing account with same email
-router.post('/register', /*ensureAdmin,*/ (req, res) => {
+router.post('/register', ensureAdmin, (req, res) => {
     const {
         first_name,
         last_name,
