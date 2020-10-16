@@ -35,6 +35,11 @@ const {
     ensureAuthenticated
 } = require('../config/auth');
 
+// Ensure user does not have readOnly
+const {
+    ensureReadOnlyMAL
+} = require('../config/readOnlyMAL');
+
 // ------------------------------------------------------------------
 
 // GET home page
@@ -46,7 +51,7 @@ router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
 });
 
 // GET create page
-router.get('/create', ensureAuthenticated, async function (req, res, next) {
+router.get('/create', ensureReadOnlyMAL, async function (req, res, next) {
     req.app.locals.user = req.user;
     req.app.locals.date = moment().format('MMMM Do YYYY');
     res.render('pages/mal/create', );
@@ -68,7 +73,7 @@ router.get('/create', ensureAuthenticated, async function (req, res, next) {
     - Transactions: Either all records are successfully created or none of them are; Maybe a try block
 */
 // TODO: [Transactions] Force atomicity on this entire route.
-router.post('/create', ensureAuthenticated, function (req, res, next) {
+router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
     var malID;
     // Retrieve associated element valuesfrom page & structure them
     const {
@@ -964,7 +969,7 @@ router.delete('/delete/:table/:id', (req, res) => {
 
 // Primary Information Section ----------------------------------------------------------------------------------------------------
 // Update MAL Entry's Primary Association Information
-router.post('/entry/primary/:id', upload.array(), ensureAuthenticated, async function (req, res, next) {
+router.post('/entry/primary/:id', upload.array(), ensureReadOnlyMAL, async function (req, res, next) {
     // Retrieve associated element values from page & structure them
     const {
         Aka, ClientAcctNum, FileName, StatusInFirm, SpecialClassification, AsscType, ScndMHPAssc, DomicileCounty, DomicileCity, DomicileZip, LegalName, AssociationPhoto
@@ -1000,7 +1005,7 @@ router.post('/entry/primary/:id', upload.array(), ensureAuthenticated, async fun
 
 // Supplemental Information Section ----------------------------------------------------------------------------------------------------
 // Update MAL Entry's mal_SupplementalAssociationInfo
-router.post('/entry/supplemental/:id', ensureAuthenticated, async function (req, res, next) {
+router.post('/entry/supplemental/:id', ensureReadOnlyMAL, async function (req, res, next) {
     // Retrieve associated element values from page & structure them
     const {
         SupplementalDesignatedSiteAddress,
@@ -1069,7 +1074,7 @@ router.post('/entry/supplemental/:id', ensureAuthenticated, async function (req,
 
 // General Board Member Information Section ----------------------------------------------------------------------------------------------------
 // Update MAL Entry's General Board Member Related Information
-router.post('/entry/general/:id', upload.array(), ensureAuthenticated, async function (req, res, next) {
+router.post('/entry/general/:id', upload.array(), ensureReadOnlyMAL, async function (req, res, next) {
     // Retrieve associated element values from page & structure them
     const {
         GeneralCorporateStatus,GeneralAnnualMeetingMonth,GeneralLastCorporateReportDate,GeneralCurrentBoardExpirationDate,GeneralAssociationSeminarAdmittandance,GeneralAssociationSeminarTagColor,GeneralNumberDirectorsFullyStaffed,GeneralDateAssociationUpdatedWhole
@@ -1134,7 +1139,7 @@ router.post('/entry/general/:id', upload.array(), ensureAuthenticated, async fun
 
 // Representation Inquiries Section --------------------------------------
 // Create MAL Entry's Representation Inquiry
-router.post('/create/representation/:MAL_id', ensureAuthenticated, function (req, res, next) {
+router.post('/create/representation/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
     // Replace empty string values with null
     for (var key in req.body) {
         if (req.body[key] == '') {
@@ -1169,7 +1174,7 @@ router.post('/create/representation/:MAL_id', ensureAuthenticated, function (req
     res.redirect("../../entry/" + req.params.MAL_id);
 });
 // Update MAL MAL Entry's Representation Information
-router.post('/entry/representation/:MAL_id/:Rep_id', ensureAuthenticated, async function (req, res, next) {
+router.post('/entry/representation/:MAL_id/:Rep_id', ensureReadOnlyMAL, async function (req, res, next) {
     let {
         RepresentCmServicesRequest,RepresentOriginationSource,RepresentCmSponsored,RepresentSource,RepresentDateRequested,
     } = req.body;

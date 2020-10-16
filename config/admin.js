@@ -9,7 +9,7 @@ module.exports = {
                 return next();
             }
             req.flash('failure','Please contact an administrator to register a new account.');
-            return res.redirect('/users/home');
+            return res.redirect('/users/dashboard');
 
         }
         req.flash('failure','You need to log in first.');
