@@ -60,20 +60,20 @@ app.listen(PORT, () => {
 
 const db = require("./models");
 // RUN BELOW CODE TO UPDATE TABLES, Alter allows table column modifications directly from models
-db.sequelize.sync({ alter: true });
-db.sequelize.sync({ force: true });
-db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
-.then(function(){
-    return db.sequelize.sync({ force: true });
-})
-.then(function(){
-    return db.sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
-})
-.then(function(){
-    console.log('Database synchronised.');
-}, function(err){
-    console.log(err);
-});
+// db.sequelize.sync({ alter: true });
+// db.sequelize.sync({ force: true });
+// db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
+// .then(function(){
+//     return db.sequelize.sync({ force: true });
+// })
+// .then(function(){
+//     return db.sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
+// })
+// .then(function(){
+//     console.log('Database synchronised.');
+// }, function(err){
+//     console.log(err);
+// });
 
 // EJS
 app.set("view engine", "ejs");
