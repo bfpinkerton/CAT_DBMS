@@ -34,14 +34,14 @@ router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
 });
 
 // GET register user page
-router.get('/register', ensureAdmin, function (req, res, next) {
+router.get('/register' /*,ensureAdmin*/, function (req, res, next) {
     res.locals.message = req.flash();
     res.render('pages/users/register');
 });
 
 // Register Handle
 // TODO: Check for existing account with same email
-router.post('/register', ensureAdmin, (req, res) => {
+router.post('/register'/*, ensureAdmin*/, (req, res) => {
     const {
         first_name,
         last_name,
@@ -49,8 +49,8 @@ router.post('/register', ensureAdmin, (req, res) => {
         confirm_email_address,
         password,
         password2,
-        //admin,
-        //readOnly
+        admin,
+        readOnly
     } = req.body;
 
     if (password != password2 || confirm_email_address != email) {
@@ -72,8 +72,8 @@ router.post('/register', ensureAdmin, (req, res) => {
         email: email,
         password: password,
         creation: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
-        //admin: admin,
-        //readOnly: readOnly
+        admin: admin,
+        readOnly: readOnly
     };
 
     // Hash user password
