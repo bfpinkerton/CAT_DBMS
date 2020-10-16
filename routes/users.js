@@ -12,6 +12,8 @@ const db = require("../models");
 // User model
 const User = db.users;
 
+require("./config/passport")(passport);
+
 // Ensure authenticated user is logged in
 const {
     ensureAuthenticated
