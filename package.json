@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "db:makemigrations": "./node_modules/sequelize-auto-migrations/bin/makemigration.js"
+    "db:makemigrations": "./node_modules/sequelize-auto-migrations/bin/makemigration.js",
+    "test": "./node_modules/mocha/bin/mocha tests/unit_test.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -48,8 +49,5 @@
     "nodemon": "^2.0.4",
     "stylelint": "^13.6.1",
     "stylelint-config-standard": "^20.0.0"
-  },
-  "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests/unit_test.js"
   }
 }
