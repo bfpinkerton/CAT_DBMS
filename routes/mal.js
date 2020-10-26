@@ -1305,7 +1305,7 @@ router.post('/create/source/:MAL_id', ensureReadOnlyMAL, function (req, res, nex
     } = req.body;
     //
     var entryRefSource = {
-        MALrelatedID: malID,
+        MALrelatedID: req.params.MAL_id,
         date:SourceDate,
         referredBy:SourceReferredBy,
         position:SourcePosition,
@@ -1377,7 +1377,7 @@ router.post('/create/referral/:MAL_id', ensureReadOnlyMAL, function (req, res, n
     } = req.body;
     //
     var entryRefMgmt = {
-        MALrelatedID: malID,
+        MALrelatedID: req.params.MAL_id,
         requestDate:MgmtRequestDate,
         requestedBy:MgmtRequestedBy,
         title:MgmtTitle,
@@ -1462,7 +1462,7 @@ router.post('/create/presentation/:MAL_id', ensureReadOnlyMAL, function (req, re
     } = req.body;
     //
     var entryPresentation = {
-        MALrelatedID: malID,
+        MALrelatedID: req.params.MAL_id,
         date:PresentationDate,
         requestedBy:PresentationRequestedBy,
         position:PresentationPosition,
