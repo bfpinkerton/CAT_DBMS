@@ -1437,9 +1437,114 @@ router.post('/entry/referral/:MAL_id/:Ref_id', ensureReadOnlyMAL, async function
 
 // Presentation Information Section --------------------------------------
 // Create MAL Entry's Presentation Information
-// TODO
+router.post('/create/presentation/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    // Replace empty string values with null
+    for (var key in req.body) {
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    const {
+        PresentationDate,
+        PresentationRequestedBy,
+        PresentationPosition,
+        PresentationPrimaryAttorney,
+        PresentationStaffMemberAttending,
+        PresentationLocation,
+        PresentationMgmtCoAndOffice,
+        PresentationMethod,
+        PresentationWhoAttendedFromAssociation,
+        PresentationIssuesDiscussed,
+        PresentationTotalPresentationTime,
+        PresentationOutcome,
+        PresentationHired,
+        PresentationReasonsFirmSelected,
+    } = req.body;
+    //
+    var entryPresentation = {
+        MALrelatedID: malID,
+        date:PresentationDate,
+        requestedBy:PresentationRequestedBy,
+        position:PresentationPosition,
+        primaryAttorney:PresentationPrimaryAttorney,
+        staffMemberAttending:PresentationStaffMemberAttending,
+        location:PresentationLocation,
+        mgmtCoAndOffice:PresentationMgmtCoAndOffice,
+        method:PresentationMethod,
+        whoAttendedFromAssociation:PresentationWhoAttendedFromAssociation,
+        issuesDiscussed:PresentationIssuesDiscussed,
+        totalPresentationTime:PresentationTotalPresentationTime,
+        outcome:PresentationOutcome,
+        hired:PresentationHired,
+        reasonsFirmSelected:PresentationReasonsFirmSelected,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryPresentation)){
+        if (entryPresentation[key] == '') {
+            entryPresentation[key] = null;
+        }
+    }
+    // Create new update record
+    Presentations.create(entryPresentation)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','New MAL entry\'s *mal_Presentations* record not added.');
+    });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Update MAL Entry's Presentation Information
-// TODO
+router.post('/entry/presentation/:MAL_id/:Pre_id', ensureReadOnlyMAL, async function (req, res, next) {
+    let {
+        PresentationDate,
+        PresentationRequestedBy,
+        PresentationPosition,
+        PresentationPrimaryAttorney,
+        PresentationStaffMemberAttending,
+        PresentationLocation,
+        PresentationMgmtCoAndOffice,
+        PresentationMethod,
+        PresentationWhoAttendedFromAssociation,
+        PresentationIssuesDiscussed,
+        PresentationTotalPresentationTime,
+        PresentationOutcome,
+        PresentationHired,
+        PresentationReasonsFirmSelected,
+    } = req.body;
+
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(req.body)){
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    // Update MAL entry with object data
+    await Presentations.update(
+        {
+            date:PresentationDate,
+            requestedBy:PresentationRequestedBy,
+            position:PresentationPosition,
+            primaryAttorney:PresentationPrimaryAttorney,
+            staffMemberAttending:PresentationStaffMemberAttending,
+            location:PresentationLocation,
+            mgmtCoAndOffice:PresentationMgmtCoAndOffice,
+            method:PresentationMethod,
+            whoAttendedFromAssociation:PresentationWhoAttendedFromAssociation,
+            issuesDiscussed:PresentationIssuesDiscussed,
+            totalPresentationTime:PresentationTotalPresentationTime,
+            outcome:PresentationOutcome,
+            hired:PresentationHired,
+            reasonsFirmSelected:PresentationReasonsFirmSelected,
+        },
+        {where: {id:req.params.Pre_id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MAL entry\'s mal_Presentations.model.js');
+    });
+
+    res.redirect("../../../entry/" + req.params.MAL_id);
+});
 
 
 
