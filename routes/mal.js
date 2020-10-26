@@ -1219,7 +1219,7 @@ router.post('/entry/representation/:MAL_id/:Rep_id', ensureReadOnlyMAL, async fu
 
 
 // Social Media Section --------------------------------------
-// Update MAL Entry's Mug Purchase
+// Update MAL Entry's Social Media
 router.post('/entry/social/:id', upload.array(), ensureReadOnlyMAL, async function (req, res, next) {
     // Retrieve associated element values from page & structure them
     const {
@@ -1239,28 +1239,27 @@ router.post('/entry/social/:id', upload.array(), ensureReadOnlyMAL, async functi
     } = req.body;
     // Update MAL entry with object data
     await SocialMedia.update(
-            {
-                noSocialMedia:SocialNoSocialMedia,
-                hasFacebook:SocialHasFacebook,
-                facebookAccount:SocialFacebookAccount,
-                facebookDate:SocialFacebookDate,       
-                hasLinkedin:SocialHasLinkedin,
-                linkedinAccount:SocialLinkedinAccount,
-                linkedinDate:SocialLinkedinDate,                 
-                hasTwitter:SocialHasTwitter,
-                twitterAccount:SocialTwitterAccount,
-                twitterDate:SocialTwitterDate,
-                hasInstagram:SocialHasInstagram,
-                instagramAccount:SocialInstagramAccount,
-                instagramDate:SocialInstagramDate,
-            },
-            {where: {id:req.params.id}}
-            
-        )
-        .catch(err => {
-            console.log(err);
-            req.flash('failure','Failed to update MAL entry\'s mal_SocialMedia.model.js');
-        });
+        {
+            noSocialMedia:SocialNoSocialMedia,
+            hasFacebook:SocialHasFacebook,
+            facebookAccount:SocialFacebookAccount,
+            facebookDate:SocialFacebookDate,       
+            hasLinkedin:SocialHasLinkedin,
+            linkedinAccount:SocialLinkedinAccount,
+            linkedinDate:SocialLinkedinDate,                 
+            hasTwitter:SocialHasTwitter,
+            twitterAccount:SocialTwitterAccount,
+            twitterDate:SocialTwitterDate,
+            hasInstagram:SocialHasInstagram,
+            instagramAccount:SocialInstagramAccount,
+            instagramDate:SocialInstagramDate,
+        },
+        {where: {id:req.params.id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MAL entry\'s mal_SocialMedia.model.js');
+    });
     
     res.redirect("../../entry/" + req.params.id);
 });
@@ -1290,13 +1289,149 @@ router.post('/entry/social/:id', upload.array(), ensureReadOnlyMAL, async functi
 
 // Referrals Section --------------------------------------
 // Create MAL Entry's Source of Referral to C&M
-// TODO
+router.post('/create/source/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    // Replace empty string values with null
+    for (var key in req.body) {
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    const {
+        SourceDate,
+        SourceReferredBy,
+        SourcePosition,
+        SourceCompany,
+        SourceIfOrganizationMeeting,
+    } = req.body;
+    //
+    var entryRefSource = {
+        MALrelatedID: malID,
+        date:SourceDate,
+        referredBy:SourceReferredBy,
+        position:SourcePosition,
+        company:SourceCompany,
+        ifOrganizationMeeting:SourceIfOrganizationMeeting,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryRefSource)){
+        if (entryRefSource[key] == '') {
+            entryRefSource[key] = null;
+        }
+    }
+    // Create new update record
+    ReferralSource.create(entryRefSource)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','MAL entry\'s *mal_ReferralSource* record not added.');
+        });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Update MAL Entry's Source of Referral to C&M
-// TODO
+router.post('/entry/source/:MAL_id/:Src_id', ensureReadOnlyMAL, async function (req, res, next) {
+    let {
+        SourceDate,
+        SourceReferredBy,
+        SourcePosition,
+        SourceCompany,
+        SourceIfOrganizationMeeting,
+    } = req.body;
+
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(req.body)){
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    // Update MAL entry with object data
+    await ReferralSource.update(
+        {
+            date:SourceDate,
+            referredBy:SourceReferredBy,
+            position:SourcePosition,
+            company:SourceCompany,
+            ifOrganizationMeeting:SourceIfOrganizationMeeting,
+        },
+        {where: {id:req.params.Src_id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MAL entry\'s mal_ReferralSource.model.js');
+    });
+
+    res.redirect("../../../entry/" + req.params.MAL_id);
+});
 // Create MAL Entry's Referrals from C&M for Mgmt. Co./Vendors
-// TODO
+router.post('/create/referral/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    // Replace empty string values with null
+    for (var key in req.body) {
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    const {
+        MgmtRequestDate,
+        MgmtRequestedBy,
+        MgmtTitle,
+        MgmtForWhatBusiness,
+    } = req.body;
+    //
+    var entryRefMgmt = {
+        MALrelatedID: malID,
+        requestDate:MgmtRequestDate,
+        requestedBy:MgmtRequestedBy,
+        title:MgmtTitle,
+        forWhatBusiness:MgmtForWhatBusiness,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryRefMgmt)){
+        if (entryRefMgmt[key] == '') {
+            entryRefMgmt[key] = null;
+        }
+    }
+    // Create new update record
+    ReferralMgmtCoVendor.create(entryRefMgmt)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','New MAL entry\'s *mal_ReferralMgmtCoVendor* record not added.');
+    });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Update MAL MAL Entry's Referrals from C&M for Mgmt. Co./Vendors
-// TODO
+router.post('/entry/referral/:MAL_id/:Ref_id', ensureReadOnlyMAL, async function (req, res, next) {
+    let {
+        MgmtRequestDate,
+        MgmtRequestedBy,
+        MgmtTitle,
+        MgmtForWhatBusiness,
+    } = req.body;
+
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(req.body)){
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    // Update MAL entry with object data
+    await ReferralMgmtCoVendor.update(
+        {
+            requestDate:MgmtRequestDate,
+            requestedBy:MgmtRequestedBy,
+            title:MgmtTitle,
+            forWhatBusiness:MgmtForWhatBusiness,
+        },
+        {where: {id:req.params.Ref_id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MAL entry\'s mal_ReferralMgmtCoVendor.model.js');
+    });
+
+    res.redirect("../../../entry/" + req.params.MAL_id);
+});
+
+
 
 
 
