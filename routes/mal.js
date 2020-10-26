@@ -1034,7 +1034,7 @@ router.post('/entry/supplemental/:id', ensureReadOnlyMAL, async function (req, r
         SupplementalAdditionalNotes,
     } = req.body;
     // Update MAL entry with object data
-    MAL.update(
+    await SupplementalAssociationInfo.update(
             {MALrelatedID: malID,
                 designatedSiteAddress: SupplementalDesignatedSiteAddress,
                 city: SupplementalCity,
