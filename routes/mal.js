@@ -1220,7 +1220,50 @@ router.post('/entry/representation/:MAL_id/:Rep_id', ensureReadOnlyMAL, async fu
 
 // Social Media Section --------------------------------------
 // Update MAL Entry's Mug Purchase
-// TODO
+router.post('/entry/social/:id', upload.array(), ensureReadOnlyMAL, async function (req, res, next) {
+    // Retrieve associated element values from page & structure them
+    const {
+        SocialNoSocialMedia,
+        SocialHasFacebook,
+        SocialFacebookAccount,
+        SocialFacebookDate,
+        SocialHasLinkedin,
+        SocialLinkedinAccount,
+        SocialLinkedinDate,
+        SocialHasTwitter,
+        SocialTwitterAccount,
+        SocialTwitterDate,
+        SocialHasInstagram,
+        SocialInstagramAccount,
+        SocialInstagramDate,
+    } = req.body;
+    // Update MAL entry with object data
+    await SocialMedia.update(
+            {
+                noSocialMedia:SocialNoSocialMedia,
+                hasFacebook:SocialHasFacebook,
+                facebookAccount:SocialFacebookAccount,
+                facebookDate:SocialFacebookDate,       
+                hasLinkedin:SocialHasLinkedin,
+                linkedinAccount:SocialLinkedinAccount,
+                linkedinDate:SocialLinkedinDate,                 
+                hasTwitter:SocialHasTwitter,
+                twitterAccount:SocialTwitterAccount,
+                twitterDate:SocialTwitterDate,
+                hasInstagram:SocialHasInstagram,
+                instagramAccount:SocialInstagramAccount,
+                instagramDate:SocialInstagramDate,
+            },
+            {where: {id:req.params.id}}
+            
+        )
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Failed to update MAL entry\'s mal_SocialMedia.model.js');
+        });
+    
+    res.redirect("../../entry/" + req.params.id);
+});
 
 
 
