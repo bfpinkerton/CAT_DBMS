@@ -1550,9 +1550,262 @@ router.post('/entry/presentation/:MAL_id/:Pre_id', ensureReadOnlyMAL, async func
 
 // Potential Client Status Report --------------------------------------
 // Create MAL Entry's Potential Client Status Report
-// TODO
+router.post('/create/potential/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    // Replace empty string values with null
+    for (var key in req.body) {
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    const {
+        PotentialOriginationDatePC,
+        PotentialStaffInitialsPC,
+        PotentialStaffAssignedPC,
+        PotentialNewestEventDate,
+        PotentialStaffInitialsEvent,
+        PotentialFollowUpType,
+        PotentialNextFollowUpDate,
+        PotentialStaffInitialsFollowUp,
+        PotentialFileType,
+        PotentialFileDate,
+        PotentialContactName,
+        PotentialPosition,
+        PotentialPhoneNumber,
+        PotentialExtension,
+        PotentialInfoNote,
+        PotentialCurrentLegalCouncil,
+        PotentialOtherFirmsConsidered,
+        PotentialReasonForLeavingCurrent,
+        PotentialBestAspectCurrent,
+        PotentialDecisionExpected,
+        PotentialDecisionBasis,
+        PotentialSincereRequest3rdParty,
+        PotentialCMNotifiedOnDecision,
+        PotentialCurrentFirmSelection,
+        PotentialAssociationHeardCM,
+        PotentialWhatEvent,
+        PotentialPackageTypeRequested,
+        PotentialCopyToName,
+        PotentialTitle,
+        PotentialMgmtCo,
+        PotentialCopyDate,
+        PotentialEventsChain,
+        PotentialChainDate,
+        PotentialChainOriginator,
+        PotentialChainInitials,
+        PotentialChainInputDate,
+        PotentialEntryTotalTime,
+        PotentialEntryNotes,
+        PotentialFileClosingStatus,
+        PotentialFileClosingDate,
+        PotentialFileRemoveAfter,
+        PotentialClosedFileStatus,
+        PotentialStartingRoundDate,
+        PotentialEndingDate,
+        PotentialClosingDate,
+        PotentialSpentTotalTime,
+        PotentialFirmSelected,
+        PotentialFirmSelectedOtherWhy,
+        PotentialOtherFirmAdditionalReasons,
+        PotentialClosingLetter,
+        PotentialFinalStaffThoughts,
+    } = req.body;
+    //
+    var entryPotential = {
+        MALrelatedID: req.params.MAL_id,
+        originationDatePC:PotentialOriginationDatePC,
+        staffInitialsPC:PotentialStaffInitialsPC,
+        staffAssignedPC:PotentialStaffAssignedPC,
+        newestEventDate:PotentialNewestEventDate,
+        staffInitialsEvent:PotentialStaffInitialsEvent,
+        followUpType:PotentialFollowUpType,
+        nextFollowUpDate:PotentialNextFollowUpDate,
+        staffInitialsFollowUp:PotentialStaffInitialsFollowUp,
+        fileType:PotentialFileType,
+        fileDate:PotentialFileDate,
+        contactName:PotentialContactName,
+        position:PotentialPosition,
+        phoneNumber:PotentialPhoneNumber,
+        extension:PotentialExtension,
+        infoNote:PotentialInfoNote,
+        currentLegalCouncil:PotentialCurrentLegalCouncil,
+        otherFirmsConsidered:PotentialOtherFirmsConsidered,
+        reasonForLeavingCurrent:PotentialReasonForLeavingCurrent,
+        bestAspectCurrent:PotentialBestAspectCurrent,
+        decisionExpected:PotentialDecisionExpected,
+        decisionBasis:PotentialDecisionBasis,
+        sincereRequest3rdParty:PotentialSincereRequest3rdParty,
+        CMNotifiedOnDecision:PotentialCMNotifiedOnDecision,
+        currentFirmSelection:PotentialCurrentFirmSelection,
+        associationHeardCM:PotentialAssociationHeardCM,
+        whatEvent:PotentialWhatEvent,
+        packageTypeRequested:PotentialPackageTypeRequested,
+        copyToName:PotentialCopyToName,
+        title:PotentialTitle,
+        mgmtCo:PotentialMgmtCo,
+        copyDate:PotentialCopyDate,
+        eventsChain:PotentialEventsChain,
+        chainDate:PotentialChainDate,
+        chainOriginator:PotentialChainOriginator,
+        chainInitials:PotentialChainInitials,
+        chainInputDate:PotentialChainInputDate,
+        entryTotalTime:PotentialEntryTotalTime,
+        entryNotes:PotentialEntryNotes,
+        fileClosingStatus:PotentialFileClosingStatus,
+        fileClosingDate:PotentialFileClosingDate,
+        fileRemoveAfter:PotentialFileRemoveAfter,
+        closedFileStatus:PotentialClosedFileStatus,
+        startingRoundDate:PotentialStartingRoundDate,
+        endingDate:PotentialEndingDate,
+        closingDate:PotentialClosingDate,
+        spentTotalTime:PotentialSpentTotalTime,
+        firmSelected:PotentialFirmSelected,
+        firmSelectedOtherWhy:PotentialFirmSelectedOtherWhy,
+        otherFirmAdditionalReasons:PotentialOtherFirmAdditionalReasons,
+        closingLetter:PotentialClosingLetter,
+        finalStaffThoughts:PotentialFinalStaffThoughts,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryPotential)){
+        if (entryPotential[key] == '') {
+            entryPotential[key] = null;
+        }
+    }
+    // Create new update record
+    PotentialClientReports.create(entryPotential)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','New MAL entry\'s *mal_PotentialClientReports* record not added.');
+    });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Update MAL Entry's Potential Client Status Report
-// TODO
+router.post('/entry/potential/:MAL_id/:Pot_id', ensureReadOnlyMAL, async function (req, res, next) {
+    let {
+        PotentialOriginationDatePC,
+        PotentialStaffInitialsPC,
+        PotentialStaffAssignedPC,
+        PotentialNewestEventDate,
+        PotentialStaffInitialsEvent,
+        PotentialFollowUpType,
+        PotentialNextFollowUpDate,
+        PotentialStaffInitialsFollowUp,
+        PotentialFileType,
+        PotentialFileDate,
+        PotentialContactName,
+        PotentialPosition,
+        PotentialPhoneNumber,
+        PotentialExtension,
+        PotentialInfoNote,
+        PotentialCurrentLegalCouncil,
+        PotentialOtherFirmsConsidered,
+        PotentialReasonForLeavingCurrent,
+        PotentialBestAspectCurrent,
+        PotentialDecisionExpected,
+        PotentialDecisionBasis,
+        PotentialSincereRequest3rdParty,
+        PotentialCMNotifiedOnDecision,
+        PotentialCurrentFirmSelection,
+        PotentialAssociationHeardCM,
+        PotentialWhatEvent,
+        PotentialPackageTypeRequested,
+        PotentialCopyToName,
+        PotentialTitle,
+        PotentialMgmtCo,
+        PotentialCopyDate,
+        PotentialEventsChain,
+        PotentialChainDate,
+        PotentialChainOriginator,
+        PotentialChainInitials,
+        PotentialChainInputDate,
+        PotentialEntryTotalTime,
+        PotentialEntryNotes,
+        PotentialFileClosingStatus,
+        PotentialFileClosingDate,
+        PotentialFileRemoveAfter,
+        PotentialClosedFileStatus,
+        PotentialStartingRoundDate,
+        PotentialEndingDate,
+        PotentialClosingDate,
+        PotentialSpentTotalTime,
+        PotentialFirmSelected,
+        PotentialFirmSelectedOtherWhy,
+        PotentialOtherFirmAdditionalReasons,
+        PotentialClosingLetter,
+        PotentialFinalStaffThoughts,
+    } = req.body;
+
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(req.body)){
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    // Update MAL entry with object data
+    await PotentialClientReports.update(
+        {
+            originationDatePC:PotentialOriginationDatePC,
+            staffInitialsPC:PotentialStaffInitialsPC,
+            staffAssignedPC:PotentialStaffAssignedPC,
+            newestEventDate:PotentialNewestEventDate,
+            staffInitialsEvent:PotentialStaffInitialsEvent,
+            followUpType:PotentialFollowUpType,
+            nextFollowUpDate:PotentialNextFollowUpDate,
+            staffInitialsFollowUp:PotentialStaffInitialsFollowUp,
+            fileType:PotentialFileType,
+            fileDate:PotentialFileDate,
+            contactName:PotentialContactName,
+            position:PotentialPosition,
+            phoneNumber:PotentialPhoneNumber,
+            extension:PotentialExtension,
+            infoNote:PotentialInfoNote,
+            currentLegalCouncil:PotentialCurrentLegalCouncil,
+            otherFirmsConsidered:PotentialOtherFirmsConsidered,
+            reasonForLeavingCurrent:PotentialReasonForLeavingCurrent,
+            bestAspectCurrent:PotentialBestAspectCurrent,
+            decisionExpected:PotentialDecisionExpected,
+            decisionBasis:PotentialDecisionBasis,
+            sincereRequest3rdParty:PotentialSincereRequest3rdParty,
+            CMNotifiedOnDecision:PotentialCMNotifiedOnDecision,
+            currentFirmSelection:PotentialCurrentFirmSelection,
+            associationHeardCM:PotentialAssociationHeardCM,
+            whatEvent:PotentialWhatEvent,
+            packageTypeRequested:PotentialPackageTypeRequested,
+            copyToName:PotentialCopyToName,
+            title:PotentialTitle,
+            mgmtCo:PotentialMgmtCo,
+            copyDate:PotentialCopyDate,
+            eventsChain:PotentialEventsChain,
+            chainDate:PotentialChainDate,
+            chainOriginator:PotentialChainOriginator,
+            chainInitials:PotentialChainInitials,
+            chainInputDate:PotentialChainInputDate,
+            entryTotalTime:PotentialEntryTotalTime,
+            entryNotes:PotentialEntryNotes,
+            fileClosingStatus:PotentialFileClosingStatus,
+            fileClosingDate:PotentialFileClosingDate,
+            fileRemoveAfter:PotentialFileRemoveAfter,
+            closedFileStatus:PotentialClosedFileStatus,
+            startingRoundDate:PotentialStartingRoundDate,
+            endingDate:PotentialEndingDate,
+            closingDate:PotentialClosingDate,
+            spentTotalTime:PotentialSpentTotalTime,
+            firmSelected:PotentialFirmSelected,
+            firmSelectedOtherWhy:PotentialFirmSelectedOtherWhy,
+            otherFirmAdditionalReasons:PotentialOtherFirmAdditionalReasons,
+            closingLetter:PotentialClosingLetter,
+            finalStaffThoughts:PotentialFinalStaffThoughts,
+        },
+        {where: {id:req.params.Pot_id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MAL entry\'s mal_PotentialClientReports.model.js');
+    });
+
+    res.redirect("../../../entry/" + req.params.MAL_id);
+});
 
 
 
