@@ -12,6 +12,8 @@ const db = require("../models");
 // User model
 const User = db.users;
 
+// require("../config/passport")(passport);
+
 // Ensure authenticated user is logged in
 const {
     ensureAuthenticated
@@ -34,7 +36,7 @@ router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
 });
 
 // GET register user page
-router.get('/register' ,ensureAdmin, function (req, res, next) {
+router.get('/register', ensureAdmin, function (req, res, next) {
     res.locals.message = req.flash();
     res.render('pages/users/register');
 });

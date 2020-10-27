@@ -3,7 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+<<<<<<< HEAD
     "test": "cucumber-js"
+=======
+    "start": "node ./bin/www",
+    "db:makemigrations": "./node_modules/sequelize-auto-migrations/bin/makemigration.js",
+    "test": "./node_modules/mocha/bin/mocha tests/unit_test.js"
+>>>>>>> dd43c1707c1446e80dd9cba18b67db90d1a3dcd6
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

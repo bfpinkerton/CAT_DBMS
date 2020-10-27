@@ -5,6 +5,7 @@
         - User Serialization: Establishing a session for authorized user to view privileged info
 */
 
+const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
@@ -15,7 +16,7 @@ const mysql = require("mysql");
 
 // Login middleware
 module.exports = function(passport) {
-    passport.use(
+    passport.use('local',
         // Using email as "username"
         new localStrategy({ usernameField: 'email' }, (email, password, done) => {
             // Match email

@@ -1,6 +1,13 @@
 # CAT_DBMS
 <b>This repository serves to house the modern recreation of Community Association Title's legacy database management system.</b>
 
+### Running Mocha Unit Tests
+run 'npm test' in root directory
+
+### Running Cucumber tests
+run 'npm install @cucumber/cucumber' in root directory. 
+Then './node_modules/.bin/cucumber-js'
+
 New System's Functionality Gif:
 ![alt-text](currentEx.gif)
 
