@@ -1245,7 +1245,7 @@ router.post('', ensureReadOnlyMAL, function (req, res, next) {
     res.redirect("../../entry/" + req.params.MAL_id);
 });
 // Update MAL Entry's Mug Purchase
-router.post('', ensureReadOnlyMAL, function (req, res, next) {
+router.post('', ensureReadOnlyMAL, async function (req, res, next) {
     const {
         MugPurchaseStatus,
         MugOriginationSaleSource,
@@ -1324,7 +1324,7 @@ router.post('', ensureReadOnlyMAL, function (req, res, next) {
     res.redirect("../../entry/" + req.params.MAL_id);
 });
 // Update MAL MAL Entry's Florida Statue Service
-router.post('', ensureReadOnlyMAL, function (req, res, next) {
+router.post('', ensureReadOnlyMAL, async function (req, res, next) {
     const {
         StatueStatusPurchase,
         StatueRequestedDate,
@@ -1481,7 +1481,7 @@ router.post('', ensureReadOnlyMAL, function (req, res, next) {
     res.redirect("../../entry/" + req.params.MAL_id);
 });
 // Update MAL Entry's Hiring Information
-router.post('', ensureReadOnlyMAL, function (req, res, next) {
+router.post('', ensureReadOnlyMAL, async function (req, res, next) {
     const {
         HiringDateHired,
         HiringReasonsHired,
@@ -1562,7 +1562,7 @@ router.post('', ensureReadOnlyMAL, function (req, res, next) {
     res.redirect("../../entry/" + req.params.MAL_id);
 });
 // Update MAL MAL Entry's Termination Information
-router.post('', ensureReadOnlyMAL, function (req, res, next) {
+router.post('', ensureReadOnlyMAL, async function (req, res, next) {
     const {
         TerminationDateTerminated,
         TerminationReasonTerminated,
