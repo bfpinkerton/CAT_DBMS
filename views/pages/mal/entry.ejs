@@ -259,15 +259,15 @@
                                             </div>
                                             <div class="ui input field">
                                                 <label>Also Known As:</label>
-                                                <input type="string" name="Aka" placeholder="Enter Alt Name">
+                                                <input type="string" value="<%=mal.aka%>" name="Aka" placeholder="Enter Alt Name">
                                             </div>
                                             <div class="ui input field">
                                                 <label>Client Account Number:</label>
-                                                <input type="string" name="ClientAcctNum" placeholder="Enter Client Acct #">
+                                                <input type="string" value="<%=mal.clientAcctNum%>" name="ClientAcctNum" placeholder="Enter Client Acct #">
                                             </div>
                                             <div class="ui input field">
                                                 <label>File Name:</label>
-                                                <input type="string" name="FileName" placeholder="Enter File Name">
+                                                <input type="string" value="<%=mal.fileName%>" name="FileName" placeholder="Enter File Name">
                                             </div>
                                         </div>
                                     </div>
@@ -285,7 +285,7 @@
                                             <i class="ui upload icon"></i> 
                                             Upload Entryway/Landmark Photo
                                         </label>
-                                    <input type="file" (change)="fileEvent($event)" class="inputfile" id="embedpollfileinput" />
+                                    <input type="file" (change)="fileEvent($event)" value="<%=mal.associationPhoto%>" class="inputfile" id="embedpollfileinput" />
                                 </div>
                             </div>
                             <!-- Primary Association Information (2) -->
@@ -296,7 +296,7 @@
                                             <div class="field">
                                                 <label>Status w/in Firm:</label>
                                                 <div class="ui selection dropdown dropdownBorder">
-                                                    <input type="hidden" name="StatusInFirm">
+                                                    <input type="hidden" value="<%=mal.statusInFirm%>" name="StatusInFirm">
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -307,7 +307,7 @@
                                             <div class="field">
                                                 <label>Special Classification:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="SpecialClassification" >
+                                                    <input type="hidden" value="<%=mal.specialClassification%>" name="SpecialClassification" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -318,7 +318,7 @@
                                             <div class="field">
                                                 <label>Association Type:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="AsscType" >
+                                                    <input type="hidden" value="<%=mal.asscType%>" name="AsscType" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -333,7 +333,7 @@
                                             <div class="field" style="width: 37vw">
                                                 <label>Secondary MHP Association Type:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="ScndMHPAssc" >
+                                                    <input type="hidden" value="<%=mal.scndMHPAssc%>" name="ScndMHPAssc" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -344,7 +344,7 @@
                                             <div class="field">
                                                 <label>Domicile County:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="DomicileCounty" >
+                                                    <input type="hidden" value="<%=mal.domicileCounty%>" name="DomicileCounty" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -355,7 +355,7 @@
                                             <div class="field">
                                                 <label>Domicile City:</label>
                                                 <div class="ui selection dropdown">
-                                                    <input type="hidden" name="DomicileCity" >
+                                                    <input type="hidden" value="<%=mal.domicileCity%>" name="DomicileCity" >
                                                     <i class="dropdown icon"></i>
                                                     <div class="default text">Choose from below:</div>
                                                     <div class="menu">
@@ -365,7 +365,7 @@
                                             </div>
                                             <div class="ui input field">
                                                 <label>Domicile Zip Code:</label>
-                                                <input type="integer" name="DomicileZip" pattern="\d{5}" placeholder="Enter Zip Code">
+                                                <input type="integer" value="<%=mal.domicileZip%>" name="DomicileZip" pattern="\d{5}" placeholder="Enter Zip Code">
                                             </div>
                                         </div>
                                     </div>
@@ -380,10 +380,10 @@
                             </div>
                         </form>
                         </div>
-                    
 
 
-                    <% var route2 = "/mal/entry/supplemental/" + mal.id %>
+
+                    <% var route2 = "/mal/entry/supplemental/" + mal.id + "/" + SupplementalAssociationInfo.id %>
                     <form class="ui form" id="supplementalMAL" action="<%=route2%>" method="POST">
                         <!-- TODO: Pull Following 2 fields from MAL Table -->
                         <!-- Supplemental Association Information -->
@@ -398,12 +398,12 @@
                                     <div class="three fields">
                                         <div class="ui input field">
                                             <label>Designated On-Site Association Address::</label>
-                                            <input type="string" name="SupplementalDesignatedSiteAddress" placeholder="Enter Address">
+                                            <input type="string" value="<%=SupplementalAssociationInfo.designatedSiteAddress%>" name="SupplementalDesignatedSiteAddress" placeholder="Enter Address">
                                         </div>
                                         <div class="field">
                                             <label>City:</label>
                                             <div class="ui selection dropdown">
-                                                <input type="hidden" name="SupplementalCity">
+                                                <input type="hidden" value="<%=SupplementalAssociationInfo.city%>" name="SupplementalCity">
                                                 <i class="dropdown icon"></i>
                                                 <div class="default text">Choose from below:</div>
                                                 <div class="menu">
@@ -413,7 +413,7 @@
                                         </div>
                                         <div class="ui input field">
                                             <label>Zip Code:</label>
-                                            <input type="string" name="SupplementalZipCode" pattern="\d{5}" placeholder="Enter Zip Code">
+                                            <input type="string" value="<%=SupplementalAssociationInfo.zipCode%>" name="SupplementalZipCode" pattern="\d{5}" placeholder="Enter Zip Code">
                                         </div>
                                     </div>
                                 </div>
@@ -421,15 +421,15 @@
                                     <div class="three fields">
                                         <div class="ui input field">
                                             <label>Phone Number:</label>
-                                            <input type="string" name="SupplementalPhoneNumber" pattern="\d{10,15}" placeholder="Enter Phone Number">
+                                            <input type="string" value="<%=SupplementalAssociationInfo.phoneNumber%>" name="SupplementalPhoneNumber" pattern="\d{10,15}" placeholder="Enter Phone Number">
                                         </div>
                                         <div class="ui input field">
                                             <label>Association Website:</label>
-                                            <input type="string" name="SupplementalAssociationWebsite" pattern="\d{10,15}" placeholder="Enter Website">
+                                            <input type="string" value="<%=SupplementalAssociationInfo.associationWebsite%>" name="SupplementalAssociationWebsite" pattern="\d{10,15}" placeholder="Enter Website">
                                         </div>
                                         <div class="ui input field">
                                             <label>Association E-Mail Address:</label>
-                                            <input type="string" name="SupplementalAssociationEmail" pattern="\d{10,15}" placeholder="Enter E-Mail Address">
+                                            <input type="string" value="<%=SupplementalAssociationInfo.associationEmail%>" name="SupplementalAssociationEmail" pattern="\d{10,15}" placeholder="Enter E-Mail Address">
                                         </div>
                                     </div>
                                 </div>
@@ -437,7 +437,7 @@
                                     <div class="three fields">
                                         <div class="ui input field">
                                             <label># of Units/Lots when Fully Developed:</label>
-                                            <input type="string" name="SupplementalNumberUnitsLotsDeveloped" pattern="\d{1,100}" placeholder="Enter # Units/Lots">
+                                            <input type="string" value="<%=SupplementalAssociationInfo.numberUnitsLotsDeveloped%>" name="SupplementalNumberUnitsLotsDeveloped" pattern="\d{1,100}" placeholder="Enter # Units/Lots">
                                         </div>
                                         <div class="field">
                                             <div class="ui two column divided grid">
@@ -472,13 +472,13 @@
                                                                 <div class="inline fields">
                                                                     <div class="field">
                                                                         <div class="resident ui radio checkbox">
-                                                                            <input type="radio" name="SupplementalAssociationControlledBy" value="Residents" checked="checked">
+                                                                            <input type="radio"  name="SupplementalAssociationControlledBy" value="Residents" checked="checked">
                                                                             <label>Residents</label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="field">
                                                                         <div class="developer ui radio checkbox">
-                                                                            <input type="radio" name="SupplementalAssociationControlledBy" value="Developer">
+                                                                            <input type="radio"  name="SupplementalAssociationControlledBy" value="Developer">
                                                                             <label>Developer</label>
                                                                         </div>
                                                                     </div>
@@ -496,7 +496,7 @@
                                             <div class="ui calendar" style="border-color: black;">
                                                 <div class="ui input left icon" >
                                                     <i class="calendar icon"></i>
-                                                    <input type="text" placeholder="Date" name="SupplementalApproxTurnoverDate" class="calendar_input">
+                                                    <input type="text" placeholder="Date" value="<%=SupplementalAssociationInfo.approxTurnoverDate%>" name="SupplementalApproxTurnoverDate" class="calendar_input">
                                                 </div>
                                             </div>
                                         </div>
@@ -531,7 +531,7 @@
                                                 <div class="mas-Sub-Toggle field">
                                                     <label>Master — What Associations are Subs:</label>
                                                     <div class="ui selection dropdown dropdownBorder">
-                                                        <input type="hidden" name="SupplementalSubAssociations">
+                                                        <input type="hidden" value="<%=SupplementalAssociationInfo.subAssociations%>" name="SupplementalSubAssociations">
                                                         <i class="dropdown icon"></i>
                                                         <div class="default text">Choose from below:</div>
                                                         <div class="menu">
@@ -544,7 +544,7 @@
                                                 <div class="mas-Sub-Toggle disabled field">
                                                     <label>Sub — What Association is Master:</label>
                                                     <div class="ui selection dropdown dropdownBorder">
-                                                        <input type="hidden" name="SupplementalMasterAssociation">
+                                                        <input type="hidden" value="<%=SupplementalAssociationInfo.masterAssociation%>" name="SupplementalMasterAssociation">
                                                         <i class="dropdown icon"></i>
                                                         <div class="default text">Choose from below:</div>
                                                         <div class="menu">
@@ -560,7 +560,7 @@
                                                     <div class="field">
                                                         <label>Registered Agent:</label>
                                                         <div class="ui selection dropdown dropdownBorder">
-                                                            <input type="hidden" name="SupplementalRegisteredAgent">
+                                                            <input type="hidden" value="<%=SupplementalAssociationInfo.registeredAgent%>" name="SupplementalRegisteredAgent">
                                                             <i class="dropdown icon"></i>
                                                             <div class="default text">Choose from below:</div>
                                                             <div class="menu">
@@ -574,7 +574,7 @@
                                                         <div class="ui calendar" style="border-color: black;">
                                                             <div class="ui input left icon" >
                                                                 <i class="calendar icon"></i>
-                                                                <input type="text" name="SupplementalDateRA" placeholder="Date" class="calendar_input">
+                                                                <input type="text" value="<%=SupplementalAssociationInfo.dateRA%>" name="SupplementalDateRA" placeholder="Date" class="calendar_input">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -603,12 +603,12 @@
                                                 <div class="three fields">
                                                     <div class="ui input field">
                                                         <label>Assesments:</label>
-                                                        <input type="string" name="SupplementalAssessments" placeholder="Enter Assesments">
+                                                        <input type="string" value="<%=SupplementalAssociationInfo.assessments%>" name="SupplementalAssessments" placeholder="Enter Assesments">
                                                     </div>
                                                     <div class="field">
                                                         <label>What Intervals:</label>
                                                         <div class="ui selection dropdown dropdownBorder">
-                                                            <input type="hidden" name="SupplementalWhatIntervals">
+                                                            <input type="hidden" value="<%=SupplementalAssociationInfo.whatIntervals%>" name="SupplementalWhatIntervals">
                                                             <i class="dropdown icon"></i>
                                                             <div class="default text">Choose from below:</div>
                                                             <div class="menu">
@@ -643,20 +643,20 @@
                                                 <div class="four fields">
                                                     <div class="ui input field">
                                                         <label>Price:</label>
-                                                        <input type="string" name="SupplementalPrice" pattern="\d{1,100}" placeholder="Enter Price">
+                                                        <input type="string" value="<%=SupplementalAssociationInfo.price%>" name="SupplementalPrice" pattern="\d{1,100}" placeholder="Enter Price">
                                                     </div>
                                                     <div class="ui input field">
                                                         <label>Theater Style Seating #:</label>
-                                                        <input type="string" name="SupplementalTheaterSeatingAmount" pattern="\d{1,100}" placeholder="Enter Style Seating">
+                                                        <input type="string" value="<%=SupplementalAssociationInfo.theaterSeatingAmount%>" name="SupplementalTheaterSeatingAmount" pattern="\d{1,100}" placeholder="Enter Style Seating">
                                                     </div>
                                                     <div class="ui input field">
                                                         <label>Tables/Chairs Seating #:</label>
-                                                        <input type="string" name="SupplementalTableChairsAmount" pattern="\d{1,100}" placeholder="Enter Tables/Chairs Seating">
+                                                        <input type="string" value="<%=SupplementalAssociationInfo.tableChairsAmount%>" name="SupplementalTableChairsAmount" pattern="\d{1,100}" placeholder="Enter Tables/Chairs Seating">
                                                     </div>
                                                     <div class="field">
                                                         <label>Type of Tables:</label>
                                                         <div class="ui selection dropdown dropdownBorder">
-                                                            <input type="hidden" name="SupplementalTypeOfTables">
+                                                            <input type="hidden" value="<%=SupplementalAssociationInfo.typeOfTables%>" name="SupplementalTypeOfTables">
                                                             <i class="dropdown icon"></i>
                                                             <div class="default text">Choose from below:</div>
                                                             <div class="menu">
@@ -673,7 +673,7 @@
                                 <div class="row">
                                     <div class="ui fluid input field">
                                         <label>Additional Notes:</label>
-                                        <textarea rows="2" name="SupplementalAdditionalNotes" style="border: 1px solid black !important;"></textarea>
+                                        <textarea rows="2" value="<%=SupplementalAssociationInfo.additionalNotes%>" name="SupplementalAdditionalNotes" style="border: 1px solid black !important;"></textarea>
                                     </div>
                                 </div>
                                 <div class="ui inverted divider"></div>

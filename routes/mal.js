@@ -1002,7 +1002,7 @@ router.post('/entry/primary/:id', upload.array(), ensureReadOnlyMAL, async funct
 
 // Supplemental Information Section ----------------------------------------------------------------------------------------------------
 // Update MAL Entry's mal_SupplementalAssociationInfo
-router.post('/entry/supplemental/:id', ensureReadOnlyMAL, async function (req, res, next) {
+router.post('/entry/supplemental/:MAL_id/:id', ensureReadOnlyMAL, async function (req, res, next) {
     // Retrieve associated element values from page & structure them
     const {
         SupplementalDesignatedSiteAddress,
@@ -1032,7 +1032,7 @@ router.post('/entry/supplemental/:id', ensureReadOnlyMAL, async function (req, r
     } = req.body;
     // Update MAL entry with object data
     await SupplementalAssociationInfo.update(
-            {MALrelatedID: malID,
+            {
                 designatedSiteAddress: SupplementalDesignatedSiteAddress,
                 city: SupplementalCity,
                 zipCode: SupplementalZipCode,
@@ -1064,7 +1064,7 @@ router.post('/entry/supplemental/:id', ensureReadOnlyMAL, async function (req, r
             req.flash('failure','Failed to update MAL entry\'s mal.model.js');
         });
 
-    res.redirect("../../mal/entry/" + req.params.id);
+    res.redirect("../../../../mal/entry/" + req.params.MAL_id);
 });
 
 
