@@ -43,3 +43,7 @@ When('admin clicks update entry supplemental information button', function (){
     return driver.findElement(By.id('UpdateEntryInfoButton')).click();
 });
 
+
+Then(/^updated entry "([^"]*)" should persist on web page$/, function (arg1){
+    return driver.findElement(By.cssSelector(arg1));
+});
