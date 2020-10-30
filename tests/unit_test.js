@@ -28,8 +28,8 @@ describe('User', function () {
             readOnly: 1
         };
 
-        User.create(newUser1);
-        User.create(newUser2);
+        await User.create(newUser1);
+        await User.create(newUser2);
     });
 
     after(async function() {
