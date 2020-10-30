@@ -35,11 +35,11 @@ Then('entry appears in representation inquiry', function (){
     return driver.findElement(By.id('RepresentationTable'));
 });
 
-When(/^admin puts in username "([^"]*)"$/, function(arg1) {
-    return driver.findElement(By.name('email')).sendKeys(arg1);
+When(/^admin puts "([^"]*)" into legal association name$/, function(arg1) {
+    return driver.findElement(By.name('LegalName')).sendKeys(arg1);
 });
 
 When('admin clicks update entry supplemental information button', function (){
-    return driver.findElement(By.id('submitButton')).click();
+    return driver.findElement(By.id('UpdateEntryInfoButton')).click();
 });
 
