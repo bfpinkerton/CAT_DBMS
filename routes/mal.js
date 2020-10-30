@@ -319,8 +319,8 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
                             console.log(err);
                             req.flash('failure','New MAL entry\'s *mal_RepresentationInquiries* record not added.');
                         });
-                    
-                    
+
+
 
                     // mal_MerchandiseMug.model.js ----------------------------------------------------------------------------------------
                     const {
@@ -355,8 +355,8 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
                             console.log(err);
                             req.flash('failure','New MAL entry\'s *mal_MerchandiseMug* record not added.');
                         });
-                    
-                    
+
+
 
                     // mal_MerchandiseFloridaStatue.model.js ------------------------------------------------------------------------------
                     const {
@@ -398,8 +398,8 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
                             req.flash('failure','New MAL entry\'s *mal_SupplementalAssociationInfo* record not added.');
                         });
 
-                    
-                    
+
+
                     // mal_SocialMedia.model.js -------------------------------------------------------------------------------------------
                     const {
                         SocialNoSocialMedia,
@@ -422,10 +422,10 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
                         noSocialMedia:SocialNoSocialMedia,
                         hasFacebook:SocialHasFacebook,
                         facebookAccount:SocialFacebookAccount,
-                        facebookDate:SocialFacebookDate,       
+                        facebookDate:SocialFacebookDate,
                         hasLinkedin:SocialHasLinkedin,
                         linkedinAccount:SocialLinkedinAccount,
-                        linkedinDate:SocialLinkedinDate,                 
+                        linkedinDate:SocialLinkedinDate,
                         hasTwitter:SocialHasTwitter,
                         twitterAccount:SocialTwitterAccount,
                         twitterDate:SocialTwitterDate,
@@ -457,8 +457,8 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
                             console.log(err);
                             req.flash('failure','New MAL entry\'s *mal_SocialMedia* record not added.');
                         });
-                    
-                    
+
+
                     // mal_HiringRecord.model.js ------------------------------------------------------------------------------------------
                     const {
                         HiringDateHired,
@@ -502,8 +502,8 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
                             console.log(err);
                             req.flash('failure','New MAL entry\'s *mal_HiringRecord* record not added.');
                         });
-                    
-                    
+
+
                     // mal_TerminationRecord.model.js -------------------------------------------------------------------------------------
                     const {
                         TerminationDateTerminated,
@@ -535,8 +535,8 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
                             console.log(err);
                             req.flash('failure','New MAL entry\'s *mal_TerminationRecord* record not added.');
                         });
-                    
-                    
+
+
                     // mal_ReferralSource.model.js ----------------------------------------------------------------------------------------
                     const {
                         SourceDate,
@@ -575,7 +575,7 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
                         MgmtTitle,
                         MgmtForWhatBusiness,
                     } = req.body;
-                    // 
+                    //
                     var entryRefMgmt = {
                         MALrelatedID: malID,
                         requestDate:MgmtRequestDate,
@@ -614,7 +614,7 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
                         PresentationHired,
                         PresentationReasonsFirmSelected,
                     } = req.body;
-                      //  
+                      //
                     var entryPresentation = {
                         MALrelatedID: malID,
                         date:PresentationDate,
@@ -800,9 +800,6 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
 
 // Query specified table and return record
 router.get('/retrieve/:table/:id', ensureAuthenticated, async function (req, res) {
-    console.log();
-    console.log("ROUTE REACHED");
-    console.log();
     let record;
     switch (req.params.table) {
         case "Update" :
@@ -991,13 +988,13 @@ router.post('/entry/primary/:id', upload.array(), ensureReadOnlyMAL, async funct
                 associationPhoto: AssociationPhoto
             },
             {where: {id:req.params.id}}
-            
+
         )
         .catch(err => {
             console.log(err);
             req.flash('failure','Failed to update MAL entry\'s mal.model.js');
         });
-    
+
     res.redirect("../../entry/" + req.params.id);
 });
 
@@ -1034,7 +1031,7 @@ router.post('/entry/supplemental/:id', ensureReadOnlyMAL, async function (req, r
         SupplementalAdditionalNotes,
     } = req.body;
     // Update MAL entry with object data
-    MAL.update(
+    await SupplementalAssociationInfo.update(
             {MALrelatedID: malID,
                 designatedSiteAddress: SupplementalDesignatedSiteAddress,
                 city: SupplementalCity,
@@ -1066,7 +1063,7 @@ router.post('/entry/supplemental/:id', ensureReadOnlyMAL, async function (req, r
             console.log(err);
             req.flash('failure','Failed to update MAL entry\'s mal.model.js');
         });
-    
+
     res.redirect("../../mal/entry/" + req.params.id);
 });
 
@@ -1092,13 +1089,13 @@ router.post('/entry/general/:id', upload.array(), ensureReadOnlyMAL, async funct
                 dateAssociationUpdatedWhole: GeneralDateAssociationUpdatedWhole,
             },
             {where: {id:req.params.id}}
-            
+
         )
         .catch(err => {
             console.log(err);
             req.flash('failure','Failed to update MAL entry\'s mal_GeneralBoardInfo.model.js');
         });
-    
+
     res.redirect("../../entry/" + req.params.id);
 });
 
@@ -1208,68 +1205,918 @@ router.post('/entry/representation/:MAL_id/:Rep_id', ensureReadOnlyMAL, async fu
 
 // Merchandise Section --------------------------------------
 // Create MAL Entry's Mug Purchase
-// TODO
+router.post('/create/mug/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    const {
+        MugPurchaseStatus,
+        MugOriginationSaleSource,
+        MugDatePurchased,
+        MugQuantity,
+        MugDeliveryMethod,
+        MugPaymentMethod,
+        MugCheckNumber,
+    } = req.body;
+    //
+    var entryMugPurchase = {
+        MALrelatedID: req.params.MAL_id,
+        mugPurchaseStatus: MugPurchaseStatus,
+        originationSaleSource: MugOriginationSaleSource,
+        datePurchased: MugDatePurchased,
+        quantity: MugQuantity,
+        deliveryMethod: MugDeliveryMethod,
+        paymentMethod: MugPaymentMethod,
+        checkNumber: MugCheckNumber,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryMugPurchase)){
+        if (entryMugPurchase[key] == '') {
+            entryMugPurchase[key] = null;
+        }
+    }
+    // Create new update record
+    MerchandiseMug.create(entryMugPurchase)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','New MAL entry\'s *mal_MerchandiseMug* record not added.');
+        });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Update MAL Entry's Mug Purchase
-// TODO
+router.post('/entry/mug/:MAL_id/:Mug_id', ensureReadOnlyMAL, async function (req, res, next) {
+    const {
+        MugPurchaseStatus,
+        MugOriginationSaleSource,
+        MugDatePurchased,
+        MugQuantity,
+        MugDeliveryMethod,
+        MugPaymentMethod,
+        MugCheckNumber,
+    } = req.body;
+    //
+    var entryMugPurchase = {
+        mugPurchaseStatus: MugPurchaseStatus,
+        originationSaleSource: MugOriginationSaleSource,
+        datePurchased: MugDatePurchased,
+        quantity: MugQuantity,
+        deliveryMethod: MugDeliveryMethod,
+        paymentMethod: MugPaymentMethod,
+        checkNumber: MugCheckNumber,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryMugPurchase)){
+        if (entryMugPurchase[key] == '') {
+            entryMugPurchase[key] = null;
+        }
+    }
+    // update record
+    await MerchandiseMug.update(entryMugPurchase, {where: {id:req.params.Mug_id}})
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Update MAL entry\'s *mal_MerchandiseMug* record failed.');
+        });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
+
 // Create MAL Entry's Florida Statue Service
-// TODO
-// Update MAL MAL Entry's Florida Statue Service
-// TODO
+router.post('/create/statue/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    const {
+        StatueStatusPurchase,
+        StatueRequestedDate,
+        StatueQuantity,
+        StatueWhichBook,
+        StatueReferralSource,
+        StatueReferralSourceOther,
+        StatueSoldBy,
+        StatueDeliveryMethod,
+        StatuePaymentMethod,
+        StatueCheckNumber,
+    } = req.body;
+    //
+    var entryFloridaStatue = {
+        MALrelatedID: req.params.MAL_id,
+        statuePurchaseStatus:StatueStatusPurchase,
+        dateRequested:StatueRequestedDate,
+        quantity:StatueQuantity,
+        whichBook:StatueWhichBook,
+        referralSource:StatueReferralSource,
+        referralSourceOther:StatueReferralSourceOther,
+        soldBy:StatueSoldBy,
+        deliveryMethod:StatueDeliveryMethod,
+        paymentMethod:StatuePaymentMethod,
+        checkNumber:StatueCheckNumber,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryFloridaStatue)){
+        if (entryFloridaStatue[key] == '') {
+            entryFloridaStatue[key] = null;
+        }
+    }
+    // Create new update record
+    MerchandiseFloridaStatue.create(entryFloridaStatue)
+        .catch(err => {
+            console.log(err);
+            // TODO: Replace "mal_SupplementalAssociationInfo" with proper table name
+            req.flash('failure','New MAL entry\'s *mal_SupplementalAssociationInfo* record not added.');
+        });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
+// Update MAL Entry's Florida Statue Service
+router.post('/entry/statue/:MAL_id/:Stat_id', ensureReadOnlyMAL, async function (req, res, next) {
+    const {
+        StatueStatusPurchase,
+        StatueRequestedDate,
+        StatueQuantity,
+        StatueWhichBook,
+        StatueReferralSource,
+        StatueReferralSourceOther,
+        StatueSoldBy,
+        StatueDeliveryMethod,
+        StatuePaymentMethod,
+        StatueCheckNumber,
+    } = req.body;
+    //
+    var entryFloridaStatue = {
+        statuePurchaseStatus:StatueStatusPurchase,
+        dateRequested:StatueRequestedDate,
+        quantity:StatueQuantity,
+        whichBook:StatueWhichBook,
+        referralSource:StatueReferralSource,
+        referralSourceOther:StatueReferralSourceOther,
+        soldBy:StatueSoldBy,
+        deliveryMethod:StatueDeliveryMethod,
+        paymentMethod:StatuePaymentMethod,
+        checkNumber:StatueCheckNumber,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryFloridaStatue)){
+        if (entryFloridaStatue[key] == '') {
+            entryFloridaStatue[key] = null;
+        }
+    }
+    // update record
+    await MerchandiseFloridaStatue.update(entryFloridaStatue, {where: {id:req.params.Stat_id}})
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Update MAL entry\'s *mal_SupplementalAssociationInfo* record failed.');
+        });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 
 
 
 // Social Media Section --------------------------------------
-// Update MAL Entry's Mug Purchase
-// TODO
+// Update MAL Entry's Social Media
+router.post('/entry/social/:id', upload.array(), ensureReadOnlyMAL, async function (req, res, next) {
+    // Retrieve associated element values from page & structure them
+    const {
+        SocialNoSocialMedia,
+        SocialHasFacebook,
+        SocialFacebookAccount,
+        SocialFacebookDate,
+        SocialHasLinkedin,
+        SocialLinkedinAccount,
+        SocialLinkedinDate,
+        SocialHasTwitter,
+        SocialTwitterAccount,
+        SocialTwitterDate,
+        SocialHasInstagram,
+        SocialInstagramAccount,
+        SocialInstagramDate,
+    } = req.body;
+    // Update MAL entry with object data
+    await SocialMedia.update(
+        {
+            noSocialMedia:SocialNoSocialMedia,
+            hasFacebook:SocialHasFacebook,
+            facebookAccount:SocialFacebookAccount,
+            facebookDate:SocialFacebookDate,
+            hasLinkedin:SocialHasLinkedin,
+            linkedinAccount:SocialLinkedinAccount,
+            linkedinDate:SocialLinkedinDate,
+            hasTwitter:SocialHasTwitter,
+            twitterAccount:SocialTwitterAccount,
+            twitterDate:SocialTwitterDate,
+            hasInstagram:SocialHasInstagram,
+            instagramAccount:SocialInstagramAccount,
+            instagramDate:SocialInstagramDate,
+        },
+        {where: {id:req.params.id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MAL entry\'s mal_SocialMedia.model.js');
+    });
+
+    res.redirect("../../entry/" + req.params.id);
+});
 
 
 
 // Management Information Section --------------------------------------
-// TODO: Needs additional work
 // Create MAL Entry's General Management Information
-// TODO
+// router.post('', ensureReadOnlyMAL, function (req, res, next) {
+//
+//
+//     res.redirect("../../entry/" + req.params.MAL_id);
+// });
 // Update MAL Entry's General Management Information
-// TODO
+// router.post('', ensureReadOnlyMAL, function (req, res, next) {
+//
+//
+//     res.redirect("../../entry/" + req.params.MAL_id);
+// });
 
 
 
 // Hiring/Termination Section --------------------------------------
 // Create MAL Entry's Hiring Information
-// TODO
+router.post('/create/hiring/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    const {
+        HiringDateHired,
+        HiringReasonsHired,
+        HiringComments,
+        HiringTypeofRepresentation,
+        HiringDate,
+        HiringSourceOfReferralName,
+        HiringPosition,
+        HiringCompanyAssociation,
+        HiringPrimaryFirm,
+        HiringOtherFirms,
+        HiringForWhatPurpose,
+        HiringFormerFirm,
+    } = req.body;
+    //
+    var entryHiring = {
+        MALrelatedID: req.params.MAL_id,
+        dateHired:HiringDateHired,
+        reasonsHired:HiringReasonsHired,
+        hiringComments:HiringComments,
+        typeofRepresentation:HiringTypeofRepresentation,
+        date:HiringDate,
+        sourceOfReferralName:HiringSourceOfReferralName,
+        position:HiringPosition,
+        companyAssociation:HiringCompanyAssociation,
+        primaryFirm:HiringPrimaryFirm,
+        otherFirms:HiringOtherFirms,
+        forWhatPurpose:HiringForWhatPurpose,
+        formerFirm:HiringFormerFirm,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryHiring)){
+        if (entryHiring[key] == '') {
+            entryHiring[key] = null;
+        }
+    }
+    // Create new update record
+    HiringRecord.create(entryHiring)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','New MAL entry\'s *mal_HiringRecord* record not added.');
+        });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Update MAL Entry's Hiring Information
-// TODO
+router.post('/entry/hiring/:MAL_id/:Hire_id', ensureReadOnlyMAL, async function (req, res, next) {
+    const {
+        HiringDateHired,
+        HiringReasonsHired,
+        HiringComments,
+        HiringTypeofRepresentation,
+        HiringDate,
+        HiringSourceOfReferralName,
+        HiringPosition,
+        HiringCompanyAssociation,
+        HiringPrimaryFirm,
+        HiringOtherFirms,
+        HiringForWhatPurpose,
+        HiringFormerFirm,
+    } = req.body;
+    //
+    var entryHiring = {
+        dateHired:HiringDateHired,
+        reasonsHired:HiringReasonsHired,
+        hiringComments:HiringComments,
+        typeofRepresentation:HiringTypeofRepresentation,
+        date:HiringDate,
+        sourceOfReferralName:HiringSourceOfReferralName,
+        position:HiringPosition,
+        companyAssociation:HiringCompanyAssociation,
+        primaryFirm:HiringPrimaryFirm,
+        otherFirms:HiringOtherFirms,
+        forWhatPurpose:HiringForWhatPurpose,
+        formerFirm:HiringFormerFirm,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryHiring)){
+        if (entryHiring[key] == '') {
+            entryHiring[key] = null;
+        }
+    }
+    // update record
+    await HiringRecord.update(entryHiring, {where: {id:req.params.Hire_id}})
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Update MAL entry\'s *mal_HiringRecord* record failed.');
+        });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Create MAL Entry's Termination Information
-// TODO
+router.post('/create/termination/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    const {
+        TerminationDateTerminated,
+        TerminationReasonTerminated,
+        TerminationRevenueGenerated,
+        TerminationTerminatingNotes,
+        TerminationOrigin,
+        TerminationRealReasonTerminated,
+    } = req.body;
+    //
+    var entryTermination = {
+        MALrelatedID: req.params.MAL_id,
+        dateTerminated:TerminationDateTerminated,
+        reasonTerminated:TerminationReasonTerminated,
+        revenueGenerated:TerminationRevenueGenerated,
+        terminatingNotes:TerminationTerminatingNotes,
+        terminationOrigin:TerminationOrigin,
+        realReasonTerminated:TerminationRealReasonTerminated,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryTermination)){
+        if (entryTermination[key] == '') {
+            entryTermination[key] = null;
+        }
+    }
+    // Create new update record
+    TerminationRecord.create(entryTermination)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','New MAL entry\'s *mal_TerminationRecord* record not added.');
+        });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Update MAL MAL Entry's Termination Information
-// TODO
+router.post('/entry/termination/:MAL_id/:Term_id', ensureReadOnlyMAL, async function (req, res, next) {
+    const {
+        TerminationDateTerminated,
+        TerminationReasonTerminated,
+        TerminationRevenueGenerated,
+        TerminationTerminatingNotes,
+        TerminationOrigin,
+        TerminationRealReasonTerminated,
+    } = req.body;
+    //
+    var entryTermination = {
+        dateTerminated:TerminationDateTerminated,
+        reasonTerminated:TerminationReasonTerminated,
+        revenueGenerated:TerminationRevenueGenerated,
+        terminatingNotes:TerminationTerminatingNotes,
+        terminationOrigin:TerminationOrigin,
+        realReasonTerminated:TerminationRealReasonTerminated,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryTermination)){
+        if (entryTermination[key] == '') {
+            entryTermination[key] = null;
+        }
+    }
+    // update record
+    await TerminationRecord.update(entryTermination, {where: {id:req.params.Term_id}})
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Update MAL entry\'s *mal_TerminationRecord* record failed.');
+        });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 
 
 
 // Referrals Section --------------------------------------
 // Create MAL Entry's Source of Referral to C&M
-// TODO
+router.post('/create/source/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    // Replace empty string values with null
+    for (var key in req.body) {
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    const {
+        SourceDate,
+        SourceReferredBy,
+        SourcePosition,
+        SourceCompany,
+        SourceIfOrganizationMeeting,
+    } = req.body;
+    //
+    var entryRefSource = {
+        MALrelatedID: req.params.MAL_id,
+        date:SourceDate,
+        referredBy:SourceReferredBy,
+        position:SourcePosition,
+        company:SourceCompany,
+        ifOrganizationMeeting:SourceIfOrganizationMeeting,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryRefSource)){
+        if (entryRefSource[key] == '') {
+            entryRefSource[key] = null;
+        }
+    }
+    // Create new update record
+    ReferralSource.create(entryRefSource)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','MAL entry\'s *mal_ReferralSource* record not added.');
+        });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Update MAL Entry's Source of Referral to C&M
-// TODO
+router.post('/entry/source/:MAL_id/:Src_id', ensureReadOnlyMAL, async function (req, res, next) {
+    let {
+        SourceDate,
+        SourceReferredBy,
+        SourcePosition,
+        SourceCompany,
+        SourceIfOrganizationMeeting,
+    } = req.body;
+
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(req.body)){
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    // Update MAL entry with object data
+    await ReferralSource.update(
+        {
+            date:SourceDate,
+            referredBy:SourceReferredBy,
+            position:SourcePosition,
+            company:SourceCompany,
+            ifOrganizationMeeting:SourceIfOrganizationMeeting,
+        },
+        {where: {id:req.params.Src_id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MAL entry\'s mal_ReferralSource.model.js');
+    });
+
+    res.redirect("../../../entry/" + req.params.MAL_id);
+});
+
 // Create MAL Entry's Referrals from C&M for Mgmt. Co./Vendors
-// TODO
+router.post('/create/referral/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    // Replace empty string values with null
+    for (var key in req.body) {
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    const {
+        MgmtRequestDate,
+        MgmtRequestedBy,
+        MgmtTitle,
+        MgmtForWhatBusiness,
+    } = req.body;
+    //
+    var entryRefMgmt = {
+        MALrelatedID: req.params.MAL_id,
+        requestDate:MgmtRequestDate,
+        requestedBy:MgmtRequestedBy,
+        title:MgmtTitle,
+        forWhatBusiness:MgmtForWhatBusiness,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryRefMgmt)){
+        if (entryRefMgmt[key] == '') {
+            entryRefMgmt[key] = null;
+        }
+    }
+    // Create new update record
+    ReferralMgmtCoVendor.create(entryRefMgmt)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','New MAL entry\'s *mal_ReferralMgmtCoVendor* record not added.');
+    });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Update MAL MAL Entry's Referrals from C&M for Mgmt. Co./Vendors
-// TODO
+router.post('/entry/referral/:MAL_id/:Ref_id', ensureReadOnlyMAL, async function (req, res, next) {
+    let {
+        MgmtRequestDate,
+        MgmtRequestedBy,
+        MgmtTitle,
+        MgmtForWhatBusiness,
+    } = req.body;
+
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(req.body)){
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    // Update MAL entry with object data
+    await ReferralMgmtCoVendor.update(
+        {
+            requestDate:MgmtRequestDate,
+            requestedBy:MgmtRequestedBy,
+            title:MgmtTitle,
+            forWhatBusiness:MgmtForWhatBusiness,
+        },
+        {where: {id:req.params.Ref_id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MAL entry\'s mal_ReferralMgmtCoVendor.model.js');
+    });
+
+    res.redirect("../../../entry/" + req.params.MAL_id);
+});
+
+
 
 
 
 // Presentation Information Section --------------------------------------
 // Create MAL Entry's Presentation Information
-// TODO
+router.post('/create/presentation/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    // Replace empty string values with null
+    for (var key in req.body) {
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    const {
+        PresentationDate,
+        PresentationRequestedBy,
+        PresentationPosition,
+        PresentationPrimaryAttorney,
+        PresentationStaffMemberAttending,
+        PresentationLocation,
+        PresentationMgmtCoAndOffice,
+        PresentationMethod,
+        PresentationWhoAttendedFromAssociation,
+        PresentationIssuesDiscussed,
+        PresentationTotalPresentationTime,
+        PresentationOutcome,
+        PresentationHired,
+        PresentationReasonsFirmSelected,
+    } = req.body;
+    //
+    var entryPresentation = {
+        MALrelatedID: req.params.MAL_id,
+        date:PresentationDate,
+        requestedBy:PresentationRequestedBy,
+        position:PresentationPosition,
+        primaryAttorney:PresentationPrimaryAttorney,
+        staffMemberAttending:PresentationStaffMemberAttending,
+        location:PresentationLocation,
+        mgmtCoAndOffice:PresentationMgmtCoAndOffice,
+        method:PresentationMethod,
+        whoAttendedFromAssociation:PresentationWhoAttendedFromAssociation,
+        issuesDiscussed:PresentationIssuesDiscussed,
+        totalPresentationTime:PresentationTotalPresentationTime,
+        outcome:PresentationOutcome,
+        hired:PresentationHired,
+        reasonsFirmSelected:PresentationReasonsFirmSelected,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryPresentation)){
+        if (entryPresentation[key] == '') {
+            entryPresentation[key] = null;
+        }
+    }
+    // Create new update record
+    Presentations.create(entryPresentation)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','New MAL entry\'s *mal_Presentations* record not added.');
+    });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Update MAL Entry's Presentation Information
-// TODO
+router.post('/entry/presentation/:MAL_id/:Pre_id', ensureReadOnlyMAL, async function (req, res, next) {
+    let {
+        PresentationDate,
+        PresentationRequestedBy,
+        PresentationPosition,
+        PresentationPrimaryAttorney,
+        PresentationStaffMemberAttending,
+        PresentationLocation,
+        PresentationMgmtCoAndOffice,
+        PresentationMethod,
+        PresentationWhoAttendedFromAssociation,
+        PresentationIssuesDiscussed,
+        PresentationTotalPresentationTime,
+        PresentationOutcome,
+        PresentationHired,
+        PresentationReasonsFirmSelected,
+    } = req.body;
+
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(req.body)){
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    // Update MAL entry with object data
+    await Presentations.update(
+        {
+            date:PresentationDate,
+            requestedBy:PresentationRequestedBy,
+            position:PresentationPosition,
+            primaryAttorney:PresentationPrimaryAttorney,
+            staffMemberAttending:PresentationStaffMemberAttending,
+            location:PresentationLocation,
+            mgmtCoAndOffice:PresentationMgmtCoAndOffice,
+            method:PresentationMethod,
+            whoAttendedFromAssociation:PresentationWhoAttendedFromAssociation,
+            issuesDiscussed:PresentationIssuesDiscussed,
+            totalPresentationTime:PresentationTotalPresentationTime,
+            outcome:PresentationOutcome,
+            hired:PresentationHired,
+            reasonsFirmSelected:PresentationReasonsFirmSelected,
+        },
+        {where: {id:req.params.Pre_id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MAL entry\'s mal_Presentations.model.js');
+    });
+
+    res.redirect("../../../entry/" + req.params.MAL_id);
+});
 
 
 
 // Potential Client Status Report --------------------------------------
 // Create MAL Entry's Potential Client Status Report
-// TODO
+router.post('/create/potential/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
+    // Replace empty string values with null
+    for (var key in req.body) {
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    const {
+        PotentialOriginationDatePC,
+        PotentialStaffInitialsPC,
+        PotentialStaffAssignedPC,
+        PotentialNewestEventDate,
+        PotentialStaffInitialsEvent,
+        PotentialFollowUpType,
+        PotentialNextFollowUpDate,
+        PotentialStaffInitialsFollowUp,
+        PotentialFileType,
+        PotentialFileDate,
+        PotentialContactName,
+        PotentialPosition,
+        PotentialPhoneNumber,
+        PotentialExtension,
+        PotentialInfoNote,
+        PotentialCurrentLegalCouncil,
+        PotentialOtherFirmsConsidered,
+        PotentialReasonForLeavingCurrent,
+        PotentialBestAspectCurrent,
+        PotentialDecisionExpected,
+        PotentialDecisionBasis,
+        PotentialSincereRequest3rdParty,
+        PotentialCMNotifiedOnDecision,
+        PotentialCurrentFirmSelection,
+        PotentialAssociationHeardCM,
+        PotentialWhatEvent,
+        PotentialPackageTypeRequested,
+        PotentialCopyToName,
+        PotentialTitle,
+        PotentialMgmtCo,
+        PotentialCopyDate,
+        PotentialEventsChain,
+        PotentialChainDate,
+        PotentialChainOriginator,
+        PotentialChainInitials,
+        PotentialChainInputDate,
+        PotentialEntryTotalTime,
+        PotentialEntryNotes,
+        PotentialFileClosingStatus,
+        PotentialFileClosingDate,
+        PotentialFileRemoveAfter,
+        PotentialClosedFileStatus,
+        PotentialStartingRoundDate,
+        PotentialEndingDate,
+        PotentialClosingDate,
+        PotentialSpentTotalTime,
+        PotentialFirmSelected,
+        PotentialFirmSelectedOtherWhy,
+        PotentialOtherFirmAdditionalReasons,
+        PotentialClosingLetter,
+        PotentialFinalStaffThoughts,
+    } = req.body;
+    //
+    var entryPotential = {
+        MALrelatedID: req.params.MAL_id,
+        originationDatePC:PotentialOriginationDatePC,
+        staffInitialsPC:PotentialStaffInitialsPC,
+        staffAssignedPC:PotentialStaffAssignedPC,
+        newestEventDate:PotentialNewestEventDate,
+        staffInitialsEvent:PotentialStaffInitialsEvent,
+        followUpType:PotentialFollowUpType,
+        nextFollowUpDate:PotentialNextFollowUpDate,
+        staffInitialsFollowUp:PotentialStaffInitialsFollowUp,
+        fileType:PotentialFileType,
+        fileDate:PotentialFileDate,
+        contactName:PotentialContactName,
+        position:PotentialPosition,
+        phoneNumber:PotentialPhoneNumber,
+        extension:PotentialExtension,
+        infoNote:PotentialInfoNote,
+        currentLegalCouncil:PotentialCurrentLegalCouncil,
+        otherFirmsConsidered:PotentialOtherFirmsConsidered,
+        reasonForLeavingCurrent:PotentialReasonForLeavingCurrent,
+        bestAspectCurrent:PotentialBestAspectCurrent,
+        decisionExpected:PotentialDecisionExpected,
+        decisionBasis:PotentialDecisionBasis,
+        sincereRequest3rdParty:PotentialSincereRequest3rdParty,
+        CMNotifiedOnDecision:PotentialCMNotifiedOnDecision,
+        currentFirmSelection:PotentialCurrentFirmSelection,
+        associationHeardCM:PotentialAssociationHeardCM,
+        whatEvent:PotentialWhatEvent,
+        packageTypeRequested:PotentialPackageTypeRequested,
+        copyToName:PotentialCopyToName,
+        title:PotentialTitle,
+        mgmtCo:PotentialMgmtCo,
+        copyDate:PotentialCopyDate,
+        eventsChain:PotentialEventsChain,
+        chainDate:PotentialChainDate,
+        chainOriginator:PotentialChainOriginator,
+        chainInitials:PotentialChainInitials,
+        chainInputDate:PotentialChainInputDate,
+        entryTotalTime:PotentialEntryTotalTime,
+        entryNotes:PotentialEntryNotes,
+        fileClosingStatus:PotentialFileClosingStatus,
+        fileClosingDate:PotentialFileClosingDate,
+        fileRemoveAfter:PotentialFileRemoveAfter,
+        closedFileStatus:PotentialClosedFileStatus,
+        startingRoundDate:PotentialStartingRoundDate,
+        endingDate:PotentialEndingDate,
+        closingDate:PotentialClosingDate,
+        spentTotalTime:PotentialSpentTotalTime,
+        firmSelected:PotentialFirmSelected,
+        firmSelectedOtherWhy:PotentialFirmSelectedOtherWhy,
+        otherFirmAdditionalReasons:PotentialOtherFirmAdditionalReasons,
+        closingLetter:PotentialClosingLetter,
+        finalStaffThoughts:PotentialFinalStaffThoughts,
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryPotential)){
+        if (entryPotential[key] == '') {
+            entryPotential[key] = null;
+        }
+    }
+    // Create new update record
+    PotentialClientReports.create(entryPotential)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','New MAL entry\'s *mal_PotentialClientReports* record not added.');
+    });
+
+    res.redirect("../../entry/" + req.params.MAL_id);
+});
 // Update MAL Entry's Potential Client Status Report
-// TODO
+router.post('/entry/potential/:MAL_id/:Pot_id', ensureReadOnlyMAL, async function (req, res, next) {
+    let {
+        PotentialOriginationDatePC,
+        PotentialStaffInitialsPC,
+        PotentialStaffAssignedPC,
+        PotentialNewestEventDate,
+        PotentialStaffInitialsEvent,
+        PotentialFollowUpType,
+        PotentialNextFollowUpDate,
+        PotentialStaffInitialsFollowUp,
+        PotentialFileType,
+        PotentialFileDate,
+        PotentialContactName,
+        PotentialPosition,
+        PotentialPhoneNumber,
+        PotentialExtension,
+        PotentialInfoNote,
+        PotentialCurrentLegalCouncil,
+        PotentialOtherFirmsConsidered,
+        PotentialReasonForLeavingCurrent,
+        PotentialBestAspectCurrent,
+        PotentialDecisionExpected,
+        PotentialDecisionBasis,
+        PotentialSincereRequest3rdParty,
+        PotentialCMNotifiedOnDecision,
+        PotentialCurrentFirmSelection,
+        PotentialAssociationHeardCM,
+        PotentialWhatEvent,
+        PotentialPackageTypeRequested,
+        PotentialCopyToName,
+        PotentialTitle,
+        PotentialMgmtCo,
+        PotentialCopyDate,
+        PotentialEventsChain,
+        PotentialChainDate,
+        PotentialChainOriginator,
+        PotentialChainInitials,
+        PotentialChainInputDate,
+        PotentialEntryTotalTime,
+        PotentialEntryNotes,
+        PotentialFileClosingStatus,
+        PotentialFileClosingDate,
+        PotentialFileRemoveAfter,
+        PotentialClosedFileStatus,
+        PotentialStartingRoundDate,
+        PotentialEndingDate,
+        PotentialClosingDate,
+        PotentialSpentTotalTime,
+        PotentialFirmSelected,
+        PotentialFirmSelectedOtherWhy,
+        PotentialOtherFirmAdditionalReasons,
+        PotentialClosingLetter,
+        PotentialFinalStaffThoughts,
+    } = req.body;
+
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(req.body)){
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    // Update MAL entry with object data
+    await PotentialClientReports.update(
+        {
+            originationDatePC:PotentialOriginationDatePC,
+            staffInitialsPC:PotentialStaffInitialsPC,
+            staffAssignedPC:PotentialStaffAssignedPC,
+            newestEventDate:PotentialNewestEventDate,
+            staffInitialsEvent:PotentialStaffInitialsEvent,
+            followUpType:PotentialFollowUpType,
+            nextFollowUpDate:PotentialNextFollowUpDate,
+            staffInitialsFollowUp:PotentialStaffInitialsFollowUp,
+            fileType:PotentialFileType,
+            fileDate:PotentialFileDate,
+            contactName:PotentialContactName,
+            position:PotentialPosition,
+            phoneNumber:PotentialPhoneNumber,
+            extension:PotentialExtension,
+            infoNote:PotentialInfoNote,
+            currentLegalCouncil:PotentialCurrentLegalCouncil,
+            otherFirmsConsidered:PotentialOtherFirmsConsidered,
+            reasonForLeavingCurrent:PotentialReasonForLeavingCurrent,
+            bestAspectCurrent:PotentialBestAspectCurrent,
+            decisionExpected:PotentialDecisionExpected,
+            decisionBasis:PotentialDecisionBasis,
+            sincereRequest3rdParty:PotentialSincereRequest3rdParty,
+            CMNotifiedOnDecision:PotentialCMNotifiedOnDecision,
+            currentFirmSelection:PotentialCurrentFirmSelection,
+            associationHeardCM:PotentialAssociationHeardCM,
+            whatEvent:PotentialWhatEvent,
+            packageTypeRequested:PotentialPackageTypeRequested,
+            copyToName:PotentialCopyToName,
+            title:PotentialTitle,
+            mgmtCo:PotentialMgmtCo,
+            copyDate:PotentialCopyDate,
+            eventsChain:PotentialEventsChain,
+            chainDate:PotentialChainDate,
+            chainOriginator:PotentialChainOriginator,
+            chainInitials:PotentialChainInitials,
+            chainInputDate:PotentialChainInputDate,
+            entryTotalTime:PotentialEntryTotalTime,
+            entryNotes:PotentialEntryNotes,
+            fileClosingStatus:PotentialFileClosingStatus,
+            fileClosingDate:PotentialFileClosingDate,
+            fileRemoveAfter:PotentialFileRemoveAfter,
+            closedFileStatus:PotentialClosedFileStatus,
+            startingRoundDate:PotentialStartingRoundDate,
+            endingDate:PotentialEndingDate,
+            closingDate:PotentialClosingDate,
+            spentTotalTime:PotentialSpentTotalTime,
+            firmSelected:PotentialFirmSelected,
+            firmSelectedOtherWhy:PotentialFirmSelectedOtherWhy,
+            otherFirmAdditionalReasons:PotentialOtherFirmAdditionalReasons,
+            closingLetter:PotentialClosingLetter,
+            finalStaffThoughts:PotentialFinalStaffThoughts,
+        },
+        {where: {id:req.params.Pot_id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MAL entry\'s mal_PotentialClientReports.model.js');
+    });
+
+    res.redirect("../../../entry/" + req.params.MAL_id);
+});
 
 
 
@@ -1283,6 +2130,6 @@ router.post('/entry/representation/:MAL_id/:Rep_id', ensureReadOnlyMAL, async fu
 //     temp = new Date(dateVal);
 //     // Return justy YYYY-MM-DD
 //     return temp.toISOString().substring(0,10);
-// } 
+// }
 
 module.exports = router;
