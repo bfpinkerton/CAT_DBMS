@@ -35,4 +35,11 @@ Then('entry appears in representation inquiry', function (){
     return driver.findElement(By.id('RepresentationTable'));
 });
 
-When('')
+When(/^admin puts in username "([^"]*)"$/, function(arg1) {
+    return driver.findElement(By.name('email')).sendKeys(arg1);
+});
+
+When('admin clicks update entry supplemental information button', function (){
+    return driver.findElement(By.id('submitButton')).click();
+});
+
