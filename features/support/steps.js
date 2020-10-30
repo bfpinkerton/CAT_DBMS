@@ -26,3 +26,13 @@ When(/^admin puts in password "([^"]*)"$/, function(arg1) {
 When('admin clicks submit', function (){
     return driver.findElement(By.id('submitButton')).click();
 });
+
+When('admin searches for an entry', async function (){
+    await driver.get('https://hudson-chesterfield-41002.herokuapp.com/mal/entry/4');
+});
+
+Then('entry appears in representation inquiry', function (){
+    return driver.findElement(By.id('RepresentationTable'));
+});
+
+When('')

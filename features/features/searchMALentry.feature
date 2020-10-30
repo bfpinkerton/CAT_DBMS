@@ -7,4 +7,5 @@ Feature: Let admins access register user route
         When admin puts in username "test@test.com"
         When admin puts in password "123"
         When admin clicks submit
-        Then admin sees register new users button
+        When admin searches for an entry
+        Then entry appears in representation inquiry
