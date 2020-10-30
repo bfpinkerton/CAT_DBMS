@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "test": "cucumber-js",
-    "test-bdd": "cucumber-js",
     "start": "node ./bin/www",
     "db:makemigrations": "./node_modules/sequelize-auto-migrations/bin/makemigration.js",
     "test-tdd": "./node_modules/mocha/bin/mocha tests/unit_test.js"
