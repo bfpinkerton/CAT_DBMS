@@ -3,3 +3,5 @@
 
 # Ignore IDE files
 /.vscode/
+
+package-lock.json

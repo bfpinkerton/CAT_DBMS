@@ -2,11 +2,10 @@
 <b>This repository serves to house the modern recreation of Community Association Title's legacy database management system.</b>
 
 ### Running Mocha Unit Tests
-run 'npm test' in root directory
+run 'npm run-script test-tdd' in root directory
 
 ### Running Cucumber tests
-run 'npm install @cucumber/cucumber' in root directory. 
-Then './node_modules/.bin/cucumber-js'
+run 'npm test' in root directory
 
 New System's Functionality Gif:
 ![alt-text](currentEx.gif)
