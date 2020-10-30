@@ -6,4 +6,3 @@ Feature: Let admins update register user route
         Given I have logged onto the DBMS website
         When admin puts "John Doe" into legal association name
         When admin clicks update entry supplemental information button
-        Then updated entry "John Doe" should persist on web page
