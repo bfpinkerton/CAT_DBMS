@@ -162,7 +162,7 @@
         <!-- ------------------------------------------------------------------------------------------ -->
         <div class="ui one column grid container" style="margin-top: 25px; "></div>
             <h1></h1>
-            <div class="column" style="padding: 15px;background-color: lightslategray;" > 
+            <div class="column" style="padding: 15px;background-color: lightslategray;" >
                     <h1 class="ui block header"><b>View/Update Entry:</b></h1>
                     <!-- Flash Messages -->
                     <%- include ("../../partials/flash") %>
@@ -174,12 +174,12 @@
                           <a class="active item" data-tab="edit"><i class="icon edit sign"></i>Edit</a>
                           <a class="item" data-tab="summary">Summary</a>
                         </div>
-                        
-                        
+
+
                         <div class="ui tab" data-tab="summary">
                           Other content
                         </div>
-                    
+
                       </div>
 
 
@@ -188,10 +188,10 @@
 
 
 
-                    
-                    
-                        
-                        
+
+
+
+
 
 
                         <!-- Metadata and edit information/Primary Association Information/Association Photo-->
@@ -244,8 +244,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="ui inverted divider"></div>
                                     <!-- Primary Association Information (1) -->
                                     <div class="row">
@@ -274,7 +274,7 @@
                                 </div>
                                 <!-- Entryway Photo/Landmark Photo -->
                                 <div class="four wide column">
-                                    
+
                                     <div class="border-1" style="margin-top: 15px;height:35vh;padding: 10px; text-align: center;overflow: auto;">
                                         <h3>
                                             Photo of Association Entryway or other notable landmark
@@ -282,7 +282,7 @@
                                     </div>
                                     <input type="file" name="AssociationPhoto" (change)="fileEvent($event)" class="inputfile" id="embedpollfileinput" />
                                         <label for="embedpollfileinput" class="ui small right floated button" style="text-align: center;">
-                                            <i class="ui upload icon"></i> 
+                                            <i class="ui upload icon"></i>
                                             Upload Entryway/Landmark Photo
                                         </label>
                                     <input type="file" (change)="fileEvent($event)" class="inputfile" id="embedpollfileinput" />
@@ -380,7 +380,7 @@
                             </div>
                         </form>
                         </div>
-                    
+
 
 
                     <% var route2 = "/mal/entry/supplemental/" + mal.id %>
@@ -1086,206 +1086,212 @@
                                         <u>Merchandise Purchases:</u>
                                     </h2>
                                 </div>
-                                <div class="ui two column divided grid">
-                                    <div class="six wide column">
-                                        <div class="row" style="margin-bottom: 2vh;">
-                                            <div class="two fields">
-                                                <div class="field">
-                                                    <h3>
-                                                        <u>Mug Purchases:</u>
-                                                    </h3>
+                                <button class="ui green button" id="NewMugButton">
+                                    Add New Entry Mug Purchase
+                                </button>
+                                <div class="ui modal" id="NewMug-Modal">
+                                    <% var routeRepresentation = "/mal/create/mug/" + mal.id %>
+                                    <div class="ui two column divided grid">
+                                        <div class="six wide column">
+                                            <div class="row" style="margin-bottom: 2vh;">
+                                                <div class="two fields">
+                                                    <div class="field">
+                                                        <h3>
+                                                            <u>Mug Purchases:</u>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="ui field" >
+                                                        <label>Mug Purchase Status:</label>
+                                                        <div class="inline fields">
+                                                            <div class="field">
+                                                                <div class="wrap-check1 ui radio checkbox">
+                                                                    <input type="radio" name="MugPurchaseStatus" value="Yes">
+                                                                    <label>Yes</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="field">
+                                                                <div class="wrap-check2 ui radio checkbox">
+                                                                    <input type="radio" name="MugPurchaseStatus" value="No" checked="checked">
+                                                                    <label>No</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="ui field" >
-                                                    <label>Mug Purchase Status:</label>
-                                                    <div class="inline fields">
-                                                        <div class="field">
-                                                            <div class="wrap-check1 ui radio checkbox">
-                                                                <input type="radio" name="MugPurchaseStatus" value="Yes">
+                                            </div>
+                                            <div class="row">
+                                                <div class="two fields">
+                                                    <div class="wrap-context1 disabled field">
+                                                        <label>Origination Sale Source:</label>
+                                                        <div class="ui selection dropdown">
+                                                            <input type="hidden" name="MugOriginationSaleSource" >
+                                                            <i class="dropdown icon"></i>
+                                                            <div class="default text">Choose from below:</div>
+                                                            <div class="menu">
+                                                                <div class="item" data-value="1">Option 1</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="wrap-context1 disabled input field">
+                                                        <label>Date Purchased:</label>
+                                                        <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                                        <div class="ui calendar" style="border-color: black;">
+                                                            <div class="ui input left icon" >
+                                                                <i class="calendar icon"></i>
+                                                                <input type="text" name="MugDatePurchased"  placeholder="Date" class="calendar_input">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="two fields">
+                                                    <div class="wrap-context1 disabled ui input field">
+                                                        <label>Quantity:</label>
+                                                        <input type="string" name="MugQuantity"  pattern="\d{0,5}" placeholder="Quantity">
+                                                    </div>
+                                                    <div class="wrap-context1 disabled field">
+                                                        <label>Delivery Method:</label>
+                                                        <div class="ui selection dropdown">
+                                                            <input type="hidden" name="MugDeliveryMethod" >
+                                                            <i class="dropdown icon"></i>
+                                                            <div class="default text">Choose from below:</div>
+                                                            <div class="menu">
+                                                                <div class="item" data-value="1">Option 1</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="two fields">
+                                                    <div class="wrap-context1 disabled field">
+                                                        <label>Payment Method:</label>
+                                                        <div class="ui selection dropdown">
+                                                            <input type="hidden" name="MugPaymentMethod" >
+                                                            <i class="dropdown icon"></i>
+                                                            <div class="default text">Choose from below:</div>
+                                                            <div class="menu">
+                                                                <div class="item" data-value="1">Option 1</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="wrap-context1 disabled ui input field">
+                                                        <label>Check #:</label>
+                                                        <input type="string" name="MugCheckNumber"  pattern="\d{3,4}" placeholder="Check #">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="ten wide column">
+                                            <div class="row" style="margin-bottom: 2vh;">
+                                                <div class="two fields">
+                                                    <div class="field">
+                                                        <h3>
+                                                            <u>Florida Statue Service:</u>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="ui field" >
+                                                        <label>Statue Service Purchase Status:</label>
+                                                        <div class="inline fields">
+                                                            <div class="field">
+                                                              <div class="wrap-check3 ui radio checkbox">
+                                                                <input type="radio" name="StatueStatusPurchase" value="Yes">
                                                                 <label>Yes</label>
+                                                              </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="wrap-check2 ui radio checkbox">
-                                                                <input type="radio" name="MugPurchaseStatus" value="No" checked="checked">
+                                                            <div class="field">
+                                                              <div class="wrap-check4 ui radio checkbox">
+                                                                <input type="radio" name="StatueStatusPurchase" value="No" checked="true">
                                                                 <label>No</label>
+                                                              </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="two fields">
-                                                <div class="wrap-context1 disabled field">
-                                                    <label>Origination Sale Source:</label>
-                                                    <div class="ui selection dropdown">
-                                                        <input type="hidden" name="MugOriginationSaleSource" >
-                                                        <i class="dropdown icon"></i>
-                                                        <div class="default text">Choose from below:</div>
-                                                        <div class="menu">
-                                                            <div class="item" data-value="1">Option 1</div>
+                                            <div class="row">
+                                                <div class="wrap-context2 disabled three fields">
+                                                    <div class="input field">
+                                                        <label>Date Requested:</label>
+                                                        <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
+                                                        <div class="ui calendar" style="border-color: black;">
+                                                            <div class="ui input left icon" >
+                                                                <i class="calendar icon"></i>
+                                                                <input type="text" name="StatueRequestedDate"  placeholder="Date" class="calendar_input">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="wrap-context1 disabled input field">
-                                                    <label>Date Purchased:</label>
-                                                    <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
-                                                    <div class="ui calendar" style="border-color: black;">
-                                                        <div class="ui input left icon" >
-                                                            <i class="calendar icon"></i>
-                                                            <input type="text" name="MugDatePurchased"  placeholder="Date" class="calendar_input">
-                                                        </div>
+                                                    <div class="ui input field">
+                                                        <label>Quantity:</label>
+                                                        <input type="string" name="StatueQuantity"  pattern="\d{0,5}" placeholder="Quantity">
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="two fields">
-                                                <div class="wrap-context1 disabled ui input field">
-                                                    <label>Quantity:</label>
-                                                    <input type="string" name="MugQuantity"  pattern="\d{0,5}" placeholder="Quantity">
-                                                </div>
-                                                <div class="wrap-context1 disabled field">
-                                                    <label>Delivery Method:</label>
-                                                    <div class="ui selection dropdown">
-                                                        <input type="hidden" name="MugDeliveryMethod" >
-                                                        <i class="dropdown icon"></i>
-                                                        <div class="default text">Choose from below:</div>
-                                                        <div class="menu">
-                                                            <div class="item" data-value="1">Option 1</div>
+                                                    <div class="field">
+                                                        <label>Which Book:</label>
+                                                        <div class="ui selection dropdown">
+                                                            <input type="hidden" name="StatueWhichBook" >
+                                                            <i class="dropdown icon"></i>
+                                                            <div class="default text">Choose from below:</div>
+                                                            <div class="menu">
+                                                                <div class="item" data-value="1">Option 1</div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="two fields">
-                                                <div class="wrap-context1 disabled field">
-                                                    <label>Payment Method:</label>
-                                                    <div class="ui selection dropdown">
-                                                        <input type="hidden" name="MugPaymentMethod" >
-                                                        <i class="dropdown icon"></i>
-                                                        <div class="default text">Choose from below:</div>
-                                                        <div class="menu">
-                                                            <div class="item" data-value="1">Option 1</div>
+                                            <div class="row">
+                                                <div class="wrap-context2 disabled three fields">
+                                                    <div class="field">
+                                                        <label>Source of Referral:</label>
+                                                        <div class="ui selection dropdown">
+                                                            <input type="hidden" name="StatueReferralSource" >
+                                                            <i class="dropdown icon"></i>
+                                                            <div class="default text">Choose from below:</div>
+                                                            <div class="menu">
+                                                                <div class="item" data-value="1">Option 1</div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="wrap-context1 disabled ui input field">
-                                                    <label>Check #:</label>
-                                                    <input type="string" name="MugCheckNumber"  pattern="\d{3,4}" placeholder="Check #">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="ten wide column">
-                                        <div class="row" style="margin-bottom: 2vh;">
-                                            <div class="two fields">
-                                                <div class="field">
-                                                    <h3>
-                                                        <u>Florida Statue Service:</u>
-                                                    </h3>
-                                                </div>
-                                                <div class="ui field" >
-                                                    <label>Statue Service Purchase Status:</label>
-                                                    <div class="inline fields">
-                                                        <div class="field">
-                                                          <div class="wrap-check3 ui radio checkbox">
-                                                            <input type="radio" name="StatueStatusPurchase" value="Yes">
-                                                            <label>Yes</label>
-                                                          </div>
-                                                        </div>
-                                                        <div class="field">
-                                                          <div class="wrap-check4 ui radio checkbox">
-                                                            <input type="radio" name="StatueStatusPurchase" value="No" checked="true">
-                                                            <label>No</label>
-                                                          </div>
-                                                        </div>
+                                                    <div class="ui input field">
+                                                        <label>Source of Referral — Other :</label>
+                                                        <input type="string" name="StatueReferralSourceOther"  placeholder="Enter Legal Assc Name">
+                                                    </div>
+                                                    <div class="ui input field">
+                                                        <label>Sold By:</label>
+                                                        <input type="string" name="StatueSoldBy"  placeholder="Enter Legal Assc Name">
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="wrap-context2 disabled three fields">
-                                                <div class="input field">
-                                                    <label>Date Requested:</label>
-                                                    <!-- Formats accepted mm/dd/yyyy or mm-dd-yyyy or mm.dd.yyyy format -->
-                                                    <div class="ui calendar" style="border-color: black;">
-                                                        <div class="ui input left icon" >
-                                                            <i class="calendar icon"></i>
-                                                            <input type="text" name="StatueRequestedDate"  placeholder="Date" class="calendar_input">
+                                            <div class="row">
+                                                <div class="wrap-context2 disabled three fields">
+                                                    <div class="field">
+                                                        <label>Delivery Method:</label>
+                                                        <div class="ui selection dropdown">
+                                                            <input type="hidden" name="StatueDeliveryMethod" >
+                                                            <i class="dropdown icon"></i>
+                                                            <div class="default text">Choose from below:</div>
+                                                            <div class="menu">
+                                                                <div class="item" data-value="1">Option 1</div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="ui input field">
-                                                    <label>Quantity:</label>
-                                                    <input type="string" name="StatueQuantity"  pattern="\d{0,5}" placeholder="Quantity">
-                                                </div>
-                                                <div class="field">
-                                                    <label>Which Book:</label>
-                                                    <div class="ui selection dropdown">
-                                                        <input type="hidden" name="StatueWhichBook" >
-                                                        <i class="dropdown icon"></i>
-                                                        <div class="default text">Choose from below:</div>
-                                                        <div class="menu">
-                                                            <div class="item" data-value="1">Option 1</div>
+                                                    <div class="field">
+                                                        <label>Payment Method:</label>
+                                                        <div class="ui selection dropdown">
+                                                            <input type="hidden" name="StatuePaymentMethod" >
+                                                            <i class="dropdown icon"></i>
+                                                            <div class="default text">Choose from below:</div>
+                                                            <div class="menu">
+                                                                <div class="item" data-value="1">Option 1</div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="wrap-context2 disabled three fields">
-                                                <div class="field">
-                                                    <label>Source of Referral:</label>
-                                                    <div class="ui selection dropdown">
-                                                        <input type="hidden" name="StatueReferralSource" >
-                                                        <i class="dropdown icon"></i>
-                                                        <div class="default text">Choose from below:</div>
-                                                        <div class="menu">
-                                                            <div class="item" data-value="1">Option 1</div>
-                                                        </div>
+                                                    <div class="ui input field">
+                                                        <label>Check #:</label>
+                                                        <input type="string" name="StatueCheckNumber"  pattern="\d{3,4}" placeholder="Check #">
                                                     </div>
-                                                </div>
-                                                <div class="ui input field">
-                                                    <label>Source of Referral — Other :</label>
-                                                    <input type="string" name="StatueReferralSourceOther"  placeholder="Enter Legal Assc Name">
-                                                </div>
-                                                <div class="ui input field">
-                                                    <label>Sold By:</label>
-                                                    <input type="string" name="StatueSoldBy"  placeholder="Enter Legal Assc Name">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="wrap-context2 disabled three fields">
-                                                <div class="field">
-                                                    <label>Delivery Method:</label>
-                                                    <div class="ui selection dropdown">
-                                                        <input type="hidden" name="StatueDeliveryMethod" >
-                                                        <i class="dropdown icon"></i>
-                                                        <div class="default text">Choose from below:</div>
-                                                        <div class="menu">
-                                                            <div class="item" data-value="1">Option 1</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="field">
-                                                    <label>Payment Method:</label>
-                                                    <div class="ui selection dropdown">
-                                                        <input type="hidden" name="StatuePaymentMethod" >
-                                                        <i class="dropdown icon"></i>
-                                                        <div class="default text">Choose from below:</div>
-                                                        <div class="menu">
-                                                            <div class="item" data-value="1">Option 1</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="ui input field">
-                                                    <label>Check #:</label>
-                                                    <input type="string" name="StatueCheckNumber"  pattern="\d{3,4}" placeholder="Check #">
                                                 </div>
                                             </div>
                                         </div>
@@ -1445,7 +1451,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1732,7 +1738,7 @@
                                                         <div class="item" data-value="1">Association</div>
                                                         <div class="item" data-value="2">Manager</div>
                                                         <div class="item" data-value="3">CM</div>
-                                                    </div>    
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="ui input field">
@@ -1814,7 +1820,7 @@
                                             </div>
                                         </div>
                                     </div>
-        
+
                                     <!--  Organization Information -->
                                     <div class="seven wide column">
                                         <div class="row" style="margin-bottom: 2vh;">
@@ -2464,7 +2470,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
 
 
@@ -2506,7 +2512,7 @@
                     </form>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -2536,7 +2542,7 @@
             }
         })
     </script>
-    
+
 
     <script>
         const checkbox3 = document.querySelector(".wrap-checkbox3 input");
@@ -2572,7 +2578,7 @@
 
         check1.addEventListener("click", e => {
             for(let i = 0; i < context1.length; i++){
-                if ( $(context1[i]).hasClass( "disabled" ) ) { 
+                if ( $(context1[i]).hasClass( "disabled" ) ) {
                     context1[i].classList.toggle('disabled');
                 }
             }
@@ -2594,7 +2600,7 @@
 
         check3.addEventListener("click", e => {
             for(let i = 0; i < context2.length; i++){
-                if ( $(context2[i]).hasClass( "disabled" ) ) { 
+                if ( $(context2[i]).hasClass( "disabled" ) ) {
                     context2[i].classList.toggle('disabled');
                 }
             }
@@ -2639,9 +2645,9 @@
 
     <!-- Social Media Participation Toggles -->
     <!-- Overall toggle supersedes indiv toggles-->
-    <script> 
+    <script>
         // Indiv Toggle's — This is so ugly. I wish I could paramaterize this
-        
+
         // ---------------------------------------------------------------
         // Variables
         const faceYes = document.querySelector(".face-Yes input");
@@ -2664,7 +2670,7 @@
         const socialField = document.querySelectorAll(".social-Field");
         var socialToggleBool = false;
 
-        // Facebook Toggle 
+        // Facebook Toggle
         // Yes Box
         faceYes.addEventListener("click", e => {
             if (faceBoolYes == false && socialToggleBool == false) {
@@ -2990,7 +2996,7 @@
                 responsive: true
             });
         } );
-    </script> 
+    </script>
 
     <!--  -->
     <!-- MODAL DISPLAY SCRIPTS BELOW -->
@@ -3051,6 +3057,18 @@
             $('#NewRepButton').click(function(){
                 $('#NewRep-Modal').modal('setting', 'closable', false)
                 $('#NewRep-Modal').modal('show');
+            });
+            $('#NewMugButton').click(function(){
+                $('#NewMug-Modal').modal('setting', 'closable', false)
+                $('#NewMug-Modal').modal('show');
+            });
+            $('#NewStatueButton').click(function(){
+                $('#NewStatue-Modal').modal('setting', 'closable', false)
+                $('#NewStatue-Modal').modal('show');
+            });
+            $('#NewSocialButton').click(function(){
+                $('#NewSocial-Modal').modal('setting', 'closable', false)
+                $('#NewSocial-Modal').modal('show');
             });
         });
     </script>
