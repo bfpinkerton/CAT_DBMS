@@ -47,7 +47,10 @@ router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
     req.flash('success', "Please choose an action from the top menu");
     res.locals.message = req.flash();
     req.app.locals.user = req.user;
-    res.render('pages/mal/dashboard', );
+    req.app.locals.listingMAL = await MAL.findAll(
+        { plain: true }
+    );
+    res.render('pages/mal/dashboard');
 });
 
 // GET create page
