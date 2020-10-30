@@ -800,9 +800,6 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
 
 // Query specified table and return record
 router.get('/retrieve/:table/:id', ensureAuthenticated, async function (req, res) {
-    console.log();
-    console.log("ROUTE REACHED");
-    console.log();
     let record;
     switch (req.params.table) {
         case "Update" :
@@ -1208,7 +1205,7 @@ router.post('/entry/representation/:MAL_id/:Rep_id', ensureReadOnlyMAL, async fu
 
 // Merchandise Section --------------------------------------
 // Create MAL Entry's Mug Purchase
-router.post('', ensureReadOnlyMAL, function (req, res, next) {
+router.post('/create/mug/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
     const {
         MugPurchaseStatus,
         MugOriginationSaleSource,
@@ -1245,7 +1242,7 @@ router.post('', ensureReadOnlyMAL, function (req, res, next) {
     res.redirect("../../entry/" + req.params.MAL_id);
 });
 // Update MAL Entry's Mug Purchase
-router.post('', ensureReadOnlyMAL, async function (req, res, next) {
+router.post('/entry/mug/:MAL_id/:Mug_id', ensureReadOnlyMAL, async function (req, res, next) {
     const {
         MugPurchaseStatus,
         MugOriginationSaleSource,
@@ -1272,7 +1269,7 @@ router.post('', ensureReadOnlyMAL, async function (req, res, next) {
         }
     }
     // update record
-    await MerchandiseMug.update(entryMugPurchase, {where: {id:req.params.id}})
+    await MerchandiseMug.update(entryMugPurchase, {where: {id:req.params.Mug_id}})
         .catch(err => {
             console.log(err);
             req.flash('failure','Update MAL entry\'s *mal_MerchandiseMug* record failed.');
@@ -1280,8 +1277,9 @@ router.post('', ensureReadOnlyMAL, async function (req, res, next) {
 
     res.redirect("../../entry/" + req.params.MAL_id);
 });
+
 // Create MAL Entry's Florida Statue Service
-router.post('', ensureReadOnlyMAL, function (req, res, next) {
+router.post('/create/statue/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
     const {
         StatueStatusPurchase,
         StatueRequestedDate,
@@ -1318,13 +1316,14 @@ router.post('', ensureReadOnlyMAL, function (req, res, next) {
     MerchandiseFloridaStatue.create(entryFloridaStatue)
         .catch(err => {
             console.log(err);
+            // TODO: Replace "mal_SupplementalAssociationInfo" with proper table name
             req.flash('failure','New MAL entry\'s *mal_SupplementalAssociationInfo* record not added.');
         });
 
     res.redirect("../../entry/" + req.params.MAL_id);
 });
-// Update MAL MAL Entry's Florida Statue Service
-router.post('', ensureReadOnlyMAL, async function (req, res, next) {
+// Update MAL Entry's Florida Statue Service
+router.post('/entry/statue/:MAL_id/:Stat_id', ensureReadOnlyMAL, async function (req, res, next) {
     const {
         StatueStatusPurchase,
         StatueRequestedDate,
@@ -1357,7 +1356,7 @@ router.post('', ensureReadOnlyMAL, async function (req, res, next) {
         }
     }
     // update record
-    await MerchandiseFloridaStatue.update(entryFloridaStatue, {where: {id:req.params.id}})
+    await MerchandiseFloridaStatue.update(entryFloridaStatue, {where: {id:req.params.Stat_id}})
         .catch(err => {
             console.log(err);
             req.flash('failure','Update MAL entry\'s *mal_SupplementalAssociationInfo* record failed.');
@@ -1434,7 +1433,7 @@ router.post('/entry/social/:id', upload.array(), ensureReadOnlyMAL, async functi
 
 // Hiring/Termination Section --------------------------------------
 // Create MAL Entry's Hiring Information
-router.post('', ensureReadOnlyMAL, function (req, res, next) {
+router.post('/create/hiring/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
     const {
         HiringDateHired,
         HiringReasonsHired,
@@ -1481,7 +1480,7 @@ router.post('', ensureReadOnlyMAL, function (req, res, next) {
     res.redirect("../../entry/" + req.params.MAL_id);
 });
 // Update MAL Entry's Hiring Information
-router.post('', ensureReadOnlyMAL, async function (req, res, next) {
+router.post('/entry/hiring/:MAL_id/:Hire_id', ensureReadOnlyMAL, async function (req, res, next) {
     const {
         HiringDateHired,
         HiringReasonsHired,
@@ -1518,7 +1517,7 @@ router.post('', ensureReadOnlyMAL, async function (req, res, next) {
         }
     }
     // update record
-    await HiringRecord.update(entryHiring, {where: {id:req.params.id}})
+    await HiringRecord.update(entryHiring, {where: {id:req.params.Hire_id}})
         .catch(err => {
             console.log(err);
             req.flash('failure','Update MAL entry\'s *mal_HiringRecord* record failed.');
@@ -1527,7 +1526,7 @@ router.post('', ensureReadOnlyMAL, async function (req, res, next) {
     res.redirect("../../entry/" + req.params.MAL_id);
 });
 // Create MAL Entry's Termination Information
-router.post('', ensureReadOnlyMAL, function (req, res, next) {
+router.post('/create/termination/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
     const {
         TerminationDateTerminated,
         TerminationReasonTerminated,
@@ -1562,7 +1561,7 @@ router.post('', ensureReadOnlyMAL, function (req, res, next) {
     res.redirect("../../entry/" + req.params.MAL_id);
 });
 // Update MAL MAL Entry's Termination Information
-router.post('', ensureReadOnlyMAL, async function (req, res, next) {
+router.post('/entry/termination/:MAL_id/:Term_id', ensureReadOnlyMAL, async function (req, res, next) {
     const {
         TerminationDateTerminated,
         TerminationReasonTerminated,
@@ -1587,7 +1586,7 @@ router.post('', ensureReadOnlyMAL, async function (req, res, next) {
         }
     }
     // update record
-    await TerminationRecord.update(entryTermination, {where: {id:req.params.id}})
+    await TerminationRecord.update(entryTermination, {where: {id:req.params.Term_id}})
         .catch(err => {
             console.log(err);
             req.flash('failure','Update MAL entry\'s *mal_TerminationRecord* record failed.');
@@ -1672,6 +1671,7 @@ router.post('/entry/source/:MAL_id/:Src_id', ensureReadOnlyMAL, async function (
 
     res.redirect("../../../entry/" + req.params.MAL_id);
 });
+
 // Create MAL Entry's Referrals from C&M for Mgmt. Co./Vendors
 router.post('/create/referral/:MAL_id', ensureReadOnlyMAL, function (req, res, next) {
     // Replace empty string values with null
