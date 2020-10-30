@@ -4,20 +4,25 @@ const assert = require("assert").strict
 const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const chromedriver = require('chromedriver');
+const { elementIsDisabled } = require("selenium-webdriver/lib/until");
 chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 const capabilities = Capabilities.chrome();
 capabilities.set('chromeOptions', { "w3c": false });
 const driver = new Builder().withCapabilities(capabilities).build();
 
-Given('I have visited the Selenium official web page on www.selenium.dev', async function () {
+Given('I have logged onto the DBMS website', async function () {
     // Write code here that turns the phrase above into concrete actions
-    await driver.get('http://www.google.com');
+    await driver.get('https://hudson-chesterfield-41002.herokuapp.com/mal/entry/4');
   });
 
-When("I increment the variable by {int}", function(number) {
-  this.incrementBy(number);
+When(/^admin puts in username "([^"]*)"$/, function(arg1) {
+    return driver.findElement(By.name('email')).sendKeys(arg1);
 });
 
-Then("the variable should contain {int}", function(number) {
-  assert.equal(this.variable, number);
+When(/^admin puts in password "([^"]*)"$/, function(arg1) {
+    return driver.findElement(By.name('password')).sendKeys(arg1);
+});
+
+When('admin clicks submit', function (){
+    return driver.findElement(By.id('submitButton')).click();
 });
