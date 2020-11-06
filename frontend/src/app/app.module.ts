@@ -12,13 +12,14 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardHeaderComponent } from './shared/dashboard-header/dashboard-header.component';
-import { CreateMalComponent } from './MAL/create-mal/create-mal.component';
+import { CreateMalComponent } from './mal/create-mal/create-mal.component';
 import {CalendarModule} from "primeng/calendar";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
+import { CreateMmlComponent } from './mml/create-mml/create-mml.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
     HomeComponent,
     DashboardComponent,
     DashboardHeaderComponent,
-    CreateMalComponent
+    CreateMalComponent,
+    CreateMmlComponent
   ],
   imports: [
     BrowserModule,
