@@ -1,0 +1,16 @@
+.login-button {
+  color : rgb(246, 244, 242);
+  background-color: rgb(56, 88, 1);
+  padding: 6px 6px 6px 6px;
+  margin: 8px 20px 8px 10px;
+  min-width: 88px;
+  border-radius: 6px;
+  font-size: 18px;
+  font-style: revert;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration:none;
+  border: #1a531b;
+  outline: none;
+}
+

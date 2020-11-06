@@ -1,0 +1,20 @@
+.header {
+  width: 100%;
+  padding: 2%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.active {
+  color: #ffffff !important;
+}
+
+.redirect-button{
+  color : rgb(96, 95, 95);
+  padding: 5px 5px 5px 5px;
+  font-size: 16px;
+}
+.navigation-titles{
+  font-size: 18px;
+}

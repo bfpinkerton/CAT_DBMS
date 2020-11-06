@@ -22,14 +22,17 @@ const {
 } = require('../config/admin');
 
 // ------------------------------------------------------------------
+router.get('*', function (req, res, next) {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 // GET home page
-router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
-    req.flash('success', "Please choose a utility from the sidebar");
-    res.locals.message = req.flash();
-    req.app.locals.user = req.user;
-    // var date = moment().format('MMMM Do YYYY');
-    res.render('pages/mml/dashboard', );
-});
+// router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
+//     req.flash('success', "Please choose a utility from the sidebar");
+//     res.locals.message = req.flash();
+//     req.app.locals.user = req.user;
+//     // var date = moment().format('MMMM Do YYYY');
+//     res.render('pages/mml/dashboard', );
+// });
 
 module.exports = router;

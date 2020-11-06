@@ -42,23 +42,27 @@ const {
 
 // ------------------------------------------------------------------
 
-// GET home page
-router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
-    req.flash('success', "Please choose an action from the top menu");
-    res.locals.message = req.flash();
-    req.app.locals.user = req.user;
-    req.app.locals.listingMAL = await MAL.findAll(
-        { plain: true }
-    );
-    res.render('pages/mal/dashboard');
+router.get('*', function (req, res, next) {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-// GET create page
-router.get('/create', ensureReadOnlyMAL, async function (req, res, next) {
-    req.app.locals.user = req.user;
-    req.app.locals.date = moment().format('MMMM Do YYYY');
-    res.render('pages/mal/create', );
-});
+// GET home page
+// router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
+//     req.flash('success', "Please choose an action from the top menu");
+//     res.locals.message = req.flash();
+//     req.app.locals.user = req.user;
+//     req.app.locals.listingMAL = await MAL.findAll(
+//         { plain: true }
+//     );
+//     res.render('pages/mal/dashboard');
+// });
+//
+// // GET create page
+// router.get('/create', ensureReadOnlyMAL, async function (req, res, next) {
+//     req.app.locals.user = req.user;
+//     req.app.locals.date = moment().format('MMMM Do YYYY');
+//     res.render('pages/mal/create', );
+// });
 
 // Create handle
 /*

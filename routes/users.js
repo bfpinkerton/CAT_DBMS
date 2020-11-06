@@ -26,20 +26,24 @@ const {
 
 // ------------------------------------------------------------------
 
-// GET home page
-router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
-    req.flash('success', "Please choose a utility from the sidebar");
-    res.locals.message = req.flash();
-    req.app.locals.user = req.user;
-    // var date = moment().format('MMMM Do YYYY');
-    res.render('pages/users/dashboard', );
+router.get('*', function (req, res, next) {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-// GET register user page
-router.get('/register', ensureAdmin, function (req, res, next) {
-    res.locals.message = req.flash();
-    res.render('pages/users/register');
-});
+// GET home page
+// router.get('/dashboard', ensureAuthenticated, async function (req, res, next) {
+//     req.flash('success', "Please choose a utility from the sidebar");
+//     res.locals.message = req.flash();
+//     req.app.locals.user = req.user;
+//     // var date = moment().format('MMMM Do YYYY');
+//     res.render('pages/users/dashboard', );
+// });
+//
+// // GET register user page
+// router.get('/register', ensureAdmin, function (req, res, next) {
+//     res.locals.message = req.flash();
+//     res.render('pages/users/register');
+// });
 
 // Register Handle
 // TODO: Check for existing account with same email
@@ -136,11 +140,17 @@ router.delete('/delete/:id', ensureAdmin, (req, res) => {
 
 // Login Handle
 router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        // Redirects on both success and fail
-        successRedirect: '../users/dashboard',
-        failureRedirect: '/login',
-        failureFlash: true
+    passport.authenticate('local', (error, user, info) => {
+        if(error){
+            res.status(400).json({"statusCode" : 400 ,"message" : error});
+        }
+        else{
+            res.status(200).json({"statusCode" : 200, "user": user});
+            req.login(user, function(error) {
+                if (error) { return next(error); }
+                next();
+            });
+        }
     })(req, res, next);
 });
 

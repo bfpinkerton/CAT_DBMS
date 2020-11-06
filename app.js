@@ -15,11 +15,12 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:4200"
 };
 app.use(cors());
 
@@ -75,8 +76,7 @@ const db = require("./models");
 //     console.log(err);
 // });
 
-// EJS
-app.set("view engine", "ejs");
+app.set("frontend", path.join(__dirname, "frontend"));
 
 // Express Session
 // Time for session to expire
@@ -104,8 +104,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+app.set("frontend", path.join(__dirname, "frontend"));
 app.use(logger("dev"));
 // app.use(express.json());
 // app.use(
@@ -123,7 +122,7 @@ app.use(
     sourceMap: true,
   })
 );
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Routes
 var indexRouter = require("./routes/index");
@@ -161,7 +160,6 @@ app.use(function(err, req, res, next) {
     error: err
   });
 });
-
 
 
 
