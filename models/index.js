@@ -45,6 +45,13 @@ db.homeInformation = require("./mml_HomeInformation.model.js")(sequelize, Sequel
 db.socialMediaExtras = require("./mml_SocialMediaExtras.model.js")(sequelize, Sequelize);
 db.referrals = require("./mml_Referrals.model.js")(sequelize, Sequelize);
 //
+db.mcd = require("./mcd.model.js")(sequelize, Sequelize); // TODO this file might not exist yet...
+db.corporateStatus = require("./mcd_CorporateStatus.model.js")(sequelize, Sequelize);
+db.corporateContact = require("./mcd_CorporateContact.model.js")(sequelize, Sequelize);
+db.corporate = require("./mcd_Corporate.model.js")(sequelize, Sequelize);
+db.branchOffice = require("./mcd_BranchOffice.model.js")(sequelize, Sequelize);
+db.cmReferralsToMgmtCo = require("./mcd_CMReferralsToMgmtCo.model.js")(sequelize, Sequelize);
+db.mgmtCoReferralsToCM = require("./mcd_MgmtCoReferralsToCM.model.js")(sequelize, Sequelize);
 
 
 
