@@ -284,7 +284,7 @@ module.exports = (sequelize, Sequelize) => {
 
         // --Corporate--
         /*
-            - Table: "mal_Corporate.model.js"
+            - Table: "mcd_Corporate.model.js"
             - ID logged following creation of MAL record
         */
         corporateID: {
@@ -295,7 +295,7 @@ module.exports = (sequelize, Sequelize) => {
 
         // --Corporate Status--
         /*
-            - Table: "mal_CorporateStatus.model.js"
+            - Table: "mcd_CorporateStatus.model.js"
             - ID logged following creation of MAL record
         */
         corporateStatusID: {
@@ -306,7 +306,7 @@ module.exports = (sequelize, Sequelize) => {
 
         // --Corporate Contact--
         /*
-            - Table: "mal_CorporateContact.model.js"
+            - Table: "mcd_CorporateContact.model.js"
             - ID logged following creation of MAL record
         */
         corporateContactID: {
@@ -317,7 +317,7 @@ module.exports = (sequelize, Sequelize) => {
 
         // --Branch Office--
         /*
-            - Table: "mal_BranchOffice.model.js"
+            - Table: "mcd_BranchOffice.model.js"
             - ID logged following creation of MAL record
         */
         branchOfficeID: {
@@ -328,7 +328,7 @@ module.exports = (sequelize, Sequelize) => {
 
         // --CM Referrals to Mgmt. Co.--
         /*
-            - Table: "mal_CMReferralsToMgmtCo.model.js"
+            - Table: "mcd_CMReferralsToMgmtCo.model.js"
             - ID logged following creation of MAL record
         */
         cmReferralsToMgmtCoID: {
@@ -339,7 +339,7 @@ module.exports = (sequelize, Sequelize) => {
 
         // --Mgmt. Co. Referrals to CM--
         /*
-            - Table: "mal_MgmtCoReferralsToCM.model.js"
+            - Table: "mcd_MgmtCoReferralsToCM.model.js"
             - ID logged following creation of MAL record
         */
         mgmtCoReferralsToCMID: {
