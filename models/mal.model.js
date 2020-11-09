@@ -1,5 +1,5 @@
-/* 
-    - This model contains basic information about a MAL entry with additional foreign key links to 
+/*
+    - This model contains basic information about a MAL entry with additional foreign key links to
 */
 
 module.exports = (sequelize, Sequelize) => {
@@ -79,19 +79,19 @@ module.exports = (sequelize, Sequelize) => {
         /*
             - Table: "mal_SupplementalAssociationInfo.model.js"
             - One to One Association — Able to associate both ways; ID logged below
-            - ID logged following creation of MAL record 
+            - ID logged following creation of MAL record
         */
         supplementalAssociationInfoID: {
             type: Sequelize.INTEGER,
         },
 
 
-        
+
         // --General Board Member Related Information--
         /*
             - Table: "mal_GeneralBoardInfo.model.js"
             - One to One Association — Able to associate both ways; ID logged below
-            - ID logged following creation of MAL record 
+            - ID logged following creation of MAL record
         */
         generalBoardTableID: {
             type: Sequelize.INTEGER,
@@ -173,7 +173,7 @@ module.exports = (sequelize, Sequelize) => {
         /*
             - Table: "mal_SocialMedia.model.js"
             - One to One Association — Able to associate both ways; ID logged below
-            - ID logged following creation of MAL record 
+            - ID logged following creation of MAL record
         */
         socialMediaID: {
             type: Sequelize.INTEGER,
@@ -276,7 +276,77 @@ module.exports = (sequelize, Sequelize) => {
             - One to Many Association — Not able to associate both ways; ID not logged below
         */
 
+
+
+
+
+
+
+        // --Corporate--
+        /*
+            - Table: "mal_Corporate.model.js"
+            - ID logged following creation of MAL record
+        */
+        corporateID: {
+            type: Sequelize.INTEGER,
+        },
+
+
+
+        // --Corporate Status--
+        /*
+            - Table: "mal_CorporateStatus.model.js"
+            - ID logged following creation of MAL record
+        */
+        corporateStatusID: {
+            type: Sequelize.INTEGER,
+        },
+
+
+
+        // --Corporate Contact--
+        /*
+            - Table: "mal_CorporateContact.model.js"
+            - ID logged following creation of MAL record
+        */
+        corporateContactID: {
+            type: Sequelize.INTEGER,
+        },
+
+
+
+        // --Branch Office--
+        /*
+            - Table: "mal_BranchOffice.model.js"
+            - ID logged following creation of MAL record
+        */
+        branchOfficeID: {
+            type: Sequelize.INTEGER,
+        },
+
+
+
+        // --CM Referrals to Mgmt. Co.--
+        /*
+            - Table: "mal_CMReferralsToMgmtCo.model.js"
+            - ID logged following creation of MAL record
+        */
+        cmReferralsToMgmtCoID: {
+            type: Sequelize.INTEGER,
+        },
+
+
+
+        // --Mgmt. Co. Referrals to CM--
+        /*
+            - Table: "mal_MgmtCoReferralsToCM.model.js"
+            - ID logged following creation of MAL record
+        */
+        mgmtCoReferralsToCMID: {
+            type: Sequelize.INTEGER,
+        }
+
     });
-  
+
     return MAL;
   };
