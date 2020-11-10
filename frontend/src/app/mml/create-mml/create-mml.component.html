@@ -1,3 +1,56 @@
 <app-dashboard-header></app-dashboard-header>
 
-<p>create-mml works!</p>
+<div class="container">
+    <form [formGroup]="createMMLForm" (ngSubmit)="onSubmit()">
+  
+      <h2 style="text-align:left">
+        MML (Master Managers List)
+      </h2>
+  
+      <fieldset class="form-row" formGroupName="master_managers_List_group">
+        <legend>MML (Master Managers List)</legend>
+        <div class="row">
+  
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="UserInitials">User Initials: </label>
+              <div class="controls">
+                <input type="text" id="UserInitials" placeholder="Enter User Initials" class="form-control" formControlName="UserInitials">
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="DataBox">Data Box: </label>
+              <div class="controls">
+                <input type="text" id="DataBox" placeholder="Enter Data Box" class="form-control" formControlName="DataBox">
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="MgmtCo">Mgmt.Co: </label>
+              <div class="controls">
+                <input type="text" id="MgmtCo" placeholder="This field should be tied to Mgmt.Co Database" class="form-control" formControlName="MgmtCo">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="CompanyType">Company Type : </label>
+              <div class="controls">
+                <input type="text" id="CompanyType" placeholder="Enter Data Box" class="form-control" formControlName="DataBox">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="AssnNameTag">Mgmt.Co/Assn.Seminar Name Tag </label>
+              <div class="controls">
+                <input type="text" id="AssnNameTag" class="form-control" formControlName="AssnNameTag">
+              </div>
+            </div>
+          </div>
+        </div>
