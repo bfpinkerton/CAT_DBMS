@@ -28,10 +28,10 @@ const {
     ensureAuthenticated
 } = require('../config/auth');
 
-// Ensure user has admin permissions
+// Ensure user does not have readOnly
 const {
-    ensureAdmin
-} = require('../config/admin');
+    ensureReadOnlyMCD
+} = require('../config/readOnlyMCD');
 
 // ------------------------------------------------------------------
 
