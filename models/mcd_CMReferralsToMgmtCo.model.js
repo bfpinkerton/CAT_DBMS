@@ -8,12 +8,12 @@ module.exports = (sequelize, Sequelize) => {
             // defaultValue: '0',
             primaryKey: true
         },
-        // What MAL entry is this relating to
-        MALrelatedID: {
+        // What MCD entry is this relating to
+        MCDrelatedID: {
             type: Sequelize.INTEGER,
             references: {
                 // This is a reference to another model
-                model: 'MALs',
+                model: 'MCDs',
                 // This is the column name of the referenced model
                 key: 'id'
             }
