@@ -15,25 +15,37 @@ Given('I have logged onto the DBMS website', async function () {
     await driver.get('https://hudson-chesterfield-41002.herokuapp.com/mal/entry/4');
   });
 
-When(/^admin puts in username "([^"]*)"$/, function(arg1) {
+When(/^manager puts in username "([^"]*)"$/, function(arg1) {
     return driver.findElement(By.name('email')).sendKeys(arg1);
 });
 
-When(/^admin puts in password "([^"]*)"$/, function(arg1) {
+When(/^manager puts in password "([^"]*)"$/, function(arg1) {
     return driver.findElement(By.name('password')).sendKeys(arg1);
 });
 
-When('admin clicks submit', function (){
+When('manager clicks submit', function (){
+    if(driver.get('https://hudson-chesterfield-41002.herokuapp.com/login')){
+        console.log("Incorrect credentials");
+    }
     return driver.findElement(By.id('submitButton')).click();
 });
 
-When('admin searches for an entry', async function (){
-    await driver.get('https://hudson-chesterfield-41002.herokuapp.com/mal/entry/4');
+When('manager goes to MML page', async function (){
+    await driver.get('https://hudson-chesterfield-41002.herokuapp.com/mml/create/');
 });
 
-Then('entry appears in representation inquiry', function (){
-    return driver.findElement(By.id('RepresentationTable'));
+Then(/^there should be form "([^"]*)" that manager can enter info in$/, function(arg1){
+    return driver.findElement(By.id(arg1));
 });
+
+When('manager goes to MAL page', async function (){
+    await driver.get('https://hudson-chesterfield-41002.herokuapp.com/mal/create/');
+});
+
+Given('I have logged onto the DBMS website', async function () {
+    // Write code here that turns the phrase above into concrete actions
+    await driver.get('https://hudson-chesterfield-41002.herokuapp.com/mal/entry/4');
+  });
 
 When(/^admin puts "([^"]*)" into legal association name$/, function(arg1) {
     return driver.findElement(By.name('LegalName')).sendKeys(arg1);
