@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Constants} from "../shared/constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-
-  private baseUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +15,6 @@ export class LoginService {
   }
 
   login(loginCredentials: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/users/login`, loginCredentials);
+    return this.http.post(`${Constants.baseUrl}/users/login`, loginCredentials);
   }
 }
