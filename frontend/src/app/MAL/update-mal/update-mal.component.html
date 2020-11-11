@@ -1,0 +1,1671 @@
+<app-dashboard-header></app-dashboard-header>
+
+<div class="container">
+  <form [formGroup]="updateMALForm" (ngSubmit)="onSubmit()">
+
+    <h2 style="text-align:left">
+      Create New Entry
+    </h2>
+
+    <fieldset class="form-row" formGroupName="primary_information_group">
+      <legend>Primary Association Information</legend>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="associationName">Legal Association Name: <span class="lblError">*</span></label>
+            <div class="controls">
+              <input type="text" id="associationName" placeholder="Enter Legal Association Name" class="form-control" formControlName="legal_association_name">
+              <p class="lblError" *ngIf="updateMALForm.get('legal_association_name').hasError('required')
+                            && !updateMALForm.get('legal_association_name').pristine">
+                Name is Required
+              </p>
+              <p class="lblError"
+                 *ngIf="updateMALForm.get('user_name').hasError('invalidName')
+                            && !updateMALForm.get('user_name').pristine">
+                Name is Invalid
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="alsoKnownAs">Also Known As: </label>
+            <div class="controls">
+              <input type="text" id="alsoKnownAs" placeholder="Enter Alternate Name" class="form-control" formControlName="also_known_as">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="accountNumber">Client Account Number: </label>
+            <div class="controls">
+              <input type="text" id="accountNumber" placeholder="Enter Client Acct#" class="form-control" formControlName="client_account_number">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="fileName">File Name: </label>
+            <div class="controls">
+              <input type="text" id="fileName" placeholder="Enter File Name" class="form-control" formControlName="file_name">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="status">Status w/ in Firm: </label>
+            <div class="controls">
+              <select id="status" formControlName="status" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="classification">Special Classification:</label>
+            <div class="controls">
+              <select id="classification" formControlName="special_classification" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="associationType">Association Type:</label>
+            <div class="controls">
+              <select id="associationType" formControlName="association_type" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="secAssociationType">Secondary MHP Association Type:</label>
+            <div class="controls">
+              <select id="secAssociationType" formControlName="sec_association_type" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="county">Domicile County:</label>
+            <div class="controls">
+              <select id="county" formControlName="domicile_county" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="city">Domicile City:</label>
+            <div class="controls">
+              <select id="city" formControlName="domicile_city" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="zipCode">Domicile Zip Code:</label>
+            <div class="controls">
+              <input type="text" id="zipCode" placeholder="Enter Zip Code" class="form-control" formControlName="domicile_zip_code">
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset><br>
+
+    <fieldset class="form-row" formGroupName="supplement_association_info_group">
+      <legend>Supplemental Association Information</legend>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="associationAddress">Designated On-Site Association Address:</label>
+            <div class="controls">
+              <input type="text" id="associationAddress" placeholder="Enter Designated Address" class="form-control" formControlName="association_address">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="supplemental_info_city">City: </label>
+            <div class="controls">
+              <select id="supplemental_info_city" formControlName="city" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="supplemental_info_zipCode">Zip Code: </label>
+            <div class="controls">
+              <input type="text" id="supplemental_info_zipCode" placeholder="Enter Zip Code" class="form-control" formControlName="zip_code">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number: </label>
+            <div class="controls">
+              <input type="text" id="phoneNumber" placeholder="Enter Phone Number" class="form-control" formControlName="phone_number">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="website">Association Website:</label>
+            <div class="controls">
+              <input type="text" id="website" placeholder="Enter Website" class="form-control" formControlName="website">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="emailAddress">Association E-Mail Address:</label>
+            <div class="controls">
+              <input type="text" id="emailAddress" placeholder="Enter Email Address" class="form-control" formControlName="email_address">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="unitsDeveloped"># of Units/Lots when Fully Developed:</label>
+            <div class="controls">
+              <input type="text" id="unitsDeveloped" placeholder="Enter # Units/Lots" class="form-control" formControlName="number_of_untis">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="radio-inline col-sm-4">
+          <div class="form-group">
+            <label>55+ Community?</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="radioButton1" type="radio" value="Yes" formControlName="community_55_plus">
+                <label for="radioButton1">Yes</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="radioButton2" type="radio" value="No" formControlName="community_55_plus">
+                <label for="radioButton2">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="radio-inline col-sm-3">
+          <div class="form-group">
+            <label>Association Controlled By:</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="associationControlledByradioButton1" type="radio" value="Residents" formControlName="association_controlled_by">
+                <label for="associationControlledByradioButton1">Residents</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="associationControlledByradioButton2" type="radio" value="Developer" formControlName="association_controlled_by">
+                <label for="associationControlledByradioButton2">Developer</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <div class="controls">
+            <label for="turnoverDate">Approx Turnover Date: (If Developer Controlled)</label>
+            <p-calendar inputStyleClass="form-control" formControlName="turnover_date" [showIcon]="true" inputId="turnoverDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="radio-inline col-sm-4">
+          <div class="form-group">
+            <label>Is Association a Master or Sub-Association?</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="masOrSubradioButton1" type="radio" value="Master" formControlName="association_type">
+                <label for="masOrSubradioButton1">Master</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="masOrSubradioButton2" type="radio" value="Sub-Association" formControlName="association_type">
+                <label for="masOrSubradioButton2">Sub-Association</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="masterAssociations">Master — What Associations are Subs: </label>
+            <div class="controls">
+              <select id="masterAssociations" formControlName="master_association_type" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="subAssociations">Sub — What Association is Master:</label>
+            <div class="controls">
+              <select id="subAssociations" formControlName="sub_association_type" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="registeredAgent">Registered Agent:</label>
+            <div class="controls">
+              <select id="registeredAgent" formControlName="registered_agent" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <div class="controls">
+            <label for="raDate">RA Date:</label>
+            <p-calendar formControlName="ra_date" [showIcon]="true" inputId="raDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+
+        <div class="radio-inline col-sm-3">
+          <div class="form-group">
+            <label>Clubhouse?</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="clubhouseButton1" type="radio" value="Yes" formControlName="clubhouse">
+                <label for="clubhouseButton1">Yes</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="clubhouseButton2" type="radio" value="No" formControlName="clubhouse">
+                <label for="clubhouseButton2">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="assessments">Assesments:</label>
+            <div class="controls">
+              <input type="text" id="assessments" placeholder="Enter Assesments" class="form-control" formControlName="assessments">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="intervals">What Intervals:</label>
+            <div class="controls">
+              <select id="intervals" formControlName="intervals" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="radio-inline col-sm-4">
+          <div class="form-group">
+            <label>Available to Rent?</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="rentAvailabilityRadioButton1" type="radio" value="Yes" formControlName="rent_availability">
+                <label for="rentAvailabilityRadioButton1">Yes</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="rentAvailabilityRadioButton2" type="radio" value="No" formControlName="rent_availability">
+                <label for="rentAvailabilityRadioButton2">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="price">Price:</label>
+            <div class="controls">
+              <input type="text" id="price" placeholder="Enter Price" class="form-control" formControlName="price">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="theaterSeating">Theater Style Seating #:</label>
+            <div class="controls">
+              <input type="text" id="theaterSeating" placeholder="Enter Style Seating" class="form-control" formControlName="theater_seating">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="seating">Tables/Chairs Seating #:</label>
+            <div class="controls">
+              <input type="text" id="seating" placeholder="Enter Tables/Chairs Seating" class="form-control" formControlName="tables_seating">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="tableTypes">Type of Tables:</label>
+            <div class="controls">
+              <select id="tableTypes" formControlName="type_of_tables" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 form-group">
+          <label for="additionalNotes">Additional Notes:</label>
+          <div class="controls">
+            <input type="text" id="additionalNotes" class="form-control" formControlName="additional_notes">
+          </div>
+        </div>
+      </div>
+    </fieldset><br>
+
+    <fieldset class="form-row" formGroupName="general_board_member_info">
+      <legend>General Board Member Related Information</legend>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="corporateStatus">Corporate Status:</label>
+            <div class="controls">
+              <select id="corporateStatus" formControlName="corporate_status" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="meetingMonth">Annual Meeting Month:</label>
+            <div class="controls">
+              <select id="meetingMonth" formControlName="annual_meeting_month" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <div class="controls">
+            <label for="reportFiledDate">Last Corporate Report Filed:</label>
+            <p-calendar formControlName="last_corporate_report_filed" [showIcon]="true" inputId="reportFiledDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <div class="controls">
+            <label for="bordTermExpDate">Current Board Term Expiration:</label>
+            <p-calendar formControlName="board_term_expiration" [showIcon]="true" inputId="bordTermExpDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="admittanceStatus">Association Seminar Admittance Status:</label>
+            <div class="controls">
+              <select id="admittanceStatus" formControlName="seminar_status" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="tagColor">Association Seminar Name Tag Color:</label>
+            <div class="controls">
+              <select id="tagColor" formControlName="seminar_name_tag_color" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="directors"># of Directors When Fully Staffed:</label>
+            <div class="controls">
+              <input type="text" id="directors" placeholder="Enter No. of Directors" class="form-control" formControlName="no_of_directors">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-3">
+          <div class="controls">
+            <label for="associationUpdatedDate">Date Association Updated in Whole:</label>
+            <p-calendar formControlName="association_updated_date" [showIcon]="true" inputId="associationUpdatedDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+      </div>
+    </fieldset><br>
+
+
+    <fieldset class="form-row">
+      <p-toast></p-toast>
+
+      <div class="card">
+        <p-toolbar styleClass="p-mb-4">
+          <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+          </ng-template>
+        </p-toolbar>
+
+        <p-table #dt [value]="inquiries" [rows]="10" [paginator]="true" [globalFilterFields]="['entryId','servicesRequest','originationSource','cmSponsored', 'source', 'date']"
+                 [rowHover]="true" dataKey="id"
+                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+          <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              <h5 class="p-m-0">Representation Inquiries</h5>
+              <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event, 'contains')" placeholder="Search..." />
+                </span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="entryId">Entry Id <p-sortIcon field="entryId"></p-sortIcon></th>
+              <th pSortableColumn="servicesRequest">CM Services Request <p-sortIcon field="servicesRequest"></p-sortIcon></th>
+              <th pSortableColumn="originationSource">Origination Source <p-sortIcon field="originationSource"></p-sortIcon></th>
+              <th pSortableColumn="cmSponsored">Not CM Seminar Sponsored? <p-sortIcon field="cmSponsored"></p-sortIcon></th>
+              <th pSortableColumn="source">Source <p-sortIcon field="source"></p-sortIcon></th>
+              <th pSortableColumn="date">Date Requested <p-sortIcon field="date"></p-sortIcon></th>
+              <th>Edit/Delete Entry </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-inquiry>
+            <tr>
+              <td>{{inquiry.entryId}}</td>
+              <td>{{inquiry.servicesRequest}}</td>
+              <td>{{inquiry.originationSource}}</td>
+              <td>{{inquiry.cmSponsored}}</td>
+              <td>{{inquiry.source}}</td>
+              <td>{{inquiry.date}}</td>
+              <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editInquiry(inquiry)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteInquiry(inquiry)"></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <p-dialog [(visible)]="inquiriesDialog" [style]="{width: '450px'}" header="Edit Existing Representation Inquiry Entry" [modal]="true" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+          <div class="p-field">
+            <label for="serviceRequest">CM Services Request:</label>
+            <div class="controls">
+              <select id="serviceRequest" [(ngModel)]="inquiry.servicesRequest" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+          <div class="p-field">
+            <label for="originationSource">Origination Source:</label>
+            <div class="controls">
+              <select id="originationSource" [(ngModel)]="inquiry.originationSource" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="p-field">
+            <label class="p-mb-3">Not CM Seminar Sponsored Origination?</label>
+            <div class="p-formgrid p-grid">
+              <div class="p-field-radiobutton p-col-6">
+                <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="inquiry.cmSponsored"></p-radioButton>
+                <label for="yes">Yes</label>
+              </div>
+              <div class="p-field-radiobutton p-col-6">
+                <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="inquiry.cmSponsored"></p-radioButton>
+                <label for="no">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+              <label for="source">Source:</label>
+              <div class="controls">
+                <select id="source" [(ngModel)]="inquiry.source" class="form-control">
+                  <option ngValue="null" disabled selected>Choose from Below</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+              </div>
+            </div>
+            <div class="p-field p-col">
+              <label for="date">Date Requested:</label>
+              <p-inputNumber id="date" [(ngModel)]="inquiry.date"></p-inputNumber>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+          <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+          <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveInquiry()"></button>
+        </ng-template>
+      </p-dialog>
+
+      <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </fieldset><br>
+
+
+    <fieldset class="form-row" formGroupName="merchandise_purchases">
+      <legend>Merchandise Purchases:</legend>
+      <div formGroupName="mug_purchases">
+        <h4>Mug Purchases:</h4>
+        <div class="radio-inline col-sm-4 row">
+          <div class="form-group">
+            <label>Mug Purchase Status</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="purchaseStatusRadioButton1" type="radio" value="Yes" formControlName="purchase_status">
+                <label for="purchaseStatusRadioButton1">Yes</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="purchaseStatusRadioButton2" type="radio" value="No" formControlName="purchase_status">
+                <label for="purchaseStatusRadioButton2">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="admittanceStatus">Origination Sale Source:</label>
+              <div class="controls">
+                <select id="originationSaleSource" formControlName="sale_source" class="form-control">
+                  <option ngValue="null" disabled selected>Choose from Below</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <div class="controls">
+                <label for="datePurchased">Date Purchased:</label>
+                <p-calendar formControlName="date_purchased" [showIcon]="true" inputId="datePurchased" placeholder="Select a Date"></p-calendar>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="quantity">Quantity:</label>
+              <div class="controls">
+                <input type="text" id="quantity" placeholder="Enter Quantity" class="form-control" formControlName="quantity">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="deliveryMethod">Delivery Method:</label>
+              <div class="controls">
+                <select id="deliveryMethod" formControlName="delivery_method" class="form-control">
+                  <option ngValue="null" disabled selected>Choose from Below</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="paymentMethod">Payment Method:</label>
+              <div class="controls">
+                <select id="paymentMethod" formControlName="payment_method" class="form-control">
+                  <option ngValue="null" disabled selected>Choose from Below</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="checkNo">Check #:</label>
+              <div class="controls">
+                <input type="text" id="checkNo" placeholder="Enter Check #" class="form-control" formControlName="no_of_directors">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div formGroupName="florida_statue_service">
+        <h4>Florida Statue Service:</h4>
+        <div class="radio-inline col-sm-4 row">
+          <div class="form-group">
+            <label>Statue Service Purchase Status</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="statueServiceRadioButton1" type="radio" value="Yes" formControlName="purchase_status">
+                <label for="statueServiceRadioButton1">Yes</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="statueServiceRadioButton2" type="radio" value="No" formControlName="purchase_status">
+                <label for="statueServiceRadioButton2">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <div class="controls">
+                <label for="dateRequested">Date Requested:</label>
+                <p-calendar formControlName="date_requested" [showIcon]="true" inputId="dateRequested" placeholder="Select a Date"></p-calendar>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="statueServiceQuantity">Quantity:</label>
+              <div class="controls">
+                <input type="text" id="statueServiceQuantity" placeholder="Enter Quantity" class="form-control" formControlName="quantity">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="book">Which Book:</label>
+              <div class="controls">
+                <select id="book" formControlName="which_book" class="form-control">
+                  <option ngValue="null" disabled selected>Choose from Below</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="referralSource">Source of Referral:</label>
+              <div class="controls">
+                <select id="referralSource" formControlName="referral" class="form-control">
+                  <option ngValue="null" disabled selected>Choose from Below</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="referralOther">Source of Referral - Other:</label>
+              <div class="controls">
+                <input type="text" id="referralOther" placeholder="Enter Referral Source" class="form-control" formControlName="referral_other">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="soldBy">Sold By:</label>
+              <div class="controls">
+                <input type="text" id="soldBy" placeholder="Enter Sold By.." class="form-control" formControlName="sold_by">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="statueServicesDeliveryMethod">Delivery Method:</label>
+              <div class="controls">
+                <select id="statueServicesDeliveryMethod" formControlName="delivery_method" class="form-control">
+                  <option ngValue="null" disabled selected>Choose from Below</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="statueServicesPaymentMethod">Payment Method:</label>
+              <div class="controls">
+                <select id="statueServicesPaymentMethod" formControlName="payment_method" class="form-control">
+                  <option ngValue="null" disabled selected>Choose from Below</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="statueServiceCheck">Check #:</label>
+              <div class="controls">
+                <input type="text" id="statueServiceCheck" placeholder="Enter Check #" class="form-control" formControlName="check_number">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset><br>
+
+
+    <fieldset class="form-row" formGroupName="social_media">
+      <legend>Social Media, Birthdays, & Contests</legend>
+      <div class="row">
+        <div class="radio-inline col-sm-4">
+          <div class="form-group">
+            <label>No Social Media?</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="socialMediaRadioButton1" type="radio" value="Yes" formControlName="social_media">
+                <label for="socialMediaRadioButton1">Yes</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="socialMediaRadioButton2" type="radio" value="No" formControlName="social_media">
+                <label for="socialMediaRadioButton2">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="radio-inline col-sm-4">
+          <div class="form-group">
+            <label>Facebook?</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="facebookRadioButton1" type="radio" value="Yes" formControlName="has_facebook">
+                <label for="facebookRadioButton1">Yes</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="facebookRadioButton2" type="radio" value="No" formControlName="has_facebook">
+                <label for="facebookRadioButton2">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="facebookAccountName">Facebook Account Name:</label>
+            <div class="controls">
+              <input type="text" id="facebookAccountName" placeholder="Enter Account Name" class="form-control" formControlName="facebook_account_name">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <div class="controls">
+            <label for="facebookDate">Date:</label>
+            <p-calendar formControlName="facebook_date" [showIcon]="true" inputId="facebookDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="radio-inline col-sm-4">
+          <div class="form-group">
+            <label>LinkedIn?</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="linkedInRadioButton1" type="radio" value="Yes" formControlName="has_linkedin">
+                <label for="linkedInRadioButton1">Yes</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="linkedInRadioButton2" type="radio" value="No" formControlName="has_linkedin">
+                <label for="linkedInRadioButton2">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="linkedInAccountName">LinkedIn Account Name:</label>
+            <div class="controls">
+              <input type="text" id="linkedInAccountName" placeholder="Enter Account Name" class="form-control" formControlName="linkedin_account_name">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <div class="controls">
+            <label for="linkedInDate">Date:</label>
+            <p-calendar formControlName="linkedin_date" [showIcon]="true" inputId="linkedInDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="radio-inline col-sm-4">
+          <div class="form-group">
+            <label>Twitter?</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="twitterRadioButton1" type="radio" value="Yes" formControlName="has_twitter">
+                <label for="twitterRadioButton1">Yes</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="twitterRadioButton2" type="radio" value="No" formControlName="has_twitter">
+                <label for="twitterRadioButton2">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="twitterAccountName">Twitter Account Name:</label>
+            <div class="controls">
+              <input type="text" id="twitterAccountName" placeholder="Enter Account Name" class="form-control" formControlName="twitter_account_name">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <div class="controls">
+            <label for="twitterDate">Date:</label>
+            <p-calendar formControlName="twitter_date" [showIcon]="true" inputId="twitterDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="radio-inline col-sm-4">
+          <div class="form-group">
+            <label>Instagram?</label>
+            <div class="controls" style="display: -webkit-box">
+              <div class="wrapper-class">
+                <input id="instagramRadioButton1" type="radio" value="Yes" formControlName="has_instagram">
+                <label for="instagramRadioButton1">Yes</label>
+              </div>
+              <div class="wrapper-class">
+                <input id="instagramRadioButton2" type="radio" value="No" formControlName="has_instagram">
+                <label for="instagramRadioButton2">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="instagramAccountName">Instagram Account Name:</label>
+            <div class="controls">
+              <input type="text" id="instagramAccountName" placeholder="Enter Account Name" class="form-control" formControlName="instagram_account_name">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <div class="controls">
+            <label for="instagramDate">Date:</label>
+            <p-calendar formControlName="instagram_date" [showIcon]="true" inputId="instagramDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="form-row" formGroupName="hiring_info">
+      <legend>Hiring Information:</legend>
+      <div class="row">
+        <div class="form-group col-sm-3">
+          <div class="controls">
+            <label for="dateHired">Date Hired:</label>
+            <p-calendar formControlName="date_hired" [showIcon]="true" inputId="dateHired" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="reasonHired">Reason(s) Hired:</label>
+            <div class="controls">
+              <input type="text" id="reasonHired" placeholder="Enter Hiring Reasons" class="form-control" formControlName="reason_hired">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="hiringComments">Hiring Comments:</label>
+            <div class="controls">
+              <input type="text" id="hiringComments" placeholder="Enter Hiring Comments" class="form-control" formControlName="hiring_comments">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="representationType">Type of Representation:</label>
+            <div class="controls">
+              <select id="representationType" formControlName="type_of_representation" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-3">
+          <div class="controls">
+            <label for="hiringInfoDate">Date:</label>
+            <p-calendar formControlName="date" [showIcon]="true" inputId="hiringInfoDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="sourceOfReferral">Source of Referral Name:</label>
+            <div class="controls">
+              <input type="text" id="sourceOfReferral" placeholder="Enter Hiring Reasons" class="form-control" formControlName="referral_name">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="position">Position:</label>
+            <div class="controls">
+              <input type="text" id="position" placeholder="Enter Position" class="form-control" formControlName="position">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="company">Company/Association:</label>
+            <div class="controls">
+              <input type="text" id="company" placeholder="Enter Position" class="form-control" formControlName="company">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="primaryFirm">Primary Firm (if not C&M):</label>
+            <div class="controls">
+              <select id="primaryFirm" formControlName="primary_firm" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="otherFirms">Other Firms Still in Use:</label>
+            <div class="controls">
+              <select id="otherFirms" formControlName="other_firms" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="purpose">For what Purpose:</label>
+            <div class="controls">
+              <input type="text" id="purpose" placeholder="Enter Purpose" class="form-control" formControlName="purpose">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="formerFirm">Former Firm (at Hiring):</label>
+            <div class="controls">
+              <select id="formerFirm" formControlName="former_firm" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset><br>
+
+    <fieldset class="form-row" formGroupName="termination_info">
+      <legend>Termination Information:</legend>
+      <div class="row">
+        <div class="form-group col-sm-3">
+          <div class="controls">
+            <label for="dateTerminated">Date Terminated:</label>
+            <p-calendar formControlName="date_terminated" [showIcon]="true" inputId="dateTerminated" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="reasonTerminated">Reason Terminated:</label>
+            <div class="controls">
+              <input type="text" id="reasonTerminated" placeholder="Enter Hiring Reasons" class="form-control" formControlName="reason_terminated">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="revenueGenerated">Revenue Generated:</label>
+            <div class="controls">
+              <input type="text" id="revenueGenerated" placeholder="Enter Revenue" class="form-control" formControlName="revenue_generated">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="terminatingNotes">Terminating Notes:</label>
+            <div class="controls">
+              <input type="text" id="terminatingNotes" placeholder="Enter Terminating Notes" class="form-control" formControlName="terminating_notes">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="terminationOrigin">Termination Origin:</label>
+            <div class="controls">
+              <select id="terminationOrigin" formControlName="termination_origin" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="realReason">Real Reason Terminated:</label>
+            <div class="controls">
+              <input type="text" id="realReason" placeholder="Enter Hiring Reasons" class="form-control" formControlName="real_reason_terminated">
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset><br>
+
+    <fieldset class="form-row" formGroupName="referrals">
+      <legend>Referrals:</legend>
+      <div formGroupName="referrals_to_CM">
+        <h4>Source of Referral to C&M</h4>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <div class="controls">
+                <label for="referralDate">Date:</label>
+                <p-calendar formControlName="date" [showIcon]="true" inputId="referralDate" placeholder="Select a Date"></p-calendar>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="referredBy">Referred By:</label>
+              <div class="controls">
+                <input type="text" id="referredBy" placeholder="Enter Referral" class="form-control" formControlName="referred_by">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="referralPosition">Position:</label>
+              <div class="controls">
+                <input type="text" id="referralPosition" placeholder="Enter Position" class="form-control" formControlName="position">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="referralCompany">Company:</label>
+              <div class="controls">
+                <input type="text" id="referralCompany" placeholder="Enter Company" class="form-control" formControlName="company">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="meeting">If Organization, at What Meeting:</label>
+              <div class="controls">
+                <input type="text" id="meeting" placeholder="Enter Company" class="form-control" formControlName="meeting">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div formGroupName="referrals_from_CM">
+        <h4>Referrals from C&M for Mgmt. Co./Vendors:</h4>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <div class="controls">
+                <label for="referralRequestDate">Date of Request:</label>
+                <p-calendar formControlName="date" [showIcon]="true" inputId="referralRequestDate" placeholder="Select a Date"></p-calendar>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="referralRequestedBy">Referral Requested By:</label>
+              <div class="controls">
+                <input type="text" id="referralRequestedBy" placeholder="Enter Quantity" class="form-control" formControlName="referral_requested_by">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <div class="controls">
+                <input type="text" id="title" placeholder="Enter Quantity" class="form-control" formControlName="title">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="business">For what Business:</label>
+              <div class="controls">
+                <input type="text" id="business" placeholder="Enter Quantity" class="form-control" formControlName="business">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset><br>
+
+    <fieldset class="form-row" formGroupName="presentation_info">
+      <legend>Presentation Info:</legend>
+      <div class="row">
+        <div class="form-group col-sm-3">
+          <div class="controls">
+            <label for="presentationInfoDate">Date:</label>
+            <p-calendar formControlName="date" [showIcon]="true" inputId="presentationInfoDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="requestedBy">Requested By:</label>
+            <div class="controls">
+              <input type="text" id="requestedBy" placeholder="Enter Requestor" class="form-control" formControlName="requested_by">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="presentationInfoPosition">Position:</label>
+            <div class="controls">
+              <input type="text" id="presentationInfoPosition" placeholder="Enter Position" class="form-control" formControlName="position">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="primaryAttorney">Primary Attorney:</label>
+            <div class="controls">
+              <select id="primaryAttorney" formControlName="primary_attorney" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="staffMember">Staff Member Attending:</label>
+            <div class="controls">
+              <select id="staffMember" formControlName="staff_member_attending" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="location">Location:</label>
+            <div class="controls">
+              <select id="location" formControlName="location" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="mgmtCo">Mgmt. Co. and Office:</label>
+            <div class="controls">
+              <select id="mgmtCo" formControlName="mgmt_office" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="method">Method:</label>
+            <div class="controls">
+              <select id="method" formControlName="method" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="asscAttendee">Who from Association Attended:</label>
+            <div class="controls">
+              <select id="asscAttendee" formControlName="association_attendee" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="issues">Issues Discussed:</label>
+            <div class="controls">
+              <input type="text" id="issues" placeholder="Enter Issues" class="form-control" formControlName="issues_discussed">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="time">Total Presentation Time:</label>
+            <div class="controls">
+              <input type="text" id="time" placeholder="Enter Time" class="form-control" formControlName="presentation_time">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="outcome">Outcome:</label>
+            <div class="controls">
+              <select id="outcome" formControlName="outcome" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="hired">Hired:</label>
+            <div class="controls">
+              <select id="hired" formControlName="hired" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="reasonSelectedFirm">Reasons Selected Firm:</label>
+            <div class="controls">
+              <select id="reasonSelectedFirm" formControlName="reasons_selected_firm" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset><br>
+
+    <fieldset class="form-row" formGroupName="potential_client_status_report">
+      <legend>Potential Client Status Report:</legend>
+      <h4>Origination & Follow-Up Info</h4>
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <div class="controls">
+            <label for="pcDate">PC Origination Date:</label>
+            <p-calendar formControlName="pc_origination_date" [showIcon]="true" inputId="pcDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="initials1">Staff Initials:</label>
+            <div class="controls">
+              <input type="text" id="initials1" placeholder="Enter Staff Initials" class="form-control" formControlName="pc_origination_staff_initials">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="staffAssigned">Staff Assigned:</label>
+            <div class="controls">
+              <select id="staffAssigned" formControlName="primary_attostaff_assignedrney" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <div class="controls">
+            <label for="eventDate">Newest Event Date:</label>
+            <p-calendar formControlName="newest_event_date" [showIcon]="true" inputId="eventDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="initials2">Staff Initials:</label>
+            <div class="controls">
+              <input type="text" id="initials2" placeholder="Enter Staff Initials" class="form-control" formControlName="newest_event_staff_initials">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="typeOfFollowUp">Type of Follow-Up:</label>
+            <div class="controls">
+              <select id="typeOfFollowUp" formControlName="follow_up_type" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <div class="controls">
+            <label for="followUpDate">Next Follow-Up Date:</label>
+            <p-calendar formControlName="next_follow_up_date" [showIcon]="true" inputId="followUpDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="initials3">Staff Initials:</label>
+            <div class="controls">
+              <input type="text" id="initials3" placeholder="Enter Staff Initials" class="form-control" formControlName="next_follow_up_staff_initials">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="typeOfFile">Type of File:</label>
+            <div class="controls">
+              <select id="typeOfFile" formControlName="file_type" class="form-control">
+                <option ngValue="null" disabled selected>Choose from Below</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-2">
+          <div class="controls">
+            <label for="originationDate">Date:</label>
+            <p-calendar formControlName="file_date" [showIcon]="true" inputId="originationDate" placeholder="Select a Date"></p-calendar>
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label for="contactName">Contact Name:</label>
+            <div class="controls">
+              <input type="text" id="contactName" placeholder="Enter Contact Name" class="form-control" formControlName="contact_name">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label for="contactPosition">Position:</label>
+            <div class="controls">
+              <input type="text" id="contactPosition" placeholder="Enter Position" class="form-control" formControlName="position">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label for="phoneNo">Phone Number:</label>
+            <div class="controls">
+              <input type="text" id="phoneNo" placeholder="Enter Phone Number" class="form-control" formControlName="phone_number">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label for="phoneExtension">Extension:</label>
+            <div class="controls">
+              <input type="text" id="phoneExtension" placeholder="Enter Phone Ext" class="form-control" formControlName="phone_ext">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </fieldset><br>
+
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit" [disabled]="updateMALForm.invalid" style="width: 15%">
+        Update
+      </button>
+    </div>
+
+  </form>
+</div>
+

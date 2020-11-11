@@ -20,6 +20,13 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import { CreateMmlComponent } from './mml/create-mml/create-mml.component';
+import { UpdateMalComponent } from './mal/update-mal/update-mal.component';
+import {TableModule} from "primeng/table";
+import {DialogModule} from "primeng/dialog";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {ToastModule} from "primeng/toast";
+import {ToolbarModule} from "primeng/toolbar";
 
 @NgModule({
   declarations: [
@@ -30,7 +37,8 @@ import { CreateMmlComponent } from './mml/create-mml/create-mml.component';
     DashboardComponent,
     DashboardHeaderComponent,
     CreateMalComponent,
-    CreateMmlComponent
+    CreateMmlComponent,
+    UpdateMalComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +53,13 @@ import { CreateMmlComponent } from './mml/create-mml/create-mml.component';
     MatSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    TableModule,
+    DialogModule,
+    RadioButtonModule,
+    ConfirmDialogModule,
+    ToastModule,
+    ToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

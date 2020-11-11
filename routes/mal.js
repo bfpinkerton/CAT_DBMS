@@ -780,15 +780,17 @@ router.post('/create', ensureReadOnlyMAL, function (req, res, next) {
                     // Final success code -------------------------------------------------------------------------------------------------
                     req.flash('success','New MAL entry successfully added.');
                     res.locals.message = req.flash();
+                    res.status(200).json({"statusCode" : 200, "malID" : malID});
                     // malID is a variable that stores the ID of a record's ID
                     // What would be the correct syntax to pass the ID along?
-                    res.redirect("../mal/entry/" + malID);
+                    // res.redirect("../mal/entry/" + malID);
                 })
                 .catch(err => {
                     console.log(err);
                     req.flash('failure','New MAL entry not added.');
                     res.locals.message = req.flash();
-                    res.redirect("../mal/create");
+                    res.status(400).json({"statusCode" : 400 ,"message" : err});
+                    // res.redirect("../mal/create");
                 });
 
 });
