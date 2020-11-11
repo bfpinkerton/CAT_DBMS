@@ -20,67 +20,67 @@ module.exports = (sequelize, Sequelize) => {
         },
         //
         referralDate: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         staff: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         dateEntered: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         mgmtCoName: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         office: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         legalNameReferredAssociation: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         county: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         referralTitle: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         referralSource: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         status: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         gift: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         referralPriority: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         referralType: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         associationWentTo: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         staffInitials: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         dateClosed: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         //
         notes: {
