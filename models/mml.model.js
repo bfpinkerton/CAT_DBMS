@@ -20,31 +20,17 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false
         },
 
-        // TODO: how do you want to organize the following three fields in the code?
-        // --Mgmt. Co--
+
+
+        // --Mgmt. Company--
         /*
-            - Table: "mcd.model.js"
+            - Table: "mml_ManagementCompany.model.js"
             - One to One Association — Able to associate both ways; ID logged below
             - ID logged following creation of MML record
         */
-       // TODO: Is it right to assume "Mgmt. Co" field should refer to MCD foreign key?
-        mgmtCoID: {
-            type: Sequelize.INTEGER,
-        },
-        // --Mgmt. Co Branch Office--
-        /*
-            - Table: "mcd_BranchOffice.model.js"
-            - One to One Association — Able to associate both ways; ID logged below
-            - ID logged following creation of MML record
-        */
-        // TODO: Is it right to assume "Mgmt. Co./Assn. Seminar Name Tag" field should refer to MCD.BranchOffice foreign key?
-        // ALSO there has to be a better name for this xD
-        mgmtCoAssnSeminarNameTag: {
-            type: Sequelize.INTEGER,
-        },
-        companyType: {
-            type: Sequelize.STRING,
-        },
+       managementCompanyID: {
+           type: Sequelize.INTEGER,
+       },
 
 
 

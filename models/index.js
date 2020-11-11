@@ -37,6 +37,7 @@ db.presentations = require("./mal_Presentations.model.js")(sequelize, Sequelize)
 db.potentialClientReports = require("./mal_PotentialClientReports.model.js")(sequelize, Sequelize);
 //
 db.mml = require("./mml.model.js")(sequelize, Sequelize);
+db.managementCompany = require("./mml_ManagementCompany.model.js")(sequelize, Sequelize);
 db.generalInformation = require("./mml_GeneralInformation.model.js")(sequelize, Sequelize);
 db.businessInformation = require("./mml_BusinessInformation.model.js")(sequelize, Sequelize);
 db.onSiteInformation = require("./mml_OnSiteInformation.model.js")(sequelize, Sequelize);
