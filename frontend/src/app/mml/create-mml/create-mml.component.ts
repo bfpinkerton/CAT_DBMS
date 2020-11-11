@@ -169,6 +169,7 @@ export class CreateMmlComponent implements OnInit {
        
       this.createMMLForm.get("onsite_info_group").get("onsiteAddress").value,
       this.createMMLForm.get("onsite_info_group").get("onsiteCity").value,
+      this.createMMLForm.get("onsite_info_group").get("onsiteState").value,
       this.createMMLForm.get("onsite_info_group").get("onsiteZip").value,
       this.createMMLForm.get("onsite_info_group").get("onsiteCounty").value,
       this.createMMLForm.get("onsite_info_group").get("onsiteLandLinePhone").value,
@@ -225,8 +226,6 @@ export class CreateMmlComponent implements OnInit {
       this.createMMLForm.get("social_media_info_group").get("SocialMediaTwitter").value,
       this.createMMLForm.get("social_media_info_group").get("SocialMediaNone").value,
       
-    
-
      
     );
     }
