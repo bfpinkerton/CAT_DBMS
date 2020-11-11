@@ -5,7 +5,7 @@
 run 'npm run-script test-tdd' in root directory
 
 ### Running Cucumber tests
-run 'npm test' in root directory
+run 'npm test' in root directory in angular-master branch
 
 New System's Functionality Gif:
 ![alt-text](currentEx.gif)
