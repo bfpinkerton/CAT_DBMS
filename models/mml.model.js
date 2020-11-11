@@ -22,7 +22,7 @@ module.exports = (sequelize, Sequelize) => {
 
 
 
-        // --Mgmt. Company--
+        // --Management Company--
         /*
             - Table: "mml_ManagementCompany.model.js"
             - One to One Association — Able to associate both ways; ID logged below
