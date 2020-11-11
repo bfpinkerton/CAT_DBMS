@@ -21,6 +21,7 @@ db.sequelize = sequelize;
 
 db.users = require("./user.model.js")(sequelize, Sequelize);
 db.updates = require("./update.model.js")(sequelize, Sequelize);
+//
 db.mal = require("./mal.model.js")(sequelize, Sequelize);
 db.supplementalAssociationInfo = require("./mal_SupplementalAssociationInfo.model.js")(sequelize, Sequelize);
 db.generalBoardInfo = require("./mal_GeneralBoardInfo.model.js")(sequelize, Sequelize);
@@ -34,6 +35,25 @@ db.referralSource = require("./mal_ReferralSource.model.js")(sequelize, Sequeliz
 db.referralMgmtCoVendor = require("./mal_ReferralMgmtCoVendor.model.js")(sequelize, Sequelize);
 db.presentations = require("./mal_Presentations.model.js")(sequelize, Sequelize);
 db.potentialClientReports = require("./mal_PotentialClientReports.model.js")(sequelize, Sequelize);
+//
+db.mml = require("./mml.model.js")(sequelize, Sequelize);
+db.managementCompany = require("./mml_ManagementCompany.model.js")(sequelize, Sequelize);
+db.generalInformation = require("./mml_GeneralInformation.model.js")(sequelize, Sequelize);
+db.businessInformation = require("./mml_BusinessInformation.model.js")(sequelize, Sequelize);
+db.onSiteInformation = require("./mml_OnSiteInformation.model.js")(sequelize, Sequelize);
+db.staffInformation = require("./mml_StaffInformation.model.js")(sequelize, Sequelize);
+db.homeInformation = require("./mml_HomeInformation.model.js")(sequelize, Sequelize);
+db.socialMediaExtras = require("./mml_SocialMediaExtras.model.js")(sequelize, Sequelize);
+db.referrals = require("./mml_Referrals.model.js")(sequelize, Sequelize);
+//
+db.mcd = require("./mcd.model.js")(sequelize, Sequelize); // TODO this file might not exist yet...
+db.corporateStatus = require("./mcd_CorporateStatus.model.js")(sequelize, Sequelize);
+db.corporateContact = require("./mcd_CorporateContact.model.js")(sequelize, Sequelize);
+db.corporate = require("./mcd_Corporate.model.js")(sequelize, Sequelize);
+db.branchOffice = require("./mcd_BranchOffice.model.js")(sequelize, Sequelize);
+db.cmReferralsToMgmtCo = require("./mcd_CMReferralsToMgmtCo.model.js")(sequelize, Sequelize);
+db.mgmtCoReferralsToCM = require("./mcd_MgmtCoReferralsToCM.model.js")(sequelize, Sequelize);
+
 
 
 module.exports = db;
