@@ -37,7 +37,7 @@ app.use(
 app.use(bodyParser.json());
 
 // for parsing multipart/form-data
-// app.use(upload.array()); 
+// app.use(upload.array());
 // app.use(express.static('public'));
 
 // Cross browsers
@@ -130,6 +130,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var malRouter = require("./routes/mal");
 var mmlRouter = require("./routes/mml");
+var mcdRouter = require("./routes/mcd");
 //var associationsRouter = require("./routes/associations");
 //var managersRouter = require("./routes/managers");
 //var apiRouter = require("./routes/api");
@@ -138,6 +139,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/mal", malRouter);
 app.use("/mml", mmlRouter);
+app.use("/mcd", mcdRouter);
 //app.use("/associations", associationsRouter);
 //app.use("/managers", managersRouter);
 //app.use("/api", apiRouter);

@@ -25,7 +25,7 @@ module.exports = (sequelize, Sequelize) => {
         // --Corporate--
         /*
             - Table: "mcd_Corporate.model.js"
-            - ID logged following creation of MAL record
+            - ID logged following creation of MCD record
         */
         corporateID: {
             type: Sequelize.INTEGER,
@@ -36,7 +36,7 @@ module.exports = (sequelize, Sequelize) => {
         // --Corporate Status--
         /*
             - Table: "mcd_CorporateStatus.model.js"
-            - ID logged following creation of MAL record
+            - ID logged following creation of MCD record
         */
         corporateStatusID: {
             type: Sequelize.INTEGER,
@@ -47,7 +47,7 @@ module.exports = (sequelize, Sequelize) => {
         // --Corporate Contact--
         /*
             - Table: "mcd_CorporateContact.model.js"
-            - ID logged following creation of MAL record
+            - ID logged following creation of MCD record
         */
         corporateContactID: {
             type: Sequelize.INTEGER,
@@ -58,7 +58,7 @@ module.exports = (sequelize, Sequelize) => {
         // --Branch Office--
         /*
             - Table: "mcd_BranchOffice.model.js"
-            - ID logged following creation of MAL record
+            - ID logged following creation of MCD record
         */
         branchOfficeID: {
             type: Sequelize.INTEGER,
@@ -69,7 +69,7 @@ module.exports = (sequelize, Sequelize) => {
         // --CM Referrals to Mgmt. Co.--
         /*
             - Table: "mcd_CMReferralsToMgmtCo.model.js"
-            - ID logged following creation of MAL record
+            - ID logged following creation of MCD record
         */
         cmReferralsToMgmtCoID: {
             type: Sequelize.INTEGER,
@@ -80,7 +80,7 @@ module.exports = (sequelize, Sequelize) => {
         // --Mgmt. Co. Referrals to CM--
         /*
             - Table: "mcd_MgmtCoReferralsToCM.model.js"
-            - ID logged following creation of MAL record
+            - ID logged following creation of MCD record
         */
         mgmtCoReferralsToCMID: {
             type: Sequelize.INTEGER,
