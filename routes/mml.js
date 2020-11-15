@@ -621,11 +621,36 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
 
 
 
-// TODO Query specified table and return record
+// Query specified table and return record * For One-to-Many associations
+router.get('/retrieve/:table/:id', ensureAuthenticated, async function (req, res) {
+    let record;
+    switch (req.params.table) {
+        /*case "Update" :
+            record = await Update.findOne(
+                {where: {id:req.params.id}},
+                { plain: true }
+            );
+            break;*/
+        // Seminars 2020 if One-to-Many??
+        // TODO
+        // Gifts if One-to-Many??
+        // TODO
+        // Law Firm Preferences if One-to-Many??
+        // TODO
+        case "Referrals" :
+            record = await Referrals.findOne(
+                {where: {id:req.params.id}},
+                { plain: true }
+            );
+            break;
+    }
+    res.json(record);
+});
 
 
 
-// TODO GET entry page
+// GET entry page
+// TODO
 // ----------------------------------------------------------------------------------------
 
 /*
