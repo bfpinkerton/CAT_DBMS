@@ -621,6 +621,79 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
 
 
 
+// TODO Query specified table and return record
+
+
+
+// TODO GET entry page
+// ----------------------------------------------------------------------------------------
+
+/*
+    INDIVIDUAL TABLE POSTS (CREATES, UPDATES, & DELETE)
+    - The below routes all pertain to creating, updating, or deleting a specified table's record
+*/
+
+// PARAMETERIZED DELETE
+router.delete('/delete/:table/:id', (req, res) => {
+    // TODO: DB Query
+
+    req.flash('success', 'Record has been deleted.')
+    res.locals.message = req.flash();
+    res.redirect('../delete');
+});
+
+
+
+// One-to-One: Update
+// One-to-Many: Create & Update
+
+// Management Company Section ----------------------------------------------------------------------------------------------------
+// Update MML Entry's Management Company
+// TODO
+
+// General Information Section ----------------------------------------------------------------------------------------------------
+// Update MML Entry's General Information
+// TODO
+
+// Business Information Section ----------------------------------------------------------------------------------------------------
+// Update MML Entry's Business Information
+// TODO
+
+// OnSite Information Section ----------------------------------------------------------------------------------------------------
+// Update MML Entry's Onsite Information
+// TODO
+
+// Staff Information Section ----------------------------------------------------------------------------------------------------
+// Update MML Entry's Staff Information
+// TODO
+
+// Home Information Section ----------------------------------------------------------------------------------------------------
+// Update MML Entry's Home Information
+// TODO
+
+// SocialMediaExtras Section ----------------------------------------------------------------------------------------------------
+// Update MML Entry's SocialMediaExtras
+// TODO
+
+// Seminars 2020 Section ----------------------------------------------------------------------------------------------------
+// TODO
+
+// Gifts Section Section ----------------------------------------------------------------------------------------------------
+// TODO
+
+// Law Firm Preferences Section ----------------------------------------------------------------------------------------------------
+// TODO
+
+// Associations Managed Section ----------------------------------------------------------------------------------------------------
+// Update MML Entry's Associations Managed
+// TODO
+
+// Referrals Section ----------------------------------------------------------------------------------------------------
+// Create MML Entry's Referrals
+// TODO
+// Update MML Entry's Referrals
+// TODO
+
 
 
 
