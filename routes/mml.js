@@ -649,8 +649,66 @@ router.get('/retrieve/:table/:id', ensureAuthenticated, async function (req, res
 
 
 
-// GET entry page
-// TODO
+// GET entry page * including all One-to-Ones and One-to-Manys * One-to-Manys also include "order" field
+router.get('/entry/:id', ensureAuthenticated, async function (req, res, next) {
+    req.app.locals.user = req.user;
+    req.app.locals.date = moment().format('MMMM Do YYYY');
+    const mmlID = req.params.id;
+    // DB call to retrieve record
+    req.app.locals.mml = await MML.findOne(
+        {where: {id:mmlID}},
+        { plain: true }
+    );
+    /*req.app.locals.update = await Update.findOne(
+        {where: {MALrelatedID:malID}},
+        {order: ['id','ASC']},
+        { plain: true }
+    );*/
+    req.app.locals.ManagementCompany = await ManagementCompany.findOne(
+        {where: {MMLrelatedID: mmlID}},
+        { plain: true }
+    );
+    req.app.locals.GeneralInformation = await GeneralInformation.findOne(
+        {where: {MMLrelatedID: mmlID}},
+        { plain: true }
+    );
+    req.app.locals.BusinessInformation = await BusinessInformation.findOne(
+        {where: {MMLrelatedID: mmlID}},
+        { plain: true }
+    );
+    req.app.locals.OnSiteInformation = await OnSiteInformation.findOne(
+        {where: {MMLrelatedID: mmlID}},
+        { plain: true }
+    );
+    req.app.locals.StaffInformation = await StaffInformation.findOne(
+        {where: {MMLrelatedID: mmlID}},
+        { plain: true }
+    );
+    req.app.locals.HomeInformation = await HomeInformation.findOne(
+        {where: {MMLrelatedID: mmlID}},
+        { plain: true }
+    );
+    req.app.locals.SocialMediaExtras = await SocialMediaExtras.findOne(
+        {where: {MMLrelatedID: mmlID}},
+        { plain: true }
+    );
+    // Seminars 2020
+    // TODO
+    // Gifts
+    // TODO
+    // Law Firm Preferences
+    // TODO
+    req.app.locals.AssociationsManaged = await AssociationsManaged.findOne(
+        {where: {MMLrelatedID: mmlID}},
+        { plain: true }
+    );
+    req.app.locals.Referrals = await Referrals.findAll(
+        {where: {MMLrelatedID: mmlID}},
+        {order: ['id','ASC']},
+        { plain: true }
+    );
+    res.render('pages/mml/entry', );
+});
 // ----------------------------------------------------------------------------------------
 
 /*
