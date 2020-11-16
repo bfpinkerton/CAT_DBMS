@@ -732,31 +732,325 @@ router.delete('/delete/:table/:id', (req, res) => {
 
 // Management Company Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's Management Company
-// TODO
+router.post('/entry/management/:MML_id/:Mgmt_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Retrieve associated element values from page & structure them
+    const {
+        // View element values
+        ManagementMgmtCoID,
+        ManagementMgmtCoAssnSeminarNameTag,
+        ManagementCompanyType,
+    } = req.body;
+    // Update MML entry with object data
+    await ManagementCompany.update(
+            {
+                mgmtCoID: ManagementMgmtCoID,
+                mgmtCoAssnSeminarNameTag: ManagementMgmtCoAssnSeminarNameTag,
+                companyType: ManagementCompanyType},
+            {where: {id: req.params.Mgmt_id}}
+        )
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Failed to update MML entry\'s mml.ManagementCompany.model.js');
+        });
+
+    res.redirect("../../entry/" + req.params.MML_id);
+});
+
+
 
 // General Information Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's General Information
-// TODO
+router.post('/entry/general/:MML_id/:Gen_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Retrieve associated element values from page & structure them
+    const {
+        // View element values
+        GeneralMktgStatus,
+        GeneralStatusCategory,
+        GeneralLicense,
+        GeneralLicenseNo,
+        GeneralLicenseDate,
+        GeneralTitle,
+        GeneralGender,
+        GeneralFirstName,
+        GeneralLastName,
+        GeneralOtherNames,
+        GeneralPreferredTitle,
+        GeneralDispositionTowardCM,
+    } = req.body;
+    // Update MML entry with object data
+    await GeneralInformation.update(
+            {
+                mktgStatus: GeneralMktgStatus,
+                statusCategory: GeneralStatusCategory,
+                license: GeneralLicense,
+                licenseNo: GeneralLicenseNo,
+                licenseDate: GeneralLicenseDate,
+                title: GeneralTitle,
+                gender: GeneralGender,
+                firstName: GeneralFirstName,
+                lastName: GeneralLastName,
+                otherNames: GeneralOtherNames,
+                preferredTitle: GeneralPreferredTitle,
+                dispositionTowardCM: GeneralDispositionTowardCM},
+            {where: {id: req.params.Gen_id}}
+        )
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Failed to update MML entry\'s mml.GeneralInformation.model.js');
+        });
+
+    res.redirect("../../entry/" + req.params.MML_id);
+});
+
+
 
 // Business Information Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's Business Information
-// TODO
+router.post('/entry/business/:MML_id/:Bus_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Retrieve associated element values from page & structure them
+    const {
+        // View element values
+        BusinessWorkBranchAddress,
+        BusinessCity,
+        BusinessState,
+        BusinessZip,
+        BusinessCounty,
+        BusinessLandlinePhone,
+        BusinessExtension,
+        BusinessCellPhone,
+        BusinessFax,
+        BusinessTollFree,
+        BusinessWorkEmail,
+        BusinessWorkNotes,
+    } = req.body;
+    // Update MML entry with object data
+    await BusinessInformation.update(
+            {
+                workBranchAddress: BusinessWorkBranchAddress,
+                city: BusinessCity,
+                state: BusinessState,
+                zip: BusinessZip,
+                county: BusinessCounty,
+                landlinePhone: BusinessLandlinePhone,
+                extension: BusinessExtension,
+                cellPhone: BusinessCellPhone,
+                fax: BusinessFax,
+                tollFree: BusinessTollFree,
+                workEmail: BusinessWorkEmail,
+                workNotes: BusinessWorkNotes},
+            {where: {id: req.params.Bus_id}}
+        )
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Failed to update MML entry\'s mml.BusinessInformation.model.js');
+        });
+
+    res.redirect("../../entry/" + req.params.MML_id);
+});
+
+
 
 // OnSite Information Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's Onsite Information
-// TODO
+router.post('/entry/onsite/:MML_id/:Site_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Retrieve associated element values from page & structure them
+    const {
+        // View element values
+        OnSiteAddress,
+        OnSiteCity,
+        OnSiteState,
+        OnSiteZip,
+        OnSiteCounty,
+        OnSiteLandlinePhone,
+        OnSiteExtension,
+        OnSiteCellPhone,
+        OnSiteFax,
+        OnSiteTollFree,
+        OnSiteWorkEmail,
+        OnSiteWorkNotes,
+    } = req.body;
+    // Update MML entry with object data
+    await OnSiteInformation.update(
+            {
+                address: OnSiteAddress,
+                city: OnSiteCity,
+                state: OnSiteState,
+                zip: OnSiteZip,
+                county: OnSiteCounty,
+                landlinePhone: OnSiteLandlinePhone,
+                extension: OnSiteExtension,
+                cellPhone: OnSiteCellPhone,
+                fax: OnSiteFax,
+                tollFree: OnSiteTollFree,
+                workEmail: OnSiteWorkEmail,
+                workNotes: OnSiteWorkNotes},
+            {where: {id: req.params.Site_id}}
+        )
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Failed to update MML entry\'s mml.OnSiteInformation.model.js');
+        });
+
+    res.redirect("../../entry/" + req.params.MML_id);
+});
+
+
 
 // Staff Information Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's Staff Information
-// TODO
+router.post('/entry/staff/:MML_id/:Staf_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Retrieve associated element values from page & structure them
+    const {
+        // View element values
+        StaffAssistantName,
+        StaffPhone,
+        StaffExtension,
+        StaffOnSiteAddress,
+        StaffCity,
+        StaffState,
+        StaffZip,
+        StaffCounty,
+        StaffLandlinePhone,
+        StaffLandlineExtension,
+        StaffCellPhone,
+        StaffFax,
+        StaffTollFree,
+        StaffOnSiteEmail,
+    } = req.body;
+    // Update MML entry with object data
+    await StaffInformation.update(
+            {
+                assistantName: StaffAssistantName,
+                phone: StaffPhone,
+                extension: StaffExtension,
+                onSiteAddress: StaffOnSiteAddress,
+                city: StaffCity,
+                state: StaffState,
+                zip: StaffZip,
+                county: StaffCounty,
+                landlinePhone: StaffLandlinePhone,
+                landlineExtension: StaffLandlineExtension,
+                cellPhone: StaffCellPhone,
+                fax: StaffFax,
+                tollFree: StaffTollFree,
+                onSiteEmail: StaffOnSiteEmail},
+            {where: {id: req.params.Staf_id}}
+        )
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Failed to update MML entry\'s mml.StaffInformation.model.js');
+        });
+
+    res.redirect("../../entry/" + req.params.MML_id);
+});
+
+
 
 // Home Information Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's Home Information
-// TODO
+router.post('/entry/home/:MML_id/:Home_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Retrieve associated element values from page & structure them
+    const {
+        // View element values
+        HomeMktgStatus,
+        HomeStatusCategory,
+        HomeAddress,
+        HomeCity,
+        HomeState,
+        HomeZip,
+        HomeCounty,
+        HomeEmailAddress,
+        HomeHomePhone,
+        HomeHomeNotes,
+    } = req.body;
+    // Update MML entry with object data
+    await HomeInformation.update(
+            {
+                mktgStatus: HomeMktgStatus,
+                statusCategory: HomeStatusCategory,
+                address: HomeAddress,
+                city: HomeCity,
+                state: HomeState,
+                zip: HomeZip,
+                county: HomeCounty,
+                emailAddress: HomeEmailAddress,
+                homePhone: HomeHomePhone,
+                homeNotes: HomeHomeNotes},
+            {where: {id: req.params.Home_id}}
+        )
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Failed to update MML entry\'s mml.HomeInformation.model.js');
+        });
+
+    res.redirect("../../entry/" + req.params.MML_id);
+});
+
+
 
 // SocialMediaExtras Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's SocialMediaExtras
-// TODO
+router.post('/entry/social/:MML_id/:Soc_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Retrieve associated element values from page & structure them
+    const {
+        // View element values
+        SocialChristmasCard,
+        SocialBirthdayEmail,
+        SocialFacebookAuthorizationDate,
+        SocialNewsletterAuthorization,
+        SocialWillSendPhoto,
+        SocialPhotoFurnished,
+        SocialDeclinedAllBirthday,
+        SocialFollowCMOnFB,
+        SocialFollowUpFB,
+        SocialFollowedDateFB,
+        SocialFollowCMOnLI,
+        SocialFollowUpLI,
+        SocialFollowedDateLI,
+        SocialOfferedFollowAFS,
+        SocialFollowUpAFS,
+        SocialFollowedDateAFS,
+        SocialFacebook,
+        SocialLinkedIn,
+        SocialInstagram,
+        SocialTwitter,
+        SocialNone,
+    } = req.body;
+    // Update MML entry with object data
+    await SocialMediaExtras.update(
+            {
+                christmasCard: SocialChristmasCard,
+                birthdayEmail: SocialBirthdayEmail,
+                facebookAuthorizationDate: SocialFacebookAuthorizationDate,
+                newsletterAuthorization: SocialNewsletterAuthorization,
+                willSendPhoto: SocialWillSendPhoto,
+                photoFurnished: SocialPhotoFurnished,
+                declinedAllBirthday: SocialDeclinedAllBirthday,
+                followCMOnFB: SocialFollowCMOnFB,
+                followUpFB: SocialFollowUpFB,
+                followedDateFB: SocialFollowedDateFB,
+                followCMOnLI: SocialFollowCMOnLI,
+                followUpLI: SocialFollowUpLI,
+                followedDateLI: SocialFollowedDateLI,
+                offeredFollowAFS: SocialOfferedFollowAFS,
+                followUpAFS: SocialFollowUpAFS,
+                followedDateAFS: SocialFollowedDateAFS,
+                facebook: SocialFacebook,
+                linkedIn: SocialLinkedIn,
+                instagram: SocialInstagram,
+                twitter: SocialTwitter,
+                none: SocialNone},
+            {where: {id: req.params.Soc_id}}
+        )
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Failed to update MML entry\'s mml.SocialMediaExtras.model.js');
+        });
+
+    res.redirect("../../entry/" + req.params.MML_id);
+});
+
+
 
 // Seminars 2020 Section ----------------------------------------------------------------------------------------------------
 // TODO
@@ -768,15 +1062,132 @@ router.delete('/delete/:table/:id', (req, res) => {
 // TODO
 
 // Associations Managed Section ----------------------------------------------------------------------------------------------------
-// Update MML Entry's Associations Managed
 // TODO
+
+
 
 // Referrals Section ----------------------------------------------------------------------------------------------------
 // Create MML Entry's Referrals
-// TODO
-// Update MML Entry's Referrals
-// TODO
+router.post('/create/referrals/:MML_id', ensureReadOnlyMML, function (req, res, next) {
+    // Replace empty string values with null
+    for (var key in req.body) {
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    const {
+        ReferralsReferralDate,
+        ReferralsStaff,
+        ReferralsDateEntered,
+        ReferralsMgmtCoName,
+        ReferralsOffice,
+        ReferralsLegalNameReferredAssociation,
+        ReferralsCounty,
+        ReferralsReferralTitle,
+        ReferralsReferralSource,
+        ReferralsStatus,
+        ReferralsGift,
+        ReferralsReferralPriority,
+        ReferralsReferralType,
+        ReferralsssociationWentTo,
+        ReferralsStaffInitials,
+        ReferralsDateClosed,
+        ReferralsNotes,
+    } = req.body;
+    //
+    var entryReferrals = {
+        MMLrelatedID: mmlID,
+        referralDate: ReferralsReferralDate,
+        staff: ReferralsStaff,
+        dateEntered: ReferralsDateEntered,
+        mgmtCoName: ReferralsMgmtCoName,
+        office: ReferralsOffice,
+        legalNameReferredAssociation: ReferralsLegalNameReferredAssociation,
+        county: ReferralsCounty,
+        referralTitle: ReferralsReferralTitle,
+        referralSource: ReferralsReferralSource,
+        status: ReferralsStatus,
+        gift: ReferralsGift,
+        referralPriority: ReferralsReferralPriority,
+        referralType: ReferralsReferralType,
+        associationWentTo: ReferralsssociationWentTo,
+        staffInitials: ReferralsStaffInitials,
+        dateClosed: ReferralsDateClosed,
+        notes: ReferralsNotes
+    };
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entryReferrals)){
+        if (entryReferrals[key] == '') {
+            entryReferrals[key] = null;
+        }
+    }
+    // Create new Referrals record
+    Referrals.create(entryReferrals)
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','MML entry\'s *mml_Referrals* record not added.');
+        });
 
+    res.redirect("../../entry/" + req.params.MML_id);
+});
+// Update MML Entry's Referrals
+router.post('/entry/referrals/:MML_id/:Ref_id', ensureReadOnlyMML, async function (req, res, next) {
+    let {
+        ReferralsReferralDate,
+        ReferralsStaff,
+        ReferralsDateEntered,
+        ReferralsMgmtCoName,
+        ReferralsOffice,
+        ReferralsLegalNameReferredAssociation,
+        ReferralsCounty,
+        ReferralsReferralTitle,
+        ReferralsReferralSource,
+        ReferralsStatus,
+        ReferralsGift,
+        ReferralsReferralPriority,
+        ReferralsReferralType,
+        ReferralsssociationWentTo,
+        ReferralsStaffInitials,
+        ReferralsDateClosed,
+        ReferralsNotes,
+    } = req.body;
+
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(req.body)){
+        if (req.body[key] == '') {
+            req.body[key] = null;
+        }
+    }
+    // Update MML entry with object data
+    await Referrals.update(
+        {
+            referralDate: ReferralsReferralDate,
+            staff: ReferralsStaff,
+            dateEntered: ReferralsDateEntered,
+            mgmtCoName: ReferralsMgmtCoName,
+            office: ReferralsOffice,
+            legalNameReferredAssociation: ReferralsLegalNameReferredAssociation,
+            county: ReferralsCounty,
+            referralTitle: ReferralsReferralTitle,
+            referralSource: ReferralsReferralSource,
+            status: ReferralsStatus,
+            gift: ReferralsGift,
+            referralPriority: ReferralsReferralPriority,
+            referralType: ReferralsReferralType,
+            associationWentTo: ReferralsssociationWentTo,
+            staffInitials: ReferralsStaffInitials,
+            dateClosed: ReferralsDateClosed,
+            notes: ReferralsNotes
+        },
+        {where: {id: req.params.Ref_id}}
+    )
+    .catch(err => {
+        console.log(err);
+        req.flash('failure','Failed to update MML entry\'s mal_Referrals.model.js');
+    });
+
+    res.redirect("../../../entry/" + req.params.MML_id);
+});
 
 
 
