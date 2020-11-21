@@ -685,29 +685,24 @@ router.delete('/delete/:table/:id', (req, res) => {
 // Management Company Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's Management Company
 router.post('/entry/management/:MML_id/:Mgmt_id', ensureReadOnlyMML, async function (req, res, next) {
-    // Retrieve associated element values from page & structure them
-    const {
-        // View element values
-        ManagementMgmtCoID,
-        ManagementMgmtCoAssnSeminarNameTag,
-        ManagementCompanyType,
-        // Replace all empty string values with NULL
-    } = emptyStringToNull(req.body);
-    // Update MML entry with object data
-    await ManagementCompany.update(
-            {
-                mgmtCoID: ManagementMgmtCoID,
-                mgmtCoAssnSeminarNameTag: ManagementMgmtCoAssnSeminarNameTag,
-                companyType: ManagementCompanyType},
-            {where: {id: req.params.Mgmt_id}}
-        )
-        .catch(err => {
-            console.log(err);
-            req.flash('failure','Failed to update MML entry\'s mml.ManagementCompany.model.js');
-        });
+    // Update record and Replace all empty string values with NULL
+    updateTable(ManagementCompany, emptyStringToNull({
+        mgmtCoID: req.body.ManagementMgmtCoID,
+        mgmtCoAssnSeminarNameTag: req.body.ManagementMgmtCoAssnSeminarNameTag,
+        companyType: req.body.ManagementCompanyType
+    }), req.params.Mgmt_id, 'ManagementCompany', res, req)
+});
+
+// Function to update a table's entry
+function updateTable(table, entry, id, name, res, req) {
+    await table.update(entry, {where: {id: id}})
+    .catch(err => {
+        console.log(err);
+        req.flash('failure', 'Failed to update MML entry\'s mml.' + name + '.model.js');
+    });
 
     res.redirect("../../entry/" + req.params.MML_id);
-});
+}
 
 
 
@@ -1128,7 +1123,7 @@ router.post('/entry/referrals/:MML_id/:Ref_id', ensureReadOnlyMML, async functio
         req.flash('failure','Failed to update MML entry\'s mal_Referrals.model.js');
     });
 
-    res.redirect("../../../entry/" + req.params.MML_id);
+    res.redirect("../../entry/" + req.params.MML_id);
 });
 
 
