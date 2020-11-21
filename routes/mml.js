@@ -121,19 +121,13 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         ManagementMgmtCoAssnSeminarNameTag,
                         ManagementCompanyType,
                     } = req.body;
-                    // Record attributes
-                    var entryManagement = {
+                    // Record attributes and Replace all empty string values with NULL
+                    var entryManagement = emptyStringToNull({
                         MMLrelatedID: mmlID,
                         mgmtCoID: ManagementMgmtCoID,
                         mgmtCoAssnSeminarNameTag: ManagementMgmtCoAssnSeminarNameTag,
                         companyType: ManagementCompanyType
-                    };
-                    // Replace all empty string values with NULL
-                    for (let key of Object.keys(entryManagement)){
-                        if (entryManagement[key] == '') {
-                            entryManagement[key] = null;
-                        }
-                    }
+                    });
                     // Create new ManagementCompany record
                     ManagementCompany.create(entryManagement)
                         .then(data1 => {
@@ -170,8 +164,8 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         GeneralPreferredTitle,
                         GeneralDispositionTowardCM,
                     } = req.body;
-                    // Record attributes
-                    var entryGeneral = {
+                    // Record attributes and Replace all empty string values with NULL
+                    var entryGeneral = emptyStringToNull({
                         MMLrelatedID: mmlID,
                         mktgStatus: GeneralMktgStatus,
                         statusCategory: GeneralStatusCategory,
@@ -185,13 +179,7 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         otherNames: GeneralOtherNames,
                         preferredTitle: GeneralPreferredTitle,
                         dispositionTowardCM: GeneralDispositionTowardCM
-                    };
-                    // Replace all empty string values with NULL
-                    for (let key of Object.keys(entryGeneral)){
-                        if (entryGeneral[key] == '') {
-                            entryGeneral[key] = null;
-                        }
-                    }
+                    });
                     // Create new GeneralInformation record
                     GeneralInformation.create(entryGeneral)
                         .then(data1 => {
@@ -229,8 +217,8 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         BusinessWorkEmail,
                         BusinessWorkNotes,
                     } = req.body;
-                    // Record attributes
-                    var entryBusiness = {
+                    // Record attributes and Replace all empty string values with NULL
+                    var entryBusiness = emptyStringToNull({
                         MMLrelatedID: mmlID,
                         workBranchAddress: BusinessWorkBranchAddress,
                         city: BusinessCity,
@@ -244,13 +232,7 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         tollFree: BusinessTollFree,
                         workEmail: BusinessWorkEmail,
                         workNotes: BusinessWorkNotes
-                    };
-                    // Replace all empty string values with NULL
-                    for (let key of Object.keys(entryBusiness)){
-                        if (entryBusiness[key] == '') {
-                            entryBusiness[key] = null;
-                        }
-                    }
+                    });
                     // Create new BusinessInformation record
                     BusinessInformation.create(entryBusiness)
                         .then(data1 => {
@@ -287,8 +269,8 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         OnSiteWorkEmail,
                         OnSiteWorkNotes,
                     } = req.body;
-                    // Record attributes
-                    var entryOnSite = {
+                    // Record attributes and Replace all empty string values with NULL
+                    var entryOnSite = emptyStringToNull({
                         MMLrelatedID: mmlID,
                         address: OnSiteAddress,
                         city: OnSiteCity,
@@ -302,13 +284,7 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         tollFree: OnSiteTollFree,
                         workEmail: OnSiteWorkEmail,
                         workNotes: OnSiteWorkNotes
-                    };
-                    // Replace all empty string values with NULL
-                    for (let key of Object.keys(entryOnSite)){
-                        if (entryOnSite[key] == '') {
-                            entryOnSite[key] = null;
-                        }
-                    }
+                    });
                     // Create new OnSiteInformation record
                     OnSiteInformation.create(entryOnSite)
                         .then(data1 => {
@@ -347,8 +323,8 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         StaffTollFree,
                         StaffOnSiteEmail,
                     } = req.body;
-                    // Record attributes
-                    var entryStaff = {
+                    // Record attributes and Replace all empty string values with NULL
+                    var entryStaff = emptyStringToNull({
                         MMLrelatedID: mmlID,
                         assistantName: StaffAssistantName,
                         phone: StaffPhone,
@@ -364,13 +340,7 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         fax: StaffFax,
                         tollFree: StaffTollFree,
                         onSiteEmail: StaffOnSiteEmail,
-                    };
-                    // Replace all empty string values with NULL
-                    for (let key of Object.keys(entryStaff)){
-                        if (entryStaff[key] == '') {
-                            entryStaff[key] = null;
-                        }
-                    }
+                    });
                     // Create new StaffInformation record
                     StaffInformation.create(entryStaff)
                         .then(data1 => {
@@ -406,8 +376,8 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         HomeHomePhone,
                         HomeHomeNotes,
                     } = req.body;
-                    // Record attributes
-                    var entryHome = {
+                    // Record attributes and Replace all empty string values with NULL
+                    var entryHome = emptyStringToNull({
                         MMLrelatedID: mmlID,
                         mktgStatus: HomeMktgStatus,
                         statusCategory: HomeStatusCategory,
@@ -419,13 +389,7 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         emailAddress: HomeEmailAddress,
                         homePhone: HomeHomePhone,
                         homeNotes: HomeHomeNotes
-                    };
-                    // Replace all empty string values with NULL
-                    for (let key of Object.keys(entryHome)){
-                        if (entryHome[key] == '') {
-                            entryHome[key] = null;
-                        }
-                    }
+                    });
                     // Create new HomeInformation record
                     HomeInformation.create(entryHome)
                         .then(data1 => {
@@ -471,8 +435,8 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         SocialTwitter,
                         SocialNone,
                     } = req.body;
-                    // Record attributes
-                    var entrySocial = {
+                    // Record attributes and Replace all empty string values with NULL
+                    var entrySocial = emptyStringToNull({
                         MMLrelatedID: mmlID,
                         christmasCard: SocialChristmasCard,
                         birthdayEmail: SocialBirthdayEmail,
@@ -495,13 +459,7 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         instagram: SocialInstagram,
                         twitter: SocialTwitter,
                         none: SocialNone,
-                    };
-                    // Replace all empty string values with NULL
-                    for (let key of Object.keys(entrySocial)){
-                        if (entrySocial[key] == '') {
-                            entrySocial[key] = null;
-                        }
-                    }
+                    });
                     // Create new SocialMediaExtras record
                     SocialMediaExtras.create(entrySocial)
                         .then(data1 => {
@@ -567,8 +525,8 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         ReferralsDateClosed,
                         ReferralsNotes,
                     } = req.body;
-                    //
-                    var entryReferrals = {
+                    // Record attributes and Replace all empty string values with NULL
+                    var entryReferrals = emptyStringToNull({
                         MMLrelatedID: mmlID,
                         referralDate: ReferralsReferralDate,
                         staff: ReferralsStaff,
@@ -587,13 +545,7 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         staffInitials: ReferralsStaffInitials,
                         dateClosed: ReferralsDateClosed,
                         notes: ReferralsNotes,
-                    };
-                    // Replace all empty string values with NULL
-                    for (let key of Object.keys(entryReferrals)){
-                        if (entryReferrals[key] == '') {
-                            entryReferrals[key] = null;
-                        }
-                    }
+                    });
                     // Create new Referrals record
                     Referrals.create(entryReferrals)
                         .catch(err => {
@@ -739,7 +691,8 @@ router.post('/entry/management/:MML_id/:Mgmt_id', ensureReadOnlyMML, async funct
         ManagementMgmtCoID,
         ManagementMgmtCoAssnSeminarNameTag,
         ManagementCompanyType,
-    } = req.body;
+        // Replace all empty string values with NULL
+    } = emptyStringToNull(req.body);
     // Update MML entry with object data
     await ManagementCompany.update(
             {
@@ -776,7 +729,8 @@ router.post('/entry/general/:MML_id/:Gen_id', ensureReadOnlyMML, async function 
         GeneralOtherNames,
         GeneralPreferredTitle,
         GeneralDispositionTowardCM,
-    } = req.body;
+        // Replace all empty string values with NULL
+    } = emptyStringToNull(req.body);
     // Update MML entry with object data
     await GeneralInformation.update(
             {
@@ -822,7 +776,8 @@ router.post('/entry/business/:MML_id/:Bus_id', ensureReadOnlyMML, async function
         BusinessTollFree,
         BusinessWorkEmail,
         BusinessWorkNotes,
-    } = req.body;
+        // Replace all empty string values with NULL
+    } = emptyStringToNull(req.body);
     // Update MML entry with object data
     await BusinessInformation.update(
             {
@@ -868,7 +823,8 @@ router.post('/entry/onsite/:MML_id/:Site_id', ensureReadOnlyMML, async function 
         OnSiteTollFree,
         OnSiteWorkEmail,
         OnSiteWorkNotes,
-    } = req.body;
+        // Replace all empty string values with NULL
+    } = emptyStringToNull(req.body);
     // Update MML entry with object data
     await OnSiteInformation.update(
             {
@@ -916,7 +872,8 @@ router.post('/entry/staff/:MML_id/:Staf_id', ensureReadOnlyMML, async function (
         StaffFax,
         StaffTollFree,
         StaffOnSiteEmail,
-    } = req.body;
+        // Replace all empty string values with NULL
+    } = emptyStringToNull(req.body);
     // Update MML entry with object data
     await StaffInformation.update(
             {
@@ -962,7 +919,8 @@ router.post('/entry/home/:MML_id/:Home_id', ensureReadOnlyMML, async function (r
         HomeEmailAddress,
         HomeHomePhone,
         HomeHomeNotes,
-    } = req.body;
+        // Replace all empty string values with NULL
+    } = emptyStringToNull(req.body);
     // Update MML entry with object data
     await HomeInformation.update(
             {
@@ -1015,7 +973,8 @@ router.post('/entry/social/:MML_id/:Soc_id', ensureReadOnlyMML, async function (
         SocialInstagram,
         SocialTwitter,
         SocialNone,
-    } = req.body;
+        // Replace all empty string values with NULL
+    } = emptyStringToNull(req.body);
     // Update MML entry with object data
     await SocialMediaExtras.update(
             {
@@ -1069,12 +1028,6 @@ router.post('/entry/social/:MML_id/:Soc_id', ensureReadOnlyMML, async function (
 // Referrals Section ----------------------------------------------------------------------------------------------------
 // Create MML Entry's Referrals
 router.post('/create/referrals/:MML_id', ensureReadOnlyMML, function (req, res, next) {
-    // Replace empty string values with null
-    for (var key in req.body) {
-        if (req.body[key] == '') {
-            req.body[key] = null;
-        }
-    }
     const {
         ReferralsReferralDate,
         ReferralsStaff,
@@ -1094,8 +1047,8 @@ router.post('/create/referrals/:MML_id', ensureReadOnlyMML, function (req, res, 
         ReferralsDateClosed,
         ReferralsNotes,
     } = req.body;
-    //
-    var entryReferrals = {
+    // Record attributes and Replace all empty string values with NULL
+    var entryReferrals = emptyStringToNull({
         MMLrelatedID: req.params.MML_id,
         referralDate: ReferralsReferralDate,
         staff: ReferralsStaff,
@@ -1114,13 +1067,7 @@ router.post('/create/referrals/:MML_id', ensureReadOnlyMML, function (req, res, 
         staffInitials: ReferralsStaffInitials,
         dateClosed: ReferralsDateClosed,
         notes: ReferralsNotes
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entryReferrals)){
-        if (entryReferrals[key] == '') {
-            entryReferrals[key] = null;
-        }
-    }
+    });
     // Create new Referrals record
     Referrals.create(entryReferrals)
         .catch(err => {
@@ -1150,14 +1097,9 @@ router.post('/entry/referrals/:MML_id/:Ref_id', ensureReadOnlyMML, async functio
         ReferralsStaffInitials,
         ReferralsDateClosed,
         ReferralsNotes,
-    } = req.body;
+        // Replace all empty string values with NULL
+    } = emptyStringToNull(req.body);
 
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(req.body)){
-        if (req.body[key] == '') {
-            req.body[key] = null;
-        }
-    }
     // Update MML entry with object data
     await Referrals.update(
         {
@@ -1188,6 +1130,21 @@ router.post('/entry/referrals/:MML_id/:Ref_id', ensureReadOnlyMML, async functio
 
     res.redirect("../../../entry/" + req.params.MML_id);
 });
+
+
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Function to replace empty strings with null
+//      Specifically avoids booleans, since a false value was getting replaced with null
+function emptyStringToNull(entry) {
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entry)){
+        if (typeof entry[key] != "boolean" && entry[key] == '') {
+            entry[key] = null;
+        }
+    }
+    return entry;
+}
 
 
 
