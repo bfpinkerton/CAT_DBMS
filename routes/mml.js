@@ -686,15 +686,15 @@ router.delete('/delete/:table/:id', (req, res) => {
 // Update MML Entry's Management Company
 router.post('/entry/management/:MML_id/:Mgmt_id', ensureReadOnlyMML, async function (req, res, next) {
     // Update record and Replace all empty string values with NULL
-    updateTable(ManagementCompany, emptyStringToNull({
+    updateTable(ManagementCompany, 'ManagementCompany', req.params.Mgmt_id, res, req, emptyStringToNull({
         mgmtCoID: req.body.ManagementMgmtCoID,
         mgmtCoAssnSeminarNameTag: req.body.ManagementMgmtCoAssnSeminarNameTag,
         companyType: req.body.ManagementCompanyType
-    }), req.params.Mgmt_id, 'ManagementCompany', res, req)
+    }))
 });
 
 // Function to update a table's entry
-function updateTable(table, entry, id, name, res, req) {
+function updateTable(table, name, id, res, req, entry) {
     await table.update(entry, {where: {id: id}})
     .catch(err => {
         console.log(err);
