@@ -115,368 +115,143 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                     
 
                     // mml_ManagementCompany.model.js -----------------------------------------------------------------------------
-                    const {
-                        // View element values
-                        ManagementMgmtCoID,
-                        ManagementMgmtCoAssnSeminarNameTag,
-                        ManagementCompanyType,
-                    } = req.body;
-                    // Record attributes and Replace all empty string values with NULL
-                    var entryManagement = emptyStringToNull({
+                    // Create new ManagementCompany record and Replace all empty string values with NULL
+                    createFormTable(ManagementCompany, 'ManagementCompany', 'managementCompanyID', MML, mmlID, 'MML', res, req, emptyStringToNull({
                         MMLrelatedID: mmlID,
-                        mgmtCoID: ManagementMgmtCoID,
-                        mgmtCoAssnSeminarNameTag: ManagementMgmtCoAssnSeminarNameTag,
-                        companyType: ManagementCompanyType
-                    });
-                    // Create new ManagementCompany record
-                    ManagementCompany.create(entryManagement)
-                        .then(data1 => {
-                            // Update MML entry with corresponding ManagementCompany table ID
-                            MML.update(
-                                {managementCompanyID: data1.id},
-                                {where: {id:mmlID}}
-                            )
-                            .catch(err => {
-                                console.log(err);
-                                req.flash('failure','Failed to update MML entry\'s "managementCompanyID"');
-                            });
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            req.flash('failure','New MML entry\'s *mml_ManagementCompany* record not added.');
-                        });
+                        mgmtCoID: req.body.ManagementMgmtCoID,
+                        mgmtCoAssnSeminarNameTag: req.body.ManagementMgmtCoAssnSeminarNameTag,
+                        companyType: req.body.ManagementCompanyType
+                    }))
 
                     
 
                     // mml_GeneralInformation.model.js -----------------------------------------------------------------------------
-                    const {
-                        // View element values
-                        GeneralMktgStatus,
-                        GeneralStatusCategory,
-                        GeneralLicense,
-                        GeneralLicenseNo,
-                        GeneralLicenseDate,
-                        GeneralTitle,
-                        GeneralGender,
-                        GeneralFirstName,
-                        GeneralLastName,
-                        GeneralOtherNames,
-                        GeneralPreferredTitle,
-                        GeneralDispositionTowardCM,
-                    } = req.body;
-                    // Record attributes and Replace all empty string values with NULL
-                    var entryGeneral = emptyStringToNull({
+                    // Create new GeneralInformation record and Replace all empty string values with NULL
+                    createFormTable(GeneralInformation, 'GeneralInformation', 'generalInformationID', MML, mmlID, 'MML', res, req, emptyStringToNull({
                         MMLrelatedID: mmlID,
-                        mktgStatus: GeneralMktgStatus,
-                        statusCategory: GeneralStatusCategory,
-                        license: GeneralLicense,
-                        licenseNo: GeneralLicenseNo,
-                        licenseDate: GeneralLicenseDate,
-                        title: GeneralTitle,
-                        gender: GeneralGender,
-                        firstName: GeneralFirstName,
-                        lastName: GeneralLastName,
-                        otherNames: GeneralOtherNames,
-                        preferredTitle: GeneralPreferredTitle,
-                        dispositionTowardCM: GeneralDispositionTowardCM
-                    });
-                    // Create new GeneralInformation record
-                    GeneralInformation.create(entryGeneral)
-                        .then(data1 => {
-                            // Update MML entry with corresponding GeneralInformation table ID
-                            MML.update(
-                                {generalInformationID: data1.id},
-                                {where: {id:mmlID}}
-                            )
-                            .catch(err => {
-                                console.log(err);
-                                req.flash('failure','Failed to update MML entry\'s "generalInformationID"');
-                            });
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            req.flash('failure','New MML entry\'s *mml_GeneralInformation* record not added.');
-                        });
-                    
+                        mktgStatus: req.body.GeneralMktgStatus,
+                        statusCategory: req.body.GeneralStatusCategory,
+                        license: req.body.GeneralLicense,
+                        licenseNo: req.body.GeneralLicenseNo,
+                        licenseDate: req.body.GeneralLicenseDate,
+                        title: req.body.GeneralTitle,
+                        gender: req.body.GeneralGender,
+                        firstName: req.body.GeneralFirstName,
+                        lastName: req.body.GeneralLastName,
+                        otherNames: req.body.GeneralOtherNames,
+                        preferredTitle: req.body.GeneralPreferredTitle,
+                        dispositionTowardCM: req.body.GeneralDispositionTowardCM
+                    }))                    
 
 
 
+                    // TODO: Fix Bug: BusinessInformation entries not being created!!
                     // mml_BusinessInformation.model.js -----------------------------------------------------------------------------
-                    const {
-                        // View element values
-                        BusinessWorkBranchAddress,
-                        BusinessCity,
-                        BusinessState,
-                        BusinessZip,
-                        BusinessCounty,
-                        BusinessLandlinePhone,
-                        BusinessExtension,
-                        BusinessCellPhone,
-                        BusinessFax,
-                        BusinessTollFree,
-                        BusinessWorkEmail,
-                        BusinessWorkNotes,
-                    } = req.body;
-                    // Record attributes and Replace all empty string values with NULL
-                    var entryBusiness = emptyStringToNull({
+                    // Create new BusinessInformation record and Replace all empty string values with NULL
+                    createFormTable(BusinessInformation, 'BusinessInformation', 'businessInformationID', MML, mmlID, 'MML', res, req, emptyStringToNull({
                         MMLrelatedID: mmlID,
-                        workBranchAddress: BusinessWorkBranchAddress,
-                        city: BusinessCity,
-                        state: BusinessState,
-                        zip: BusinessZip,
-                        county: BusinessCounty,
-                        landlinePhone: BusinessLandlinePhone,
-                        extension: BusinessExtension,
-                        cellPhone: BusinessCellPhone,
-                        fax: BusinessFax,
-                        tollFree: BusinessTollFree,
-                        workEmail: BusinessWorkEmail,
-                        workNotes: BusinessWorkNotes
-                    });
-                    // Create new BusinessInformation record
-                    BusinessInformation.create(entryBusiness)
-                        .then(data1 => {
-                            // Update MML entry with corresponding BusinessInformation table ID
-                            MML.update(
-                                {businessInformationID: data1.id},
-                                {where: {id:mmlID}}
-                            )
-                            .catch(err => {
-                                console.log(err);
-                                req.flash('failure','Failed to update MML entry\'s "businessInformationID"');
-                            });
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            req.flash('failure','New MML entry\'s *mml_BusinessInformation* record not added.');
-                        });
+                        workBranchAddress: req.body.BusinessWorkBranchAddress,
+                        city: req.body.BusinessCity,
+                        state: req.body.BusinessState,
+                        zip: req.body.BusinessZip,
+                        county: req.body.BusinessCounty,
+                        landlinePhone: req.body.BusinessLandlinePhone,
+                        extension: req.body.BusinessExtension,
+                        cellPhone: req.body.BusinessCellPhone,
+                        fax: req.body.BusinessFax,
+                        tollFree: req.body.BusinessTollFree,
+                        workEmail: req.body.BusinessWorkEmail,
+                        workNotes: req.body.BusinessWorkNotes
+                    }))
 
 
 
                     // mml_OnSiteInformation.model.js -----------------------------------------------------------------------------
-                    const {
-                        // View element values
-                        OnSiteAddress,
-                        OnSiteCity,
-                        OnSiteState,
-                        OnSiteZip,
-                        OnSiteCounty,
-                        OnSiteLandlinePhone,
-                        OnSiteExtension,
-                        OnSiteCellPhone,
-                        OnSiteFax,
-                        OnSiteTollFree,
-                        OnSiteWorkEmail,
-                        OnSiteWorkNotes,
-                    } = req.body;
-                    // Record attributes and Replace all empty string values with NULL
-                    var entryOnSite = emptyStringToNull({
+                    // Create new OnSiteInformation record and Replace all empty string values with NULL
+                    createFormTable(OnSiteInformation, 'OnSiteInformation', 'onSiteInformationID', MML, mmlID, 'MML', res, req, emptyStringToNull({
                         MMLrelatedID: mmlID,
-                        address: OnSiteAddress,
-                        city: OnSiteCity,
-                        state: OnSiteState,
-                        zip: OnSiteZip,
-                        county: OnSiteCounty,
-                        landlinePhone: OnSiteLandlinePhone,
-                        extension: OnSiteExtension,
-                        cellPhone: OnSiteCellPhone,
-                        fax: OnSiteFax,
-                        tollFree: OnSiteTollFree,
-                        workEmail: OnSiteWorkEmail,
-                        workNotes: OnSiteWorkNotes
-                    });
-                    // Create new OnSiteInformation record
-                    OnSiteInformation.create(entryOnSite)
-                        .then(data1 => {
-                            // Update MML entry with corresponding OnSiteInformation table ID
-                            MML.update(
-                                {onSiteInformationID: data1.id},
-                                {where: {id:mmlID}}
-                            )
-                            .catch(err => {
-                                console.log(err);
-                                req.flash('failure','Failed to update MML entry\'s "onSiteInformationID"');
-                            });
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            req.flash('failure','New MML entry\'s *mml_OnSiteInformation* record not added.');
-                        });
+                        address: req.body.OnSiteAddress,
+                        city: req.body.OnSiteCity,
+                        state: req.body.OnSiteState,
+                        zip: req.body.OnSiteZip,
+                        county: req.body.OnSiteCounty,
+                        landlinePhone: req.body.OnSiteLandlinePhone,
+                        extension: req.body.OnSiteExtension,
+                        cellPhone: req.body.OnSiteCellPhone,
+                        fax: req.body.OnSiteFax,
+                        tollFree: req.body.OnSiteTollFree,
+                        workEmail: req.body.OnSiteWorkEmail,
+                        workNotes: req.body.OnSiteWorkNotes
+                    }))
 
 
 
                     // mml_StaffInformation.model.js -----------------------------------------------------------------------------
-                    const {
-                        // View element values
-                        StaffAssistantName,
-                        StaffPhone,
-                        StaffExtension,
-                        StaffOnSiteAddress,
-                        StaffCity,
-                        StaffState,
-                        StaffZip,
-                        StaffCounty,
-                        StaffLandlinePhone,
-                        StaffLandlineExtension,
-                        StaffCellPhone,
-                        StaffFax,
-                        StaffTollFree,
-                        StaffOnSiteEmail,
-                    } = req.body;
-                    // Record attributes and Replace all empty string values with NULL
-                    var entryStaff = emptyStringToNull({
+                    // Create new StaffInformation record and Replace all empty string values with NULL
+                    createFormTable(StaffInformation, 'StaffInformation', 'staffInformationID', MML, mmlID, 'MML', res, req, emptyStringToNull({
                         MMLrelatedID: mmlID,
-                        assistantName: StaffAssistantName,
-                        phone: StaffPhone,
-                        extension: StaffExtension,
-                        onSiteAddress: StaffOnSiteAddress,
-                        city: StaffCity,
-                        state: StaffState,
-                        zip: StaffZip,
-                        county: StaffCounty,
-                        landlinePhone: StaffLandlinePhone,
-                        landlineExtension: StaffLandlineExtension,
-                        cellPhone: StaffCellPhone,
-                        fax: StaffFax,
-                        tollFree: StaffTollFree,
-                        onSiteEmail: StaffOnSiteEmail,
-                    });
-                    // Create new StaffInformation record
-                    StaffInformation.create(entryStaff)
-                        .then(data1 => {
-                            // Update MML entry with corresponding StaffInformation table ID
-                            MML.update(
-                                {staffInformationID: data1.id},
-                                {where: {id:mmlID}}
-                            )
-                            .catch(err => {
-                                console.log(err);
-                                req.flash('failure','Failed to update MML entry\'s "staffInformationID"');
-                            });
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            req.flash('failure','New MML entry\'s *mml_StaffInformation* record not added.');
-                        });
+                        assistantName: req.body.StaffAssistantName,
+                        phone: req.body.StaffPhone,
+                        extension: req.body.StaffExtension,
+                        onSiteAddress: req.body.StaffOnSiteAddress,
+                        city: req.body.StaffCity,
+                        state: req.body.StaffState,
+                        zip: req.body.StaffZip,
+                        county: req.body.StaffCounty,
+                        landlinePhone: req.body.StaffLandlinePhone,
+                        landlineExtension: req.body.StaffLandlineExtension,
+                        cellPhone: req.body.StaffCellPhone,
+                        fax: req.body.StaffFax,
+                        tollFree: req.body.StaffTollFree,
+                        onSiteEmail: req.body.StaffOnSiteEmail
+                    }))
 
 
 
                     // mml_HomeInformation.model.js -----------------------------------------------------------------------------
-                    // Record attributes
-                    const {
-                        // View element values
-                        HomeMktgStatus,
-                        HomeStatusCategory,
-                        HomeAddress,
-                        HomeCity,
-                        HomeState,
-                        HomeZip,
-                        HomeCounty,
-                        HomeEmailAddress,
-                        HomeHomePhone,
-                        HomeHomeNotes,
-                    } = req.body;
-                    // Record attributes and Replace all empty string values with NULL
-                    var entryHome = emptyStringToNull({
+                    // Create new HomeInformation record and Replace all empty string values with NULL
+                    createFormTable(HomeInformation, 'HomeInformation', 'homeInformationID', MML, mmlID, 'MML', res, req, emptyStringToNull({
                         MMLrelatedID: mmlID,
-                        mktgStatus: HomeMktgStatus,
-                        statusCategory: HomeStatusCategory,
-                        address: HomeAddress,
-                        city: HomeCity,
-                        state: HomeState,
-                        zip: HomeZip,
-                        county: HomeCounty,
-                        emailAddress: HomeEmailAddress,
-                        homePhone: HomeHomePhone,
-                        homeNotes: HomeHomeNotes
-                    });
-                    // Create new HomeInformation record
-                    HomeInformation.create(entryHome)
-                        .then(data1 => {
-                            // Update MML entry with corresponding HomeInformation table ID
-                            MML.update(
-                                {homeInformationID: data1.id},
-                                {where: {id:mmlID}}
-                            )
-                            .catch(err => {
-                                console.log(err);
-                                req.flash('failure','Failed to update MML entry\'s "homeInformationID"');
-                            });
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            req.flash('failure','New MML entry\'s *mml_HomeInformation* record not added.');
-                        });
+                        mktgStatus: req.body.HomeMktgStatus,
+                        statusCategory: req.body.HomeStatusCategory,
+                        address: req.body.HomeAddress,
+                        city: req.body.HomeCity,
+                        state: req.body.HomeState,
+                        zip: req.body.HomeZip,
+                        county: req.body.HomeCounty,
+                        emailAddress: req.body.HomeEmailAddress,
+                        homePhone: req.body.HomeHomePhone,
+                        homeNotes: req.body.HomeHomeNotes
+                    }))
 
 
 
                     // mml_SocialMediaExtras.model.js -----------------------------------------------------------------------------
-                    const {
-                        // View element values
-                        SocialChristmasCard,
-                        SocialBirthdayEmail,
-                        SocialFacebookAuthorizationDate,
-                        SocialNewsletterAuthorization,
-                        SocialWillSendPhoto,
-                        SocialPhotoFurnished,
-                        SocialDeclinedAllBirthday,
-                        SocialFollowCMOnFB,
-                        SocialFollowUpFB,
-                        SocialFollowedDateFB,
-                        SocialFollowCMOnLI,
-                        SocialFollowUpLI,
-                        SocialFollowedDateLI,
-                        SocialOfferedFollowAFS,
-                        SocialFollowUpAFS,
-                        SocialFollowedDateAFS,
-                        SocialFacebook,
-                        SocialLinkedIn,
-                        SocialInstagram,
-                        SocialTwitter,
-                        SocialNone,
-                    } = req.body;
-                    // Record attributes and Replace all empty string values with NULL
-                    var entrySocial = emptyStringToNull({
+                    // Create new SocialMediaExtras record and Replace all empty string values with NULL
+                    createFormTable(SocialMediaExtras, 'SocialMediaExtras', 'socialMediaExtrasID', MML, mmlID, 'MML', res, req, emptyStringToNull({
                         MMLrelatedID: mmlID,
-                        christmasCard: SocialChristmasCard,
-                        birthdayEmail: SocialBirthdayEmail,
-                        facebookAuthorizationDate: SocialFacebookAuthorizationDate,
-                        newsletterAuthorization: SocialNewsletterAuthorization,
-                        willSendPhoto: SocialWillSendPhoto,
-                        photoFurnished: SocialPhotoFurnished,
-                        declinedAllBirthday: SocialDeclinedAllBirthday,
-                        followCMOnFB: SocialFollowCMOnFB,
-                        followUpFB: SocialFollowUpFB,
-                        followedDateFB: SocialFollowedDateFB,
-                        followCMOnLI: SocialFollowCMOnLI,
-                        followUpLI: SocialFollowUpLI,
-                        followedDateLI: SocialFollowedDateLI,
-                        offeredFollowAFS: SocialOfferedFollowAFS,
-                        followUpAFS: SocialFollowUpAFS,
-                        followedDateAFS: SocialFollowedDateAFS,
-                        facebook: SocialFacebook,
-                        linkedIn: SocialLinkedIn,
-                        instagram: SocialInstagram,
-                        twitter: SocialTwitter,
-                        none: SocialNone,
-                    });
-                    // Create new SocialMediaExtras record
-                    SocialMediaExtras.create(entrySocial)
-                        .then(data1 => {
-                            // Update MML entry with corresponding SocialMediaExtras table ID
-                            MML.update(
-                                {socialMediaExtrasID: data1.id},
-                                {where: {id:mmlID}}
-                            )
-                            .catch(err => {
-                                console.log(err);
-                                req.flash('failure','Failed to update MML entry\'s "socialMediaExtrasID"');
-                            });
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            req.flash('failure','New MML entry\'s *mml_SocialMediaExtras* record not added.');
-                        });
+                        christmasCard: req.body.SocialChristmasCard,
+                        birthdayEmail: req.body.SocialBirthdayEmail,
+                        facebookAuthorizationDate: req.body.SocialFacebookAuthorizationDate,
+                        newsletterAuthorization: req.body.SocialNewsletterAuthorization,
+                        willSendPhoto: req.body.SocialWillSendPhoto,
+                        photoFurnished: req.body.SocialPhotoFurnished,
+                        declinedAllBirthday: req.body.SocialDeclinedAllBirthday,
+                        followCMOnFB: req.body.SocialFollowCMOnFB,
+                        followUpFB: req.body.SocialFollowUpFB,
+                        followedDateFB: req.body.SocialFollowedDateFB,
+                        followCMOnLI: req.body.SocialFollowCMOnLI,
+                        followUpLI: req.body.SocialFollowUpLI,
+                        followedDateLI: req.body.SocialFollowedDateLI,
+                        offeredFollowAFS: req.body.SocialOfferedFollowAFS,
+                        followUpAFS: req.body.SocialFollowUpAFS,
+                        followedDateAFS: req.body.SocialFollowedDateAFS,
+                        facebook: req.body.SocialFacebook,
+                        linkedIn: req.body.SocialLinkedIn,
+                        instagram: req.body.SocialInstagram,
+                        twitter: req.body.SocialTwitter,
+                        none: req.body.SocialNone
+                    }))
 
 
 
@@ -506,52 +281,27 @@ router.post('/create', ensureReadOnlyMML, function (req, res, next) {
                         - One to Many Association — Not able to associate both ways; ID not logged below
                     */
                    // mml_Referrals.model.js -------------------------------------------------------------------------------
-                   const {
-                        ReferralsReferralDate,
-                        ReferralsStaff,
-                        ReferralsDateEntered,
-                        ReferralsMgmtCoName,
-                        ReferralsOffice,
-                        ReferralsLegalNameReferredAssociation,
-                        ReferralsCounty,
-                        ReferralsReferralTitle,
-                        ReferralsReferralSource,
-                        ReferralsStatus,
-                        ReferralsGift,
-                        ReferralsReferralPriority,
-                        ReferralsReferralType,
-                        ReferralsssociationWentTo,
-                        ReferralsStaffInitials,
-                        ReferralsDateClosed,
-                        ReferralsNotes,
-                    } = req.body;
-                    // Record attributes and Replace all empty string values with NULL
-                    var entryReferrals = emptyStringToNull({
+                   // Create new Referrals record and Replace all empty string values with NULL
+                    createFormTableMany(Referrals, 'Referrals', 'MML', req, emptyStringToNull({
                         MMLrelatedID: mmlID,
-                        referralDate: ReferralsReferralDate,
-                        staff: ReferralsStaff,
-                        dateEntered: ReferralsDateEntered,
-                        mgmtCoName: ReferralsMgmtCoName,
-                        office: ReferralsOffice,
-                        legalNameReferredAssociation: ReferralsLegalNameReferredAssociation,
-                        county: ReferralsCounty,
-                        referralTitle: ReferralsReferralTitle,
-                        referralSource: ReferralsReferralSource,
-                        status: ReferralsStatus,
-                        gift: ReferralsGift,
-                        referralPriority: ReferralsReferralPriority,
-                        referralType: ReferralsReferralType,
-                        associationWentTo: ReferralsssociationWentTo,
-                        staffInitials: ReferralsStaffInitials,
-                        dateClosed: ReferralsDateClosed,
-                        notes: ReferralsNotes,
-                    });
-                    // Create new Referrals record
-                    Referrals.create(entryReferrals)
-                        .catch(err => {
-                            console.log(err);
-                            req.flash('failure','New MML entry\'s *mml_Referrals* record not added.');
-                        });
+                        referralDate: req.body.ReferralsReferralDate,
+                        staff: req.body.ReferralsStaff,
+                        dateEntered: req.body.ReferralsDateEntered,
+                        mgmtCoName: req.body.ReferralsMgmtCoName,
+                        office: req.body.ReferralsOffice,
+                        legalNameReferredAssociation: req.body.ReferralsLegalNameReferredAssociation,
+                        county: req.body.ReferralsCounty,
+                        referralTitle: req.body.ReferralsReferralTitle,
+                        referralSource: req.body.ReferralsReferralSource,
+                        status: req.body.ReferralsStatus,
+                        gift: req.body.ReferralsGift,
+                        referralPriority: req.body.ReferralsReferralPriority,
+                        referralType: req.body.ReferralsReferralType,
+                        associationWentTo: req.body.ReferralsAssociationWentTo,
+                        staffInitials: req.body.ReferralsStaffInitials,
+                        dateClosed: req.body.ReferralsDateClosed,
+                        notes: req.body.ReferralsNotes
+                    }))
 
 
 
@@ -684,9 +434,9 @@ router.delete('/delete/:table/:id', (req, res) => {
 
 // Management Company Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's Management Company
-router.post('/entry/management/:MML_id/:Mgmt_id', ensureReadOnlyMML, async function (req, res, next) {
+router.post('/entry/management/:form_id/:table_id', ensureReadOnlyMML, async function (req, res, next) {
     // Update record and Replace all empty string values with NULL
-    updateTable(ManagementCompany, 'ManagementCompany', req.params.Mgmt_id, res, req, emptyStringToNull({
+    updateTable(ManagementCompany, 'ManagementCompany', 'MML', res, req, emptyStringToNull({
         mgmtCoID: req.body.ManagementMgmtCoID,
         mgmtCoAssnSeminarNameTag: req.body.ManagementMgmtCoAssnSeminarNameTag,
         companyType: req.body.ManagementCompanyType
@@ -697,300 +447,141 @@ router.post('/entry/management/:MML_id/:Mgmt_id', ensureReadOnlyMML, async funct
 
 // General Information Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's General Information
-router.post('/entry/general/:MML_id/:Gen_id', ensureReadOnlyMML, async function (req, res, next) {
-    // Retrieve associated element values from page & structure them
-    const {
-        // View element values
-        GeneralMktgStatus,
-        GeneralStatusCategory,
-        GeneralLicense,
-        GeneralLicenseNo,
-        GeneralLicenseDate,
-        GeneralTitle,
-        GeneralGender,
-        GeneralFirstName,
-        GeneralLastName,
-        GeneralOtherNames,
-        GeneralPreferredTitle,
-        GeneralDispositionTowardCM,
-        // Replace all empty string values with NULL
-    } = emptyStringToNull(req.body);
-    // Update MML entry with object data
-    await GeneralInformation.update(
-            {
-                mktgStatus: GeneralMktgStatus,
-                statusCategory: GeneralStatusCategory,
-                license: GeneralLicense,
-                licenseNo: GeneralLicenseNo,
-                licenseDate: GeneralLicenseDate,
-                title: GeneralTitle,
-                gender: GeneralGender,
-                firstName: GeneralFirstName,
-                lastName: GeneralLastName,
-                otherNames: GeneralOtherNames,
-                preferredTitle: GeneralPreferredTitle,
-                dispositionTowardCM: GeneralDispositionTowardCM},
-            {where: {id: req.params.Gen_id}}
-        )
-        .catch(err => {
-            console.log(err);
-            req.flash('failure','Failed to update MML entry\'s mml.GeneralInformation.model.js');
-        });
-
-    res.redirect("../../entry/" + req.params.MML_id);
+router.post('/entry/general/:form_id/:table_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Update record and Replace all empty string values with NULL
+    updateTable(GeneralInformation, 'GeneralInformation', 'MML', res, req, emptyStringToNull({
+        mktgStatus: req.body.GeneralMktgStatus,
+        statusCategory: req.body.GeneralStatusCategory,
+        license: req.body.GeneralLicense,
+        licenseNo: req.body.GeneralLicenseNo,
+        licenseDate: req.body.GeneralLicenseDate,
+        title: req.body.GeneralTitle,
+        gender: req.body.GeneralGender,
+        firstName: req.body.GeneralFirstName,
+        lastName: req.body.GeneralLastName,
+        otherNames: req.body.GeneralOtherNames,
+        preferredTitle: req.body.GeneralPreferredTitle,
+        dispositionTowardCM: req.body.GeneralDispositionTowardCM
+    }))
 });
 
 
 
 // Business Information Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's Business Information
-router.post('/entry/business/:MML_id/:Bus_id', ensureReadOnlyMML, async function (req, res, next) {
-    // Retrieve associated element values from page & structure them
-    const {
-        // View element values
-        BusinessWorkBranchAddress,
-        BusinessCity,
-        BusinessState,
-        BusinessZip,
-        BusinessCounty,
-        BusinessLandlinePhone,
-        BusinessExtension,
-        BusinessCellPhone,
-        BusinessFax,
-        BusinessTollFree,
-        BusinessWorkEmail,
-        BusinessWorkNotes,
-        // Replace all empty string values with NULL
-    } = emptyStringToNull(req.body);
-    // Update MML entry with object data
-    await BusinessInformation.update(
-            {
-                workBranchAddress: BusinessWorkBranchAddress,
-                city: BusinessCity,
-                state: BusinessState,
-                zip: BusinessZip,
-                county: BusinessCounty,
-                landlinePhone: BusinessLandlinePhone,
-                extension: BusinessExtension,
-                cellPhone: BusinessCellPhone,
-                fax: BusinessFax,
-                tollFree: BusinessTollFree,
-                workEmail: BusinessWorkEmail,
-                workNotes: BusinessWorkNotes},
-            {where: {id: req.params.Bus_id}}
-        )
-        .catch(err => {
-            console.log(err);
-            req.flash('failure','Failed to update MML entry\'s mml.BusinessInformation.model.js');
-        });
-
-    res.redirect("../../entry/" + req.params.MML_id);
+router.post('/entry/business/:form_id/:table_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Update record and Replace all empty string values with NULL
+    updateTable(BusinessInformation, 'BusinessInformation', 'MML', res, req, emptyStringToNull({
+        workBranchAddress: req.body.BusinessWorkBranchAddress,
+        city: req.body.BusinessCity,
+        state: req.body.BusinessState,
+        zip: req.body.BusinessZip,
+        county: req.body.BusinessCounty,
+        landlinePhone: req.body.BusinessLandlinePhone,
+        extension: req.body.BusinessExtension,
+        cellPhone: req.body.BusinessCellPhone,
+        fax: req.body.BusinessFax,
+        tollFree: req.body.BusinessTollFree,
+        workEmail: req.body.BusinessWorkEmail,
+        workNotes: req.body.BusinessWorkNotes
+    }))
 });
 
 
 
 // OnSite Information Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's Onsite Information
-router.post('/entry/onsite/:MML_id/:Site_id', ensureReadOnlyMML, async function (req, res, next) {
-    // Retrieve associated element values from page & structure them
-    const {
-        // View element values
-        OnSiteAddress,
-        OnSiteCity,
-        OnSiteState,
-        OnSiteZip,
-        OnSiteCounty,
-        OnSiteLandlinePhone,
-        OnSiteExtension,
-        OnSiteCellPhone,
-        OnSiteFax,
-        OnSiteTollFree,
-        OnSiteWorkEmail,
-        OnSiteWorkNotes,
-        // Replace all empty string values with NULL
-    } = emptyStringToNull(req.body);
-    // Update MML entry with object data
-    await OnSiteInformation.update(
-            {
-                address: OnSiteAddress,
-                city: OnSiteCity,
-                state: OnSiteState,
-                zip: OnSiteZip,
-                county: OnSiteCounty,
-                landlinePhone: OnSiteLandlinePhone,
-                extension: OnSiteExtension,
-                cellPhone: OnSiteCellPhone,
-                fax: OnSiteFax,
-                tollFree: OnSiteTollFree,
-                workEmail: OnSiteWorkEmail,
-                workNotes: OnSiteWorkNotes},
-            {where: {id: req.params.Site_id}}
-        )
-        .catch(err => {
-            console.log(err);
-            req.flash('failure','Failed to update MML entry\'s mml.OnSiteInformation.model.js');
-        });
-
-    res.redirect("../../entry/" + req.params.MML_id);
+router.post('/entry/onsite/:form_id/:table_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Update record and Replace all empty string values with NULL
+    updateTable(OnSiteInformation, 'OnSiteInformation', 'MML', res, req, emptyStringToNull({
+        address: req.body.OnSiteAddress,
+        city: req.body.OnSiteCity,
+        state: req.body.OnSiteState,
+        zip: req.body.OnSiteZip,
+        county: req.body.OnSiteCounty,
+        landlinePhone: req.body.OnSiteLandlinePhone,
+        extension: req.body.OnSiteExtension,
+        cellPhone: req.body.OnSiteCellPhone,
+        fax: req.body.OnSiteFax,
+        tollFree: req.body.OnSiteTollFree,
+        workEmail: req.body.OnSiteWorkEmail,
+        workNotes: req.body.OnSiteWorkNotes
+    }))
 });
 
 
 
 // Staff Information Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's Staff Information
-router.post('/entry/staff/:MML_id/:Staf_id', ensureReadOnlyMML, async function (req, res, next) {
-    // Retrieve associated element values from page & structure them
-    const {
-        // View element values
-        StaffAssistantName,
-        StaffPhone,
-        StaffExtension,
-        StaffOnSiteAddress,
-        StaffCity,
-        StaffState,
-        StaffZip,
-        StaffCounty,
-        StaffLandlinePhone,
-        StaffLandlineExtension,
-        StaffCellPhone,
-        StaffFax,
-        StaffTollFree,
-        StaffOnSiteEmail,
-        // Replace all empty string values with NULL
-    } = emptyStringToNull(req.body);
-    // Update MML entry with object data
-    await StaffInformation.update(
-            {
-                assistantName: StaffAssistantName,
-                phone: StaffPhone,
-                extension: StaffExtension,
-                onSiteAddress: StaffOnSiteAddress,
-                city: StaffCity,
-                state: StaffState,
-                zip: StaffZip,
-                county: StaffCounty,
-                landlinePhone: StaffLandlinePhone,
-                landlineExtension: StaffLandlineExtension,
-                cellPhone: StaffCellPhone,
-                fax: StaffFax,
-                tollFree: StaffTollFree,
-                onSiteEmail: StaffOnSiteEmail},
-            {where: {id: req.params.Staf_id}}
-        )
-        .catch(err => {
-            console.log(err);
-            req.flash('failure','Failed to update MML entry\'s mml.StaffInformation.model.js');
-        });
-
-    res.redirect("../../entry/" + req.params.MML_id);
+router.post('/entry/staff/:form_id/:table_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Update record and Replace all empty string values with NULL
+    updateTable(StaffInformation, 'StaffInformation', 'MML', res, req, emptyStringToNull({
+        assistantName: req.body.StaffAssistantName,
+        phone: req.body.StaffPhone,
+        extension: req.body.StaffExtension,
+        onSiteAddress: req.body.StaffOnSiteAddress,
+        city: req.body.StaffCity,
+        state: req.body.StaffState,
+        zip: req.body.StaffZip,
+        county: req.body.StaffCounty,
+        landlinePhone: req.body.StaffLandlinePhone,
+        landlineExtension: req.body.StaffLandlineExtension,
+        cellPhone: req.body.StaffCellPhone,
+        fax: req.body.StaffFax,
+        tollFree: req.body.StaffTollFree,
+        onSiteEmail: req.body.StaffOnSiteEmail
+    }))
 });
 
 
 
 // Home Information Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's Home Information
-router.post('/entry/home/:MML_id/:Home_id', ensureReadOnlyMML, async function (req, res, next) {
-    // Retrieve associated element values from page & structure them
-    const {
-        // View element values
-        HomeMktgStatus,
-        HomeStatusCategory,
-        HomeAddress,
-        HomeCity,
-        HomeState,
-        HomeZip,
-        HomeCounty,
-        HomeEmailAddress,
-        HomeHomePhone,
-        HomeHomeNotes,
-        // Replace all empty string values with NULL
-    } = emptyStringToNull(req.body);
-    // Update MML entry with object data
-    await HomeInformation.update(
-            {
-                mktgStatus: HomeMktgStatus,
-                statusCategory: HomeStatusCategory,
-                address: HomeAddress,
-                city: HomeCity,
-                state: HomeState,
-                zip: HomeZip,
-                county: HomeCounty,
-                emailAddress: HomeEmailAddress,
-                homePhone: HomeHomePhone,
-                homeNotes: HomeHomeNotes},
-            {where: {id: req.params.Home_id}}
-        )
-        .catch(err => {
-            console.log(err);
-            req.flash('failure','Failed to update MML entry\'s mml.HomeInformation.model.js');
-        });
-
-    res.redirect("../../entry/" + req.params.MML_id);
+router.post('/entry/home/:form_id/:table_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Update record and Replace all empty string values with NULL
+    updateTable(HomeInformation, 'HomeInformation', 'MML', res, req, emptyStringToNull({
+        mktgStatus: req.body.HomeMktgStatus,
+        statusCategory: req.body.HomeStatusCategory,
+        address: req.body.HomeAddress,
+        city: req.body.HomeCity,
+        state: req.body.HomeState,
+        zip: req.body.HomeZip,
+        county: req.body.HomeCounty,
+        emailAddress: req.body.HomeEmailAddress,
+        homePhone: req.body.HomeHomePhone,
+        homeNotes: req.body.HomeHomeNotes
+    }))
 });
 
 
 
 // SocialMediaExtras Section ----------------------------------------------------------------------------------------------------
 // Update MML Entry's SocialMediaExtras
-router.post('/entry/social/:MML_id/:Soc_id', ensureReadOnlyMML, async function (req, res, next) {
-    // Retrieve associated element values from page & structure them
-    const {
-        // View element values
-        SocialChristmasCard,
-        SocialBirthdayEmail,
-        SocialFacebookAuthorizationDate,
-        SocialNewsletterAuthorization,
-        SocialWillSendPhoto,
-        SocialPhotoFurnished,
-        SocialDeclinedAllBirthday,
-        SocialFollowCMOnFB,
-        SocialFollowUpFB,
-        SocialFollowedDateFB,
-        SocialFollowCMOnLI,
-        SocialFollowUpLI,
-        SocialFollowedDateLI,
-        SocialOfferedFollowAFS,
-        SocialFollowUpAFS,
-        SocialFollowedDateAFS,
-        SocialFacebook,
-        SocialLinkedIn,
-        SocialInstagram,
-        SocialTwitter,
-        SocialNone,
-        // Replace all empty string values with NULL
-    } = emptyStringToNull(req.body);
-    // Update MML entry with object data
-    await SocialMediaExtras.update(
-            {
-                christmasCard: SocialChristmasCard,
-                birthdayEmail: SocialBirthdayEmail,
-                facebookAuthorizationDate: SocialFacebookAuthorizationDate,
-                newsletterAuthorization: SocialNewsletterAuthorization,
-                willSendPhoto: SocialWillSendPhoto,
-                photoFurnished: SocialPhotoFurnished,
-                declinedAllBirthday: SocialDeclinedAllBirthday,
-                followCMOnFB: SocialFollowCMOnFB,
-                followUpFB: SocialFollowUpFB,
-                followedDateFB: SocialFollowedDateFB,
-                followCMOnLI: SocialFollowCMOnLI,
-                followUpLI: SocialFollowUpLI,
-                followedDateLI: SocialFollowedDateLI,
-                offeredFollowAFS: SocialOfferedFollowAFS,
-                followUpAFS: SocialFollowUpAFS,
-                followedDateAFS: SocialFollowedDateAFS,
-                facebook: SocialFacebook,
-                linkedIn: SocialLinkedIn,
-                instagram: SocialInstagram,
-                twitter: SocialTwitter,
-                none: SocialNone},
-            {where: {id: req.params.Soc_id}}
-        )
-        .catch(err => {
-            console.log(err);
-            req.flash('failure','Failed to update MML entry\'s mml.SocialMediaExtras.model.js');
-        });
-
-    res.redirect("../../entry/" + req.params.MML_id);
+router.post('/entry/social/:form_id/:table_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Update record and Replace all empty string values with NULL
+    updateTable(SocialMediaExtras, 'SocialMediaExtras', 'MML', res, req, emptyStringToNull({
+        christmasCard: req.body.SocialChristmasCard,
+        birthdayEmail: req.body.SocialBirthdayEmail,
+        facebookAuthorizationDate: req.body.SocialFacebookAuthorizationDate,
+        newsletterAuthorization: req.body.SocialNewsletterAuthorization,
+        willSendPhoto: req.body.SocialWillSendPhoto,
+        photoFurnished: req.body.SocialPhotoFurnished,
+        declinedAllBirthday: req.body.SocialDeclinedAllBirthday,
+        followCMOnFB: req.body.SocialFollowCMOnFB,
+        followUpFB: req.body.SocialFollowUpFB,
+        followedDateFB: req.body.SocialFollowedDateFB,
+        followCMOnLI: req.body.SocialFollowCMOnLI,
+        followUpLI: req.body.SocialFollowUpLI,
+        followedDateLI: req.body.SocialFollowedDateLI,
+        offeredFollowAFS: req.body.SocialOfferedFollowAFS,
+        followUpAFS: req.body.SocialFollowUpAFS,
+        followedDateAFS: req.body.SocialFollowedDateAFS,
+        facebook: req.body.SocialFacebook,
+        linkedIn: req.body.SocialLinkedIn,
+        instagram: req.body.SocialInstagram,
+        twitter: req.body.SocialTwitter,
+        none: req.body.SocialNone
+    }))
 });
 
 
@@ -1011,124 +602,108 @@ router.post('/entry/social/:MML_id/:Soc_id', ensureReadOnlyMML, async function (
 
 // Referrals Section ----------------------------------------------------------------------------------------------------
 // Create MML Entry's Referrals
-router.post('/create/referrals/:MML_id', ensureReadOnlyMML, function (req, res, next) {
-    const {
-        ReferralsReferralDate,
-        ReferralsStaff,
-        ReferralsDateEntered,
-        ReferralsMgmtCoName,
-        ReferralsOffice,
-        ReferralsLegalNameReferredAssociation,
-        ReferralsCounty,
-        ReferralsReferralTitle,
-        ReferralsReferralSource,
-        ReferralsStatus,
-        ReferralsGift,
-        ReferralsReferralPriority,
-        ReferralsReferralType,
-        ReferralsAssociationWentTo,
-        ReferralsStaffInitials,
-        ReferralsDateClosed,
-        ReferralsNotes,
-    } = req.body;
-    // Record attributes and Replace all empty string values with NULL
-    var entryReferrals = emptyStringToNull({
-        MMLrelatedID: req.params.MML_id,
-        referralDate: ReferralsReferralDate,
-        staff: ReferralsStaff,
-        dateEntered: ReferralsDateEntered,
-        mgmtCoName: ReferralsMgmtCoName,
-        office: ReferralsOffice,
-        legalNameReferredAssociation: ReferralsLegalNameReferredAssociation,
-        county: ReferralsCounty,
-        referralTitle: ReferralsReferralTitle,
-        referralSource: ReferralsReferralSource,
-        status: ReferralsStatus,
-        gift: ReferralsGift,
-        referralPriority: ReferralsReferralPriority,
-        referralType: ReferralsReferralType,
-        associationWentTo: ReferralsAssociationWentTo,
-        staffInitials: ReferralsStaffInitials,
-        dateClosed: ReferralsDateClosed,
-        notes: ReferralsNotes
-    });
-    // Create new Referrals record
-    Referrals.create(entryReferrals)
-        .catch(err => {
-            console.log(err);
-            req.flash('failure','MML entry\'s *mml_Referrals* record not added.');
-        });
-
-    res.redirect("../../entry/" + req.params.MML_id);
+router.post('/create/referrals/:form_id', ensureReadOnlyMML, function (req, res, next) {
+    // Create record and Replace all empty string values with NULL
+    createTable(Referrals, 'Referrals', 'MML', res, req, emptyStringToNull({
+        MMLrelatedID: req.params.form_id,
+        referralDate: req.body.ReferralsReferralDate,
+        staff: req.body.ReferralsStaff,
+        dateEntered: req.body.ReferralsDateEntered,
+        mgmtCoName: req.body.ReferralsMgmtCoName,
+        office: req.body.ReferralsOffice,
+        legalNameReferredAssociation: req.body.ReferralsLegalNameReferredAssociation,
+        county: req.body.ReferralsCounty,
+        referralTitle: req.body.ReferralsReferralTitle,
+        referralSource: req.body.ReferralsReferralSource,
+        status: req.body.ReferralsStatus,
+        gift: req.body.ReferralsGift,
+        referralPriority: req.body.ReferralsReferralPriority,
+        referralType: req.body.ReferralsReferralType,
+        associationWentTo: req.body.ReferralsAssociationWentTo,
+        staffInitials: req.body.ReferralsStaffInitials,
+        dateClosed: req.body.ReferralsDateClosed,
+        notes: req.body.ReferralsNotes
+    }))
 });
 // Update MML Entry's Referrals
-router.post('/entry/referrals/:MML_id/:Ref_id', ensureReadOnlyMML, async function (req, res, next) {
-    let {
-        ReferralsReferralDate,
-        ReferralsStaff,
-        ReferralsDateEntered,
-        ReferralsMgmtCoName,
-        ReferralsOffice,
-        ReferralsLegalNameReferredAssociation,
-        ReferralsCounty,
-        ReferralsReferralTitle,
-        ReferralsReferralSource,
-        ReferralsStatus,
-        ReferralsGift,
-        ReferralsReferralPriority,
-        ReferralsReferralType,
-        ReferralsAssociationWentTo,
-        ReferralsStaffInitials,
-        ReferralsDateClosed,
-        ReferralsNotes,
-        // Replace all empty string values with NULL
-    } = emptyStringToNull(req.body);
-
-    // Update MML entry with object data
-    await Referrals.update(
-        {
-            referralDate: ReferralsReferralDate,
-            staff: ReferralsStaff,
-            dateEntered: ReferralsDateEntered,
-            mgmtCoName: ReferralsMgmtCoName,
-            office: ReferralsOffice,
-            legalNameReferredAssociation: ReferralsLegalNameReferredAssociation,
-            county: ReferralsCounty,
-            referralTitle: ReferralsReferralTitle,
-            referralSource: ReferralsReferralSource,
-            status: ReferralsStatus,
-            gift: ReferralsGift,
-            referralPriority: ReferralsReferralPriority,
-            referralType: ReferralsReferralType,
-            associationWentTo: ReferralsAssociationWentTo,
-            staffInitials: ReferralsStaffInitials,
-            dateClosed: ReferralsDateClosed,
-            notes: ReferralsNotes
-        },
-        {where: {id: req.params.Ref_id}}
-    )
-    .catch(err => {
-        console.log(err);
-        req.flash('failure','Failed to update MML entry\'s mal_Referrals.model.js');
-    });
-
-    res.redirect("../../entry/" + req.params.MML_id);
+router.post('/entry/referrals/:form_id/:table_id', ensureReadOnlyMML, async function (req, res, next) {
+    // Update record and Replace all empty string values with NULL
+    updateTable(Referrals, 'Referrals', 'MML', res, req, emptyStringToNull({
+        referralDate: req.body.ReferralsReferralDate,
+        staff: req.body.ReferralsStaff,
+        dateEntered: req.body.ReferralsDateEntered,
+        mgmtCoName: req.body.ReferralsMgmtCoName,
+        office: req.body.ReferralsOffice,
+        legalNameReferredAssociation: req.body.ReferralsLegalNameReferredAssociation,
+        county: req.body.ReferralsCounty,
+        referralTitle: req.body.ReferralsReferralTitle,
+        referralSource: req.body.ReferralsReferralSource,
+        status: req.body.ReferralsStatus,
+        gift: req.body.ReferralsGift,
+        referralPriority: req.body.ReferralsReferralPriority,
+        referralType: req.body.ReferralsReferralType,
+        associationWentTo: req.body.ReferralsAssociationWentTo,
+        staffInitials: req.body.ReferralsStaffInitials,
+        dateClosed: req.body.ReferralsDateClosed,
+        notes: req.body.ReferralsNotes
+    }))
 });
 
 
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// Function to update a table's entry
-async function updateTable(table, name, id, res, req, entry) {
-    await table.update(entry, {where: {id: id}})
+// Function to create a form's table's entry
+function createFormTable(table, tableName, formField, form, formID, formName, res, req, entry) {
+    table.create(entry)
+    .then(data => {
+        // Update MML entry with corresponding ManagementCompany table ID
+        form.update(
+            JSON.parse('{ "' + formField + '":' + data.id + '}'),
+            {where: {id: formID}}
+        )
+        .catch(err => {
+            console.log(err);
+            req.flash('failure','Failed to update ' + formName + ' entry\'s "' + formField + '"');
+        });
+    })
     .catch(err => {
         console.log(err);
-        req.flash('failure', 'Failed to update MML entry\'s mml.' + name + '.model.js');
+        req.flash('failure', 'New ' + formName + ' entry\'s *' + tableName + '* record not added.');
     });
-
-    res.redirect("../../entry/" + req.params.MML_id);
 }
+
+// Function to create a form's one-to-many table's entry
+//      (Same as below function, but remove the redirect)
+function createFormTableMany(table, name, form, req, entry) {
+    table.create(entry)
+    .catch(err => {
+        console.log(err);
+        req.flash('failure', 'New ' + form + ' entry\'s *' + name + '* record not added.');
+    });
+}
+
+// Function to create a table's entry
+function createTable(table, name, form, res, req, entry) {
+    table.create(entry)
+    .catch(err => {
+        console.log(err);
+        req.flash('failure', form + ' entry\'s *' + name + '* record not added.');
+    });
+    res.redirect("../../entry/" + req.params.form_id);
+}
+
+
+// Function to update a table's entry
+async function updateTable(table, name, form, res, req, entry) {
+    await table.update(entry, {where: {id: req.params.table_id}})
+    .catch(err => {
+        console.log(err);
+        req.flash('failure', 'Failed to update ' + form + ' entry\'s ' + mml.toLowerCase() + '.' + name + '.model.js');
+    });
+    res.redirect("../../entry/" + req.params.form_id);
+}
+
 
 // Function to replace empty strings with null
 //      Specifically avoids booleans, since a false value was getting replaced with null
