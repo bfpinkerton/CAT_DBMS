@@ -674,7 +674,7 @@ function createFormTable(table, tableName, formField, form, formID, formName, re
 }
 
 // Function to create a form's one-to-many table's entry
-//      (Same as below function, but remove the redirect)
+//      (Same as below function, but remove the redirect and add 'New' to error message)
 function createFormTableMany(table, name, form, req, entry) {
     table.create(entry)
     .catch(err => {
