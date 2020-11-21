@@ -693,17 +693,6 @@ router.post('/entry/management/:MML_id/:Mgmt_id', ensureReadOnlyMML, async funct
     }))
 });
 
-// Function to update a table's entry
-async function updateTable(table, name, id, res, req, entry) {
-    await table.update(entry, {where: {id: id}})
-    .catch(err => {
-        console.log(err);
-        req.flash('failure', 'Failed to update MML entry\'s mml.' + name + '.model.js');
-    });
-
-    res.redirect("../../entry/" + req.params.MML_id);
-}
-
 
 
 // General Information Section ----------------------------------------------------------------------------------------------------
@@ -1129,6 +1118,18 @@ router.post('/entry/referrals/:MML_id/:Ref_id', ensureReadOnlyMML, async functio
 
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Function to update a table's entry
+async function updateTable(table, name, id, res, req, entry) {
+    await table.update(entry, {where: {id: id}})
+    .catch(err => {
+        console.log(err);
+        req.flash('failure', 'Failed to update MML entry\'s mml.' + name + '.model.js');
+    });
+
+    res.redirect("../../entry/" + req.params.MML_id);
+}
+
 // Function to replace empty strings with null
 //      Specifically avoids booleans, since a false value was getting replaced with null
 function emptyStringToNull(entry) {
