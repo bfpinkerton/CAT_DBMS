@@ -694,7 +694,7 @@ router.post('/entry/management/:MML_id/:Mgmt_id', ensureReadOnlyMML, async funct
 });
 
 // Function to update a table's entry
-function updateTable(table, name, id, res, req, entry) {
+async function updateTable(table, name, id, res, req, entry) {
     await table.update(entry, {where: {id: id}})
     .catch(err => {
         console.log(err);
