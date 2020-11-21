@@ -78,8 +78,8 @@ router.post('/create/', ensureReadOnlyMCD, function (req, res, next) {
         Date,
         Notes,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         MCDrelatedID: req.params.MCD_id,
         referralStatusToMgmtCo: ReferralStatusToCM,
         branchOffice: BranchOffice,
@@ -98,14 +98,8 @@ router.post('/create/', ensureReadOnlyMCD, function (req, res, next) {
         favoriteFirms: FavoriteFirms,
         date: Date,
         notes: Notes,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
-    // Create new update record
+    });
+    // Create new BranchOffice record
     BranchOffice.create(entry)
         .catch(err => {
             console.log(err);
@@ -135,8 +129,8 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
         Date,
         Notes,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         referralStatusToMgmtCo: ReferralStatusToCM,
         branchOffice: BranchOffice,
         referralStatusToCM: ReferralStatusToCM,
@@ -154,13 +148,7 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
         favoriteFirms: FavoriteFirms,
         date: Date,
         notes: Notes,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
+    });
     // update record
     await BranchOffice.update(entry, {where: {id:req.params.BranchOffice_id}})
         .catch(err => {
@@ -192,8 +180,8 @@ router.post('/create/', ensureReadOnlyMCD, function (req, res, next) {
         HireCompanyReason,
         AssociationHired,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         MCDrelatedID: req.params.MCD_id,
         date: Date,
         associationReferred: AssociationReferred,
@@ -209,14 +197,8 @@ router.post('/create/', ensureReadOnlyMCD, function (req, res, next) {
         hireCompanyDate: HireCompanyDate,
         hireCompanyReason: HireCompanyReason,
         associationHired: AssociationHired,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
-    // Create new update record
+    });
+    // Create new CMReferralsToMgmtCo record
     CMReferralsToMgmtCo.create(entry)
         .catch(err => {
             console.log(err);
@@ -243,8 +225,8 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
         HireCompanyReason,
         AssociationHired,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         date: Date,
         associationReferred: AssociationReferred,
         associationContactPerson: AssociationContactPerson,
@@ -259,13 +241,7 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
         hireCompanyDate: HireCompanyDate,
         hireCompanyReason: HireCompanyReason,
         associationHired: AssociationHired,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
+    });
     // update record
     await CMReferralsToMgmtCo.update(entry, {where: {id:req.params.CMReferralsToMgmtCo_id}})
         .catch(err => {
@@ -288,22 +264,16 @@ router.post('/create/', ensureReadOnlyMCD, function (req, res, next) {
         ServicesDescription,
         CountiesServiced,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         MCDrelatedID: req.params.MCD_id,
         totalMgrs: TotalMgrs,
         totalAssociationClients: TotalAssociationClients,
         numberClientAssociations: NumberClientAssociations,
         servicesDescription: ServicesDescription,
         countiesServiced: CountiesServiced,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
-    // Create new update record
+    });
+    // Create new Corporate record
     Corporate.create(entry)
         .catch(err => {
             console.log(err);
@@ -321,20 +291,14 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
         ServicesDescription,
         CountiesServiced,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         totalMgrs: TotalMgrs,
         totalAssociationClients: TotalAssociationClients,
         numberClientAssociations: NumberClientAssociations,
         servicesDescription: ServicesDescription,
         countiesServiced: CountiesServiced,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
+    });
     // update record
     await Corporate.update(entry, {where: {id:req.params.Corporate_id}})
         .catch(err => {
@@ -359,8 +323,8 @@ router.post('/create/', ensureReadOnlyMCD, function (req, res, next) {
         EmailStyle,
         CompanyManages,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         MCDrelatedID: req.params.MCD_id,
         name: Name,
         title: Title,
@@ -370,14 +334,8 @@ router.post('/create/', ensureReadOnlyMCD, function (req, res, next) {
         website: Website,
         emailStyle: EmailStyle,
         companyManages: CompanyManages,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
-    // Create new update record
+    });
+    // Create new CorporateContact record
     CorporateContact.create(entry)
         .catch(err => {
             console.log(err);
@@ -398,8 +356,8 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
         EmailStyle,
         CompanyManages,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         name: Name,
         title: Title,
         phone: Phone,
@@ -408,13 +366,7 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
         website: Website,
         emailStyle: EmailStyle,
         companyManages: CompanyManages,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
+    });
     // update record
     await CorporateContact.update(entry, {where: {id:req.params.CorporateContact_id}})
         .catch(err => {
@@ -442,8 +394,8 @@ router.post('/create/', ensureReadOnlyMCD, function (req, res, next) {
         CorporateDomicileState,
         CorporateDomicileZip,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         MCDrelatedID: req.params.MCD_id,
         legalName: LegalName,
         doingBusinessAs: DoingBusinessAs,
@@ -455,14 +407,8 @@ router.post('/create/', ensureReadOnlyMCD, function (req, res, next) {
         corporateDomicileCity: CorporateDomicileCity,
         corporateDomicileState: CorporateDomicileState,
         corporateDomicileZip: CorporateDomicileZip,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
-    // Create new update record
+    });
+    // Create new CorporateStatus record
     CorporateStatus.create(entry)
         .catch(err => {
             console.log(err);
@@ -485,8 +431,8 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
         CorporateDomicileState,
         CorporateDomicileZip,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         legalName: LegalName,
         doingBusinessAs: DoingBusinessAs,
         originalLicenseDate: OriginalLicenseDate,
@@ -497,13 +443,7 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
         corporateDomicileCity: CorporateDomicileCity,
         corporateDomicileState: CorporateDomicileState,
         corporateDomicileZip: CorporateDomicileZip,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
+    });
     // update record
     await CorporateStatus.update(entry, {where: {id:req.params.CorporateStatus_id}})
         .catch(err => {
@@ -532,8 +472,8 @@ router.post('/create/', ensureReadOnlyMCD, function (req, res, next) {
         FirmHired,
         HiringDecisionNotes,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         MCDrelatedID: req.params.MCD_id,
         date: Date,
         association: Association,
@@ -546,14 +486,8 @@ router.post('/create/', ensureReadOnlyMCD, function (req, res, next) {
         genuineOrThirdBid: GenuineOrThirdBid,
         firmHired: FirmHired,
         hiringDecisionNotes: HiringDecisionNotes,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
-    // Create new update record
+    });
+    // Create new MgmtCoReferralsToCM record
     MgmtCoReferralsToCM.create(entry)
         .catch(err => {
             console.log(err);
@@ -577,8 +511,8 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
         FirmHired,
         HiringDecisionNotes,
     } = req.body;
-    //
-    var entry = {
+    // Record attributes and Replace all empty string values with NULL
+    var entry = emptyStringToNull({
         MCDrelatedID: req.params.MCD_id,
         date: Date,
         association: Association,
@@ -591,13 +525,7 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
         genuineOrThirdBid: GenuineOrThirdBid,
         firmHired: FirmHired,
         hiringDecisionNotes: HiringDecisionNotes,
-    };
-    // Replace all empty string values with NULL
-    for (let key of Object.keys(entry)){
-        if (entry[key] == '') {
-            entry[key] = null;
-        }
-    }
+    });
     // update record
     await MgmtCoReferralsToCM.update(entry, {where: {id:req.params.MgmtCoReferralsToCM_id}})
         .catch(err => {
@@ -672,5 +600,18 @@ router.post('/entry/', ensureReadOnlyMCD, async function (req, res, next) {
 //
 //     res.redirect("../../entry/" + req.params.MCD_id);
 // });
+
+
+// Function to replace empty strings with null
+//      Specifically avoids booleans, since a false value was getting replaced with null
+function emptyStringToNull(entry) {
+    // Replace all empty string values with NULL
+    for (let key of Object.keys(entry)){
+        if (typeof entry[key] != "boolean" && entry[key] == '') {
+            entry[key] = null;
+        }
+    }
+    return entry;
+}
 
 module.exports = router;
